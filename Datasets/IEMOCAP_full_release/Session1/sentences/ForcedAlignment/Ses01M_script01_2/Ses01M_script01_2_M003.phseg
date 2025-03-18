@@ -1,0 +1,33 @@
+	 SFrm  EFrm   SegAScr Phone
+	    0    22   1355834 SIL
+	   23    72   2743447 SIL
+	   73    78    -38600 HH SIL AW b
+	   79    85     -2953 AW HH D e
+	   86    88   -166847 D AW OW b
+	   89    92   -186418 OW D Y e
+	   93    97     35870 Y OW UW b
+	   98   101   -136170 UW Y N e
+	  102   104    -80517 N UW OW b
+	  105   114     19889 OW N HH e
+	  115   121   -190660 HH OW EH b
+	  122   124   -131832 EH HH Z i
+	  125   132     61175 Z EH IY e
+	  133   137     -6839 IY Z V b
+	  138   143     55091 V IY AX i
+	  144   146   -105606 AX V N i
+	  147   158    432556 N AX TH e
+	  159   164     55443 TH N IH b
+	  165   169    129607 IH TH NG i
+	  170   174    107424 NG IH K i
+	  175   178    -49615 K NG AX i
+	  179   183    -33328 AX K NG i
+	  184   186    -46835 NG AX AX e
+	  187   191     92019 AX NG B b
+	  192   197    157706 B AX AW i
+	  198   208    502664 AW B TD i
+	  209   215    213341 TD AW SIL e
+	  216   227    403892 SIL
+	  228   230    -17368 AX SIL T b
+	  231   234     52443 T AX SIL e
+	  235   248    536411 SIL
+ Total score:     5761224

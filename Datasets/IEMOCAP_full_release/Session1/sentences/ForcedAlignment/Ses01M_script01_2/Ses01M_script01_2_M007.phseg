@@ -1,0 +1,25 @@
+	 SFrm  EFrm   SegAScr Phone
+	    0    41   2969919 SIL
+	   42    48    195646 AX SIL N b
+	   49    51     39371 N AX D i
+	   52    56     10886 D N HH e
+	   57    59    -37429 HH D AW b
+	   60    71    -19017 AW HH D e
+	   72    74   -113656 D AW UW b
+	   75    77    -38150 UW D Y e
+	   78    80     -5374 Y UW UW b
+	   81    84    -62778 UW Y N e
+	   85    87   -111924 N UW OW b
+	   88    99    132801 OW N W e
+	  100   107    234650 W OW AY b
+	  108   120    426433 AY W SH e
+	  121   131    117311 SH AY IY b
+	  132   135    -75081 IY SH Z i
+	  136   141     78849 Z IY W e
+	  142   151    187039 W Z EY b
+	  152   161    342523 EY W T i
+	  162   166    199694 T EY AX i
+	  167   171    215277 AX T D i
+	  172   181    183330 D AX SIL e
+	  182   250   4942913 SIL
+ Total score:     9813233

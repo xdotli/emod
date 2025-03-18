@@ -1,0 +1,69 @@
+	 SFrm  EFrm   SegAScr Phone
+	    0     8    600455 SIL
+	    9    11     23135 W SIL AH b
+	   12    14     33197 AH W TD i
+	   15    17     42817 TD AH SIL e
+	   18   107   5946513 SIL
+	  108   110     78796 D SIL UW b
+	  111   113     90124 UW D Y e
+	  114   117    151476 Y UW UW b
+	  118   120     14468 UW Y M e
+	  121   125    -21112 M UW IY b
+	  126   139    594983 IY M N i
+	  140   142    118351 N IY Y e
+	  143   145     70886 Y N UW b
+	  146   149    129876 UW Y SIL e
+	  150   227   5306083 SIL
+	  228   232     44654 N SIL OW b
+	  233   236    -55351 OW N HH e
+	  237   240     62976 HH OW IY b
+	  241   245     61587 IY HH L e
+	  246   254     82935 L IY IH b
+	  255   258      8944 IH L V i
+	  259   261    -17758 V IH DD i
+	  262   264    -17026 DD V N e
+	  265   271      7802 N DD EH b
+	  272   279     35869 EH N K i
+	  280   284     -6853 K EH S i
+	  285   292     41957 S K D e
+	  293   296    -96869 D S AO b
+	  297   307    301722 AO D R i
+	  308   310     10353 R AO T e
+	  311   313    -65643 T R OW b
+	  314   316    -30507 OW T DH e
+	  317   321     70223 DH OW AX b
+	  322   326     23376 AX DH G e
+	  327   334     74167 G AX ER b
+	  335   345    568883 ER G L i
+	  346   355    311010 L ER HH e
+	  356   359     72885 HH L AX b
+	  360   362    -22320 AX HH Z i
+	  363   367     67632 Z AX HH e
+	  368   371     -6270 HH Z OW b
+	  372   378    328767 OW HH L i
+	  379   385    346953 L OW L e
+	  386   394    325572 L L AY b
+	  395   410    660032 AY L F i
+	  411   425    395100 F AY SIL e
+	  426   527   6973938 SIL
+	  528   533    168988 W SIL AY b
+	  534   540     78097 AY W W e
+	  541   549    272695 W AY UH b
+	  550   552     41082 UH W D i
+	  553   555    -25682 D UH AX i
+	  556   558     38402 AX D N i
+	  559   561    -14700 N AX HH e
+	  562   564   -153638 HH N IY b
+	  565   567    -54400 IY HH W e
+	  568   571    125616 W IY AA b
+	  572   574    -26954 AA W N i
+	  575   577     53681 N AA TD i
+	  578   580     62068 TD N T e
+	  581   583    -49282 T TD OW b
+	  584   587     22147 OW T S e
+	  588   597    325617 S OW IY b
+	  598   606    240098 IY S HH e
+	  607   609     69100 HH IY AXR b
+	  610   618    373353 AXR HH SIL e
+	  619   733   7879436 SIL
+ Total score:    33164512

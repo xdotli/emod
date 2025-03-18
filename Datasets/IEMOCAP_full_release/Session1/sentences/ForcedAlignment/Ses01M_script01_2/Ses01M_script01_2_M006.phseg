@@ -1,0 +1,28 @@
+	 SFrm  EFrm   SegAScr Phone
+	    0    66    576839 SIL
+	   67    69    -14877 L SIL IH b
+	   70    79   -429973 IH L S i
+	   80    82   -232232 S IH AX i
+	   83    87    -51670 AX S N i
+	   88    92     13089 N AX L e
+	   93    96     40671 L N AY b
+	   97   108    534796 AY L N i
+	  109   111   -163911 N AY Y e
+	  112   114   -195106 Y N UW b
+	  115   117     24216 UW Y K e
+	  118   120     21633 K UW AX b
+	  121   123      8500 AX K N i
+	  124   126     61831 N AX T i
+	  127   129    116035 T N SIL e
+	  130   133    118843 SIL
+	  134   136   -111498 R SIL IY b
+	  137   139   -158479 IY R DD i
+	  140   142   -136678 DD IY HH e
+	  143   145   -108083 HH DD AXR b
+	  146   149   -159155 AXR HH M e
+	  150   157     13323 M AXR AY b
+	  158   165   -340760 AY M N i
+	  166   168   -150119 N AY DD i
+	  169   171    -82056 DD N SIL e
+	  172   174     67879 SIL
+ Total score:     -736942

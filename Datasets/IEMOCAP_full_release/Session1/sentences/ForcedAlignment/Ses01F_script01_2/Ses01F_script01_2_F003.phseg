@@ -1,0 +1,22 @@
+	 SFrm  EFrm   SegAScr Phone
+	    0    95   7168001 SIL
+	   96   101    -15626 HH SIL IY b
+	  102   108   -222244 IY HH Z i
+	  109   115   -181511 Z IY N e
+	  116   120    -98400 N Z AA b
+	  121   136   -319708 AA N T i
+	  137   139   -112186 T AA G e
+	  140   142   -145690 G T OW b
+	  143   145   -194357 OW G AX i
+	  146   148   -142942 AX OW NG i
+	  149   151     -1503 NG AX T e
+	  152   154    -16571 T NG IX b
+	  155   157    -18185 IX T M e
+	  158   161     66378 M IX EH b
+	  162   172    208995 EH M R i
+	  173   180    216169 R EH IY i
+	  181   183      4851 IY R HH e
+	  184   191    130449 HH IY AXR b
+	  192   210    919845 AXR HH SIL e
+	  211   301   6597691 SIL
+ Total score:    13843456

@@ -1,0 +1,38 @@
+	 SFrm  EFrm   SegAScr Phone
+	    0    71   4560839 SIL
+	   72    75   -113529 N SIL OW b
+	   76    83   -141335 OW N B i
+	   84    86   -126536 B OW AX i
+	   87    89   -136779 AX B DX i
+	   90    93    -62799 DX AX IY i
+	   94   100   -209265 IY DX K e
+	  101   109   -308171 K IY AH b
+	  110   114    -65937 AH K M i
+	  115   122    157702 M AH Z i
+	  123   126     38075 Z M S e
+	  127   139    485735 S Z EH b
+	  140   147    100412 EH S V i
+	  148   154     70880 V EH AX i
+	  155   160     54299 AX V N i
+	  161   167    -27613 N AX HH e
+	  168   181    310109 HH N AH b
+	  182   186     56868 AH HH N i
+	  187   193    196879 N AH D i
+	  194   198     51761 D N AXR i
+	  199   208    312706 AXR D D i
+	  209   217    316314 D AXR M e
+	  218   224    263977 M D AY b
+	  225   242    734260 AY M AX i
+	  243   253    213955 AX AY L i
+	  254   261    308853 L AX Z i
+	  262   276     63982 Z L JH e
+	  277   287    144072 JH Z AH b
+	  288   295     -2649 AH JH S i
+	  296   309    512555 S AH TD i
+	  310   312     81234 TD S T e
+	  313   317     75678 T TD AX b
+	  318   324    187581 AX T S e
+	  325   352   1385382 S AX IY b
+	  353   382   1217878 IY S SIL e
+	  383   514   8895376 SIL
+ Total score:    19602749

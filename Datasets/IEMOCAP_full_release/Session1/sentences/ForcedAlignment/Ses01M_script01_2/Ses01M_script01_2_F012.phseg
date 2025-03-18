@@ -1,0 +1,91 @@
+	 SFrm  EFrm   SegAScr Phone
+	    0    10   -428971 SIL
+	   11    13   -146899 B SIL IH b
+	   14    16    -57830 IH B L i
+	   17    22    -10216 L IH IY i
+	   23    26   -369679 IY L V i
+	   27    29   -215970 V IY SIL e
+	   30    45   -627884 SIL
+	   46    48   -139632 W SIL AX b
+	   49    55   -108110 AX W DH i
+	   56    62    -45675 DH AX M e
+	   63    68    -42029 M DH IY b
+	   69    78   -482055 IY M JH e
+	   79    93   -627607 JH IY OW b
+	   94   100   -517504 OW JH SIL e
+	  101   114   -902794 SIL
+	  115   125   -410550 Y SIL UW b
+	  126   138   -275571 UW Y SIL e
+	  139   141    -29963 SIL
+	  142   149   -142280 G SIL AA b
+	  150   158   -969563 AA G TD i
+	  159   175  -1135527 TD AA SIL e
+	  176   179   -492653 SIL
+	  180   182   -332194 T SIL OW b
+	  183   186    -94835 OW T B e
+	  187   191     12317 B OW AX b
+	  192   197    -16304 AX B L i
+	  198   210    -64696 L AX IY i
+	  211   244   -611893 IY L V i
+	  245   248   -191377 V IY SIL e
+	  249   358  -3157269 SIL
+	  359   363   -331446 OW SIL N b
+	  364   368    -93791 N OW L i
+	  369   373    -65507 L N IY i
+	  374   383   -109449 IY L L e
+	  384   386    -19540 L IY AE b
+	  387   389   -284507 AE L S i
+	  390   410   -406959 S AE TD i
+	  411   420   -363851 TD S W e
+	  421   433   -198264 W TD IY b
+	  434   437   -254411 IY W KD i
+	  438   440   -368534 KD IY SIL e
+	  441   498  -2883853 SIL
+	  499   505   -199616 AX SIL SIL s
+	  506   541   -531186 SIL
+	  542   556    -98496 B SIL OY b
+	  557   576   -686328 OY B SIL e
+	  577   580   -246171 SIL
+	  581   585   -297707 K SIL EY b
+	  586   590   -149719 EY K M i
+	  591   601   -246517 M EY B e
+	  602   606   -122992 B M AE b
+	  607   617   -447526 AE B KD i
+	  618   624   -262610 KD AE M e
+	  625   630   -205115 M KD IH b
+	  631   636   -162807 IH M S i
+	  637   644   -426515 S IH IX i
+	  645   649   -198265 IX S NG i
+	  650   659   -151519 NG IX SIL e
+	  660   678   -742299 SIL
+	  679   681   -331918 L SIL AO b
+	  682   684   -198613 AO L NG i
+	  685   687   -186721 NG AO G i
+	  688   692   -214913 G NG AXR i
+	  693   702   -648631 AXR G DH e
+	  703   708   -310164 DH AXR EH b
+	  709   712    -77724 EH DH N i
+	  713   720   -163907 N EH L e
+	  721   724   -218064 L N EH b
+	  725   735  -1343280 EH L R i
+	  736   739   -345657 R EH IY i
+	  740   747   -449213 IY R Y e
+	  748   754   -685190 Y IY UW b
+	  755   765   -439583 UW Y SIL e
+	  766   768    -30057 SIL
+	  769   776   -298763 R SIL IY b
+	  777   779   -387340 IY R DD i
+	  780   782   -274135 DD IY SIL e
+	  783   794   -801210 SIL
+	  795   797   -183629 AX SIL T b
+	  798   803   -359282 T AX Y e
+	  804   807    -34193 Y T UH b
+	  808   811    -57469 UH Y R i
+	  812   817    -81798 R UH S i
+	  818   832     10559 S R EH i
+	  833   851  -1592053 EH S L i
+	  852   865  -1736452 L EH F i
+	  866   875    129339 F L SIL e
+	  876   885     20785 SIL
+	  886   897    142812 SIL
+ Total score:   -34337177

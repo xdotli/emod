@@ -1,0 +1,79 @@
+	 SFrm  EFrm   SegAScr Phone
+	    0    42   2938289 SIL
+	   43    52    597929 SIL
+	   53    60     96760 N SIL OW b
+	   61    70   -121248 OW N B i
+	   71    75      6713 B OW AX i
+	   76    78    -75106 AX B DX i
+	   79    82   -118569 DX AX IY i
+	   83    90    103928 IY DX IH e
+	   91    96    155893 IH IY N b
+	   97   102    206634 N IH DH e
+	  103   106    150845 DH N IH b
+	  107   113    131156 IH DH S i
+	  114   121    118895 S IH HH e
+	  122   126    -19483 HH S AW b
+	  127   137     -7245 AW HH S i
+	  138   147    218892 S AW D e
+	  148   153    -74887 D S EH b
+	  154   165    230729 EH D R i
+	  166   171    239742 R EH Z i
+	  172   178    184499 Z R T e
+	  179   184     50909 T Z EY b
+	  185   191    -35061 EY T K i
+	  192   200     66072 K EY AX e
+	  201   204    -70166 AX K W b
+	  205   210     91918 W AX EY i
+	  211   217    -27499 EY W HH e
+	  218   228     70689 HH EY ER b
+	  229   234    118512 ER HH F e
+	  235   243    265401 F ER EY b
+	  244   252    210783 EY F TH i
+	  253   267    432004 TH EY JH e
+	  268   275     99363 JH TH OW b
+	  276   288    292396 OW JH SIL e
+	  289   390   6845483 SIL
+	  391   399   -104227 Y SIL UW b
+	  400   405   -185647 UW Y N e
+	  406   409   -126806 N UW OW b
+	  410   418   -172647 OW N S e
+	  419   430    -42546 S OW T b
+	  431   436   -128166 T S R i
+	  437   441   -176369 R T EY i
+	  442   452     41445 EY R N i
+	  453   458     87756 N EY JH i
+	  459   463     72266 JH N AXR i
+	  464   472    417515 AXR JH Z i
+	  473   482     36557 Z AXR M e
+	  483   488     97742 M Z AY b
+	  489   498    180827 AY M T i
+	  499   507    251578 T AY B e
+	  508   511    -22986 B T AX b
+	  512   516    -31032 AX B T i
+	  517   521    139941 T AX N e
+	  522   525      6068 N T AA b
+	  526   532    123850 AA N TD i
+	  533   540    -12071 TD AA HH e
+	  541   548     74270 HH TD IH b
+	  549   551     51432 IH HH S i
+	  552   567    288909 S IH SIL e
+	  568   590   1506383 SIL
+	  591   596    105997 F SIL AA b
+	  597   618   -301257 AA F DH i
+	  619   624     -4845 DH AA AXR i
+	  625   647    732065 AXR DH SIL e
+	  648   696   3448686 SIL
+	  697   702     59737 N SIL AA b
+	  703   715   -126856 AA N T i
+	  716   720   -158028 T AA HH e
+	  721   729    -17535 HH T IH b
+	  730   732     -6164 IH HH Z i
+	  733   745    341209 Z IH SIL e
+	  746   750    169597 SIL
+	  751   757    -11825 B SIL R b
+	  758   770     74752 R B AH i
+	  771   781   -146743 AH R DH i
+	  782   789   -126076 DH AH AXR i
+	  790   811    672125 AXR DH SIL e
+	  812   914   6801317 SIL
+ Total score:    27255368

@@ -1,0 +1,21 @@
+	 SFrm  EFrm   SegAScr Phone
+	    0    50   2556145 SIL
+	   51    55     76751 HH SIL AW b
+	   56    68    -81281 AW HH D e
+	   69    71   -163683 D AW UW b
+	   72    75    -18486 UW D Y e
+	   76    78     47167 Y UW UW b
+	   79    82    -64197 UW Y N e
+	   83    85    -94844 N UW OW b
+	   86   100    326116 OW N W e
+	  101   108    202144 W OW AY b
+	  109   120    253221 AY W SH e
+	  121   132     25820 SH AY IY b
+	  133   140     38534 IY SH W e
+	  141   150    293749 W IY EY b
+	  151   158    110781 EY W T i
+	  159   162     44979 T EY AX i
+	  163   168    148930 AX T D i
+	  169   174    246312 D AX SIL e
+	  175   219  -1447329 SIL
+ Total score:     2500829
