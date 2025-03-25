@@ -265,51 +265,112 @@ class FusionVADModel(nn.Module):
     """
     Model to combine audio and text VAD predictions.
     
-    Uses attention mechanism to weight the importance of each modality.
+    Uses a cross-attention mechanism to effectively combine information
+    from both modalities with learnable interactions between them.
     """
-    def __init__(self):
+    def __init__(self, feature_dim=3):
         super(FusionVADModel, self).__init__()
         
-        # Attention mechanism
-        self.attention = nn.Sequential(
-            nn.Linear(6, 12),  # 6 = 3 (audio VAD) + 3 (text VAD)
-            nn.ReLU(),
-            nn.Linear(12, 2),  # 2 attention weights for audio and text
-            nn.Softmax(dim=1)
-        )
+        # Feature dimension (VAD = 3)
+        self.feature_dim = feature_dim
         
-        # Fusion layer
-        self.fusion = nn.Sequential(
-            nn.Linear(6, 32),
-            nn.BatchNorm1d(32),
+        # Initial projection layers
+        self.audio_proj = nn.Linear(feature_dim, 64)
+        self.text_proj = nn.Linear(feature_dim, 64)
+        
+        # Cross-attention layers
+        # Query, Key, Value projections for audio attending to text
+        self.audio_query = nn.Linear(64, 64)
+        self.text_key = nn.Linear(64, 64)
+        self.text_value = nn.Linear(64, 64)
+        
+        # Query, Key, Value projections for text attending to audio
+        self.text_query = nn.Linear(64, 64)
+        self.audio_key = nn.Linear(64, 64)
+        self.audio_value = nn.Linear(64, 64)
+        
+        # Layer norm for attention outputs
+        self.layer_norm1 = nn.LayerNorm(64)
+        self.layer_norm2 = nn.LayerNorm(64)
+        
+        # Integration layer
+        self.integration = nn.Sequential(
+            nn.Linear(128, 128),
+            nn.LayerNorm(128),
             nn.ReLU(),
             nn.Dropout(0.2),
-            nn.Linear(32, 16),
-            nn.BatchNorm1d(16),
+            nn.Linear(128, 64),
+            nn.LayerNorm(64),
             nn.ReLU(),
-            nn.Dropout(0.1),
-            nn.Linear(16, 3),  # Output: fused VAD values
+            nn.Dropout(0.1)
+        )
+        
+        # Final VAD prediction layer
+        self.vad_predictor = nn.Sequential(
+            nn.Linear(64, 32),
+            nn.LayerNorm(32),
+            nn.ReLU(),
+            nn.Linear(32, feature_dim),
             nn.Tanh()  # Scale values between -1 and 1
         )
+        
+        # Initialize weights
+        self.apply(self._init_weights)
+    
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            nn.init.xavier_uniform_(module.weight)
+            if module.bias is not None:
+                module.bias.data.zero_()
     
     def forward(self, audio_vad, text_vad):
-        # Concatenate audio and text VAD values
-        combined = torch.cat((audio_vad, text_vad), dim=1)
+        batch_size = audio_vad.size(0)
         
-        # Calculate attention weights
-        weights = self.attention(combined)
+        # Project inputs to higher dimension
+        audio_features = self.audio_proj(audio_vad)  # [batch_size, 64]
+        text_features = self.text_proj(text_vad)     # [batch_size, 64]
         
-        # Apply attention weights
-        weighted_audio = audio_vad * weights[:, 0].unsqueeze(1)
-        weighted_text = text_vad * weights[:, 1].unsqueeze(1)
+        # Cross-attention: audio attending to text
+        audio_queries = self.audio_query(audio_features).unsqueeze(1)  # [batch_size, 1, 64]
+        text_keys = self.text_key(text_features).unsqueeze(1)          # [batch_size, 1, 64]
+        text_values = self.text_value(text_features).unsqueeze(1)      # [batch_size, 1, 64]
         
-        # Concatenate weighted features
-        weighted_combined = torch.cat((weighted_audio, weighted_text), dim=1)
+        # Compute attention scores
+        audio_text_scores = torch.matmul(audio_queries, text_keys.transpose(-2, -1)) / (64 ** 0.5)  # [batch_size, 1, 1]
+        audio_text_attention = torch.softmax(audio_text_scores, dim=-1)
         
-        # Apply fusion
-        fused_vad = self.fusion(weighted_combined)
+        # Apply attention to values
+        audio_attended_text = torch.matmul(audio_text_attention, text_values).squeeze(1)  # [batch_size, 64]
+        audio_attended_text = self.layer_norm1(audio_attended_text + audio_features)  # residual connection
         
-        return fused_vad, weights
+        # Cross-attention: text attending to audio
+        text_queries = self.text_query(text_features).unsqueeze(1)     # [batch_size, 1, 64]
+        audio_keys = self.audio_key(audio_features).unsqueeze(1)       # [batch_size, 1, 64]
+        audio_values = self.audio_value(audio_features).unsqueeze(1)   # [batch_size, 1, 64]
+        
+        # Compute attention scores
+        text_audio_scores = torch.matmul(text_queries, audio_keys.transpose(-2, -1)) / (64 ** 0.5)  # [batch_size, 1, 1]
+        text_audio_attention = torch.softmax(text_audio_scores, dim=-1)
+        
+        # Apply attention to values
+        text_attended_audio = torch.matmul(text_audio_attention, audio_values).squeeze(1)  # [batch_size, 64]
+        text_attended_audio = self.layer_norm2(text_attended_audio + text_features)  # residual connection
+        
+        # Calculate attention weights for returning
+        audio_weight = audio_text_attention.mean(dim=1).squeeze(-1)  # [batch_size]
+        text_weight = text_audio_attention.mean(dim=1).squeeze(-1)   # [batch_size]
+        weights = torch.stack([audio_weight, text_weight], dim=1)     # [batch_size, 2]
+        
+        # Concatenate attended features
+        combined_features = torch.cat([audio_attended_text, text_attended_audio], dim=1)  # [batch_size, 128]
+        
+        # Integrate features
+        integrated = self.integration(combined_features)  # [batch_size, 64]
+        
+        # Predict final VAD values
+        vad_values = self.vad_predictor(integrated)  # [batch_size, 3]
+        
+        return vad_values, weights
 
 class IEMOCAPDataset(Dataset):
     """
@@ -531,6 +592,38 @@ def parse_iemocap_emotions():
         print(f"Error parsing IEMOCAP: {e}")
         return None
 
+def calculate_vad_accuracy(y_true, y_pred):
+    """
+    Calculate accuracy metrics for VAD prediction.
+    
+    Returns:
+    - mse: Mean Squared Error
+    - r2: R-squared score
+    - custom_accuracy: Percentage of predictions within a specific error threshold
+    """
+    mse = mean_squared_error(y_true, y_pred)
+    r2 = r2_score(y_true, y_pred)
+    
+    # Custom accuracy: percentage of predictions within ±0.2 of true values
+    # This gives a more intuitive "accuracy" measure for regression tasks
+    abs_diff = np.abs(y_true - y_pred)
+    within_threshold = (abs_diff <= 0.2).all(axis=1)
+    custom_accuracy = within_threshold.mean() * 100
+    
+    # Component-wise accuracy
+    v_accuracy = (abs_diff[:, 0] <= 0.2).mean() * 100
+    a_accuracy = (abs_diff[:, 1] <= 0.2).mean() * 100
+    d_accuracy = (abs_diff[:, 2] <= 0.2).mean() * 100
+    
+    return {
+        'mse': mse,
+        'r2': r2,
+        'accuracy': custom_accuracy,
+        'valence_accuracy': v_accuracy,
+        'arousal_accuracy': a_accuracy,
+        'dominance_accuracy': d_accuracy
+    }
+
 def train(audio_model, text_model, fusion_model, train_loader, optimizer, criterion, device):
     """
     Train the models for one epoch.
@@ -591,15 +684,12 @@ def train(audio_model, text_model, fusion_model, train_loader, optimizer, criter
     true_vad_values = np.vstack(true_vad_values)
     attention_weights = np.vstack(attention_weights)
     
-    # Calculate metrics
-    audio_mse = mean_squared_error(true_vad_values, audio_vad_preds)
-    text_mse = mean_squared_error(true_vad_values, text_vad_preds)
-    fusion_mse = mean_squared_error(true_vad_values, fusion_vad_preds)
+    # Calculate VAD metrics using the new function
+    fusion_metrics = calculate_vad_accuracy(true_vad_values, fusion_vad_preds)
+    audio_metrics = calculate_vad_accuracy(true_vad_values, audio_vad_preds)
+    text_metrics = calculate_vad_accuracy(true_vad_values, text_vad_preds)
     
-    audio_r2 = r2_score(true_vad_values, audio_vad_preds)
-    text_r2 = r2_score(true_vad_values, text_vad_preds)
-    fusion_r2 = r2_score(true_vad_values, fusion_vad_preds)
-    
+    # Calculate average attention weights
     avg_audio_weight = np.mean(attention_weights[:, 0])
     avg_text_weight = np.mean(attention_weights[:, 1])
     
@@ -620,15 +710,31 @@ def train(audio_model, text_model, fusion_model, train_loader, optimizer, criter
     
     metrics = {
         'loss': total_loss / step_count,
-        'audio_mse': audio_mse,
-        'text_mse': text_mse,
-        'fusion_mse': fusion_mse,
-        'audio_r2': audio_r2,
-        'text_r2': text_r2,
-        'fusion_r2': fusion_r2,
+        
+        # Fusion VAD metrics
+        'fusion_mse': fusion_metrics['mse'],
+        'fusion_r2': fusion_metrics['r2'],
+        'fusion_accuracy': fusion_metrics['accuracy'],
+        'fusion_valence_acc': fusion_metrics['valence_accuracy'],
+        'fusion_arousal_acc': fusion_metrics['arousal_accuracy'],
+        'fusion_dominance_acc': fusion_metrics['dominance_accuracy'],
+        
+        # Audio VAD metrics
+        'audio_mse': audio_metrics['mse'],
+        'audio_r2': audio_metrics['r2'],
+        'audio_accuracy': audio_metrics['accuracy'],
+        
+        # Text VAD metrics
+        'text_mse': text_metrics['mse'],
+        'text_r2': text_metrics['r2'],
+        'text_accuracy': text_metrics['accuracy'],
+        
+        # Emotion metrics
+        'accuracy': accuracy * 100,  # Convert to percentage
+        
+        # Attention weights
         'avg_audio_weight': avg_audio_weight,
-        'avg_text_weight': avg_text_weight,
-        'accuracy': accuracy
+        'avg_text_weight': avg_text_weight
     }
     
     return metrics
@@ -708,40 +814,45 @@ def evaluate(audio_model, text_model, fusion_model, val_loader, criterion, devic
     all_true_vad_values = np.vstack(all_true_vad_values)
     all_attention_weights = np.vstack(all_attention_weights)
     
-    # Calculate VAD prediction metrics
-    fusion_mse = mean_squared_error(all_true_vad_values, all_fusion_vad_preds)
-    audio_mse = mean_squared_error(all_true_vad_values, all_audio_vad_preds)
-    text_mse = mean_squared_error(all_true_vad_values, all_text_vad_preds)
-    
-    fusion_r2 = r2_score(all_true_vad_values, all_fusion_vad_preds)
-    audio_r2 = r2_score(all_true_vad_values, all_audio_vad_preds)
-    text_r2 = r2_score(all_true_vad_values, all_text_vad_preds)
+    # Calculate VAD prediction metrics using the new function
+    fusion_metrics = calculate_vad_accuracy(all_true_vad_values, all_fusion_vad_preds)
+    audio_metrics = calculate_vad_accuracy(all_true_vad_values, all_audio_vad_preds)
+    text_metrics = calculate_vad_accuracy(all_true_vad_values, all_text_vad_preds)
     
     # Calculate emotion classification metrics
-    accuracy = sum(1 for p, t in zip(all_pred_emotions, all_true_emotions) if p == t) / len(all_pred_emotions)
-    
-    # Calculate per-dimension MSE
-    v_mse = mean_squared_error(all_true_vad_values[:, 0], all_fusion_vad_preds[:, 0])
-    a_mse = mean_squared_error(all_true_vad_values[:, 1], all_fusion_vad_preds[:, 1])
-    d_mse = mean_squared_error(all_true_vad_values[:, 2], all_fusion_vad_preds[:, 2])
+    correct = sum(1 for p, t in zip(all_pred_emotions, all_true_emotions) if p == t)
+    accuracy = correct / len(all_pred_emotions)
     
     # Calculate average attention weights
     avg_audio_weight = np.mean(all_attention_weights[:, 0])
     avg_text_weight = np.mean(all_attention_weights[:, 1])
     
-    # Create results dict
+    # Create results dict, combining metrics
     results = {
         'loss': total_loss / step_count,
-        'fusion_mse': fusion_mse,
-        'audio_mse': audio_mse, 
-        'text_mse': text_mse,
-        'fusion_r2': fusion_r2,
-        'audio_r2': audio_r2,
-        'text_r2': text_r2,
-        'valence_mse': v_mse,
-        'arousal_mse': a_mse,
-        'dominance_mse': d_mse,
-        'accuracy': accuracy,
+        
+        # Fusion VAD metrics
+        'fusion_mse': fusion_metrics['mse'],
+        'fusion_r2': fusion_metrics['r2'],
+        'fusion_accuracy': fusion_metrics['accuracy'],
+        'fusion_valence_acc': fusion_metrics['valence_accuracy'],
+        'fusion_arousal_acc': fusion_metrics['arousal_accuracy'],
+        'fusion_dominance_acc': fusion_metrics['dominance_accuracy'],
+        
+        # Audio VAD metrics
+        'audio_mse': audio_metrics['mse'],
+        'audio_r2': audio_metrics['r2'],
+        'audio_accuracy': audio_metrics['accuracy'],
+        
+        # Text VAD metrics
+        'text_mse': text_metrics['mse'],
+        'text_r2': text_metrics['r2'],
+        'text_accuracy': text_metrics['accuracy'],
+        
+        # Emotion metrics
+        'accuracy': accuracy * 100,  # Convert to percentage
+        
+        # Attention weights
         'avg_audio_weight': avg_audio_weight,
         'avg_text_weight': avg_text_weight,
     }
@@ -986,8 +1097,9 @@ def main():
     # Save processed data for reference
     df.to_csv("processed_data.csv", index=False)
     
-    # Initialize tokenizer
-    tokenizer = BertTokenizer.from_pretrained(BERT_MODEL)
+    # Initialize tokenizer (using RoBERTa instead of BERT)
+    from transformers import RobertaTokenizer
+    tokenizer = RobertaTokenizer.from_pretrained("roberta-base")
     
     # Split data - stratify to ensure balanced emotion distribution
     train_df, val_df = train_test_split(
