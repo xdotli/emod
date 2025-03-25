@@ -21,7 +21,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import joblib
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
@@ -39,6 +39,7 @@ def load_data(file_path):
     Returns:
         X: VAD features
         y: Emotion labels
+        label_encoder: Label encoder for emotion categories
     """
     print(f"Loading data from {file_path}...")
     df = pd.read_csv(file_path)
@@ -46,15 +47,19 @@ def load_data(file_path):
     # Check if VAD columns exist
     if all(col in df.columns for col in ['valence', 'arousal', 'dominance', 'emotion']):
         X = df[['valence', 'arousal', 'dominance']].values
-        y = df['emotion'].values
+        
+        # Encode emotion labels
+        label_encoder = LabelEncoder()
+        y = label_encoder.fit_transform(df['emotion'].values)
         
         # Print statistics
         print(f"Dataset contains {len(df)} samples")
         print("\nEmotion distribution:")
         emotion_counts = df['emotion'].value_counts()
         print(tabulate(
-            [[emotion, count, f"{count/len(df)*100:.2f}%"] for emotion, count in emotion_counts.items()],
-            headers=["Emotion", "Count", "Percentage"],
+            [[emotion, count, f"{count/len(df)*100:.2f}%", label_encoder.transform([emotion])[0]] 
+             for emotion, count in emotion_counts.items()],
+            headers=["Emotion", "Count", "Percentage", "Encoded"],
             tablefmt="grid"
         ))
         
@@ -68,22 +73,22 @@ def load_data(file_path):
             floatfmt=".4f"
         ))
         
-        return X, y
+        return X, y, label_encoder, df['emotion'].values
     else:
         raise ValueError("Dataset does not contain required VAD and emotion columns")
 
-def visualize_vad_distribution(X, y):
+def visualize_vad_distribution(X, y_labels):
     """
     Visualize the distribution of emotions in VAD space.
     
     Args:
         X: VAD features
-        y: Emotion labels
+        y_labels: Emotion labels (strings)
     """
     try:
         # Create a DataFrame for plotting
         df = pd.DataFrame(X, columns=['valence', 'arousal', 'dominance'])
-        df['emotion'] = y
+        df['emotion'] = y_labels
         
         # 3D scatter plot
         fig = plt.figure(figsize=(12, 10))
@@ -151,19 +156,21 @@ def visualize_vad_distribution(X, y):
     except Exception as e:
         print(f"Error creating visualizations: {e}")
 
-def train_models(X, y):
+def train_models(X, y, label_encoder):
     """
     Train multiple models on the VAD-to-emotion data and select the best one.
     
     Args:
         X: VAD features
-        y: Emotion labels
+        y: Encoded emotion labels (integers)
+        label_encoder: Label encoder for emotion categories
         
     Returns:
         best_model: The best performing model
         best_model_name: Name of the best model
         X_test: Test features
-        y_test: Test labels
+        y_test: Test labels (encoded)
+        scaler: Feature scaler
     """
     # Split data
     X_train, X_test, y_train, y_test = train_test_split(
@@ -181,19 +188,19 @@ def train_models(X, y):
         'Random Forest': RandomForestClassifier(random_state=42),
         'SVM': SVC(probability=True, random_state=42),
         'Gradient Boosting': GradientBoostingClassifier(random_state=42),
-        'XGBoost': xgb.XGBClassifier(random_state=42)
+        'XGBoost': xgb.XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='mlogloss')
     }
     
     # Parameters for grid search
     param_grids = {
         'Decision Tree': {
-            'max_depth': [3, 5, 7, None],
+            'max_depth': [3, 5, 7, 10],
             'min_samples_split': [2, 5, 10],
             'criterion': ['gini', 'entropy']
         },
         'Random Forest': {
             'n_estimators': [50, 100, 200],
-            'max_depth': [5, 10, None],
+            'max_depth': [5, 10, 15],
             'min_samples_split': [2, 5, 10]
         },
         'SVM': {
@@ -228,35 +235,38 @@ def train_models(X, y):
             k: v[:2] for k, v in param_grids[name].items()
         }
         
-        # Train with grid search
-        grid_search = GridSearchCV(
-            model, param_grid, cv=5, scoring='accuracy', n_jobs=-1, verbose=1
-        )
-        grid_search.fit(X_train_scaled, y_train)
-        
-        # Get best model
-        best_params = grid_search.best_params_
-        trained_model = grid_search.best_estimator_
-        
-        # Evaluate
-        y_pred = trained_model.predict(X_test_scaled)
-        accuracy = accuracy_score(y_test, y_pred)
-        
-        # Save results
-        results.append({
-            'Model': name,
-            'Accuracy': accuracy,
-            'Best Parameters': best_params
-        })
-        
-        print(f"{name} Accuracy: {accuracy:.4f}")
-        print(f"Best parameters: {best_params}")
-        
-        # Keep track of best model
-        if accuracy > best_accuracy:
-            best_accuracy = accuracy
-            best_model = trained_model
-            best_model_name = name
+        try:
+            # Train with grid search
+            grid_search = GridSearchCV(
+                model, param_grid, cv=5, scoring='accuracy', n_jobs=-1, verbose=1
+            )
+            grid_search.fit(X_train_scaled, y_train)
+            
+            # Get best model
+            best_params = grid_search.best_params_
+            trained_model = grid_search.best_estimator_
+            
+            # Evaluate
+            y_pred = trained_model.predict(X_test_scaled)
+            accuracy = accuracy_score(y_test, y_pred)
+            
+            # Save results
+            results.append({
+                'Model': name,
+                'Accuracy': accuracy,
+                'Best Parameters': best_params
+            })
+            
+            print(f"{name} Accuracy: {accuracy:.4f}")
+            print(f"Best parameters: {best_params}")
+            
+            # Keep track of best model
+            if accuracy > best_accuracy:
+                best_accuracy = accuracy
+                best_model = trained_model
+                best_model_name = name
+        except Exception as e:
+            print(f"Error training {name}: {e}")
     
     # Print results
     print("\nModel Comparison:")
@@ -273,9 +283,9 @@ def train_models(X, y):
     # Save scaler with the model
     joblib.dump(scaler, 'vad_scaler.pkl')
     
-    return best_model, best_model_name, X_test_scaled, y_test, scaler
+    return best_model, best_model_name, X_test_scaled, y_test, scaler, label_encoder
 
-def evaluate_model(model, model_name, X_test, y_test):
+def evaluate_model(model, model_name, X_test, y_test, label_encoder):
     """
     Evaluate the model and create visualizations.
     
@@ -283,25 +293,32 @@ def evaluate_model(model, model_name, X_test, y_test):
         model: Trained model
         model_name: Name of the model
         X_test: Test features
-        y_test: Test labels
+        y_test: Test labels (encoded)
+        label_encoder: Label encoder for emotion categories
     """
+    # Get emotion labels
+    class_names = label_encoder.classes_
+    
     # Predictions
     y_pred = model.predict(X_test)
     
+    # Convert encoded predictions and labels back to strings for better reporting
+    y_pred_labels = label_encoder.inverse_transform(y_pred)
+    y_test_labels = label_encoder.inverse_transform(y_test)
+    
     # Classification report
     print("\nClassification Report:")
-    print(classification_report(y_test, y_pred))
+    print(classification_report(y_test_labels, y_pred_labels))
     
     # Confusion matrix
-    cm = confusion_matrix(y_test, y_pred)
-    emotions = sorted(list(set(y_test)))
+    cm = confusion_matrix(y_test_labels, y_pred_labels)
     
     # Print tabular confusion matrix
     print("\nConfusion Matrix:")
     print(tabulate(
         cm,
-        headers=emotions,
-        showindex=emotions,
+        headers=class_names,
+        showindex=class_names,
         tablefmt="grid"
     ))
     
@@ -311,9 +328,9 @@ def evaluate_model(model, model_name, X_test, y_test):
         plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
         plt.title(f'Confusion Matrix - {model_name}')
         plt.colorbar()
-        tick_marks = np.arange(len(emotions))
-        plt.xticks(tick_marks, emotions, rotation=45)
-        plt.yticks(tick_marks, emotions)
+        tick_marks = np.arange(len(class_names))
+        plt.xticks(tick_marks, class_names, rotation=45)
+        plt.yticks(tick_marks, class_names)
         
         # Add text annotations
         thresh = cm.max() / 2
@@ -336,7 +353,7 @@ def evaluate_model(model, model_name, X_test, y_test):
         try:
             plt.figure(figsize=(20, 10))
             plot_tree(model, filled=True, feature_names=['Valence', 'Arousal', 'Dominance'], 
-                    class_names=list(model.classes_), rounded=True, proportion=False)
+                    class_names=list(class_names), rounded=True, proportion=False)
             plt.savefig('decision_tree_vad2emotion.png')
             print("Decision tree visualization saved as 'decision_tree_vad2emotion.png'")
         except Exception as e:
@@ -363,7 +380,7 @@ def evaluate_model(model, model_name, X_test, y_test):
         except Exception as e:
             print(f"Could not create feature importance visualization: {e}")
 
-def save_model(model, model_name, scaler):
+def save_model(model, model_name, scaler, label_encoder):
     """
     Save the trained model and scaler for later use.
     
@@ -371,18 +388,23 @@ def save_model(model, model_name, scaler):
         model: Trained model
         model_name: Name of the model
         scaler: Feature scaler
+        label_encoder: Label encoder for emotion categories
     """
     # Save the model
     model_filename = 'vad_to_emotion_model.pkl'
     joblib.dump(model, model_filename)
     print(f"\nModel saved as '{model_filename}'")
     
+    # Save label encoder
+    joblib.dump(label_encoder, 'vad_label_encoder.pkl')
+    print(f"Label encoder saved as 'vad_label_encoder.pkl'")
+    
     # Save a model info file with metadata
     model_info = {
         'model_name': model_name,
         'features': ['valence', 'arousal', 'dominance'],
         'target': 'emotion',
-        'classes': list(model.classes_),
+        'classes': list(label_encoder.classes_),
         'date_trained': pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')
     }
     
@@ -392,7 +414,7 @@ def save_model(model, model_name, scaler):
         json.dump(model_info, f, indent=4)
     print("Model metadata saved as 'vad_to_emotion_model_info.json'")
 
-def predict_emotion_from_vad(vad_values, model=None, scaler=None):
+def predict_emotion_from_vad(vad_values, model=None, scaler=None, label_encoder=None):
     """
     Predict emotion from VAD values using the trained model.
     
@@ -400,6 +422,7 @@ def predict_emotion_from_vad(vad_values, model=None, scaler=None):
         vad_values: List or array of [valence, arousal, dominance] values
         model: Pre-loaded model (optional)
         scaler: Pre-loaded scaler (optional)
+        label_encoder: Pre-loaded label encoder (optional)
         
     Returns:
         emotion: Predicted emotion category
@@ -417,6 +440,12 @@ def predict_emotion_from_vad(vad_values, model=None, scaler=None):
         except:
             raise ValueError("Scaler not found. Please train a model first.")
     
+    if label_encoder is None:
+        try:
+            label_encoder = joblib.load('vad_label_encoder.pkl')
+        except:
+            raise ValueError("Label encoder not found. Please train a model first.")
+    
     # Reshape input for single prediction
     vad_values = np.array(vad_values).reshape(1, -1)
     
@@ -424,12 +453,13 @@ def predict_emotion_from_vad(vad_values, model=None, scaler=None):
     vad_values_scaled = scaler.transform(vad_values)
     
     # Predict
-    emotion = model.predict(vad_values_scaled)[0]
+    emotion_encoded = model.predict(vad_values_scaled)[0]
+    emotion = label_encoder.inverse_transform([emotion_encoded])[0]
     
     # Get probabilities if the model supports it
     try:
         probabilities = model.predict_proba(vad_values_scaled)[0]
-        prob_dict = dict(zip(model.classes_, probabilities))
+        prob_dict = dict(zip(label_encoder.classes_, probabilities))
     except:
         prob_dict = {emotion: 1.0}
     
@@ -446,19 +476,19 @@ def main():
     
     try:
         # Load data
-        X, y = load_data(data_path)
+        X, y, label_encoder, y_labels = load_data(data_path)
         
         # Visualize data
-        visualize_vad_distribution(X, y)
+        visualize_vad_distribution(X, y_labels)
         
         # Train models
-        best_model, best_model_name, X_test, y_test, scaler = train_models(X, y)
+        best_model, best_model_name, X_test, y_test, scaler, label_encoder = train_models(X, y, label_encoder)
         
         # Evaluate best model
-        evaluate_model(best_model, best_model_name, X_test, y_test)
+        evaluate_model(best_model, best_model_name, X_test, y_test, label_encoder)
         
         # Save model
-        save_model(best_model, best_model_name, scaler)
+        save_model(best_model, best_model_name, scaler, label_encoder)
         
         # Test with sample values
         print("\nTesting model with sample VAD values:")
@@ -471,7 +501,7 @@ def main():
         ]
         
         for vad in test_vad_values:
-            emotion, probs = predict_emotion_from_vad(vad, best_model, scaler)
+            emotion, probs = predict_emotion_from_vad(vad, best_model, scaler, label_encoder)
             print(f"VAD {vad} → Emotion: {emotion}")
             
             # Print top 3 probabilities
@@ -484,6 +514,61 @@ def main():
         
     except Exception as e:
         print(f"Error: {e}")
+
+# Function to be imported by main.py to replace the rule-based approach
+def get_vad_to_emotion_predictor():
+    """
+    Return a callable function that predicts emotions from VAD values.
+    
+    Returns:
+        function: A function that takes a tuple of (valence, arousal, dominance) and returns an emotion.
+    """
+    try:
+        # Load the model
+        model = joblib.load('vad_to_emotion_model.pkl')
+        scaler = joblib.load('vad_scaler.pkl')
+        label_encoder = joblib.load('vad_label_encoder.pkl')
+        
+        # Define the predictor function
+        def predict(valence, arousal, dominance):
+            """Predict emotion from VAD values"""
+            vad_values = [valence, arousal, dominance]
+            emotion, _ = predict_emotion_from_vad(vad_values, model, scaler, label_encoder)
+            return emotion
+        
+        print("Loaded machine learning VAD-to-emotion model!")
+        return predict
+    except Exception as e:
+        print(f"Could not load ML model: {e}")
+        print("Falling back to rule-based VAD-to-emotion mapping")
+        
+        # Return a version of the original rule-based approach if model loading fails
+        def rule_based_vad_to_emotion(valence, arousal, dominance):
+            """Rule-based VAD to emotion mapping (fallback)"""
+            if valence > 0:
+                if arousal > 0:
+                    if dominance > 0:
+                        return "happy"
+                    else:
+                        return "excited"
+                else:
+                    if dominance > 0:
+                        return "content"
+                    else:
+                        return "relaxed"
+            else:
+                if arousal > 0:
+                    if dominance > 0:
+                        return "angry"
+                    else:
+                        return "fearful"
+                else:
+                    if dominance > 0:
+                        return "disgusted"
+                    else:
+                        return "sad"
+        
+        return rule_based_vad_to_emotion
 
 if __name__ == "__main__":
     main() 

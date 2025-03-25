@@ -17,17 +17,38 @@ import pandas as pd
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
-from transformers import BertModel, BertTokenizer
+from transformers import BertModel, BertTokenizer, RobertaModel, RobertaTokenizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 from tabulate import tabulate
 from process_vad import vad_to_emotion
+import random
+import time
+import platform
+
+# Check if vad_to_emotion_model.py exists and import get_vad_to_emotion_predictor if it does
+try:
+    from vad_to_emotion_model import get_vad_to_emotion_predictor
+    use_ml_vad_to_emotion = True
+except ImportError:
+    use_ml_vad_to_emotion = False
 
 # Constants
 IEMOCAP_PATH = "Datasets/IEMOCAP_full_release"
 BERT_MODEL = "bert-base-uncased"
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Setup device - use MPS if available on Mac (M1/M2), otherwise use CUDA if available, otherwise CPU
+if torch.backends.mps.is_available() and platform.system() == "Darwin" and platform.processor() == "arm":
+    DEVICE = torch.device("mps")
+    print("Using MPS (Metal Performance Shaders) for GPU acceleration on Apple Silicon")
+elif torch.cuda.is_available():
+    DEVICE = torch.device("cuda")
+    print("Using CUDA for GPU acceleration")
+else:
+    DEVICE = torch.device("cpu")
+    print("Using CPU for computation (no GPU acceleration available)")
+
 NUM_EPOCHS = 5  # Reduced for demonstration
 BATCH_SIZE = 32
 LEARNING_RATE = 1e-4
@@ -37,75 +58,205 @@ AUDIO_FEATURE_DIM = 68
 # Set random seeds for reproducibility
 torch.manual_seed(RANDOM_SEED)
 np.random.seed(RANDOM_SEED)
+if torch.cuda.is_available():
+    torch.cuda.manual_seed_all(RANDOM_SEED)
+
+# Model tracking file
+MODEL_TRACKER_FILE = "model_tracker.txt"
+
+def generate_run_id():
+    """Generate a unique run ID for model checkpoints"""
+    timestamp = int(time.time())
+    random_suffix = random.randint(1000, 9999)
+    return f"{timestamp}_{random_suffix}"
+
+def load_model_paths_from_tracker():
+    """Load model paths from the tracker file if it exists"""
+    model_paths = {
+        'audio_model_path': None,
+        'text_model_path': None,
+        'fusion_model_path': None,
+        'vad_to_emotion_model_path': None
+    }
+    
+    if not os.path.exists(MODEL_TRACKER_FILE):
+        return model_paths
+        
+    try:
+        with open(MODEL_TRACKER_FILE, 'r') as f:
+            lines = f.readlines()
+            
+        for line in lines:
+            line = line.strip()
+            if '=' in line:
+                key, value = [part.strip() for part in line.split('=', 1)]
+                if key in model_paths and value != 'None':
+                    model_paths[key] = value
+                    
+        return model_paths
+    except Exception as e:
+        print(f"Error reading model tracker file: {e}")
+        return model_paths
+
+def update_model_tracker(model_paths, performance_metrics):
+    """Update the model tracker file with new paths and metrics"""
+    try:
+        with open(MODEL_TRACKER_FILE, 'w') as f:
+            f.write("# Model Tracking File\n")
+            f.write(f"# Last Updated: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            
+            f.write("## Latest Model Paths\n")
+            for key, value in model_paths.items():
+                f.write(f"{key} = {value if value else 'None'}\n")
+            
+            f.write("\n## Performance Metrics\n")
+            f.write("# Modality to VAD Performance\n")
+            f.write(f"audio_to_vad_mse = {performance_metrics.get('audio_mse', 'Unknown')}\n")
+            f.write(f"text_to_vad_mse = {performance_metrics.get('text_mse', 'Unknown')}\n")
+            f.write(f"fusion_to_vad_mse = {performance_metrics.get('fusion_mse', 'Unknown')}\n")
+            
+            f.write("\n# VAD to Emotion Performance\n")
+            f.write(f"vad_to_emotion_accuracy = {performance_metrics.get('accuracy', 'Unknown')}\n")
+            
+            f.write("\n# End-to-End Performance\n")
+            f.write(f"end_to_end_accuracy = {performance_metrics.get('accuracy', 'Unknown')}\n")
+            
+            f.write("\n## Notes\n")
+            if performance_metrics.get('accuracy', 0) < 0.4:
+                f.write("# The VAD to emotion mapping is the clear bottleneck in the pipeline.\n")
+                f.write("# Consider replacing the rule-based approach with a machine learning model.\n")
+            
+        print(f"Updated model tracker file: {MODEL_TRACKER_FILE}")
+    except Exception as e:
+        print(f"Error updating model tracker file: {e}")
 
 class AudioVADModel(nn.Module):
     """
     Model to convert audio features to VAD (valence-arousal-dominance) values.
     
     Uses a fully connected neural network with batch normalization and dropout 
-    for regularization.
+    for regularization. Improved with residual connections and layer normalization.
     """
     def __init__(self, input_dim=AUDIO_FEATURE_DIM):
         super(AudioVADModel, self).__init__()
-        self.model = nn.Sequential(
+        
+        # Improved architecture with residual connections
+        self.input_norm = nn.BatchNorm1d(input_dim)
+        
+        # First block
+        self.fc1 = nn.Sequential(
             nn.Linear(input_dim, 256),
-            nn.BatchNorm1d(256),
-            nn.ReLU(),
+            nn.LayerNorm(256),
+            nn.LeakyReLU(0.2),
+            nn.Dropout(0.3)
+        )
+        
+        # Residual block 1
+        self.res1 = nn.Sequential(
+            nn.Linear(256, 256),
+            nn.LayerNorm(256),
+            nn.LeakyReLU(0.2),
             nn.Dropout(0.3),
+            nn.Linear(256, 256),
+            nn.LayerNorm(256)
+        )
+        
+        # Residual block 2
+        self.res2 = nn.Sequential(
+            nn.Linear(256, 256),
+            nn.LayerNorm(256),
+            nn.LeakyReLU(0.2),
+            nn.Dropout(0.3),
+            nn.Linear(256, 256),
+            nn.LayerNorm(256)
+        )
+        
+        # Output layer
+        self.output = nn.Sequential(
             nn.Linear(256, 128),
-            nn.BatchNorm1d(128),
-            nn.ReLU(),
-            nn.Dropout(0.3),
-            nn.Linear(128, 64),
-            nn.BatchNorm1d(64),
-            nn.ReLU(),
+            nn.LayerNorm(128),
+            nn.LeakyReLU(0.2),
             nn.Dropout(0.2),
-            nn.Linear(64, 3),  # Output: valence, arousal, dominance
+            nn.Linear(128, 64),
+            nn.LayerNorm(64),
+            nn.LeakyReLU(0.2),
+            nn.Linear(64, 3),
             nn.Tanh()  # Scale values between -1 and 1
         )
+        
+        # Initialize weights for better convergence
+        self.apply(self._init_weights)
+    
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            nn.init.xavier_uniform_(module.weight)
+            if module.bias is not None:
+                module.bias.data.zero_()
     
     def forward(self, x):
-        return self.model(x)
+        x = self.input_norm(x)
+        
+        # First block
+        x1 = self.fc1(x)
+        
+        # Residual block 1
+        res1_out = self.res1(x1)
+        x2 = x1 + res1_out  # Residual connection
+        
+        # Residual block 2
+        res2_out = self.res2(x2)
+        x3 = x2 + res2_out  # Residual connection
+        
+        # Output
+        vad = self.output(x3)
+        
+        return vad
 
 class TextVADModel(nn.Module):
     """
     Model to convert text embeddings to VAD (valence-arousal-dominance) values.
     
-    Uses BERT for text encoding and a fully connected neural network with
-    batch normalization for VAD prediction.
+    Uses RoBERTa for text encoding and a fully connected neural network with
+    batch normalization for VAD prediction. RoBERTa generally outperforms BERT on many tasks.
     """
-    def __init__(self, bert_model=BERT_MODEL):
+    def __init__(self, bert_model="roberta-base"):
         super(TextVADModel, self).__init__()
-        self.bert = BertModel.from_pretrained(bert_model)
+        # Use RoBERTa instead of BERT for better performance
+        self.roberta = RobertaModel.from_pretrained(bert_model)
         
-        # Freeze some BERT layers to prevent overfitting
-        for param in self.bert.embeddings.parameters():
+        # Freeze early layers to prevent overfitting
+        for param in self.roberta.embeddings.parameters():
             param.requires_grad = False
         
-        for i, param in enumerate(self.bert.encoder.layer):
-            if i < 9:  # Freeze first 9 layers
+        for i, param in enumerate(self.roberta.encoder.layer):
+            if i < 8:  # Freeze first 8 layers
                 for param in param.parameters():
                     param.requires_grad = False
         
+        # Use a deeper network for VAD prediction
         self.fc = nn.Sequential(
-            nn.Linear(768, 256),
+            nn.Linear(768, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(512, 256),
             nn.BatchNorm1d(256),
             nn.ReLU(),
-            nn.Dropout(0.3),
+            nn.Dropout(0.2),
             nn.Linear(256, 128),
             nn.BatchNorm1d(128),
             nn.ReLU(),
-            nn.Dropout(0.3),
-            nn.Linear(128, 32),
-            nn.BatchNorm1d(32),
-            nn.ReLU(),
             nn.Dropout(0.2),
-            nn.Linear(32, 3),  # Output: valence, arousal, dominance
+            nn.Linear(128, 64),
+            nn.BatchNorm1d(64),
+            nn.ReLU(),
+            nn.Dropout(0.1),
+            nn.Linear(64, 3),  # Output: valence, arousal, dominance
             nn.Tanh()  # Scale values between -1 and 1
         )
     
     def forward(self, input_ids, attention_mask):
-        outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)
+        outputs = self.roberta(input_ids=input_ids, attention_mask=attention_mask)
         cls_output = outputs.last_hidden_state[:, 0, :]  # [CLS] token
         vad_values = self.fc(cls_output)
         return vad_values
@@ -165,10 +316,18 @@ class IEMOCAPDataset(Dataset):
     IEMOCAP dataset for multimodal emotion recognition.
     
     Prepares data for both audio and text modalities.
+    Updated to work with RoBERTa tokenizer.
     """
-    def __init__(self, data, tokenizer, max_len=128):
+    def __init__(self, data, tokenizer=None, max_len=128):
         self.data = data
-        self.tokenizer = tokenizer
+        
+        # Initialize tokenizer if not provided
+        if tokenizer is None:
+            from transformers import RobertaTokenizer
+            self.tokenizer = RobertaTokenizer.from_pretrained("roberta-base")
+        else:
+            self.tokenizer = tokenizer
+            
         self.max_len = max_len
     
     def __len__(self):
@@ -788,6 +947,24 @@ def main():
     print("Step 2: Map VAD tuples to emotion categories")
     print("-" * 80)
     
+    # Check if we can use ML-based VAD to emotion mapping
+    global vad_to_emotion
+    if use_ml_vad_to_emotion:
+        print("Using machine learning based VAD-to-emotion mapping")
+        vad_to_emotion = get_vad_to_emotion_predictor()
+    else:
+        print("Using rule-based VAD-to-emotion mapping")
+    
+    # Load model paths from tracker
+    model_paths = load_model_paths_from_tracker()
+    print("\nChecking for existing models:")
+    for key, path in model_paths.items():
+        print(f"  {key}: {'Found' if path and os.path.exists(path) else 'Not found'}")
+    
+    # Generate a new run ID for this training session
+    run_id = generate_run_id()
+    print(f"\nRun ID for this session: {run_id}")
+    
     # Try to parse IEMOCAP data first
     print("\nAttempting to parse IEMOCAP dataset...")
     df = parse_iemocap_emotions()
@@ -832,6 +1009,53 @@ def main():
     audio_model = AudioVADModel().to(DEVICE)
     text_model = TextVADModel().to(DEVICE)
     fusion_model = FusionVADModel().to(DEVICE)
+    
+    # Load existing models if available
+    if all(model_paths[key] and os.path.exists(model_paths[key]) for key in ['audio_model_path', 'text_model_path', 'fusion_model_path']):
+        print("\nLoading existing models...")
+        try:
+            audio_model.load_state_dict(torch.load(model_paths['audio_model_path']))
+            text_model.load_state_dict(torch.load(model_paths['text_model_path']))
+            fusion_model.load_state_dict(torch.load(model_paths['fusion_model_path']))
+            print("Models loaded successfully!")
+            
+            # Evaluate immediately with loaded models
+            print("\nEvaluating loaded models...")
+            val_metrics, val_pred_emotions, val_true_emotions, val_details_df = evaluate(
+                audio_model, text_model, fusion_model, val_loader, nn.MSELoss(), DEVICE
+            )
+            print_metrics_table(val_metrics, title="Validation Metrics (Loaded Models)")
+            print_classification_report_table(
+                val_true_emotions, val_pred_emotions,
+                title="Validation Classification Report (Loaded Models)"
+            )
+            
+            # Skip training if user specifies
+            user_input = input("\nDo you want to skip training and use these models? (y/n): ")
+            if user_input.lower() in ['y', 'yes']:
+                # Skip to visualization and summary
+                plot_confusion_matrix(val_true_emotions, val_pred_emotions)
+                visualize_vad_emotion_space()
+                
+                # Print summary
+                print("\nEmotion recognition demo completed!")
+                print("-" * 80)
+                print("SUMMARY OF THE TWO-STEP APPROACH:")
+                print("1. Modality → VAD Conversion:")
+                print(f"   - Audio MSE: {val_metrics['audio_mse']:.4f}")
+                print(f"   - Text MSE: {val_metrics['text_mse']:.4f}")
+                print(f"   - Fusion MSE: {val_metrics['fusion_mse']:.4f}")
+                print("2. VAD → Emotion Classification:")
+                print(f"   - Accuracy: {val_metrics['accuracy']:.4f}")
+                print(f"   - Overall Loss: {val_metrics['loss']:.4f}")
+                print("-" * 80)
+                
+                # Update model tracker
+                update_model_tracker(model_paths, val_metrics)
+                return
+        except Exception as e:
+            print(f"Error loading models: {e}")
+            print("Proceeding with training new models...")
     
     # Initialize optimizer with learning rate scheduler
     optimizer = torch.optim.AdamW(
@@ -886,12 +1110,30 @@ def main():
         # Save models if validation loss improves
         if val_metrics['loss'] < best_val_loss:
             best_val_loss = val_metrics['loss']
+            
+            # Generate model paths with run ID
+            model_paths = {
+                'audio_model_path': f"audio_vad_model_{run_id}.pt",
+                'text_model_path': f"text_vad_model_{run_id}.pt",
+                'fusion_model_path': f"fusion_vad_model_{run_id}.pt",
+                'vad_to_emotion_model_path': None
+            }
+            
+            # Save models
+            torch.save(audio_model.state_dict(), model_paths['audio_model_path'])
+            torch.save(text_model.state_dict(), model_paths['text_model_path'])
+            torch.save(fusion_model.state_dict(), model_paths['fusion_model_path'])
+            
+            # Also save with standard names for backward compatibility
             torch.save(audio_model.state_dict(), "audio_vad_model.pt")
             torch.save(text_model.state_dict(), "text_vad_model.pt")
             torch.save(fusion_model.state_dict(), "fusion_vad_model.pt")
             
             # Save best validation details
             val_details_df.to_csv("best_validation_results.csv", index=False)
+            
+            # Update model tracker
+            update_model_tracker(model_paths, val_metrics)
             
             print("Models saved!")
     

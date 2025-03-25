@@ -1,0 +1,24 @@
+# Model Tracking File
+# Last Updated: 2025-03-25 00:18:28
+
+## Latest Model Paths
+audio_model_path = audio_vad_model.pt
+text_model_path = text_vad_model.pt
+fusion_model_path = fusion_vad_model.pt
+vad_to_emotion_model_path = vad_to_emotion_model.pkl  # Machine learning model (Random Forest)
+
+## Performance Metrics
+# Modality to VAD Performance
+audio_to_vad_mse = 0.2850201725959778
+text_to_vad_mse = 0.18449115753173828
+fusion_to_vad_mse = 0.19052816927433014
+
+# VAD to Emotion Performance
+vad_to_emotion_accuracy = 0.06116504854368932
+
+# End-to-End Performance
+end_to_end_accuracy = 0.06116504854368932
+
+## Notes
+# The VAD to emotion mapping is the clear bottleneck in the pipeline.
+# Consider replacing the rule-based approach with a machine learning model.

@@ -1,0 +1,19 @@
+# Cursor Project Settings
+model = "claude-3-opus-20240229"
+auto_format_code = true
+auto_run_tests = false
+
+# Project Description
+# This project implements a multimodal emotion recognition system using the IEMOCAP dataset.
+# It follows a two-step approach: modality → VAD → emotion.
+
+# Command Shortcuts
+[shortcuts]
+train = "python main.py"
+test_vad = "python test_vad_model.py"
+train_vad2emotion = "python vad_to_emotion_model.py"
+
+# File Associations
+[file_patterns]
+"*.py" = "python"
+"*.ipynb" = "jupyter" 
