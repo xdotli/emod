@@ -16,4 +16,32 @@ train_vad2emotion = "python vad_to_emotion_model.py"
 # File Associations
 [file_patterns]
 "*.py" = "python"
-"*.ipynb" = "jupyter" 
+"*.ipynb" = "jupyter"
+
+{
+    "excludedPaths": [
+        "checkpoints/**",
+        "data/**",
+        "logs/**",
+        "__pycache__/**",
+        "*.pt",
+        "*.pkl"
+    ],
+    "displayName": "IEMOCAP Emotion Recognition",
+    "linting": {
+        "enabled": true,
+        "pythonEnabled": true,
+        "javascriptEnabled": false
+    },
+    "commands": {
+        "run": "python run.py",
+        "train": "python run.py --train",
+        "evaluate": "python run.py --evaluate",
+        "visualize": "python run.py --visualize",
+        "ml_vad": "python vad_to_emotion_model.py"
+    },
+    "build": {
+        "buildCommand": "python run.py --evaluate",
+        "outputPath": "logs"
+    }
+} 

@@ -1,0 +1,234 @@
+{
+    "vad_metrics": {
+        "mse": 0.12520672511700065,
+        "rmse": 0.3538456232836583,
+        "mae": 0.28740856707811985,
+        "r2": 0.1795406233798804,
+        "valence_mse": 0.15263104642804987,
+        "arousal_mse": 0.09928727022006592,
+        "dominance_mse": 0.12370185870288636,
+        "valence_r2": 0.25565953404407793,
+        "arousal_r2": 0.16824011591908616,
+        "dominance_r2": 0.11472222017647604
+    },
+    "emotion_metrics": {
+        "accuracy": 0.4656188605108055,
+        "classification_report": {
+            "angry": {
+                "precision": 0.5879828326180258,
+                "recall": 0.7569060773480663,
+                "f1-score": 0.6618357487922706,
+                "support": 181.0
+            },
+            "happy": {
+                "precision": 0.8125,
+                "recall": 0.1111111111111111,
+                "f1-score": 0.19548872180451127,
+                "support": 117.0
+            },
+            "neutral": {
+                "precision": 0.3346153846153846,
+                "recall": 0.58,
+                "f1-score": 0.424390243902439,
+                "support": 150.0
+            },
+            "sad": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 61.0
+            },
+            "accuracy": 0.4656188605108055,
+            "macro avg": {
+                "precision": 0.4337745543083526,
+                "recall": 0.3620042971147943,
+                "f1-score": 0.32042867862480523,
+                "support": 509.0
+            },
+            "weighted avg": {
+                "precision": 0.49445913633825217,
+                "recall": 0.4656188605108055,
+                "f1-score": 0.40534968087995016,
+                "support": 509.0
+            }
+        },
+        "confusion_matrix": [
+            [
+                137,
+                0,
+                44,
+                0
+            ],
+            [
+                18,
+                13,
+                86,
+                0
+            ],
+            [
+                60,
+                3,
+                87,
+                0
+            ],
+            [
+                18,
+                0,
+                43,
+                0
+            ]
+        ]
+    },
+    "examples": [
+        {
+            "text": ": I would put that right up there with--ping-pong.",
+            "true_vad": [
+                0.25,
+                0.0,
+                -0.25
+            ],
+            "pred_vad": [
+                0.14372113347053528,
+                -0.023529596626758575,
+                0.014812447130680084
+            ],
+            "pred_emotion": "neutral",
+            "true_emotion": "happy"
+        },
+        {
+            "text": ": She--,well, she said yes, first of all, let me say that right off the bat. Well, I would like to assume, too.  But you never know these things, right?",
+            "true_vad": [
+                0.5,
+                0.33335,
+                0.1666499999999999
+            ],
+            "pred_vad": [
+                -0.0458393394947052,
+                0.010044775903224945,
+                0.005179755389690399
+            ],
+            "pred_emotion": "neutral",
+            "true_emotion": "happy"
+        },
+        {
+            "text": ": Well, I just-I paid so much money for this ticket.  I feel like you guys should be able to get-to offer me more than a fifty dollar voucher.",
+            "true_vad": [
+                -0.5,
+                0.25,
+                0.5
+            ],
+            "pred_vad": [
+                -0.2329014241695404,
+                0.16722196340560913,
+                0.2110224962234497
+            ],
+            "pred_emotion": "angry",
+            "true_emotion": "angry"
+        },
+        {
+            "text": ": Next week.",
+            "true_vad": [
+                -0.75,
+                -0.5,
+                -1.0
+            ],
+            "pred_vad": [
+                0.04314976930618286,
+                -0.06345465034246445,
+                -0.015076301991939545
+            ],
+            "pred_emotion": "neutral",
+            "true_emotion": "angry"
+        },
+        {
+            "text": ": ...hang out and, like, have our different lives--And meet each other's friends and stuff.  So, I'm just so glad 'cause they have such a good school",
+            "true_vad": [
+                0.75,
+                0.5,
+                0.75
+            ],
+            "pred_vad": [
+                0.042326509952545166,
+                0.14658595621585846,
+                0.2068556249141693
+            ],
+            "pred_emotion": "neutral",
+            "true_emotion": "happy"
+        },
+        {
+            "text": ": see where it came from originally. I mean it seems like-",
+            "true_vad": [
+                -0.5,
+                0.25,
+                0.5
+            ],
+            "pred_vad": [
+                0.03800541162490845,
+                0.040844254195690155,
+                0.07650836557149887
+            ],
+            "pred_emotion": "neutral",
+            "true_emotion": "angry"
+        },
+        {
+            "text": ": Have you ever called them back and asked why you didn't get the job?",
+            "true_vad": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "pred_vad": [
+                -0.30001935362815857,
+                0.003960363566875458,
+                0.19743457436561584
+            ],
+            "pred_emotion": "angry",
+            "true_emotion": "neutral"
+        },
+        {
+            "text": ": And you actually said yes.  I can't believe it.  I never thought you would get married.",
+            "true_vad": [
+                0.25,
+                0.5,
+                0.75
+            ],
+            "pred_vad": [
+                -0.056670695543289185,
+                0.13328859210014343,
+                0.12278502434492111
+            ],
+            "pred_emotion": "neutral",
+            "true_emotion": "happy"
+        },
+        {
+            "text": ": There is a strict system here.  You need to wait in the right line for the right thing.  This is the line for registration.",
+            "true_vad": [
+                -0.25,
+                0.5,
+                0.5
+            ],
+            "pred_vad": [
+                -0.25617554783821106,
+                0.19321110844612122,
+                0.18945655226707458
+            ],
+            "pred_emotion": "angry",
+            "true_emotion": "angry"
+        },
+        {
+            "text": ": It's just not fair.",
+            "true_vad": [
+                -0.5,
+                -0.75,
+                -0.25
+            ],
+            "pred_vad": [
+                -0.26879584789276123,
+                -0.12316007167100906,
+                0.0008646398782730103
+            ],
+            "pred_emotion": "neutral",
+            "true_emotion": "angry"
+        }
+    ]
+}

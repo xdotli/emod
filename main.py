@@ -17,7 +17,7 @@ import pandas as pd
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
-from transformers import BertModel, BertTokenizer, RobertaModel, RobertaTokenizer
+from transformers import RobertaTokenizer, AutoTokenizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, mean_squared_error, r2_score
 import matplotlib.pyplot as plt
@@ -26,17 +26,29 @@ from process_vad import vad_to_emotion
 import random
 import time
 import platform
+import json
+from pathlib import Path
 
-# Check if vad_to_emotion_model.py exists and import get_vad_to_emotion_predictor if it does
-try:
-    from vad_to_emotion_model import get_vad_to_emotion_predictor
-    use_ml_vad_to_emotion = True
-except ImportError:
-    use_ml_vad_to_emotion = False
+# Import models from the models package
+from models import AudioVADModel, TextVADModel, FusionVADModel, get_audio_feature_dim
 
-# Constants
+# Constants and configuration
 IEMOCAP_PATH = "Datasets/IEMOCAP_full_release"
-BERT_MODEL = "bert-base-uncased"
+TEXT_MODEL = "roberta-base"  # Default text model
+BATCH_SIZE = 32
+LEARNING_RATE = 5e-5  # Lower learning rate for better stability
+RANDOM_SEED = 42
+AUDIO_FEATURE_DIM = get_audio_feature_dim()
+
+# Default paths
+DEFAULT_CHECKPOINT_DIR = "checkpoints"
+DEFAULT_DATA_DIR = "data"
+DEFAULT_LOGS_DIR = "logs"
+
+# Create necessary directories
+os.makedirs(DEFAULT_CHECKPOINT_DIR, exist_ok=True)
+os.makedirs(DEFAULT_DATA_DIR, exist_ok=True)
+os.makedirs(DEFAULT_LOGS_DIR, exist_ok=True)
 
 # Setup device - use MPS if available on Mac (M1/M2), otherwise use CUDA if available, otherwise CPU
 if torch.backends.mps.is_available() and platform.system() == "Darwin" and platform.processor() == "arm":
@@ -49,17 +61,35 @@ else:
     DEVICE = torch.device("cpu")
     print("Using CPU for computation (no GPU acceleration available)")
 
-NUM_EPOCHS = 5  # Reduced for demonstration
-BATCH_SIZE = 32
-LEARNING_RATE = 1e-4
-RANDOM_SEED = 42
-AUDIO_FEATURE_DIM = 68
-
 # Set random seeds for reproducibility
 torch.manual_seed(RANDOM_SEED)
 np.random.seed(RANDOM_SEED)
 if torch.cuda.is_available():
     torch.cuda.manual_seed_all(RANDOM_SEED)
+
+# Model configuration
+CONFIG = {
+    "num_epochs": 10,  # Increased for better convergence
+    "batch_size": BATCH_SIZE,
+    "learning_rate": LEARNING_RATE,
+    "audio_model": {
+        "use_wav2vec": False,  # Set to True to use Wav2Vec 2.0 (requires raw audio)
+    },
+    "text_model": {
+        "model_name": TEXT_MODEL,
+        "finetune": True,
+    },
+    "vad_mapping": {
+        "use_ml": False,  # Will be set by run.py if available
+    }
+}
+
+# Check if vad_to_emotion_model.py exists and import get_vad_to_emotion_predictor if it does
+try:
+    from vad_to_emotion_model import get_vad_to_emotion_predictor
+    use_ml_vad_to_emotion = True
+except ImportError:
+    use_ml_vad_to_emotion = False
 
 # Model tracking file
 MODEL_TRACKER_FILE = "model_tracker.txt"
@@ -70,8 +100,38 @@ def generate_run_id():
     random_suffix = random.randint(1000, 9999)
     return f"{timestamp}_{random_suffix}"
 
-def load_model_paths_from_tracker():
-    """Load model paths from the tracker file if it exists"""
+def get_model_paths(checkpoint_dir=DEFAULT_CHECKPOINT_DIR, run_id=None):
+    """
+    Get the paths for model checkpoints.
+    
+    Args:
+        checkpoint_dir: Directory to save/load checkpoints
+        run_id: Optional run ID for new checkpoints
+        
+    Returns:
+        Dictionary of model paths
+    """
+    # If no run_id provided, use latest or create new one
+    if run_id is None:
+        run_id = generate_run_id()
+    
+    return {
+        'audio_model_path': os.path.join(checkpoint_dir, f"audio_vad_model_{run_id}.pt"),
+        'text_model_path': os.path.join(checkpoint_dir, f"text_vad_model_{run_id}.pt"),
+        'fusion_model_path': os.path.join(checkpoint_dir, f"fusion_vad_model_{run_id}.pt"),
+        'vad_to_emotion_model_path': os.path.join(checkpoint_dir, "vad_to_emotion_model.pkl")
+    }
+
+def get_latest_model_paths(checkpoint_dir=DEFAULT_CHECKPOINT_DIR):
+    """
+    Find the latest model checkpoints in the checkpoint directory.
+    
+    Args:
+        checkpoint_dir: Directory containing checkpoints
+        
+    Returns:
+        Dictionary of model paths or None if no checkpoints found
+    """
     model_paths = {
         'audio_model_path': None,
         'text_model_path': None,
@@ -79,313 +139,103 @@ def load_model_paths_from_tracker():
         'vad_to_emotion_model_path': None
     }
     
-    if not os.path.exists(MODEL_TRACKER_FILE):
-        return model_paths
+    # Check for vad_to_emotion_model
+    vad_model_path = os.path.join(checkpoint_dir, "vad_to_emotion_model.pkl")
+    if os.path.exists(vad_model_path):
+        model_paths['vad_to_emotion_model_path'] = vad_model_path
+    
+    # Find the latest run ID by looking at audio model files
+    audio_models = list(Path(checkpoint_dir).glob("audio_vad_model_*.pt"))
+    if not audio_models:
+        # No checkpoints found with run IDs, check for default names
+        default_audio = os.path.join(checkpoint_dir, "audio_vad_model.pt")
+        default_text = os.path.join(checkpoint_dir, "text_vad_model.pt")
+        default_fusion = os.path.join(checkpoint_dir, "fusion_vad_model.pt")
         
-    try:
-        with open(MODEL_TRACKER_FILE, 'r') as f:
-            lines = f.readlines()
-            
-        for line in lines:
-            line = line.strip()
-            if '=' in line:
-                key, value = [part.strip() for part in line.split('=', 1)]
-                if key in model_paths and value != 'None':
-                    model_paths[key] = value
-                    
-        return model_paths
-    except Exception as e:
-        print(f"Error reading model tracker file: {e}")
-        return model_paths
+        if all(os.path.exists(p) for p in [default_audio, default_text, default_fusion]):
+            model_paths['audio_model_path'] = default_audio
+            model_paths['text_model_path'] = default_text
+            model_paths['fusion_model_path'] = default_fusion
+            return model_paths
+        return None
+    
+    # Sort by modification time (newest first)
+    latest_audio = sorted(audio_models, key=lambda p: p.stat().st_mtime, reverse=True)[0]
+    run_id = latest_audio.stem.split('_')[-1]  # Extract run ID from filename
+    
+    # Construct paths for all models
+    model_paths['audio_model_path'] = str(latest_audio)
+    model_paths['text_model_path'] = os.path.join(checkpoint_dir, f"text_vad_model_{run_id}.pt")
+    model_paths['fusion_model_path'] = os.path.join(checkpoint_dir, f"fusion_vad_model_{run_id}.pt")
+    
+    # Verify that all models exist
+    if not all(os.path.exists(model_paths[key]) for key in ['audio_model_path', 'text_model_path', 'fusion_model_path']):
+        return None
+    
+    return model_paths
 
-def update_model_tracker(model_paths, performance_metrics):
-    """Update the model tracker file with new paths and metrics"""
-    try:
-        with open(MODEL_TRACKER_FILE, 'w') as f:
-            f.write("# Model Tracking File\n")
-            f.write(f"# Last Updated: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
-            
-            f.write("## Latest Model Paths\n")
-            for key, value in model_paths.items():
-                f.write(f"{key} = {value if value else 'None'}\n")
-            
-            f.write("\n## Performance Metrics\n")
-            f.write("# Modality to VAD Performance\n")
-            f.write(f"audio_to_vad_mse = {performance_metrics.get('audio_mse', 'Unknown')}\n")
-            f.write(f"text_to_vad_mse = {performance_metrics.get('text_mse', 'Unknown')}\n")
-            f.write(f"fusion_to_vad_mse = {performance_metrics.get('fusion_mse', 'Unknown')}\n")
-            
-            f.write("\n# VAD to Emotion Performance\n")
-            f.write(f"vad_to_emotion_accuracy = {performance_metrics.get('accuracy', 'Unknown')}\n")
-            
-            f.write("\n# End-to-End Performance\n")
-            f.write(f"end_to_end_accuracy = {performance_metrics.get('accuracy', 'Unknown')}\n")
-            
-            f.write("\n## Notes\n")
-            if performance_metrics.get('accuracy', 0) < 0.4:
-                f.write("# The VAD to emotion mapping is the clear bottleneck in the pipeline.\n")
-                f.write("# Consider replacing the rule-based approach with a machine learning model.\n")
-            
-        print(f"Updated model tracker file: {MODEL_TRACKER_FILE}")
-    except Exception as e:
-        print(f"Error updating model tracker file: {e}")
-
-class AudioVADModel(nn.Module):
+def save_model_info(model_paths, performance_metrics, config, checkpoint_dir=DEFAULT_CHECKPOINT_DIR):
     """
-    Model to convert audio features to VAD (valence-arousal-dominance) values.
+    Save model information and metrics to a JSON file.
     
-    Uses a fully connected neural network with batch normalization and dropout 
-    for regularization. Improved with residual connections and layer normalization.
+    Args:
+        model_paths: Dictionary of model paths
+        performance_metrics: Dictionary of performance metrics
+        config: Model configuration dictionary
+        checkpoint_dir: Directory to save the info file
     """
-    def __init__(self, input_dim=AUDIO_FEATURE_DIM):
-        super(AudioVADModel, self).__init__()
-        
-        # Improved architecture with residual connections
-        self.input_norm = nn.BatchNorm1d(input_dim)
-        
-        # First block
-        self.fc1 = nn.Sequential(
-            nn.Linear(input_dim, 256),
-            nn.LayerNorm(256),
-            nn.LeakyReLU(0.2),
-            nn.Dropout(0.3)
-        )
-        
-        # Residual block 1
-        self.res1 = nn.Sequential(
-            nn.Linear(256, 256),
-            nn.LayerNorm(256),
-            nn.LeakyReLU(0.2),
-            nn.Dropout(0.3),
-            nn.Linear(256, 256),
-            nn.LayerNorm(256)
-        )
-        
-        # Residual block 2
-        self.res2 = nn.Sequential(
-            nn.Linear(256, 256),
-            nn.LayerNorm(256),
-            nn.LeakyReLU(0.2),
-            nn.Dropout(0.3),
-            nn.Linear(256, 256),
-            nn.LayerNorm(256)
-        )
-        
-        # Output layer
-        self.output = nn.Sequential(
-            nn.Linear(256, 128),
-            nn.LayerNorm(128),
-            nn.LeakyReLU(0.2),
-            nn.Dropout(0.2),
-            nn.Linear(128, 64),
-            nn.LayerNorm(64),
-            nn.LeakyReLU(0.2),
-            nn.Linear(64, 3),
-            nn.Tanh()  # Scale values between -1 and 1
-        )
-        
-        # Initialize weights for better convergence
-        self.apply(self._init_weights)
+    # Create info object
+    info = {
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "model_paths": {k: os.path.basename(v) if v else None for k, v in model_paths.items()},
+        "performance": {},
+        "config": config
+    }
     
-    def _init_weights(self, module):
-        if isinstance(module, nn.Linear):
-            nn.init.xavier_uniform_(module.weight)
-            if module.bias is not None:
-                module.bias.data.zero_()
+    # Convert numpy types and tensors to Python native types
+    for k, v in performance_metrics.items():
+        if isinstance(v, (np.integer, np.floating, np.bool_)):
+            info["performance"][k] = v.item()  # Convert numpy scalars to Python scalars
+        elif isinstance(v, np.ndarray):
+            info["performance"][k] = v.tolist()  # Convert numpy arrays to lists
+        elif hasattr(v, 'item'):  # For PyTorch tensors
+            info["performance"][k] = v.item()
+        else:
+            info["performance"][k] = v
     
-    def forward(self, x):
-        x = self.input_norm(x)
-        
-        # First block
-        x1 = self.fc1(x)
-        
-        # Residual block 1
-        res1_out = self.res1(x1)
-        x2 = x1 + res1_out  # Residual connection
-        
-        # Residual block 2
-        res2_out = self.res2(x2)
-        x3 = x2 + res2_out  # Residual connection
-        
-        # Output
-        vad = self.output(x3)
-        
-        return vad
-
-class TextVADModel(nn.Module):
-    """
-    Model to convert text embeddings to VAD (valence-arousal-dominance) values.
+    # Extract run_id from audio model path
+    if model_paths['audio_model_path']:
+        run_id = os.path.basename(model_paths['audio_model_path']).split('_')[-1].split('.')[0]
+        info_path = os.path.join(checkpoint_dir, f"model_info_{run_id}.json")
+    else:
+        info_path = os.path.join(checkpoint_dir, f"model_info_{int(time.time())}.json")
     
-    Uses RoBERTa for text encoding and a fully connected neural network with
-    batch normalization for VAD prediction. RoBERTa generally outperforms BERT on many tasks.
-    """
-    def __init__(self, bert_model="roberta-base"):
-        super(TextVADModel, self).__init__()
-        # Use RoBERTa instead of BERT for better performance
-        self.roberta = RobertaModel.from_pretrained(bert_model)
-        
-        # Freeze early layers to prevent overfitting
-        for param in self.roberta.embeddings.parameters():
-            param.requires_grad = False
-        
-        for i, param in enumerate(self.roberta.encoder.layer):
-            if i < 8:  # Freeze first 8 layers
-                for param in param.parameters():
-                    param.requires_grad = False
-        
-        # Use a deeper network for VAD prediction
-        self.fc = nn.Sequential(
-            nn.Linear(768, 512),
-            nn.BatchNorm1d(512),
-            nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(512, 256),
-            nn.BatchNorm1d(256),
-            nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(256, 128),
-            nn.BatchNorm1d(128),
-            nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(128, 64),
-            nn.BatchNorm1d(64),
-            nn.ReLU(),
-            nn.Dropout(0.1),
-            nn.Linear(64, 3),  # Output: valence, arousal, dominance
-            nn.Tanh()  # Scale values between -1 and 1
-        )
+    # Save as JSON
+    with open(info_path, 'w') as f:
+        json.dump(info, f, indent=4)
     
-    def forward(self, input_ids, attention_mask):
-        outputs = self.roberta(input_ids=input_ids, attention_mask=attention_mask)
-        cls_output = outputs.last_hidden_state[:, 0, :]  # [CLS] token
-        vad_values = self.fc(cls_output)
-        return vad_values
-
-class FusionVADModel(nn.Module):
-    """
-    Model to combine audio and text VAD predictions.
+    print(f"Model info saved to {info_path}")
     
-    Uses a cross-attention mechanism to effectively combine information
-    from both modalities with learnable interactions between them.
-    """
-    def __init__(self, feature_dim=3):
-        super(FusionVADModel, self).__init__()
-        
-        # Feature dimension (VAD = 3)
-        self.feature_dim = feature_dim
-        
-        # Initial projection layers
-        self.audio_proj = nn.Linear(feature_dim, 64)
-        self.text_proj = nn.Linear(feature_dim, 64)
-        
-        # Cross-attention layers
-        # Query, Key, Value projections for audio attending to text
-        self.audio_query = nn.Linear(64, 64)
-        self.text_key = nn.Linear(64, 64)
-        self.text_value = nn.Linear(64, 64)
-        
-        # Query, Key, Value projections for text attending to audio
-        self.text_query = nn.Linear(64, 64)
-        self.audio_key = nn.Linear(64, 64)
-        self.audio_value = nn.Linear(64, 64)
-        
-        # Layer norm for attention outputs
-        self.layer_norm1 = nn.LayerNorm(64)
-        self.layer_norm2 = nn.LayerNorm(64)
-        
-        # Integration layer
-        self.integration = nn.Sequential(
-            nn.Linear(128, 128),
-            nn.LayerNorm(128),
-            nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(128, 64),
-            nn.LayerNorm(64),
-            nn.ReLU(),
-            nn.Dropout(0.1)
-        )
-        
-        # Final VAD prediction layer
-        self.vad_predictor = nn.Sequential(
-            nn.Linear(64, 32),
-            nn.LayerNorm(32),
-            nn.ReLU(),
-            nn.Linear(32, feature_dim),
-            nn.Tanh()  # Scale values between -1 and 1
-        )
-        
-        # Initialize weights
-        self.apply(self._init_weights)
+    # Also update a "latest.json" file
+    latest_path = os.path.join(checkpoint_dir, "latest.json")
+    with open(latest_path, 'w') as f:
+        json.dump(info, f, indent=4)
     
-    def _init_weights(self, module):
-        if isinstance(module, nn.Linear):
-            nn.init.xavier_uniform_(module.weight)
-            if module.bias is not None:
-                module.bias.data.zero_()
-    
-    def forward(self, audio_vad, text_vad):
-        batch_size = audio_vad.size(0)
-        
-        # Project inputs to higher dimension
-        audio_features = self.audio_proj(audio_vad)  # [batch_size, 64]
-        text_features = self.text_proj(text_vad)     # [batch_size, 64]
-        
-        # Cross-attention: audio attending to text
-        audio_queries = self.audio_query(audio_features).unsqueeze(1)  # [batch_size, 1, 64]
-        text_keys = self.text_key(text_features).unsqueeze(1)          # [batch_size, 1, 64]
-        text_values = self.text_value(text_features).unsqueeze(1)      # [batch_size, 1, 64]
-        
-        # Compute attention scores
-        audio_text_scores = torch.matmul(audio_queries, text_keys.transpose(-2, -1)) / (64 ** 0.5)  # [batch_size, 1, 1]
-        audio_text_attention = torch.softmax(audio_text_scores, dim=-1)
-        
-        # Apply attention to values
-        audio_attended_text = torch.matmul(audio_text_attention, text_values).squeeze(1)  # [batch_size, 64]
-        audio_attended_text = self.layer_norm1(audio_attended_text + audio_features)  # residual connection
-        
-        # Cross-attention: text attending to audio
-        text_queries = self.text_query(text_features).unsqueeze(1)     # [batch_size, 1, 64]
-        audio_keys = self.audio_key(audio_features).unsqueeze(1)       # [batch_size, 1, 64]
-        audio_values = self.audio_value(audio_features).unsqueeze(1)   # [batch_size, 1, 64]
-        
-        # Compute attention scores
-        text_audio_scores = torch.matmul(text_queries, audio_keys.transpose(-2, -1)) / (64 ** 0.5)  # [batch_size, 1, 1]
-        text_audio_attention = torch.softmax(text_audio_scores, dim=-1)
-        
-        # Apply attention to values
-        text_attended_audio = torch.matmul(text_audio_attention, audio_values).squeeze(1)  # [batch_size, 64]
-        text_attended_audio = self.layer_norm2(text_attended_audio + text_features)  # residual connection
-        
-        # Calculate attention weights for returning
-        audio_weight = audio_text_attention.mean(dim=1).squeeze(-1)  # [batch_size]
-        text_weight = text_audio_attention.mean(dim=1).squeeze(-1)   # [batch_size]
-        weights = torch.stack([audio_weight, text_weight], dim=1)     # [batch_size, 2]
-        
-        # Concatenate attended features
-        combined_features = torch.cat([audio_attended_text, text_attended_audio], dim=1)  # [batch_size, 128]
-        
-        # Integrate features
-        integrated = self.integration(combined_features)  # [batch_size, 64]
-        
-        # Predict final VAD values
-        vad_values = self.vad_predictor(integrated)  # [batch_size, 3]
-        
-        return vad_values, weights
+    print(f"Latest model info updated in {latest_path}")
 
 class IEMOCAPDataset(Dataset):
     """
     IEMOCAP dataset for multimodal emotion recognition.
     
-    Prepares data for both audio and text modalities.
-    Updated to work with RoBERTa tokenizer.
+    Prepares data for both audio and text modalities with improved preprocessing.
     """
-    def __init__(self, data, tokenizer=None, max_len=128):
+    def __init__(self, data, tokenizer=None, max_len=128, use_wav2vec=False):
         self.data = data
+        self.use_wav2vec = use_wav2vec
         
         # Initialize tokenizer if not provided
         if tokenizer is None:
-            from transformers import RobertaTokenizer
-            self.tokenizer = RobertaTokenizer.from_pretrained("roberta-base")
+            self.tokenizer = AutoTokenizer.from_pretrained(TEXT_MODEL)
         else:
             self.tokenizer = tokenizer
             
@@ -399,14 +249,18 @@ class IEMOCAPDataset(Dataset):
         text = row['text']
         
         # Prepare audio features
-        audio_features = torch.tensor(row['audio_features'], dtype=torch.float)
+        if self.use_wav2vec:
+            # For Wav2Vec, this would be the raw audio waveform
+            audio_features = torch.tensor(row['audio_waveform'], dtype=torch.float)
+        else:
+            # Traditional audio features
+            audio_features = torch.tensor(row['audio_features'], dtype=torch.float)
         
         # Prepare text features
-        encoding = self.tokenizer.encode_plus(
+        encoding = self.tokenizer(
             text,
             add_special_tokens=True,
             max_length=self.max_len,
-            return_token_type_ids=False,
             padding='max_length',
             truncation=True,
             return_attention_mask=True,
@@ -1050,56 +904,169 @@ def visualize_vad_emotion_space():
     except Exception as e:
         print(f"Could not create visual VAD space plot: {e}")
 
-def main():
-    """Main function to run the emotion recognition pipeline"""
+def load_dataset(data_path=None):
+    """
+    Load the IEMOCAP dataset or mock dataset.
+    
+    Args:
+        data_path: Optional path to custom data file
+        
+    Returns:
+        DataFrame with dataset
+    """
+    # If data path is provided, load it directly
+    if data_path and os.path.exists(data_path):
+        print(f"Loading data from {data_path}")
+        df = pd.read_csv(data_path)
+    # Check if data already exists in data directory
+    elif os.path.exists(os.path.join(DEFAULT_DATA_DIR, "processed_data.csv")):
+        print(f"Loading existing processed data from {os.path.join(DEFAULT_DATA_DIR, 'processed_data.csv')}")
+        df = pd.read_csv(os.path.join(DEFAULT_DATA_DIR, "processed_data.csv"))
+    # Try to parse IEMOCAP data
+    else:
+        print("Attempting to parse IEMOCAP dataset...")
+        df = parse_iemocap_emotions()
+        
+        # If no data or error, create mock data
+        if df is None or len(df) == 0:
+            print("Could not parse IEMOCAP data, creating mock dataset instead.")
+            df = create_mock_dataset(n_samples=1000)
+    
+    # Process string-formatted audio features if needed
+    if 'audio_features' in df.columns and isinstance(df['audio_features'].iloc[0], str):
+        print("Converting string audio features to arrays...")
+        # Use a safer approach to convert string representation to numpy arrays
+        def parse_array(x):
+            if not isinstance(x, str):
+                return x
+            try:
+                # Try to safely convert the string to a list
+                x = x.strip('[]')  # Remove brackets
+                x = x.replace('\n', ' ')  # Replace newlines with spaces
+                values = [float(val) for val in x.split()]  # Split by whitespace and convert to float
+                return np.array(values)
+            except Exception as e:
+                print(f"Error parsing array: {e}")
+                # Return a zero array as fallback
+                return np.zeros(AUDIO_FEATURE_DIM)
+                
+        # Apply the parsing function
+        df['audio_features'] = df['audio_features'].apply(parse_array)
+    
+    # Add waveform column for Wav2Vec model if needed
+    if 'audio_waveform' not in df.columns:
+        # Just add a placeholder - in a real implementation this would be the actual waveform
+        df['audio_waveform'] = df['audio_features'].apply(
+            lambda x: np.zeros(16000) if isinstance(x, np.ndarray) else np.zeros(16000)
+        )
+    
+    return df
+
+def print_dataset_stats(df):
+    """
+    Print statistics about the dataset.
+    
+    Args:
+        df: DataFrame with dataset
+    """
+    print(f"Dataset created with {len(df)} samples")
+    
+    # Print emotion distribution
+    print("\nEmotion distribution:")
+    emotion_counts = df['emotion'].value_counts()
+    print(tabulate(
+        [[emotion, count, f"{count/len(df)*100:.2f}%"] for emotion, count in emotion_counts.items()],
+        headers=["Emotion", "Count", "Percentage"],
+        tablefmt="grid"
+    ))
+    
+    # Print VAD statistics
+    print("\nVAD statistics:")
+    vad_stats = df[['valence', 'arousal', 'dominance']].describe().round(4)
+    print(tabulate(
+        vad_stats,
+        headers="keys",
+        tablefmt="grid"
+    ))
+    
+    # Check for NaN values
+    nan_count = df.isna().sum().sum()
+    if nan_count > 0:
+        print(f"\nWarning: Dataset contains {nan_count} NaN values")
+    
+    # Check class balance
+    min_class = emotion_counts.min()
+    max_class = emotion_counts.max()
+    imbalance = max_class / min_class if min_class > 0 else float('inf')
+    
+    if imbalance > 2:
+        print(f"\nWarning: Dataset is imbalanced (ratio max/min: {imbalance:.2f})")
+    else:
+        print("\nClass distribution is reasonably balanced")
+
+def main(force_train=False, evaluate_only=False, visualize=False, 
+         checkpoint_dir=DEFAULT_CHECKPOINT_DIR, data_path=None, 
+         vad_to_emotion_func=None):
+    """
+    Main function to run the emotion recognition pipeline.
+    
+    Args:
+        force_train: Whether to force training even if models exist
+        evaluate_only: Whether to only evaluate existing models
+        visualize: Whether to generate visualizations
+        checkpoint_dir: Directory for model checkpoints
+        data_path: Path to custom data
+        vad_to_emotion_func: Custom VAD to emotion mapping function
+    """
     print("-" * 80)
     print("IEMOCAP EMOTION RECOGNITION WITH TWO-STEP APPROACH")
     print("Step 1: Convert modalities (audio/text) to VAD tuples")
     print("Step 2: Map VAD tuples to emotion categories")
     print("-" * 80)
     
-    # Check if we can use ML-based VAD to emotion mapping
+    # Set up vad_to_emotion mapping function
     global vad_to_emotion
-    if use_ml_vad_to_emotion:
+    if vad_to_emotion_func is not None:
+        print("Using provided VAD-to-emotion mapping function")
+        vad_to_emotion = vad_to_emotion_func
+        CONFIG["vad_mapping"]["use_ml"] = True
+    elif use_ml_vad_to_emotion:
         print("Using machine learning based VAD-to-emotion mapping")
         vad_to_emotion = get_vad_to_emotion_predictor()
+        CONFIG["vad_mapping"]["use_ml"] = True
     else:
         print("Using rule-based VAD-to-emotion mapping")
     
-    # Load model paths from tracker
-    model_paths = load_model_paths_from_tracker()
-    print("\nChecking for existing models:")
-    for key, path in model_paths.items():
-        print(f"  {key}: {'Found' if path and os.path.exists(path) else 'Not found'}")
+    # Check for existing models
+    model_paths = get_latest_model_paths(checkpoint_dir)
+    
+    # Print status of models
+    print("\nModel status:")
+    if model_paths:
+        for key, path in model_paths.items():
+            status = "Found" if path and os.path.exists(path) else "Not found"
+            print(f"  {key}: {status}")
+    else:
+        print("  No existing models found, will train from scratch")
     
     # Generate a new run ID for this training session
     run_id = generate_run_id()
     print(f"\nRun ID for this session: {run_id}")
     
-    # Try to parse IEMOCAP data first
-    print("\nAttempting to parse IEMOCAP dataset...")
-    df = parse_iemocap_emotions()
-    
-    # If no data or error, create mock data
-    if df is None or len(df) == 0:
-        print("Could not parse IEMOCAP data, creating mock dataset instead.")
-        df = create_mock_dataset(n_samples=1000)  # Increased for better training
-    
-    print(f"Dataset created with {len(df)} samples")
-    print("\nEmotion distribution:")
-    emotion_counts = df['emotion'].value_counts()
-    print(tabulate(
-        [[emotion, count] for emotion, count in emotion_counts.items()],
-        headers=["Emotion", "Count"],
-        tablefmt="grid"
-    ))
+    # Load or create dataset
+    print("\nPreparing dataset...")
+    df = load_dataset(data_path)
     
     # Save processed data for reference
-    df.to_csv("processed_data.csv", index=False)
+    data_file = os.path.join(DEFAULT_DATA_DIR, "processed_data.csv")
+    df.to_csv(data_file, index=False)
+    print(f"Dataset saved to {data_file}")
     
-    # Initialize tokenizer (using RoBERTa instead of BERT)
-    from transformers import RobertaTokenizer
-    tokenizer = RobertaTokenizer.from_pretrained("roberta-base")
+    # Print dataset statistics
+    print_dataset_stats(df)
+    
+    # Initialize tokenizer
+    tokenizer = AutoTokenizer.from_pretrained(CONFIG["text_model"]["model_name"])
     
     # Split data - stratify to ensure balanced emotion distribution
     train_df, val_df = train_test_split(
@@ -1111,19 +1078,47 @@ def main():
     print(f"Validation set: {len(val_df)} samples")
     
     # Create datasets and dataloaders
-    train_dataset = IEMOCAPDataset(train_df, tokenizer)
-    val_dataset = IEMOCAPDataset(val_df, tokenizer)
+    train_dataset = IEMOCAPDataset(
+        train_df, 
+        tokenizer, 
+        use_wav2vec=CONFIG["audio_model"]["use_wav2vec"]
+    )
     
-    train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
-    val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE)
+    val_dataset = IEMOCAPDataset(
+        val_df, 
+        tokenizer, 
+        use_wav2vec=CONFIG["audio_model"]["use_wav2vec"]
+    )
+    
+    train_loader = DataLoader(
+        train_dataset, 
+        batch_size=CONFIG["batch_size"], 
+        shuffle=True
+    )
+    
+    val_loader = DataLoader(
+        val_dataset, 
+        batch_size=CONFIG["batch_size"]
+    )
     
     # Initialize models
-    audio_model = AudioVADModel().to(DEVICE)
-    text_model = TextVADModel().to(DEVICE)
+    audio_model = AudioVADModel(
+        input_dim=AUDIO_FEATURE_DIM,
+        use_wav2vec=CONFIG["audio_model"]["use_wav2vec"]
+    ).to(DEVICE)
+    
+    text_model = TextVADModel(
+        model_name=CONFIG["text_model"]["model_name"],
+        finetune=CONFIG["text_model"]["finetune"]
+    ).to(DEVICE)
+    
     fusion_model = FusionVADModel().to(DEVICE)
     
-    # Load existing models if available
-    if all(model_paths[key] and os.path.exists(model_paths[key]) for key in ['audio_model_path', 'text_model_path', 'fusion_model_path']):
+    # Determine if we should use existing models or train new ones
+    should_train = force_train or not model_paths
+    
+    # Load existing models if available and not forcing training
+    if not should_train:
         print("\nLoading existing models...")
         try:
             audio_model.load_state_dict(torch.load(model_paths['audio_model_path']))
@@ -1131,7 +1126,7 @@ def main():
             fusion_model.load_state_dict(torch.load(model_paths['fusion_model_path']))
             print("Models loaded successfully!")
             
-            # Evaluate immediately with loaded models
+            # Evaluate loaded models
             print("\nEvaluating loaded models...")
             val_metrics, val_pred_emotions, val_true_emotions, val_details_df = evaluate(
                 audio_model, text_model, fusion_model, val_loader, nn.MSELoss(), DEVICE
@@ -1142,15 +1137,20 @@ def main():
                 title="Validation Classification Report (Loaded Models)"
             )
             
-            # Skip training if user specifies
-            user_input = input("\nDo you want to skip training and use these models? (y/n): ")
-            if user_input.lower() in ['y', 'yes']:
-                # Skip to visualization and summary
-                plot_confusion_matrix(val_true_emotions, val_pred_emotions)
-                visualize_vad_emotion_space()
+            # If only evaluating, skip to visualization
+            if evaluate_only:
+                # Save evaluation results
+                eval_file = os.path.join(DEFAULT_LOGS_DIR, f"evaluation_{run_id}.csv")
+                val_details_df.to_csv(eval_file, index=False)
+                print(f"Evaluation results saved to {eval_file}")
+                
+                # Run visualizations if requested
+                if visualize:
+                    plot_confusion_matrix(val_pred_emotions, val_true_emotions)
+                    visualize_vad_emotion_space()
                 
                 # Print summary
-                print("\nEmotion recognition demo completed!")
+                print("\nEvaluation completed!")
                 print("-" * 80)
                 print("SUMMARY OF THE TWO-STEP APPROACH:")
                 print("1. Modality → VAD Conversion:")
@@ -1162,188 +1162,195 @@ def main():
                 print(f"   - Overall Loss: {val_metrics['loss']:.4f}")
                 print("-" * 80)
                 
-                # Update model tracker
-                update_model_tracker(model_paths, val_metrics)
-                return
+                return val_metrics
         except Exception as e:
             print(f"Error loading models: {e}")
             print("Proceeding with training new models...")
+            should_train = True
     
-    # Initialize optimizer with learning rate scheduler
-    optimizer = torch.optim.AdamW(
-        list(audio_model.parameters()) + 
-        list(text_model.parameters()) + 
-        list(fusion_model.parameters()),
-        lr=LEARNING_RATE,
-        weight_decay=0.01
-    )
+    # Return if we're only evaluating and there are no models to load
+    if evaluate_only and not should_train:
+        print("No models available for evaluation.")
+        return None
     
-    # Learning rate scheduler
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer, mode='min', factor=0.5, patience=2, verbose=True
-    )
-    
-    # Loss function
-    criterion = nn.MSELoss()
-    
-    # Train and evaluate models
-    best_val_loss = float('inf')
-    train_metrics_history = []
-    val_metrics_history = []
-    
-    print("\nStarting training...")
-    for epoch in range(NUM_EPOCHS):
-        print(f"\nEpoch {epoch+1}/{NUM_EPOCHS}")
+    # If we get here, we need to train models
+    if should_train:
+        # Initialize optimizer with layer-wise learning rates
+        # Higher learning rate for the new fusion model, lower for pretrained models
+        param_groups = [
+            {'params': audio_model.parameters(), 'lr': CONFIG["learning_rate"]},
+            {'params': text_model.parameters(), 'lr': CONFIG["learning_rate"] * 0.5},  # Lower for pretrained LM
+            {'params': fusion_model.parameters(), 'lr': CONFIG["learning_rate"] * 2.0}  # Higher for fusion
+        ]
         
-        # Train
-        train_metrics = train(audio_model, text_model, fusion_model, 
-                            train_loader, optimizer, criterion, DEVICE)
-        train_metrics_history.append(train_metrics)
-        
-        # Evaluate
-        val_metrics, val_pred_emotions, val_true_emotions, val_details_df = evaluate(
-            audio_model, text_model, fusion_model, val_loader, criterion, DEVICE
-        )
-        val_metrics_history.append(val_metrics)
-        
-        # Print metrics tables
-        print_metrics_table(train_metrics, title=f"Training Metrics - Epoch {epoch+1}")
-        print_metrics_table(val_metrics, title=f"Validation Metrics - Epoch {epoch+1}")
-        
-        # Print classification report
-        print_classification_report_table(
-            val_true_emotions, val_pred_emotions,
-            title=f"Validation Classification Report - Epoch {epoch+1}"
+        optimizer = torch.optim.AdamW(
+            param_groups,
+            weight_decay=0.01
         )
         
-        # Update learning rate
-        scheduler.step(val_metrics['loss'])
+        # Learning rate scheduler
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer, mode='min', factor=0.5, patience=2, verbose=True
+        )
         
-        # Save models if validation loss improves
-        if val_metrics['loss'] < best_val_loss:
-            best_val_loss = val_metrics['loss']
-            
-            # Generate model paths with run ID
-            model_paths = {
-                'audio_model_path': f"audio_vad_model_{run_id}.pt",
-                'text_model_path': f"text_vad_model_{run_id}.pt",
-                'fusion_model_path': f"fusion_vad_model_{run_id}.pt",
-                'vad_to_emotion_model_path': None
-            }
-            
-            # Save models
-            torch.save(audio_model.state_dict(), model_paths['audio_model_path'])
-            torch.save(text_model.state_dict(), model_paths['text_model_path'])
-            torch.save(fusion_model.state_dict(), model_paths['fusion_model_path'])
-            
-            # Also save with standard names for backward compatibility
-            torch.save(audio_model.state_dict(), "audio_vad_model.pt")
-            torch.save(text_model.state_dict(), "text_vad_model.pt")
-            torch.save(fusion_model.state_dict(), "fusion_vad_model.pt")
-            
-            # Save best validation details
-            val_details_df.to_csv("best_validation_results.csv", index=False)
-            
-            # Update model tracker
-            update_model_tracker(model_paths, val_metrics)
-            
-            print("Models saved!")
-    
-    print("\nTraining completed!")
-    
-    # Plot confusion matrix for the final epoch
-    plot_confusion_matrix(val_true_emotions, val_pred_emotions)
-    
-    # Create and save summary tables
-    train_summary = pd.DataFrame(train_metrics_history)
-    val_summary = pd.DataFrame(val_metrics_history)
-    
-    train_summary.to_csv("train_metrics_history.csv", index=False)
-    val_summary.to_csv("val_metrics_history.csv", index=False)
-    
-    # Print summary of training history
-    print("\nTraining History Summary:")
-    print(tabulate(
-        train_summary[['loss', 'audio_mse', 'text_mse', 'fusion_mse', 'accuracy']].describe().reset_index(),
-        headers="keys",
-        tablefmt="grid",
-        floatfmt=".4f"
-    ))
-    
-    print("\nValidation History Summary:")
-    print(tabulate(
-        val_summary[['loss', 'audio_mse', 'text_mse', 'fusion_mse', 'accuracy']].describe().reset_index(),
-        headers="keys",
-        tablefmt="grid",
-        floatfmt=".4f"
-    ))
-    
-    # Visualize VAD-to-emotion mapping
-    visualize_vad_emotion_space()
-    
-    # Try to create plots if matplotlib is working
-    try:
-        # Plot training curves
-        plt.figure(figsize=(15, 10))
+        # Loss function
+        criterion = nn.MSELoss()
         
-        # Loss plot
-        plt.subplot(2, 2, 1)
-        plt.plot(range(1, NUM_EPOCHS+1), [m['loss'] for m in train_metrics_history], 'b-', label='Training Loss')
-        plt.plot(range(1, NUM_EPOCHS+1), [m['loss'] for m in val_metrics_history], 'r-', label='Validation Loss')
-        plt.xlabel('Epoch')
-        plt.ylabel('Loss')
-        plt.title('Training and Validation Loss')
-        plt.legend()
-        plt.grid(True)
+        # Train and evaluate models
+        best_val_loss = float('inf')
+        train_metrics_history = []
+        val_metrics_history = []
         
-        # MSE plot
-        plt.subplot(2, 2, 2)
-        plt.plot(range(1, NUM_EPOCHS+1), [m['audio_mse'] for m in val_metrics_history], 'g-', label='Audio MSE')
-        plt.plot(range(1, NUM_EPOCHS+1), [m['text_mse'] for m in val_metrics_history], 'b-', label='Text MSE')
-        plt.plot(range(1, NUM_EPOCHS+1), [m['fusion_mse'] for m in val_metrics_history], 'r-', label='Fusion MSE')
-        plt.xlabel('Epoch')
-        plt.ylabel('MSE')
-        plt.title('Validation MSE by Modality')
-        plt.legend()
-        plt.grid(True)
+        print("\nStarting training...")
+        for epoch in range(CONFIG["num_epochs"]):
+            print(f"\nEpoch {epoch+1}/{CONFIG['num_epochs']}")
+            
+            # Train
+            train_metrics = train(audio_model, text_model, fusion_model, 
+                                train_loader, optimizer, criterion, DEVICE)
+            train_metrics_history.append(train_metrics)
+            
+            # Evaluate
+            val_metrics, val_pred_emotions, val_true_emotions, val_details_df = evaluate(
+                audio_model, text_model, fusion_model, val_loader, criterion, DEVICE
+            )
+            val_metrics_history.append(val_metrics)
+            
+            # Print metrics tables
+            print_metrics_table(train_metrics, title=f"Training Metrics - Epoch {epoch+1}")
+            print_metrics_table(val_metrics, title=f"Validation Metrics - Epoch {epoch+1}")
+            
+            # Print classification report
+            print_classification_report_table(
+                val_true_emotions, val_pred_emotions,
+                title=f"Validation Classification Report - Epoch {epoch+1}"
+            )
+            
+            # Update learning rate
+            scheduler.step(val_metrics['loss'])
+            
+            # Save models if validation loss improves
+            if val_metrics['loss'] < best_val_loss:
+                best_val_loss = val_metrics['loss']
+                
+                # Generate model paths with run ID
+                model_paths = get_model_paths(checkpoint_dir=checkpoint_dir, run_id=run_id)
+                
+                # Save models
+                torch.save(audio_model.state_dict(), model_paths['audio_model_path'])
+                torch.save(text_model.state_dict(), model_paths['text_model_path'])
+                torch.save(fusion_model.state_dict(), model_paths['fusion_model_path'])
+                
+                # Save best validation details
+                val_details_df.to_csv(os.path.join(DEFAULT_DATA_DIR, "best_validation_results.csv"), index=False)
+                
+                # Save model info
+                save_model_info(model_paths, val_metrics, CONFIG, checkpoint_dir=checkpoint_dir)
+                
+                print("Models saved!")
         
-        # Accuracy plot
-        plt.subplot(2, 2, 3)
-        plt.plot(range(1, NUM_EPOCHS+1), [m['accuracy'] for m in train_metrics_history], 'b-', label='Training Accuracy')
-        plt.plot(range(1, NUM_EPOCHS+1), [m['accuracy'] for m in val_metrics_history], 'r-', label='Validation Accuracy')
-        plt.xlabel('Epoch')
-        plt.ylabel('Accuracy')
-        plt.title('Training and Validation Accuracy')
-        plt.legend()
-        plt.grid(True)
+        print("\nTraining completed!")
         
-        # Attention weights plot
-        plt.subplot(2, 2, 4)
-        plt.plot(range(1, NUM_EPOCHS+1), [m['avg_audio_weight'] for m in val_metrics_history], 'g-', label='Audio Weight')
-        plt.plot(range(1, NUM_EPOCHS+1), [m['avg_text_weight'] for m in val_metrics_history], 'b-', label='Text Weight')
-        plt.xlabel('Epoch')
-        plt.ylabel('Average Attention Weight')
-        plt.title('Fusion Model Attention Weights')
-        plt.legend()
-        plt.grid(True)
+        # Plot confusion matrix for the final epoch
+        plot_confusion_matrix(val_pred_emotions, val_true_emotions)
         
-        plt.tight_layout()
-        plt.savefig('training_history.png')
-        print("Training history plots saved as 'training_history.png'")
-    except Exception as e:
-        print(f"Could not create training history plots: {e}")
+        # Create and save summary tables
+        train_summary = pd.DataFrame(train_metrics_history)
+        val_summary = pd.DataFrame(val_metrics_history)
+        
+        train_summary.to_csv(os.path.join(DEFAULT_LOGS_DIR, "train_metrics_history.csv"), index=False)
+        val_summary.to_csv(os.path.join(DEFAULT_LOGS_DIR, "val_metrics_history.csv"), index=False)
+        
+        # Print summary of training history
+        print("\nTraining History Summary:")
+        print(tabulate(
+            train_summary[['loss', 'audio_mse', 'text_mse', 'fusion_mse', 'accuracy']].describe().reset_index(),
+            headers="keys",
+            tablefmt="grid",
+            floatfmt=".4f"
+        ))
+        
+        print("\nValidation History Summary:")
+        print(tabulate(
+            val_summary[['loss', 'audio_mse', 'text_mse', 'fusion_mse', 'accuracy']].describe().reset_index(),
+            headers="keys",
+            tablefmt="grid",
+            floatfmt=".4f"
+        ))
     
-    print("\nEmotion recognition demo completed!")
+    # Run visualizations if requested
+    if visualize:
+        visualize_vad_emotion_space()
+        
+        # Try to create plots if matplotlib is working
+        try:
+            # Plot training curves
+            plt.figure(figsize=(15, 10))
+            
+            # Loss plot
+            plt.subplot(2, 2, 1)
+            plt.plot(range(1, CONFIG["num_epochs"]+1), [m['loss'] for m in train_metrics_history], 'b-', label='Training Loss')
+            plt.plot(range(1, CONFIG["num_epochs"]+1), [m['loss'] for m in val_metrics_history], 'r-', label='Validation Loss')
+            plt.xlabel('Epoch')
+            plt.ylabel('Loss')
+            plt.title('Training and Validation Loss')
+            plt.legend()
+            plt.grid(True)
+            
+            # MSE plot
+            plt.subplot(2, 2, 2)
+            plt.plot(range(1, CONFIG["num_epochs"]+1), [m['audio_mse'] for m in val_metrics_history], 'g-', label='Audio MSE')
+            plt.plot(range(1, CONFIG["num_epochs"]+1), [m['text_mse'] for m in val_metrics_history], 'b-', label='Text MSE')
+            plt.plot(range(1, CONFIG["num_epochs"]+1), [m['fusion_mse'] for m in val_metrics_history], 'r-', label='Fusion MSE')
+            plt.xlabel('Epoch')
+            plt.ylabel('MSE')
+            plt.title('Validation MSE by Modality')
+            plt.legend()
+            plt.grid(True)
+            
+            # Accuracy plot
+            plt.subplot(2, 2, 3)
+            plt.plot(range(1, CONFIG["num_epochs"]+1), [m['accuracy'] for m in train_metrics_history], 'b-', label='Training Accuracy')
+            plt.plot(range(1, CONFIG["num_epochs"]+1), [m['accuracy'] for m in val_metrics_history], 'r-', label='Validation Accuracy')
+            plt.xlabel('Epoch')
+            plt.ylabel('Accuracy')
+            plt.title('Training and Validation Accuracy')
+            plt.legend()
+            plt.grid(True)
+            
+            # Attention weights plot
+            plt.subplot(2, 2, 4)
+            plt.plot(range(1, CONFIG["num_epochs"]+1), [m['avg_audio_weight'] for m in val_metrics_history], 'g-', label='Audio Weight')
+            plt.plot(range(1, CONFIG["num_epochs"]+1), [m['avg_text_weight'] for m in val_metrics_history], 'b-', label='Text Weight')
+            plt.xlabel('Epoch')
+            plt.ylabel('Average Attention Weight')
+            plt.title('Fusion Model Attention Weights')
+            plt.legend()
+            plt.grid(True)
+            
+            plt.tight_layout()
+            plt.savefig(os.path.join(DEFAULT_LOGS_DIR, 'training_history.png'))
+            print("Training history plots saved as 'training_history.png'")
+        except Exception as e:
+            print(f"Could not create training history plots: {e}")
+    
+    # Print final summary
+    print("\nEmotion recognition completed!")
     print("-" * 80)
     print("SUMMARY OF THE TWO-STEP APPROACH:")
     print("1. Modality → VAD Conversion:")
     print(f"   - Audio MSE: {val_metrics['audio_mse']:.4f}")
     print(f"   - Text MSE: {val_metrics['text_mse']:.4f}")
     print(f"   - Fusion MSE: {val_metrics['fusion_mse']:.4f}")
+    print(f"   - Audio Accuracy: {val_metrics.get('audio_accuracy', 0):.2f}%")
+    print(f"   - Text Accuracy: {val_metrics.get('text_accuracy', 0):.2f}%")
+    print(f"   - Fusion Accuracy: {val_metrics.get('fusion_accuracy', 0):.2f}%")
     print("2. VAD → Emotion Classification:")
-    print(f"   - Accuracy: {val_metrics['accuracy']:.4f}")
+    print(f"   - Accuracy: {val_metrics['accuracy']:.2f}%")
     print(f"   - Overall Loss: {val_metrics['loss']:.4f}")
     print("-" * 80)
+    
+    return val_metrics
 
 if __name__ == "__main__":
     main() 
