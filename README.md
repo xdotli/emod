@@ -43,8 +43,8 @@ This project primarily utilizes the IEMOCAP dataset.
 
 1.  Clone this repository:
     ```bash
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/xdotli/emod
+    cd emod
     ```
 2.  Create and activate a virtual environment (recommended):
     ```bash
