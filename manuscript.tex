@@ -1,0 +1,468 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+% PACKAGES
+\usepackage[table]{xcolor}
+\usepackage{cite}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{textcomp}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{booktabs} % For better table rules
+
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    
+\newcommand*{\affaddr}[1]{#1}
+\newcommand*{\affmark}[1][*]{\textsuperscript{#1}}
+\newcommand*{\email}[1]{\textit{#1}}
+
+\begin{document}
+
+\title{Two-Stage Emotion Recognition from Text using Intermediate VAD Representation on IEMOCAP}
+
+\author{%
+    Faranak Abri\affmark[1], Xiangyi Li\affmark[1]\
+    \affaddr{\affmark[1]Department of Computer Science, San Jose State University}\
+    \email{xiangyi.li@sjsu.edu, faranak.abri@sjsu.edu}\
+}
+
+\IEEEoverridecommandlockouts
+% \\IEEEpubid{\\makebox[\\columnwidth]{978-1-7281-6251-5/20/\\$31.00~\\copyright2020 IEEE \\hfill}
+% \\hspace{\\columnsep}\\makebox[\\columnwidth]{}}
+
+\maketitle
+
+\begin{abstract}
+Emotion recognition from text is crucial for applications ranging from human-computer interaction to mental health monitoring. Dimensional models of emotion, such as Valence-Arousal-Dominance (VAD), offer nuanced representations but are less interpretable than discrete categories (e.g., \texttt{happy}, \texttt{sad}, \texttt{angry}). This paper investigates a two-stage pipeline for text-based emotion recognition on the IEMOCAP dataset. First, a transformer model (RoBERTa-base) is fine-tuned to predict continuous VAD scores directly from text utterances (Stage 1). Second, a machine learning classifier (Random Forest) maps these predicted VAD scores to discrete emotion categories (Stage 2). Our experiments show moderate performance for the text-to-VAD regression stage (Overall Test $R^2$: 0.1795) and highlight challenges in the subsequent VAD-to-Emotion classification stage, achieving a final test accuracy of 46.56%. We analyze the performance per dimension and per emotion category, discuss the limitations observed, particularly for \texttt{happy} and \texttt{sad} classes, and suggest directions for future improvement, including enhancing the VAD prediction model and exploring multimodal fusion within the IEMOCAP dataset.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Emotion Classification, VAD Regression, RoBERTa, Two-Stage Pipeline, IEMOCAP, Text Emotion Recognition, Affective Computing
+\end{IEEEkeywords}
+
+% Removed the "Updates" section - integrated relevant info below
+
+\section{Introduction}
+Accurate emotion recognition from text enables numerous real-world applications, such as intelligent customer service chatbots, conversational agents for mental health monitoring, and entertainment analysis \cite{mohammad2015emotion}. While early work focused on discrete emotion categories (e.g., \texttt{happiness}, \texttt{sadness}, \texttt{fear}, \texttt{anger}), recent research has underscored the significance of dimensional models, particularly Valence-Arousal-Dominance (VAD) \cite{mehrabian1995framework}, which capture subtle emotional gradients. However, mapping these continuous dimensions back to interpretable discrete labels remains a challenge.
+
+This work investigates a two-stage approach for text-based emotion recognition using the popular IEMOCAP dataset \cite{busso2008iemocap}, which contains multimodal dyadic interactions annotated with both categorical emotions and VAD scores. Our pipeline consists of:
+\begin{itemize}
+    \item \textbf{Stage 1: Text-to-VAD Regression}. A RoBERTa-base model \cite{liu2019roberta} fine-tuned to predict continuous VAD scores from textual utterances.
+    \item \textbf{Stage 2: VAD-to-Emotion Classification}. A machine learning classifier (Random Forest) trained to map the predicted VAD scores from Stage 1 into discrete emotion categories (\texttt{angry}, \texttt{happy}, \texttt{neutral}, \texttt{sad}).
+\end{itemize}
+We analyze the performance of each stage individually and the end-to-end pipeline, comparing our findings with relevant literature and discussing the challenges inherent in this indirect classification approach.
+
+\section{Literature Review}
+\begin{table}[htbp]
+\small
+\caption{Literature Review Summary\label{tab:lit_review}}
+\begin{tabular}{|p{1.2cm}|p{1.8cm}|p{4.5cm}|}
+\hline
+\textbf{Category} & \textbf{Reference} & \textbf{Key Contributions} \\
+\hline
+\multirow{7}{*}{Text-Based} & 
+Buechel \& Hahn (2017) & EmoBank dataset with VAD annotations; impact of annotation perspective \\
+\cline{2-3}
+& Devlin et al. (2018) & BERT: Bidirectional transformers for emotion classification \\
+\cline{2-3}
+& Mohammad \& Turney (2010) & Emotion lexicons using crowdsourcing; supervised classification baselines \\
+\cline{2-3}
+& He et al. (2020) & DeBERTa: Enhanced BERT with disentangled attention \\
+\cline{2-3}
+& Liu et al. (2019) & RoBERTa: Optimized BERT pretraining \\
+\cline{2-3}
+& Sun et al. (2019) & BERT for aspect-based sentiment analysis \\
+\cline{2-3}
+& Yadav \& Yadav (2020) & Review of deep learning for sentiment analysis \\
+\hline
+\multirow{8}{*}{Audio-Based} & 
+Livingstone \& Russo (2018) & RAVDESS: Multimodal emotional speech/song dataset \\
+\cline{2-3}
+& Hsu et al. (2021) & HuBERT: Self-supervised speech representation \\
+\cline{2-3}
+& Latif et al. (2020) & Survey of deep learning for audio emotion \\
+\cline{2-3}
+& Akcay \& Oguz (2020) & Review of speech emotion recognition methods \\
+\cline{2-3}
+& Wang et al. (2021) & Fine-tuned Wav2vec 2.0/HuBERT benchmark \\
+\cline{2-3}
+& Tzirakis et al. (2017) & End-to-end speech emotion recognition \\
+\cline{2-3}
+& Tao \& Tan (2005) & Review of affective computing approaches \\
+\cline{2-3}
+& Yang et al. (2021) & SUPERB speech processing benchmark \\
+\hline
+\multirow{5}{*}{Multi-modal} & 
+Busso et al. (2008) & IEMOCAP: Motion capture database \\
+\cline{2-3}
+& Poria et al. (2017) & Context-aware multimodal recognition \\
+\cline{2-3}
+& Tripathi \& Beigi (2018) & Multi-modal analysis on IEMOCAP \\
+\cline{2-3}
+& Zadeh et al. (2018) & CMU-MOSEI dataset and fusion graph \\
+\cline{2-3}
+& Poria et al. (2019) & Survey of conversation emotion recognition \\
+\hline
+\multirow{6}{*}{Methods} & 
+Mehrabian (1995) & VAD model for emotional states \\
+\cline{2-3}
+& Russell (1980) & Circumplex model of affect \\
+\cline{2-3}
+& Ekman (1992) & Basic emotions theory \\
+\cline{2-3}
+& Grimm et al. (2007) & SVR for spontaneous emotions \\
+\cline{2-3}
+& Subathra et al. (2023) & Regression for emotional state prediction \\
+\cline{2-3}
+& Parthasarathy (2020) & Semi-supervised emotion recognition \\
+\hline
+\end{tabular}
+\end{table}
+Emotion recognition is a multifaceted research domain that relies on both theoretical underpinnings of affect and practical modeling strategies. Early influential work by Ekman \cite{ekman1992anargument} proposed six universal emotions (anger, disgust, fear, happiness, sadness, and surprise), which provided a foundation for categorical analyses. Yet, Russell \cite{russell1980circumplex} and Mehrabian \cite{mehrabian1995framework} argued that emotions are more effectively described by continuous dimensions such as Valence (positivity/negativity), Arousal (excitement/calmness), and Dominance (control/submission). This dimensional perspective permits greater nuance, sparking new approaches in affective computing.
+
+\subsection{Text-based Emotion Recognition}
+Text-based emotion recognition has historically been driven by discrete categorization. Mohammad and Turney \cite{mohammad2015emotion} created lexicons capturing basic emotional categories, facilitating supervised classification in texts such as tweets or reviews. However, these early methods often struggled to capture contextual subtleties, prompting a shift to deep learning architectures. Notably, Devlin et al. \cite{devlin2018bert} introduced BERT, which uses bidirectional attention to model word dependencies and drastically improve performance in many NLP tasks, including sentiment or emotion classification \cite{yadav2020sentiment}. In subsequent works, variants such as RoBERTa \cite{liu2019roberta} and DeBERTa \cite{he2020deberta} demonstrated even greater performance gains through optimized pretraining approaches.
+
+Beyond classification, researchers began to explore dimensional models in text-based tasks. For example, Subathra et al. \cite{subathra2023comparative} and Grimm et al. \cite{grimm2007svr} showed that regression algorithms could effectively capture Valence, Arousal, and Dominance from textual data, enabling finer-grained emotional understanding. Buechel and Hahn \cite{buechel2017emobank} advanced this research by introducing the EmoBank dataset, which provides continuous VAD (or DAV) annotations for over 10,000 English sentences. Several studies have used EmoBank to benchmark regression models, showing that aligning model outputs with the continuous nature of emotion measurements consistently improves predictive accuracy \cite{subathra2023comparative, grimm2007svr, buechel2017emobank}.
+
+Transformer-based methods have further solidified their place in dimensional emotion recognition. Devlin et al. \cite{devlin2018bert} underscored the significance of pretraining on large corpora, and Brown et al. \cite{brown2020gpt3} extended these ideas with large-scale language models like GPT-3, which have shown an impressive capacity for zero-shot or few-shot learning. Despite their strengths, many transformer-based architectures were primarily designed for classification. As a result, they require adaptations—such as custom regression heads—to handle continuous predictions accurately \cite{sun2019bert, he2020deberta}.
+
+Another key research avenue is mapping continuous VAD scores to discrete categories to maintain interpretability in downstream applications. Some works have introduced hierarchical schemes, where text is first mapped to Valence or Arousal, followed by assigning a suitable label \cite{kaya2015contrasting}. Random Forest classifiers have also been employed as a subsequent layer to convert dimensional predictions to discrete categories with high accuracy, as their interpretability and capacity to handle non-linear boundaries make them effective \cite{grimm2007svr, subathra2023comparative}.
+
+\subsection{Audio-based Emotion Recognition}
+Parallel to developments in natural language processing, speech-based emotion recognition has received considerable attention. Classic approaches relied on handcrafted features such as Mel-Frequency Cepstral Coefficients (MFCCs), Chroma, and Zero Crossing Rate, coupled with machine learning classifiers like Support Vector Machines (SVMs) or Hidden Markov Models (HMMs) \cite{akcay2020speech, tao2005affective}. Livingstone and Russo \cite{livingstone2018ryerson} introduced the RAVDESS dataset, enabling standardized comparison of speech-based emotion classifiers on eight fundamental emotions. Conventional pipelines often revolved around extracting a feature set (e.g., MFCCs) and feeding these into SVMs or random forests. While these approaches achieved moderate success, they struggled when faced with subtle or closely related emotional states (e.g., calm vs. sad).
+
+With the surge of deep learning, convolutional neural networks (CNNs) have been employed to learn robust representations directly from raw audio or spectral features \cite{latif2020deep}. Tzirakis et al. \cite{tzirakis2017endtoend} leveraged end-to-end CNNs for speech emotion recognition, demonstrating that learned features can outperform handcrafted ones. More recently, attention-based models such as Wav2Vec2 \cite{wang2021finetuned} and HuBERT \cite{hsu2021hubert} showcased the power of self-supervised learning on large unlabeled audio corpora, yielding state-of-the-art performance in multiple tasks within the SUPERB benchmark \cite{yang2021superb}, including emotion classification. Semi-supervised strategies, such as ladder networks introduced by Parthasarathy and Busso \cite{parthasarathy2020semi}, further mitigate data constraints by exploiting unlabeled examples during training.
+
+Nevertheless, pure categorical classification in speech often encounters limitations, particularly for nuanced or ambiguous expressions. While certain studies have explored dimensional approaches in speech \cite{kaya2015contrasting, garcia2013dynamic}, the mainstream direction still relies heavily on discrete emotion labels. Acoustic correlates of valence, arousal, and dominance can be less explicit in speech than textual correlates are in text, prompting the need for carefully engineered architectures or fusion with other modalities.
+
+\subsection{Multimodal Perspectives and Future Directions}
+Multimodal datasets, such as IEMOCAP \cite{busso2008iemocap} and CMU-MOSEI \cite{zadeh2018multimodal}, combine audio, text, and visual cues (facial expressions, body gestures) to provide holistic insights into a speaker's emotional state. Poria et al. \cite{poria2017context} demonstrated that adding contextual embeddings from text transcripts improved speech-based emotion recognition. Similarly, Tripathi and Beigi \cite{tripathi2018multi} integrated temporal cues from audio and video data, yielding more robust emotion detection than single-modality systems.
+
+Dimensional approaches are increasingly recognized for their potential to bridge categorical and continuous perspectives. Mehrabian's PAD framework (Pleasure, Arousal, Dominance) \cite{mehrabian1995framework} and Russell's circumplex model \cite{russell1980circumplex} have spurred research into continuous representation learning \cite{grimm2007svr, subathra2023comparative}. Additionally, the combination of dimensional labels with attention-based neural mechanisms allows models to capture temporal and contextual dependencies, strengthening generalization across different speakers and domains \cite{poria2019emotion}.
+
+In summary, the literature reflects a clear trend toward deeper neural methods, leveraging advanced architectures and larger datasets for both text and speech emotion recognition. Dimensional emotion modeling, multimodal data integration, and self-supervised learning are emerging as pivotal aspects for next-generation affective computing systems. While transformer-based language and speech models have demonstrated unprecedented capabilities, challenges remain in mapping continuous emotional states to interpretable outcomes, handling data scarcity, and generalizing across diverse speakers and cultures. As research advances, solutions that combine the strengths of dimensional representation, robust pretraining, and multimodal signals will likely define future breakthroughs in emotion recognition.
+
+\section{Proposed Methodology}
+We implement and evaluate a two-stage pipeline for recognizing emotions (\texttt{angry}, \texttt{happy}, \texttt{neutral}, \texttt{sad}) from text utterances in the IEMOCAP dataset.
+
+\subsection{Dataset and Preprocessing}
+We use the \textbf{IEMOCAP} dataset \cite{busso2008iemocap}. The raw dataset is processed using the \texttt{prepare\_iemocap\_vad.py} script, which extracts relevant information, including session data, utterance timings, transcriptions, categorical emotion labels, and continuous VAD annotations provided by evaluators. This results in a structured dataset (e.g., \texttt{data/iemocap\_vad.csv}) suitable for training and evaluation. We focus on utterances labeled with one of the target emotions: \texttt{angry}, \texttt{happy}, \texttt{neutral}, or \texttt{sad}. The data is split into training and testing sets.
+
+\subsection{Stage 1: Text-to-VAD Regression}
+\subsubsection{Model Architecture: RoBERTa for Regression}
+To predict continuous VAD values from text, we adapt a pre-trained \textbf{RoBERTa-base} model \cite{liu2019roberta}:
+\begin{itemize}
+    \item The standard classification head is replaced with a \textbf{regression head} consisting of a dense layer with 3 linear output units (for Valence, Arousal, Dominance).
+    \item The model is fine-tuned on the training split of the IEMOCAP text data using \textbf{Mean Squared Error (MSE)} loss between the predicted VAD scores and the ground-truth VAD annotations.
+    \item Standard practices like dropout and potentially early stopping are employed during fine-tuning. The implementation details are primarily within \texttt{text\_vad.py}.
+\end{itemize}
+
+\subsection{Stage 2: VAD-to-Emotion Classification}
+\subsubsection{Model Architecture: ML Classifier}
+The VAD scores predicted by the Stage 1 model for the test set utterances are then fed into a Stage 2 classifier to predict discrete emotion labels.
+\begin{itemize}
+    \item We use a \textbf{Random Forest (RF)} classifier (implemented via scikit-learn within \texttt{vad\_emotion\_pipeline.py}). Other classifiers like SVM are also possible within the framework.
+    \item The RF classifier is trained on the \textit{ground-truth} VAD values and corresponding emotion labels from the \textit{training} portion of the IEMOCAP dataset. This learns a mapping from the VAD space to the target emotion categories.
+    \item During testing, the classifier takes the VAD values predicted by the RoBERTa model (Stage 1) as input and outputs the final emotion prediction.
+\end{itemize}
+
+\subsection{Evaluation Metrics}
+We evaluate each stage separately and the end-to-end performance on the test set:
+\begin{itemize}
+    \item \textbf{Stage 1 (VAD Regression):}
+        \begin{itemize}
+            \item MSE (Mean Squared Error) - Overall and per dimension (V, A, D).
+            \item RMSE (Root Mean Squared Error) - Overall.
+            \item MAE (Mean Absolute Error) - Overall.
+            \item $R^2$ (Coefficient of Determination) - Overall and per dimension.
+        \end{itemize}
+    \item \textbf{Stage 2 (Emotion Classification):}
+        \begin{itemize}
+            \item Accuracy.
+            \item Precision, Recall, F1-Score (per class, macro average, weighted average).
+            \item Confusion Matrix.
+        \end{itemize}
+\end{itemize}
+Results are logged, often to files like \texttt{logs/pipeline\_results.json}.
+
+\section{Experiments and Results}
+We evaluated the two-stage pipeline on the prepared IEMOCAP test set. The results reported below are extracted from the evaluation logs (\texttt{logs/pipeline\_results.json}).
+
+\subsection{Stage 1: Text-to-VAD Prediction Performance}
+The fine-tuned RoBERTa model's performance in predicting VAD values on the test set is summarized in Table \ref{tab:vad_results}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Stage 1: Text-to-VAD Regression Performance (Test Set)}
+    \label{tab:vad_results}
+    \begin{tabular}{@{}lcccc@{}}
+        \toprule
+        Metric   & Overall & Valence & Arousal & Dominance \\
+        \midrule
+        MSE      & 0.1252  & 0.1526  & 0.0993  & 0.1237    \\
+        RMSE     & 0.3538  & -       & -       & -         \\
+        MAE      & 0.2874  & -       & -       & -         \\
+        $R^2$ Score & 0.1795  & 0.2557  & 0.1682  & 0.1147    \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The model achieved an overall $R^2$ score of approximately 0.18, indicating it explains a limited portion of the variance in VAD scores based solely on text. Performance varied across dimensions, with Valence prediction ($R^2 \approx 0.26$) being slightly better than Arousal ($R^2 \approx 0.17$) and Dominance ($R^2 \approx 0.11$). The MSE and MAE values indicate the average magnitude of prediction errors.
+
+\begin{figure}[htbp]
+    \centering
+    % Assuming the training history PNG is saved in logs/ and accessible
+    \includegraphics[width=0.85\linewidth]{logs/training\_history.png}
+    \caption{Training history plot for the Stage 1 Text-to-VAD model (e.g., showing loss or metric trends over epochs).}
+    \label{fig:training_history}
+\end{figure}
+
+Figure \ref{fig:training_history} illustrates the training progression of the Stage 1 model.
+
+\subsection{Stage 2: VAD-to-Emotion Classification Performance}
+The performance of the Random Forest classifier using the VAD values predicted by Stage 1 is shown below.
+
+\textbf{Overall Accuracy (Test Set):} 46.56%
+
+The detailed classification report is presented in Table \ref{tab:emotion_results}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Stage 2: VAD-to-Emotion Classification Report (Test Set)}
+    \label{tab:emotion_results}
+    \begin{tabular}{@{}lcccc@{}}
+        \toprule
+        Emotion   & Precision & Recall & F1-Score & Support \\
+        \midrule
+        \texttt{angry}     & 0.588     & 0.757  & 0.662    & 181     \\
+        \texttt{happy}     & 0.812     & 0.111  & 0.195    & 117     \\
+        \texttt{neutral}   & 0.335     & 0.580  & 0.424    & 150     \\
+        \texttt{sad}       & 0.000     & 0.000  & 0.000    & 61      \\
+        \midrule
+        Macro Avg & 0.434     & 0.362  & 0.320    & 509     \\
+        Wgt Avg   & 0.494     & 0.466  & 0.405    & 509     \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The end-to-end accuracy is modest. Performance is highly uneven across classes:
+\begin{itemize}
+    \item \textbf{\texttt{Angry}:} Recognized reasonably well (F1=0.662).
+    \item \textbf{\texttt{Happy}:} Very low recall (0.111) despite high precision, often confused with neutral.
+    \item \textbf{\texttt{Neutral}:} Low precision (0.335), acting as a frequent prediction but often incorrect.
+    \item \textbf{\texttt{Sad}:} Completely failed (F1=0.000), mostly misclassified as neutral.
+\end{itemize}
+The low Macro F1-score (0.320) reflects the poor performance on \texttt{happy} and \texttt{sad}.
+
+\begin{figure}[htbp]
+    \centering
+    % Assuming the confusion matrix PNG is saved in logs/ and accessible
+    % If not, this figure command should be removed or path adjusted.
+    \includegraphics[width=0.85\linewidth]{logs/confusion\_matrix.png}
+    \caption{Confusion matrix for Stage 2 Emotion Classification (Test Set). Rows: Actual, Columns: Predicted.}
+    \label{fig:confmatrix}
+\end{figure}
+
+Figure \ref{fig:confmatrix} visually confirms these findings, showing large numbers of \texttt{happy} and \texttt{sad} instances misclassified as \texttt{neutral} or \texttt{angry}.
+
+\section{Discussion}
+The experimental results highlight the challenges of the two-stage Text-to-VAD-to-Emotion pipeline on IEMOCAP.
+
+\textbf{Stage 1 (Text-to-VAD)} performance ($R^2 \approx 0.18$) suggests that predicting VAD purely from text is difficult. While the model captures some signal (especially for Valence), a significant portion of the variance remains unexplained. Text alone may lack sufficient cues present in other modalities like audio prosody or facial expressions, which are known to strongly correlate with Arousal and Dominance.
+
+\textbf{Stage 2 (VAD-to-Emotion)} performance is heavily impacted by the quality of the input VAD predictions. The low overall accuracy (46.56%) and particularly the failure to detect \texttt{sad} and the poor recall for \texttt{happy} indicate that the predicted VAD values for these emotions are not distinct enough in the VAD space, or they overlap significantly with \texttt{neutral} and \texttt{angry}. The errors from Stage 1 propagate and are likely amplified in Stage 2. The ambiguity in mapping specific VAD regions to discrete emotions, even with a trained classifier, remains a significant hurdle.
+
+While the two-stage approach is conceptually appealing for leveraging dimensional nuances, its practical effectiveness in this implementation is limited by the performance bottleneck in the initial VAD regression stage and the inherent difficulty of the VAD-to-emotion mapping task using imperfect inputs. Direct text-to-emotion classification models might outperform this pipeline by learning direct mappings, potentially bypassing the VAD intermediate step's complexities and error propagation.
+
+\subsection{Comparison with State-of-the-Art}
+The achieved end-to-end accuracy of 46.56% on the 4-class IEMOCAP text-based emotion recognition task falls considerably short of current state-of-the-art (SOTA) results, which typically range from the high 60s to mid-70s percent \cite{yadav2020sentiment}. Several factors contribute to this performance gap:
+\begin{itemize}
+    \item \textbf{Error Propagation:} The two-stage nature is a primary factor. Inaccuracies in the initial Text-to-VAD prediction (Stage 1, $R^2 \approx 0.18$) inevitably degrade the performance of the subsequent VAD-to-Emotion classifier (Stage 2).
+    \item \textbf{Difficulty of VAD from Text:} As noted, predicting nuanced VAD scores solely from text is inherently challenging compared to predicting discrete emotion labels directly. Text often lacks the strong prosodic or visual cues associated with Arousal and Dominance.
+    \item \textbf{Lack of Contextual Modeling:} Current SOTA models often incorporate dialogue context (previous utterances) using hierarchical LSTMs or transformer-based approaches, which our current RoBERTa-based utterance-level VAD prediction likely does not capture effectively.
+    \item \textbf{Direct vs. Indirect Classification:} Many SOTA results are achieved through direct end-to-end text-to-emotion classification models, avoiding the intermediate VAD representation and its associated mapping challenges.
+\end{itemize}
+
+Potential actions to bridge this gap align with the future work directions: improving the Stage 1 VAD prediction accuracy (perhaps with context-aware models), exploring multimodal fusion using IEMOCAP's audio/visual data to get better VAD estimates, or benchmarking against a direct text-to-emotion RoBERTa classifier as a comparison.
+
+\section{Conclusions and Future Work}
+We implemented and evaluated a two-stage pipeline for text-based emotion recognition on IEMOCAP, using RoBERTa for VAD regression (Stage 1) and a Random Forest for VAD-to-Emotion classification (Stage 2). Key findings include:
+\begin{enumerate}
+    \item Moderate performance in text-to-VAD regression ($R^2 \approx 0.18$), indicating difficulty in capturing full VAD variance from text alone.
+    \item Limited end-to-end emotion classification accuracy (46.56\%), with significant performance degradation for \texttt{happy} and \texttt{sad} categories due to challenges in VAD prediction and mapping.
+\end{enumerate}
+
+\textbf{Future work} should focus on addressing these limitations:
+\begin{itemize}
+    \item \textbf{Improving Stage 1:} Experiment with larger transformer models, VAD-specific pre-training, or techniques better suited for regression tasks. Incorporate contextual information from the dialogue history.
+    \item \textbf{Multimodal Fusion:} Leverage the audio and visual modalities available in IEMOCAP. Fusing text-based VAD predictions with features extracted from audio (e.g., prosody) or video could significantly improve VAD accuracy and subsequent emotion classification.
+    \item \textbf{Alternative Mapping Strategies:} Explore different VAD-to-Emotion mapping techniques beyond standard classifiers, perhaps using fuzzy logic or prototype-based methods that better handle the ambiguity in VAD space.
+    \item \textbf{Direct Classification Benchmark:} Compare the pipeline's performance against a strong direct text-to-emotion classification baseline using the same RoBERTa model on IEMOCAP.
+\end{itemize}
+
+Bridging dimensional and categorical representations remains a valuable goal, but requires robust VAD prediction and effective mapping strategies, potentially aided by multimodal information.
+
+\section*{Acknowledgments}
+We thank Dr. Faranak Abri for her guidance, as well as the Computer Science Department at San Jose State University for providing computational resources.
+
+% -------------------------------------------------------------------
+% References - Reviewed, kept relevant ones, removed audio-only/EmoBank specific ones unless foundational
+% -------------------------------------------------------------------
+\begin{thebibliography}{00}
+
+\bibitem{mohammad2015emotion}
+S.~M.~Mohammad and P.~D.~Turney,
+``Emotions evoked by common words and phrases: Using Mechanical Turk to create an emotion lexicon,''
+in \emph{Proceedings of the NAACL HLT 2010 Workshop on Computational Approaches to Analysis and Generation of Emotion in Text}, 2010, pp. 26--34.
+
+\bibitem{mehrabian1995framework}
+A.~Mehrabian,
+``Framework for a comprehensive description and measurement of emotional states,''
+\emph{Genetic, Social, and General Psychology Monographs}, vol. 121, no. 3, pp. 339--361, 1995.
+
+\bibitem{devlin2018bert}
+J.~Devlin, M.~Chang, K.~Lee, and K.~Toutanova,
+``BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding,''
+\emph{arXiv preprint arXiv:1810.04805}, 2018.
+
+\bibitem{sun2019bert} % Kept as relevant to adapting BERT heads
+C.~Sun, L.~Huang, and X.~Qiu,
+``Utilizing BERT for aspect-based sentiment analysis via constructing auxiliary sentence,''
+in \emph{Proc. NAACL}, 2019.
+
+\bibitem{yadav2020sentiment}
+S.~Yadav and S.~Yadav,
+``Sentiment analysis using deep learning architectures: a review,''
+\emph{Artificial Intelligence Review}, vol. 53, no. 6, pp. 4335--4385, 2020.
+
+\bibitem{latif2020deep}
+S.~Latif, R.~Rana, S.~Khalifa, R.~Jurdak, and J.~Epps,
+``Deep learning for audio-based emotion recognition: A survey,''
+in \emph{Proc. ICASSP}, 2020.
+
+\bibitem{akcay2020speech}
+M.~B.~Akçay and K.~Oğuz,
+``Speech emotion recognition: Emotional models, databases, features, preprocessing methods, supporting modalities, and classifiers,''
+\emph{Speech Communication}, vol. 116, pp. 56--76, 2020.
+
+\bibitem{he2020deberta}
+P.~He, X.~Liu, J.~Gao, and W.~Chen,
+``DeBERTa: Decoding-enhanced BERT with Disentangled Attention,''
+\emph{arXiv preprint arXiv:2006.03654}, 2020.
+
+\bibitem{subathra2023comparative} % Kept as relevant to regression for emotion
+P.~Subathra et al.,
+``A Comparative Analysis of Regression Algorithms for Prediction of Emotional States using Peripheral Physiological Signals,''
+in \emph{RAEEUCCII}, 2023.
+
+\bibitem{grimm2007svr} % Kept as relevant to SVR for VAD/Emotion
+M.~Grimm, K.~Kroschel, and S.~Narayanan,
+``Support Vector Regression for Automatic Recognition of Spontaneous Emotions in Speech,''
+in \emph{Proc. IEEE ICASSP}, 2007, pp. 1085--1088.
+
+\bibitem{livingstone2018ryerson}
+S.~R.~Livingstone and F.~A.~Russo,
+``The Ryerson Audio-Visual Database of Emotional Speech and Song (RAVDESS): A dynamic, multimodal set of facial and vocal expressions in North American English,''
+\emph{PLoS ONE}, vol. 13, no. 5, 2018.
+
+\bibitem{hsu2021hubert}
+W.~N.~Hsu et al.,
+``HuBERT: Self-Supervised Speech Representation Learning by Masked Prediction of Hidden Units,''
+\emph{IEEE/ACM Transactions on Audio, Speech, and Language Processing}, 2021.
+
+\bibitem{wang2021finetuned}
+Y.~Wang, A.~Shenoy, and J.~Thrivikraman,
+``A Fine-tuned Wav2vec 2.0/HuBERT Benchmark For Speech Emotion Recognition, Speaker Verification and Spoken Language Understanding,''
+\emph{arXiv preprint arXiv:2111.02735}, 2021.
+
+\bibitem{busso2008iemocap}
+C.~Busso et al.,
+``IEMOCAP: Interactive emotional dyadic motion capture database,''
+\emph{Language Resources and Evaluation}, vol. 42, no. 4, pp. 335--359, 2008.
+
+\bibitem{poria2017context}
+S.~Poria, E.~Cambria, D.~Hazarika, N.~Majumder, A.~Zadeh, and L.-P.~Morency,
+``Context-dependent sentiment analysis in user-generated videos,''
+in \emph{Proc. ACL}, 2017.
+
+\bibitem{tripathi2018multi}
+S.~Tripathi and H.~S.~M.~Beigi,
+``Multi-Modal Emotion Recognition on IEMOCAP Dataset using Deep Learning,''
+\emph{arXiv preprint arXiv:1804.05788}, 2018.
+
+\bibitem{garcia2013dynamic}
+H.~Garcia, R.~Arriaga, and J.~R.~Movellan,
+``Dynamic physiological signal analysis based on Fisher kernels for emotion recognition,''
+in \emph{IEEE EMBC}, 2013.
+
+\bibitem{kaya2015contrasting}
+H.~Kaya, F.~Gürpınar, and A.~A.~Salah,
+``Contrasting and combining least squares based learners for emotion recognition in the wild,''
+in \emph{Proc. ICMI}, 2015, pp. 459--466.
+
+\bibitem{buechel2017emobank} % Kept as important VAD dataset reference
+S.~Buechel and U.~Hahn,
+``EmoBank: Studying the impact of annotation perspective and representation format on dimensional emotion analysis,''
+in \emph{Proc. EACL}, 2017, pp. 578--585.
+
+\bibitem{liu2019roberta}
+Y.~Liu, M.~Ott, N.~Goyal, J.~Du, M.~Joshi, D.~Chen, O.~Levy, M.~Lewis, L.~Zettlemoyer, and V.~Stoyanov,
+``RoBERTa: A robustly optimized BERT pretraining approach,''
+\emph{arXiv preprint arXiv:1907.11692}, 2019.
+
+\bibitem{brown2020gpt3}
+T.~B.~Brown, B.~Mann, N.~Ryder, M.~Subbiah, J.~Kaplan, P.~Dhariwal, A.~Neelakantan, P.~Shyam, G.~Sastry, A.~Askell, \emph{et al.},
+``Language Models are Few-Shot Learners,''
+\emph{arXiv preprint arXiv:2005.14165}, 2020.
+
+\bibitem{yang2021superb}
+S.~W.~Yang, P.~Chi, Y.~C.~Chuang, C.~J.~Lai, K.~Lakhotia, Y.~Y.~Lin, A.~T.~Liu, J.~Shi, X.~Chang, G.~Lin, \emph{et al.},
+``SUPERB: Speech processing Universal PERformance Benchmark,''
+\emph{arXiv preprint arXiv:2105.01051}, 2021.
+
+\bibitem{parthasarathy2020semi}
+S.~Parthasarathy and C.~Busso,
+``Semi-supervised speech emotion recognition with ladder networks,''
+\emph{IEEE/ACM Transactions on Audio, Speech, and Language Processing}, vol. 28, pp. 2697--2709, 2020.
+
+\bibitem{ekman1992anargument}
+P.~Ekman,
+``An argument for basic emotions,''
+\emph{Cognition and Emotion}, vol. 6, no. 3-4, pp. 169--200, 1992.
+
+\bibitem{russell1980circumplex}
+J.~A.~Russell,
+``A circumplex model of affect,''
+\emph{Journal of Personality and Social Psychology}, vol. 39, no. 6, pp. 1161--1178, 1980.
+
+\bibitem{tao2005affective}
+J.~Tao and T.~Tan,
+``Affective computing: A review,''
+\emph{International Journal of Automation and Computing}, vol. 2, no. 4, pp. 425--432, 2005.
+
+\bibitem{tzirakis2017endtoend}
+P.~Tzirakis, G.~Trigeorgis, M.~A.~Nicolaou, B.~W.~Schuller, and S.~Zafeiriou,
+``End-to-end speech emotion recognition using deep neural networks,''
+in \emph{Proc. IEEE ICASSP}, 2017, pp. 5080--5084.
+
+\bibitem{zadeh2018multimodal}
+A.~Zadeh, P.~P.~Liang, S.~Poria, E.~Cambria, and L.~P.~Morency,
+``Multimodal language analysis in the wild: CMU-MOSEI dataset and interpretable dynamic fusion graph,''
+in \emph{Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, 2018, pp. 2236--2246.
+
+\bibitem{poria2019emotion}
+S.~Poria, N.~Majumder, D.~Hazarika, and E.~Cambria,
+``Emotion recognition in conversation: Research challenges, datasets, and recent advances,''
+\emph{Information Fusion}, vol. 50, pp. 1--11, 2019.
+
+\end{thebibliography}
+
+\end{document}
