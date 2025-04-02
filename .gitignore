@@ -92,3 +92,4 @@ checkpoints/
 *.pt
 *.pth
 *.ckpt
+.DS_Store
