@@ -1,0 +1,16 @@
+{
+    "model_name": "Random Forest",
+    "features": [
+        "valence",
+        "arousal",
+        "dominance"
+    ],
+    "target": "emotion",
+    "classes": [
+        "angry",
+        "happy",
+        "neutral",
+        "sad"
+    ],
+    "date_trained": "2025-04-13 00:10:00"
+}

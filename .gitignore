@@ -92,4 +92,19 @@ checkpoints/
 *.pt
 *.pth
 *.ckpt
+*.pkl
 .DS_Store
+
+# Large data files
+*.npy
+*.npz
+*.h5
+*.hdf5
+data/processed_data.csv
+data/real_iemocap_data.csv
+
+# Keep smaller sample files for demonstration
+!data/sample_*.csv
+
+# Benchmark results
+benchmark_results/

@@ -1,0 +1,21 @@
+text,emotion
+"I'm so angry I could punch a wall right now!",anger
+"That makes me absolutely furious!",anger
+"I hate when people lie to my face.",anger
+"This is the worst day of my life.",sadness
+"I feel so empty and alone.",sadness
+"Nothing matters anymore, I just want to cry.",sadness
+"I'm so excited about our vacation next week!",joy
+"That's the best news I've heard all year!",joy
+"I can't stop smiling, I'm so happy!",joy
+"I'm terrified of what might happen next.",fear
+"That horror movie gave me nightmares for weeks.",fear
+"I'm so anxious about the upcoming presentation.",fear
+"That's disgusting, I can't even look at it.",disgust
+"The smell made me want to vomit.",disgust
+"I find his behavior absolutely repulsive.",disgust
+"Wow! I didn't see that coming at all!",surprise
+"I can't believe they did that!",surprise
+"That plot twist completely shocked me!",surprise
+"It's just another ordinary day at work.",neutral
+"The weather is partly cloudy today.",neutral

@@ -1,13 +1,13 @@
-# Emotion Recognition using VAD Prediction
+# EMOD: Enhanced Multimodal Emotion Detection
 
-This repository implements emotion recognition from text using a two-stage approach:
+This repository implements emotion recognition using a two-stage approach with state-of-the-art models and LLM integration:
 
-1.  **Stage 1 (Text-to-VAD):** Predict continuous VAD (Valence-Arousal-Dominance) values from text using a fine-tuned transformer model (e.g., `roberta-base`).
-2.  **Stage 2 (VAD-to-Emotion):** Map these VAD values to discrete emotion categories (e.g., "angry", "happy", "neutral", "sad") using either a rule-based approach or a machine learning classifier (e.g., RandomForest).
+1.  **Stage 1 (Modality-to-VAD):** Predict continuous VAD (Valence-Arousal-Dominance) values from text and audio using fine-tuned transformer models.
+2.  **Stage 2 (VAD-to-Emotion):** Map these VAD values to discrete emotion categories (e.g., "angry", "happy", "neutral", "sad") using either a rule-based approach, a machine learning classifier, or advanced LLMs.
 
-This project primarily utilizes the IEMOCAP dataset.
+This project primarily utilizes the IEMOCAP dataset and has been enhanced with state-of-the-art models and LLM integration via OpenRouter.
 
-**See `REPORT.md` for a detailed experimental analysis and results.**
+**See `docs/report.md` for a comprehensive report on the enhancements and results.**
 
 ## Quick Results Summary (Test Set)
 
@@ -19,24 +19,41 @@ This project primarily utilizes the IEMOCAP dataset.
 ## Project Structure
 
 ```
-.
-├── data/                   # Processed datasets (e.g., iemocap_vad.csv)
-├── checkpoints/            # Saved model weights (e.g., text_vad_best.pt, vad_classifier.pkl)
-├── logs/                   # Training logs, evaluation results (JSON), plots (confusion matrices)
-├── models/                 # (Potentially contains model definitions if not in main scripts)
-|
-├── prepare_iemocap_vad.py  # Script to preprocess IEMOCAP data
-├── text_vad.py             # Defines and handles training for the Text-to-VAD model (Stage 1)
-├── vad_emotion_pipeline.py # Implements the VAD-to-Emotion classifier (Stage 2) and the end-to-end pipeline
-├── process_vad.py          # Utility functions for VAD processing (e.g., rule-based mapping)
-├── run.py                  # Example script to run experiments (potentially)
-├── main.py                 # Main execution script (potentially combines different modalities/pipelines)
-|
-├── requirements.txt        # Python package dependencies
-├── README.md               # This file
-├── REPORT.md               # Detailed experimental report
-├── .gitignore              # Git ignore configuration
-└── ...                     # Other scripts/files (audio, multimodal experiments)
+emod/
+├── benchmark_llms.py        # Benchmarking script for LLMs
+├── benchmark_llms_real.py   # Benchmarking with real emotional text
+├── data/                    # Processed datasets and samples
+│   └── emotional_samples.csv # Sample emotional text for benchmarking
+├── checkpoints/             # Saved model weights
+├── docs/                    # Documentation
+│   ├── images/              # Images for documentation
+│   └── report.md            # Comprehensive project report
+├── logs/                    # Training logs, evaluation results, plots
+├── main.py                  # Main implementation of the two-stage approach
+├── models/                  # Core models
+│   ├── __init__.py
+│   ├── audio_model.py       # Audio processing models
+│   ├── fusion_model.py      # Multimodal fusion models
+│   └── text_model.py        # Text processing models
+├── prepare_iemocap_vad.py   # Script to preprocess IEMOCAP data
+├── process_vad.py           # Utility functions for VAD processing
+├── requirements.txt         # Project dependencies
+├── run.py                   # Script to run the original pipeline
+├── run_enhanced.py          # Script to run the enhanced pipeline
+├── run_sota_analysis.py     # Script to run SOTA analysis
+├── sota_models/             # State-of-the-art models
+│   ├── __init__.py
+│   ├── emotion_detection.py # SOTA emotion detection models
+│   ├── integration.py       # Integration with existing pipeline
+│   └── transcription.py     # SOTA transcription models
+├── text_vad.py              # Text-to-VAD model training
+├── utils/                   # Utility functions
+│   ├── __init__.py
+│   ├── config.py            # Configuration utilities
+│   └── openrouter_client.py # OpenRouter API client
+├── vad_emotion_pipeline.py  # VAD-to-Emotion pipeline
+├── vad_to_emotion_model.py  # ML model for VAD-to-Emotion mapping
+└── .env.example             # Example environment variables file
 ```
 
 ## Installation
@@ -58,7 +75,16 @@ This project primarily utilizes the IEMOCAP dataset.
 
 ## Usage
 
-### 1. Prepare the IEMOCAP Dataset
+### 1. Set Up Environment Variables
+
+Copy the example environment file and add your API keys:
+
+```bash
+cp .env.example .env
+# Edit .env to add your OpenRouter API key and other settings
+```
+
+### 2. Prepare the IEMOCAP Dataset
 
 *   Download the IEMOCAP dataset and place it in a known location.
 *   Run the preprocessing script:
@@ -68,7 +94,41 @@ This project primarily utilizes the IEMOCAP dataset.
     ```
     This will create `data/iemocap_vad.csv` (or similar) containing text, VAD values, and emotion labels.
 
-### 2. Train the Text-to-VAD Model (Stage 1)
+### 3. Run SOTA Analysis
+
+#### For analyzing text:
+
+```bash
+./run_sota_analysis.py --text "I'm feeling really happy today!" --pretty
+```
+
+#### For analyzing audio:
+
+```bash
+./run_sota_analysis.py --audio path/to/audio.wav --pretty
+```
+
+#### For comparing LLM analyses:
+
+```bash
+./run_sota_analysis.py --text "I'm feeling really happy today!" --compare-llms --pretty
+```
+
+### 4. Run Enhanced Pipeline
+
+```bash
+./run_enhanced.py --evaluate --use-sota
+```
+
+### 5. Benchmark LLMs
+
+```bash
+./benchmark_llms_real.py --models anthropic/claude-2.0 openai/gpt-4o-2024-05-13 openai/gpt-4 --data-path data/emotional_samples.csv
+```
+
+### 6. Original Pipeline (Legacy)
+
+#### Train the Text-to-VAD Model (Stage 1)
 
 Train the transformer model to predict VAD values:
 
@@ -80,10 +140,10 @@ Key Arguments:
 *   `--data_path`: Path to the processed dataset CSV.
 *   `--model_name`: Hugging Face transformer model (default: `roberta-base`).
 *   `--num_epochs`: Number of training epochs (default: 10).
-*   `--output_dir`: Directory to save the best model checkpoint (e.g., `checkpoints/text_vad_best.pt`).
+*   `--output_dir`: Directory to save the best model checkpoint.
 *   `--log_dir`: Directory to save training logs/metrics.
 
-### 3. Run the Full Pipeline (Stage 1 + Stage 2) & Evaluate
+#### Run the Full Pipeline (Stage 1 + Stage 2) & Evaluate
 
 Run the end-to-end pipeline to predict emotions from text using the trained VAD model and evaluate performance:
 
@@ -98,28 +158,12 @@ python vad_emotion_pipeline.py \
     --log_dir logs
 
 # Option B: Use rule-based mapping for VAD-to-Emotion
-# python vad_emotion_pipeline.py \
-#     --data_path data/iemocap_vad.csv \
-#     --vad_model_path checkpoints/text_vad_best.pt \
-#     --model_dir checkpoints \
-#     --log_dir logs
+python vad_emotion_pipeline.py \
+    --data_path data/iemocap_vad.csv \
+    --vad_model_path checkpoints/text_vad_best.pt \
+    --model_dir checkpoints \
+    --log_dir logs
 ```
-
-Key Arguments:
-*   `--data_path`: Path to the processed dataset CSV.
-*   `--vad_model_path`: Path to the trained Stage 1 model (`text_vad_best.pt`).
-*   `--use_ml_classifier`: Flag to train/use an ML classifier for Stage 2.
-*   `--classifier_type`: Type of classifier ('rf' or 'svm') if `--use_ml_classifier` is set.
-*   `--classifier_path`: Optionally load a pre-trained Stage 2 classifier (`.pkl` file).
-*   `--model_dir`: Directory to save/load the Stage 2 classifier (e.g., `checkpoints/vad_classifier_rf.pkl`).
-*   `--log_dir`: Directory to save pipeline evaluation results (`pipeline_results.json`, `confusion_matrix.png`).
-
-This command will:
-1.  Load the pre-trained Stage 1 model (`--vad_model_path`).
-2.  Predict VAD values for the test set.
-3.  If `--use_ml_classifier` is set and `--classifier_path` is not provided, it will train a new Stage 2 classifier (e.g., RandomForest) on the training data's VAD values and emotion labels, saving it to `--model_dir`.
-4.  Use the Stage 2 method (classifier or rules) to map predicted VAD values to emotions.
-5.  Evaluate both VAD prediction and final emotion classification performance on the test set, saving results to `--log_dir`.
 
 ## Evaluation Metrics
 
@@ -128,9 +172,58 @@ The pipeline outputs evaluation metrics for both stages:
 1.  **VAD Prediction (Stage 1):** MSE, RMSE, MAE, and R² score (overall and per-dimension). Saved in `logs/pipeline_results.json`.
 2.  **Emotion Classification (Stage 2):** Accuracy, Precision, Recall, F1-score (per class, macro avg, weighted avg), and Confusion Matrix. Saved in `logs/pipeline_results.json` and `logs/confusion_matrix.png`.
 
+## Enhanced Features
+
+### State-of-the-Art Models
+
+* **Text Emotion Detection**: DeBERTa-v3 model fine-tuned for emotion classification
+* **Audio Emotion Detection**: AST (Audio Spectrogram Transformer) model for audio emotion recognition
+* **Transcription**: Whisper Large v3 for state-of-the-art speech-to-text conversion
+
+### LLM Integration
+
+* **OpenRouter Client**: Access to powerful LLMs like Claude 3.7 Sonnet, GPT-4o, and DeepSeek
+* **Emotion Analysis**: Deep insights into emotional content using LLMs
+* **Multi-LLM Comparison**: Compare analyses from different LLMs
+
+### Multimodal Fusion
+
+* **Advanced Fusion Techniques**: Combine text and audio modalities for improved accuracy
+* **Attention Mechanisms**: Dynamic weighting of modalities based on confidence
+
 ## Customization
 
+*   **LLM Selection:** Change the LLM model in `.env` or via command-line arguments.
 *   **Transformer Model:** Change `--model_name` in `text_vad.py` (e.g., `bert-base-uncased`).
-*   **Dataset:** Prepare a different dataset CSV with columns: `text`, `emotion`, `valence`, `arousal`, `dominance`. Update `--data_path` arguments.
-*   **VAD-to-Emotion Rules:** Modify the `vad_to_emotion()` function in `process_vad.py` or `text_vad.py` (check which one is used by the pipeline).
-*   **Classifier:** Adjust hyperparameters for RandomForest/SVM in `vad_emotion_pipeline.py`.
+*   **Dataset:** Prepare a different dataset CSV with columns: `text`, `emotion`, `valence`, `arousal`, `dominance`.
+*   **VAD-to-Emotion Rules:** Modify the `vad_to_emotion()` function in `process_vad.py`.
+*   **Fusion Weights:** Adjust the weights in `sota_models/emotion_detection.py`.
+
+## Performance
+
+Based on our benchmark results with real IEMOCAP dataset utterances, here's how the different LLMs performed:
+
+### GPT-4o (OpenAI)
+
+- **Accuracy**: 50.0%
+- **F1 Score (Macro)**: 51.4%
+- **F1 Score (Weighted)**: 51.2%
+- **Average Response Time**: 1.02 seconds
+
+### Claude 2.0 (Anthropic)
+
+- **Accuracy**: 50.0%
+- **F1 Score (Macro)**: 45.2%
+- **F1 Score (Weighted)**: 48.3%
+- **Average Response Time**: 3.16 seconds
+
+### GPT-4 (OpenAI)
+
+- **Accuracy**: 45.0%
+- **F1 Score (Macro)**: 49.0%
+- **F1 Score (Weighted)**: 46.0%
+- **Average Response Time**: 2.67 seconds
+
+The relatively low performance highlights the challenge of emotion recognition in real-world conversational data, where context, tone, and other non-verbal cues play a crucial role. GPT-4o still outperforms the other models in terms of F1 score and response time.
+
+See the comprehensive report for detailed analysis and visualizations.
