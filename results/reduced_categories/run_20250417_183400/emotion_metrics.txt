@@ -1,0 +1,35 @@
+Emotion Metrics:
+  Accuracy: 0.7151
+  F1 (macro): 0.5084
+  F1 (weighted): 0.6870
+  Classification Report:
+    Angry:
+      Precision: 0.7240
+      Recall: 0.8447
+      F1: 0.7797
+      Support: 528.0
+    Happy:
+      Precision: 0.7358
+      Recall: 0.7932
+      F1: 0.7635
+      Support: 295.0
+    Neutral:
+      Precision: 0.5714
+      Recall: 0.0784
+      F1: 0.1379
+      Support: 51.0
+    Sad:
+      Precision: 0.5397
+      Recall: 0.2615
+      F1: 0.3523
+      Support: 130.0
+    macro avg:
+      Precision: 0.6427
+      Recall: 0.4945
+      F1: 0.5084
+      Support: 1004.0
+    weighted avg:
+      Precision: 0.6959
+      Recall: 0.7151
+      F1: 0.6870
+      Support: 1004.0

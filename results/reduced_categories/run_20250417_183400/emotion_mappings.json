@@ -1,0 +1,14 @@
+{
+  "emotion_to_idx": {
+    "Angry": 0,
+    "Happy": 1,
+    "Neutral": 2,
+    "Sad": 3
+  },
+  "idx_to_emotion": {
+    "0": "Angry",
+    "1": "Happy",
+    "2": "Neutral",
+    "3": "Sad"
+  }
+}

@@ -1,0 +1,80 @@
+Emotion Metrics:
+  Accuracy: 0.5886
+  F1 (macro): 0.2006
+  F1 (weighted): 0.5561
+  Classification Report:
+    Anger:
+      Precision: 0.6667
+      Recall: 0.3966
+      F1: 0.4973
+      Support: 116.0
+    Excited:
+      Precision: 0.6342
+      Recall: 0.7590
+      F1: 0.6910
+      Support: 249.0
+    Fear:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 12.0
+    Frustration:
+      Precision: 0.5678
+      Recall: 0.7524
+      F1: 0.6472
+      Support: 412.0
+    Happiness:
+      Precision: 0.5833
+      Recall: 0.1628
+      F1: 0.2545
+      Support: 43.0
+    Neutral state:
+      Precision: 0.3333
+      Recall: 0.0833
+      F1: 0.1333
+      Support: 48.0
+    Other:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 1.0
+    Other amused:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 2.0
+    Other melancolia:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 1.0
+    Other melancolic:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 1.0
+    Other pride:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 1.0
+    Sadness:
+      Precision: 0.5303
+      Recall: 0.3017
+      F1: 0.3846
+      Support: 116.0
+    Surprise:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 2.0
+    macro avg:
+      Precision: 0.2550
+      Recall: 0.1889
+      F1: 0.2006
+      Support: 1004.0
+    weighted avg:
+      Precision: 0.5695
+      Recall: 0.5886
+      F1: 0.5561
+      Support: 1004.0

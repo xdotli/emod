@@ -1,0 +1,11 @@
+{
+  "data_path": "IEMOCAP_Reduced.csv",
+  "output_dir": "results/reduced_categories",
+  "vad_model": "facebook/bart-large-mnli",
+  "batch_size": 16,
+  "n_estimators": 100,
+  "test_size": 0.2,
+  "val_size": 0.1,
+  "random_state": 42,
+  "skip_vad_eval": true
+}

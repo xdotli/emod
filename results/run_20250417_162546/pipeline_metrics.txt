@@ -1,0 +1,99 @@
+VAD Metrics:
+  MSE: 1.6072
+  RMSE: 1.2678
+  MAE: 1.0041
+Emotion Metrics:
+  Accuracy: 0.3262
+  F1 (macro): 0.0834
+  F1 (weighted): 0.3186
+  Classification Report:
+    Anger:
+      Precision: 0.1869
+      Recall: 0.0858
+      F1: 0.1176
+      Support: 233.0
+    Excited:
+      Precision: 0.4245
+      Recall: 0.3576
+      F1: 0.3882
+      Support: 495.0
+    Fear:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 26.0
+    Frustration:
+      Precision: 0.4316
+      Recall: 0.4916
+      F1: 0.4597
+      Support: 777.0
+    Happiness:
+      Precision: 0.1230
+      Recall: 0.1261
+      F1: 0.1245
+      Support: 119.0
+    Neutral state:
+      Precision: 0.0909
+      Recall: 0.0632
+      F1: 0.0745
+      Support: 95.0
+    Other:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 1.0
+    Other amused:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 5.0
+    Other annoyed:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 2.0
+    Other despair:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 3.0
+    Other indignation:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 1.0
+    Other melancolia:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 0.0
+    Other melancolic:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 1.0
+    Sadness:
+      Precision: 0.1355
+      Recall: 0.2263
+      F1: 0.1695
+      Support: 243.0
+    Surprise:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 4.0
+    unknown:
+      Precision: 0.0000
+      Recall: 0.0000
+      F1: 0.0000
+      Support: 3.0
+    macro avg:
+      Precision: 0.0870
+      Recall: 0.0844
+      F1: 0.0834
+      Support: 2008.0
+    weighted avg:
+      Precision: 0.3213
+      Recall: 0.3262
+      F1: 0.3186
+      Support: 2008.0

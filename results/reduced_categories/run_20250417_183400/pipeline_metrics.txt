@@ -1,0 +1,39 @@
+VAD Metrics:
+  MSE: 1.6072
+  RMSE: 1.2678
+  MAE: 1.0041
+Emotion Metrics:
+  Accuracy: 0.4706
+  F1 (macro): 0.3234
+  F1 (weighted): 0.4673
+  Classification Report:
+    Angry:
+      Precision: 0.5615
+      Recall: 0.5992
+      F1: 0.5798
+      Support: 1013.0
+    Happy:
+      Precision: 0.5108
+      Recall: 0.4588
+      F1: 0.4834
+      Support: 619.0
+    Neutral:
+      Precision: 0.1000
+      Recall: 0.0485
+      F1: 0.0654
+      Support: 103.0
+    Sad:
+      Precision: 0.1526
+      Recall: 0.1795
+      F1: 0.1650
+      Support: 273.0
+    macro avg:
+      Precision: 0.3312
+      Recall: 0.3215
+      F1: 0.3234
+      Support: 2008.0
+    weighted avg:
+      Precision: 0.4666
+      Recall: 0.4706
+      F1: 0.4673
+      Support: 2008.0
