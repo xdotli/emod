@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 def parse_args():
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(description='Two-Stage Emotion Recognition System')
-    
+
     parser.add_argument('--mode', type=str, default='train',
                         choices=['train', 'predict'],
                         help='Mode to run the pipeline in')
@@ -36,22 +36,22 @@ def parse_args():
                         help='Batch size for processing')
     parser.add_argument('--skip_vad_eval', action='store_true',
                         help='Skip VAD evaluation (faster)')
-    
+
     return parser.parse_args()
 
 def main():
     """Main function."""
     args = parse_args()
-    
+
     # Create directories if they don't exist
     os.makedirs("results", exist_ok=True)
     os.makedirs("logs", exist_ok=True)
-    
+
     if args.mode == 'train':
         # Import and run the training script
-        from src.main import main as train_main
+        from main import main as train_main
         sys.argv = [
-            'src/main.py',
+            'main.py',
             f'--data_path={args.data_path}',
             f'--output_dir={args.output_dir}',
             f'--vad_model={args.vad_model}',
@@ -65,32 +65,32 @@ def main():
         if not args.model_dir:
             logger.error("Model directory must be provided in predict mode")
             sys.exit(1)
-        
+
         # Import necessary modules
         import torch
         import pandas as pd
-        from src.models.pipeline import EmotionRecognitionPipeline
-        
+        from models.pipeline import EmotionRecognitionPipeline
+
         # Load the pipeline
         logger.info(f"Loading pipeline from {args.model_dir}")
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
         pipeline = EmotionRecognitionPipeline.load(args.model_dir, args.vad_model, device)
-        
+
         # Load test data
         logger.info(f"Loading test data from {args.data_path}")
         df = pd.read_csv(args.data_path)
-        
+
         # Use a sample of the data for prediction
         sample_size = min(100, len(df))
         sample_df = df.sample(sample_size, random_state=42)
-        
+
         # Extract texts
         texts = sample_df['Transcript'].tolist()
-        
+
         # Predict emotions
         logger.info("Predicting emotions")
         emotions, vad_values = pipeline.predict(texts, batch_size=args.batch_size)
-        
+
         # Create results DataFrame
         results_df = pd.DataFrame({
             'text': texts,
@@ -99,17 +99,17 @@ def main():
             'arousal': vad_values[:, 1],
             'dominance': vad_values[:, 2]
         })
-        
+
         # Save results
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         output_dir = os.path.join(args.output_dir, f'predict_{timestamp}')
         os.makedirs(output_dir, exist_ok=True)
-        
+
         results_path = os.path.join(output_dir, 'predictions.csv')
         results_df.to_csv(results_path, index=False)
-        
+
         logger.info(f"Predictions saved to {results_path}")
-        
+
         # Print sample predictions
         print("\nSample predictions:")
         for i in range(min(5, len(results_df))):
