@@ -1,2 +1,0 @@
-epoch,train_loss,val_loss,val_mse,val_rmse,val_mae
-1,0.849195,0.667872,0.667872,0.817234,0.651364

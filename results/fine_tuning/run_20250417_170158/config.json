@@ -1,7 +1,0 @@
-{
-  "model_name": "roberta-base",
-  "learning_rate": 2e-05,
-  "batch_size": 16,
-  "max_length": 128,
-  "epochs": 5
-}

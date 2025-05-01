@@ -1,290 +1,483 @@
 """
-Text-to-VAD model using pre-trained transformers.
+VAD Predictor Models
+
+This module contains classes and functions for predicting VAD (Valence-Arousal-Dominance)
+values from text and audio inputs.
 """
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-from transformers import AutoModel, AutoTokenizer, AutoModelForSequenceClassification
-import numpy as np
-import logging
-import os
+from torch.utils.data import Dataset, DataLoader
+from transformers import AutoModel, AutoTokenizer
 from tqdm import tqdm
+import numpy as np
 
-logger = logging.getLogger(__name__)
+# Constants
+MAX_SEQ_LENGTH = 128
+MODEL_NAME = "roberta-base"
 
-class ZeroShotVADPredictor:
-    """
-    Zero-shot VAD predictor using pre-trained language models.
-    """
-    def __init__(self, model_name="roberta-base", device=None):
-        """
-        Initialize the VAD predictor.
-        
-        Args:
-            model_name (str): Name of the pre-trained model
-            device (str): Device to use for inference ('cuda' or 'cpu')
-        """
-        self.model_name = model_name
-        self.device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
-        
-        logger.info(f"Initializing ZeroShotVADPredictor with {model_name} on {self.device}")
-        
-        # Load tokenizer and model
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModel.from_pretrained(model_name).to(self.device)
-        
-        # Define VAD prompts
-        self.vad_prompts = {
-            'valence': [
-                "This text expresses negative emotions.",
-                "This text expresses positive emotions."
-            ],
-            'arousal': [
-                "This text expresses calm emotions.",
-                "This text expresses excited emotions."
-            ],
-            'dominance': [
-                "This text expresses submissive emotions.",
-                "This text expresses dominant emotions."
-            ]
+class TextVADDataset(Dataset):
+    """Dataset for text to VAD prediction."""
+    def __init__(self, texts, vad_values, tokenizer, max_len=MAX_SEQ_LENGTH):
+        self.texts = texts
+        self.vad_values = vad_values
+        self.tokenizer = tokenizer
+        self.max_len = max_len
+
+    def __len__(self):
+        return len(self.texts)
+
+    def __getitem__(self, idx):
+        text = str(self.texts[idx])
+        vad = self.vad_values[idx]
+
+        encoding = self.tokenizer(
+            text,
+            add_special_tokens=True,
+            max_length=self.max_len,
+            padding='max_length',
+            truncation=True,
+            return_attention_mask=True,
+            return_tensors='pt'
+        )
+
+        return {
+            'input_ids': encoding['input_ids'].flatten(),
+            'attention_mask': encoding['attention_mask'].flatten(),
+            'vad_values': torch.tensor(vad, dtype=torch.float)
         }
-        
-    def predict_vad(self, texts, batch_size=16):
-        """
-        Predict VAD values for a list of texts.
-        
-        Args:
-            texts (list): List of text strings
-            batch_size (int): Batch size for processing
-            
-        Returns:
-            np.ndarray: Array of shape (len(texts), 3) containing VAD values
-        """
-        vad_values = []
-        
-        # Process in batches
-        for i in range(0, len(texts), batch_size):
-            batch_texts = texts[i:i+batch_size]
-            batch_vad = self._predict_batch(batch_texts)
-            vad_values.append(batch_vad)
-        
-        return np.vstack(vad_values)
-    
-    def _predict_batch(self, texts):
-        """
-        Predict VAD values for a batch of texts.
-        
-        Args:
-            texts (list): List of text strings
-            
-        Returns:
-            np.ndarray: Array of shape (len(texts), 3) containing VAD values
-        """
-        batch_vad = np.zeros((len(texts), 3))
-        
-        for dim_idx, (dim_name, prompts) in enumerate(self.vad_prompts.items()):
-            # Create text pairs for each dimension
-            text_pairs = []
-            for text in texts:
-                for prompt in prompts:
-                    text_pairs.append((text, prompt))
-            
-            # Tokenize text pairs
-            encoded_inputs = self.tokenizer(
-                [pair[0] for pair in text_pairs],
-                [pair[1] for pair in text_pairs],
-                padding=True,
-                truncation=True,
-                return_tensors="pt"
-            ).to(self.device)
-            
-            # Get model outputs
-            with torch.no_grad():
-                outputs = self.model(**encoded_inputs)
-                
-            # Get embeddings for the [CLS] token
-            cls_embeddings = outputs.last_hidden_state[:, 0, :]
-            
-            # Calculate similarity scores
-            for i, text in enumerate(texts):
-                # Get embeddings for the two prompts
-                idx1 = i * 2
-                idx2 = i * 2 + 1
-                
-                emb1 = cls_embeddings[idx1]
-                emb2 = cls_embeddings[idx2]
-                
-                # Calculate cosine similarity
-                sim1 = F.cosine_similarity(emb1.unsqueeze(0), cls_embeddings[idx1].unsqueeze(0)).item()
-                sim2 = F.cosine_similarity(emb2.unsqueeze(0), cls_embeddings[idx2].unsqueeze(0)).item()
-                
-                # Normalize to [1, 5] range (IEMOCAP VAD scale)
-                score = 1 + 4 * (sim2 / (sim1 + sim2))
-                batch_vad[i, dim_idx] = score
-        
-        return batch_vad
 
-class BARTZeroShotVADPredictor:
-    """
-    Zero-shot VAD predictor using BART for natural language inference.
-    """
-    def __init__(self, model_name="facebook/bart-large-mnli", device=None):
-        """
-        Initialize the VAD predictor.
-        
-        Args:
-            model_name (str): Name of the pre-trained model
-            device (str): Device to use for inference ('cuda' or 'cpu')
-        """
-        self.model_name = model_name
-        self.device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
-        
-        logger.info(f"Initializing BARTZeroShotVADPredictor with {model_name} on {self.device}")
-        
-        # Load tokenizer and model
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModelForSequenceClassification.from_pretrained(model_name).to(self.device)
-        
-        # Define VAD hypotheses
-        self.vad_hypotheses = {
-            'valence': [
-                "The text expresses negative emotions.",
-                "The text expresses neutral emotions.",
-                "The text expresses positive emotions."
-            ],
-            'arousal': [
-                "The text expresses calm emotions.",
-                "The text expresses moderate arousal.",
-                "The text expresses excited emotions."
-            ],
-            'dominance': [
-                "The text expresses submissive emotions.",
-                "The text expresses neutral dominance.",
-                "The text expresses dominant emotions."
-            ]
+class MultimodalVADDataset(Dataset):
+    """Dataset for multimodal (text + audio) VAD prediction."""
+    def __init__(self, texts, audio_features, vad_values, tokenizer, max_len=MAX_SEQ_LENGTH):
+        self.texts = texts
+        self.audio_features = audio_features
+        self.vad_values = vad_values
+        self.tokenizer = tokenizer
+        self.max_len = max_len
+
+    def __len__(self):
+        return len(self.texts)
+
+    def __getitem__(self, idx):
+        text = str(self.texts[idx])
+        audio_feat = self.audio_features[idx]
+        vad = self.vad_values[idx]
+
+        encoding = self.tokenizer(
+            text,
+            add_special_tokens=True,
+            max_length=self.max_len,
+            padding='max_length',
+            truncation=True,
+            return_attention_mask=True,
+            return_tensors='pt'
+        )
+
+        return {
+            'input_ids': encoding['input_ids'].flatten(),
+            'attention_mask': encoding['attention_mask'].flatten(),
+            'audio_features': torch.tensor(audio_feat, dtype=torch.float),
+            'vad_values': torch.tensor(vad, dtype=torch.float)
         }
-        
-    def predict_vad(self, texts, batch_size=16):
-        """
-        Predict VAD values for a list of texts.
-        
-        Args:
-            texts (list): List of text strings
-            batch_size (int): Batch size for processing
-            
-        Returns:
-            np.ndarray: Array of shape (len(texts), 3) containing VAD values
-        """
-        vad_values = []
-        
-        # Process in batches
-        for i in tqdm(range(0, len(texts), batch_size), desc="Predicting VAD"):
-            batch_texts = texts[i:i+batch_size]
-            batch_vad = self._predict_batch(batch_texts)
-            vad_values.append(batch_vad)
-        
-        return np.vstack(vad_values)
-    
-    def _predict_batch(self, texts):
-        """
-        Predict VAD values for a batch of texts.
-        
-        Args:
-            texts (list): List of text strings
-            
-        Returns:
-            np.ndarray: Array of shape (len(texts), 3) containing VAD values
-        """
-        batch_vad = np.zeros((len(texts), 3))
-        
-        for dim_idx, (dim_name, hypotheses) in enumerate(self.vad_hypotheses.items()):
-            for text_idx, text in enumerate(texts):
-                scores = []
-                
-                for hypothesis in hypotheses:
-                    # Tokenize premise-hypothesis pair
-                    encoded_input = self.tokenizer(
-                        text,
-                        hypothesis,
-                        padding=True,
-                        truncation=True,
-                        return_tensors="pt"
-                    ).to(self.device)
-                    
-                    # Get model outputs
-                    with torch.no_grad():
-                        output = self.model(**encoded_input)
-                    
-                    # Get entailment score (last element of logits)
-                    entailment_score = output.logits[0, 2].item()
-                    scores.append(entailment_score)
-                
-                # Softmax the scores
-                scores = np.exp(scores) / np.sum(np.exp(scores))
-                
-                # Calculate weighted average (1 for negative/calm/submissive, 
-                # 3 for neutral, 5 for positive/excited/dominant)
-                weighted_score = 1 * scores[0] + 3 * scores[1] + 5 * scores[2]
-                batch_vad[text_idx, dim_idx] = weighted_score
-        
-        return batch_vad
 
-def evaluate_vad_predictor(predictor, data_loader, vad_scaler=None):
+class TextVADModel(nn.Module):
+    """Model for predicting VAD values from text."""
+    def __init__(self, model_name=MODEL_NAME, dropout=0.1):
+        super(TextVADModel, self).__init__()
+        self.transformer = AutoModel.from_pretrained(model_name)
+        hidden_size = self.transformer.config.hidden_size
+
+        self.shared_layer = nn.Sequential(
+            nn.Linear(hidden_size, 512),
+            nn.LayerNorm(512),
+            nn.Dropout(dropout),
+            nn.GELU(),
+        )
+
+        self.valence_branch = nn.Sequential(
+            nn.Linear(512, 128),
+            nn.LayerNorm(128),
+            nn.Dropout(dropout),
+            nn.GELU(),
+            nn.Linear(128, 1)
+        )
+        self.arousal_branch = nn.Sequential(
+            nn.Linear(512, 128),
+            nn.LayerNorm(128),
+            nn.Dropout(dropout),
+            nn.GELU(),
+            nn.Linear(128, 1)
+        )
+        self.dominance_branch = nn.Sequential(
+            nn.Linear(512, 128),
+            nn.LayerNorm(128),
+            nn.Dropout(dropout),
+            nn.GELU(),
+            nn.Linear(128, 1)
+        )
+
+    def forward(self, input_ids, attention_mask):
+        outputs = self.transformer(input_ids=input_ids, attention_mask=attention_mask)
+        pooled = outputs.last_hidden_state[:, 0, :]
+        shared = self.shared_layer(pooled)
+        valence = self.valence_branch(shared)
+        arousal = self.arousal_branch(shared)
+        dominance = self.dominance_branch(shared)
+        return torch.cat([valence, arousal, dominance], dim=1)
+
+class MultimodalVADModel(nn.Module):
+    """Model for predicting VAD values from text and audio."""
+    def __init__(self, model_name=MODEL_NAME, audio_feat_dim=88, dropout=0.1, fusion_type='early'):
+        super(MultimodalVADModel, self).__init__()
+        self.fusion_type = fusion_type
+        
+        # Text processing
+        self.transformer = AutoModel.from_pretrained(model_name)
+        hidden_size = self.transformer.config.hidden_size
+        
+        # Audio processing
+        self.audio_encoder = nn.Sequential(
+            nn.Linear(audio_feat_dim, 256),
+            nn.LayerNorm(256),
+            nn.Dropout(dropout),
+            nn.GELU(),
+            nn.Linear(256, 512),
+            nn.LayerNorm(512),
+            nn.Dropout(dropout),
+            nn.GELU(),
+        )
+        
+        # Early fusion architecture
+        if fusion_type == 'early':
+            # Combine text and audio at feature level
+            self.text_projector = nn.Linear(hidden_size, 512)
+            self.fusion = nn.Sequential(
+                nn.Linear(1024, 512),  # 512 (text) + 512 (audio)
+                nn.LayerNorm(512),
+                nn.Dropout(dropout),
+                nn.GELU(),
+            )
+            
+            self.valence_branch = nn.Sequential(
+                nn.Linear(512, 128),
+                nn.LayerNorm(128),
+                nn.Dropout(dropout),
+                nn.GELU(),
+                nn.Linear(128, 1)
+            )
+            self.arousal_branch = nn.Sequential(
+                nn.Linear(512, 128),
+                nn.LayerNorm(128),
+                nn.Dropout(dropout),
+                nn.GELU(),
+                nn.Linear(128, 1)
+            )
+            self.dominance_branch = nn.Sequential(
+                nn.Linear(512, 128),
+                nn.LayerNorm(128),
+                nn.Dropout(dropout),
+                nn.GELU(),
+                nn.Linear(128, 1)
+            )
+        
+        # Late fusion architecture
+        else:  # fusion_type == 'late'
+            # Process text and audio separately, then combine predictions
+            self.text_valence = nn.Sequential(
+                nn.Linear(hidden_size, 256),
+                nn.LayerNorm(256),
+                nn.Dropout(dropout),
+                nn.GELU(),
+                nn.Linear(256, 1)
+            )
+            self.text_arousal = nn.Sequential(
+                nn.Linear(hidden_size, 256),
+                nn.LayerNorm(256),
+                nn.Dropout(dropout),
+                nn.GELU(),
+                nn.Linear(256, 1)
+            )
+            self.text_dominance = nn.Sequential(
+                nn.Linear(hidden_size, 256),
+                nn.LayerNorm(256),
+                nn.Dropout(dropout),
+                nn.GELU(),
+                nn.Linear(256, 1)
+            )
+            
+            self.audio_valence = nn.Sequential(
+                nn.Linear(512, 256),
+                nn.LayerNorm(256),
+                nn.Dropout(dropout),
+                nn.GELU(),
+                nn.Linear(256, 1)
+            )
+            self.audio_arousal = nn.Sequential(
+                nn.Linear(512, 256),
+                nn.LayerNorm(256),
+                nn.Dropout(dropout),
+                nn.GELU(),
+                nn.Linear(256, 1)
+            )
+            self.audio_dominance = nn.Sequential(
+                nn.Linear(512, 256),
+                nn.LayerNorm(256),
+                nn.Dropout(dropout),
+                nn.GELU(),
+                nn.Linear(256, 1)
+            )
+            
+            # Fusion weights (learnable parameters)
+            self.fusion_weights = nn.Parameter(torch.ones(3, 2))  # 3 VAD dimensions, 2 modalities
+            self.softmax = nn.Softmax(dim=1)
+
+    def forward(self, input_ids, attention_mask, audio_features):
+        # Process text
+        outputs = self.transformer(input_ids=input_ids, attention_mask=attention_mask)
+        text_hidden = outputs.last_hidden_state[:, 0, :]  # [CLS] token embedding
+        
+        # Process audio
+        audio_hidden = self.audio_encoder(audio_features)
+        
+        # Early fusion
+        if self.fusion_type == 'early':
+            text_proj = self.text_projector(text_hidden)
+            multimodal_hidden = torch.cat([text_proj, audio_hidden], dim=1)
+            fused = self.fusion(multimodal_hidden)
+            
+            valence = self.valence_branch(fused)
+            arousal = self.arousal_branch(fused)
+            dominance = self.dominance_branch(fused)
+        
+        # Late fusion
+        else:  # fusion_type == 'late'
+            # Text predictions
+            text_valence = self.text_valence(text_hidden)
+            text_arousal = self.text_arousal(text_hidden)
+            text_dominance = self.text_dominance(text_hidden)
+            
+            # Audio predictions
+            audio_valence = self.audio_valence(audio_hidden)
+            audio_arousal = self.audio_arousal(audio_hidden)
+            audio_dominance = self.audio_dominance(audio_hidden)
+            
+            # Get fusion weights (softmax to ensure they sum to 1)
+            weights = self.softmax(self.fusion_weights)
+            
+            # Weighted fusion
+            valence = weights[0, 0] * text_valence + weights[0, 1] * audio_valence
+            arousal = weights[1, 0] * text_arousal + weights[1, 1] * audio_arousal
+            dominance = weights[2, 0] * text_dominance + weights[2, 1] * audio_dominance
+        
+        return torch.cat([valence, arousal, dominance], dim=1)
+
+def train_vad_model(model, train_loader, val_loader, num_epochs=10, learning_rate=2e-5, 
+                    device=torch.device("cuda" if torch.cuda.is_available() else "cpu")):
     """
-    Evaluate the VAD predictor on a dataset.
+    Train a VAD prediction model.
     
     Args:
-        predictor: VAD predictor object
-        data_loader: DataLoader containing the evaluation data
-        vad_scaler: Scaler used to normalize VAD values
+        model (nn.Module): The model to train
+        train_loader (DataLoader): Training data loader
+        val_loader (DataLoader): Validation data loader
+        num_epochs (int): Number of training epochs
+        learning_rate (float): Learning rate
+        device (torch.device): Device to use for training
         
     Returns:
-        dict: Dictionary containing evaluation metrics
+        nn.Module: The trained model
     """
-    all_texts = []
-    all_true_vad = []
+    criterion = nn.MSELoss()
+    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
     
-    # Collect all texts and true VAD values
-    for batch in data_loader:
-        texts = batch['text']
-        vad = batch['vad'].numpy()
+    # Training loop
+    for epoch in range(num_epochs):
+        # Training phase
+        model.train()
+        train_loss = 0
         
-        all_texts.extend(texts)
-        all_true_vad.append(vad)
+        with tqdm(train_loader, desc=f"Epoch {epoch+1}/{num_epochs} [Train]") as t:
+            for batch in t:
+                # Get batch inputs
+                if isinstance(model, TextVADModel):
+                    input_ids = batch['input_ids'].to(device)
+                    attention_mask = batch['attention_mask'].to(device)
+                    targets = batch['vad_values'].to(device)
+                    
+                    # Forward pass
+                    optimizer.zero_grad()
+                    outputs = model(input_ids, attention_mask)
+                else:  # MultimodalVADModel
+                    input_ids = batch['input_ids'].to(device)
+                    attention_mask = batch['attention_mask'].to(device)
+                    audio_features = batch['audio_features'].to(device)
+                    targets = batch['vad_values'].to(device)
+                    
+                    # Forward pass
+                    optimizer.zero_grad()
+                    outputs = model(input_ids, attention_mask, audio_features)
+                
+                # Compute loss and update
+                loss = criterion(outputs, targets)
+                loss.backward()
+                optimizer.step()
+                
+                # Update metrics
+                train_loss += loss.item()
+                t.set_postfix(loss=loss.item())
+        
+        # Validation phase
+        model.eval()
+        val_loss = 0
+        
+        with torch.no_grad():
+            with tqdm(val_loader, desc=f"Epoch {epoch+1}/{num_epochs} [Val]") as t:
+                for batch in t:
+                    # Get batch inputs
+                    if isinstance(model, TextVADModel):
+                        input_ids = batch['input_ids'].to(device)
+                        attention_mask = batch['attention_mask'].to(device)
+                        targets = batch['vad_values'].to(device)
+                        
+                        # Forward pass
+                        outputs = model(input_ids, attention_mask)
+                    else:  # MultimodalVADModel
+                        input_ids = batch['input_ids'].to(device)
+                        attention_mask = batch['attention_mask'].to(device)
+                        audio_features = batch['audio_features'].to(device)
+                        targets = batch['vad_values'].to(device)
+                        
+                        # Forward pass
+                        outputs = model(input_ids, attention_mask, audio_features)
+                    
+                    # Compute loss
+                    loss = criterion(outputs, targets)
+                    
+                    # Update metrics
+                    val_loss += loss.item()
+                    t.set_postfix(loss=loss.item())
+        
+        # Print epoch summary
+        print(f"Epoch {epoch+1}/{num_epochs} - "
+              f"Train Loss: {train_loss/len(train_loader):.4f}, "
+              f"Val Loss: {val_loss/len(val_loader):.4f}")
     
-    all_true_vad = np.vstack(all_true_vad)
+    return model
+
+def evaluate_vad_model(model, test_loader, device=torch.device("cuda" if torch.cuda.is_available() else "cpu")):
+    """
+    Evaluate a VAD prediction model.
     
-    # Predict VAD values
-    all_pred_vad = predictor.predict_vad(all_texts)
+    Args:
+        model (nn.Module): The model to evaluate
+        test_loader (DataLoader): Test data loader
+        device (torch.device): Device to use for evaluation
+        
+    Returns:
+        tuple: (predictions, targets, metrics)
+    """
+    from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
     
-    # Inverse transform if scaler is provided
-    if vad_scaler:
-        all_pred_vad = vad_scaler.inverse_transform(all_pred_vad)
+    model.eval()
+    all_preds = []
+    all_targets = []
     
-    # Calculate metrics
-    mse = np.mean((all_true_vad - all_pred_vad) ** 2)
+    with torch.no_grad():
+        for batch in tqdm(test_loader, desc="Evaluating"):
+            # Get batch inputs
+            if isinstance(model, TextVADModel):
+                input_ids = batch['input_ids'].to(device)
+                attention_mask = batch['attention_mask'].to(device)
+                targets = batch['vad_values'].to(device)
+                
+                # Forward pass
+                outputs = model(input_ids, attention_mask)
+            else:  # MultimodalVADModel
+                input_ids = batch['input_ids'].to(device)
+                attention_mask = batch['attention_mask'].to(device)
+                audio_features = batch['audio_features'].to(device)
+                targets = batch['vad_values'].to(device)
+                
+                # Forward pass
+                outputs = model(input_ids, attention_mask, audio_features)
+            
+            # Collect predictions and targets
+            all_preds.append(outputs.cpu().numpy())
+            all_targets.append(targets.cpu().numpy())
+    
+    # Stack all predictions and targets
+    preds = np.vstack(all_preds)
+    targets = np.vstack(all_targets)
+    
+    # Compute metrics
+    mse = mean_squared_error(targets, preds, multioutput='raw_values')
     rmse = np.sqrt(mse)
-    mae = np.mean(np.abs(all_true_vad - all_pred_vad))
+    mae = mean_absolute_error(targets, preds, multioutput='raw_values')
+    r2 = r2_score(targets, preds, multioutput='raw_values')
     
-    # Calculate metrics for each dimension
-    dim_metrics = {}
-    for i, dim in enumerate(['valence', 'arousal', 'dominance']):
-        dim_mse = np.mean((all_true_vad[:, i] - all_pred_vad[:, i]) ** 2)
-        dim_rmse = np.sqrt(dim_mse)
-        dim_mae = np.mean(np.abs(all_true_vad[:, i] - all_pred_vad[:, i]))
-        
-        dim_metrics[dim] = {
-            'mse': dim_mse,
-            'rmse': dim_rmse,
-            'mae': dim_mae
-        }
+    # Print metrics
+    vad_labels = ['Valence', 'Arousal', 'Dominance']
+    for i in range(3):
+        print(f"{vad_labels[i]} - MSE: {mse[i]:.4f}, RMSE: {rmse[i]:.4f}, MAE: {mae[i]:.4f}, R²: {r2[i]:.4f}")
     
-    return {
-        'mse': mse,
-        'rmse': rmse,
-        'mae': mae,
-        'dim_metrics': dim_metrics,
-        'true_vad': all_true_vad,
-        'pred_vad': all_pred_vad
+    # Return metrics dictionary
+    metrics = {
+        'mse': mse.tolist(),
+        'rmse': rmse.tolist(),
+        'mae': mae.tolist(),
+        'r2': r2.tolist()
     }
+    
+    return preds, targets, metrics
+
+def predict_vad(model, texts, tokenizer, audio_features=None, batch_size=16,
+                device=torch.device("cuda" if torch.cuda.is_available() else "cpu")):
+    """
+    Predict VAD values for new text inputs.
+    
+    Args:
+        model (nn.Module): Trained VAD prediction model
+        texts (list): List of text inputs
+        tokenizer: Tokenizer for text processing
+        audio_features (ndarray, optional): Audio features if using multimodal model
+        batch_size (int): Batch size for prediction
+        device (torch.device): Device to use for prediction
+        
+    Returns:
+        ndarray: Predicted VAD values (shape: [n_samples, 3])
+    """
+    model.eval()
+    all_preds = []
+    
+    # Create dataset and dataloader
+    dummy_labels = np.zeros((len(texts), 3))  # Dummy VAD values
+    
+    if audio_features is not None:
+        dataset = MultimodalVADDataset(texts, audio_features, dummy_labels, tokenizer)
+    else:
+        dataset = TextVADDataset(texts, dummy_labels, tokenizer)
+    
+    dataloader = DataLoader(dataset, batch_size=batch_size)
+    
+    # Make predictions
+    with torch.no_grad():
+        for batch in tqdm(dataloader, desc="Predicting"):
+            if audio_features is not None:
+                input_ids = batch['input_ids'].to(device)
+                attention_mask = batch['attention_mask'].to(device)
+                audio_feats = batch['audio_features'].to(device)
+                
+                outputs = model(input_ids, attention_mask, audio_feats)
+            else:
+                input_ids = batch['input_ids'].to(device)
+                attention_mask = batch['attention_mask'].to(device)
+                
+                outputs = model(input_ids, attention_mask)
+            
+            all_preds.append(outputs.cpu().numpy())
+    
+    # Stack all predictions
+    preds = np.vstack(all_preds)
+    
+    return preds 
