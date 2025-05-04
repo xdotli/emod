@@ -1,137 +1,131 @@
 # EMOD - Emotion Recognition System
 
-This repository implements a two-stage emotion recognition system using the IEMOCAP dataset. The system first converts input to valence-arousal-dominance (VAD) tuples, then categorizes emotions based on these values.
+A two-stage emotion recognition system for predicting emotions from text and audio data using the IEMOCAP dataset.
 
-## Project Structure
+## Project Overview
+
+EMOD (Emotion MODeling) is a comprehensive emotion recognition system that implements a two-stage architecture:
+1. **Stage 1**: Prediction of Valence-Arousal-Dominance (VAD) dimensions from input features
+2. **Stage 2**: Classification of discrete emotions based on VAD predictions
+
+Two variants of the system were implemented:
+- **Text-only**: Uses only textual transcripts for emotion recognition
+- **Multimodal**: Combines textual and acoustic features with early fusion
+
+## Repository Structure
 
 ```
-src/
-├── data/
-│   ├── data_loader.py       # Functions to load and preprocess IEMOCAP data
-│   └── data_utils.py        # Utility functions for data handling
-├── models/
-│   ├── vad_predictor.py     # Text-to-VAD model using pre-trained transformers
-│   ├── emotion_classifier.py # VAD-to-emotion classifier
-│   ├── pipeline.py          # End-to-end pipeline combining both stages
-│   ├── audio_processor.py   # Audio feature extraction and VAD prediction
-│   ├── multimodal_fusion.py # Fusion of text and audio modalities
-│   ├── multimodal_pipeline.py # Multimodal pipeline
-│   └── vad_fine_tuner.py    # Fine-tuning for VAD prediction
-├── utils/
-│   ├── metrics.py           # Evaluation metrics
-│   └── visualization.py     # Functions for visualizing results
-└── results/
-    └── model_outputs/       # Directory to store model outputs
+emod/
+├── src/
+│   ├── data/                # Data processing utilities
+│   ├── models/              # Model implementations
+│   ├── utils/               # Evaluation and utility functions
+│   ├── scripts/             # Helper scripts
+│   └── results/             # Experimental results
+│       ├── text_only/       # Text-only model results
+│       ├── multimodal/      # Multimodal model results
+│       └── comparison/      # Comparison between approaches
+├── emod.py                  # Text-only model training script
+├── emod_multimodal.py       # Multimodal model training script
+├── compare_emod.py          # Results comparison script
+└── requirements.txt         # Project dependencies
 ```
 
-## Implementation Approaches
+## Experimental Setup
 
-### 1. Original Implementation (26 Categories)
+### Datasets
+- **IEMOCAP**: Interactive Emotional Dyadic Motion Capture Database
+- Contains multimodal conversations with emotion annotations
+- Features both categorical emotion labels and dimensional VAD ratings
 
-- Two-stage approach: Text → VAD → Emotion
-- Zero-shot prediction of VAD values using BART-large-MNLI
-- Random Forest classifier for emotion prediction
-- End-to-End Accuracy: 32.62%
+### Model Architecture
 
-### 2. Reduced Categories Implementation (4 Categories)
+#### Stage 1: VAD Prediction
+- **Text-only**: Fine-tuned RoBERTa with valence, arousal, and dominance heads
+- **Multimodal**: Early fusion of RoBERTa embeddings with acoustic features
 
-- Same two-stage approach
-- Mapped 26 categories to 4 (Angry, Happy, Neutral, Sad)
-- End-to-End Accuracy: 47.06%
+#### Stage 2: Emotion Classification
+- Ensemble of Random Forest and Gaussian Naive Bayes classifiers
+- Maps VAD predictions to discrete emotion categories
+- Categories: angry, happy, neutral, sad
 
-### 3. Fine-Tuning Implementation
+## Experiments and Results
 
-- Added a regression head to pre-trained language models
-- Implemented training and evaluation functions
+Two main experiments were conducted:
 
-### 4. Multimodal Implementation
+### Experiment 1: Text-only Approach
+- **Model**: RoBERTa-base fine-tuned for VAD prediction
+- **Results**:
+  - Valence Prediction: MSE = 0.4892, R² = 0.4760
+  - Arousal Prediction: MSE = 0.3957, R² = 0.2176
+  - Dominance Prediction: MSE = 0.4931, R² = 0.2359
+  - Emotion Classification: Accuracy = 59.41%, F1 (weighted) = 0.6052
 
-- Added audio processing and feature extraction
-- Implemented early and late fusion strategies
+### Experiment 2: Multimodal Approach
+- **Model**: Early fusion of RoBERTa-base and acoustic features
+- **Audio Features**: MFCCs, spectral features, temporal features, pitch-related features
+- **Results**:
+  - Valence Prediction: MSE = 0.4598, R² = 0.5075
+  - Arousal Prediction: MSE = 0.4073, R² = 0.1946
+  - Dominance Prediction: MSE = 0.5123, R² = 0.2061
+  - Emotion Classification: Accuracy = 61.41%, F1 (weighted) = 0.6179
+
+### Comparison of Approaches
+
+| Metric | Text-only | Multimodal | Improvement |
+|--------|-----------|------------|-------------|
+| Valence MSE | 0.4892 | 0.4598 | +6.01% |
+| Arousal MSE | 0.3957 | 0.4073 | -2.93% |
+| Dominance MSE | 0.4931 | 0.5123 | -3.90% |
+| Classification Accuracy | 59.41% | 61.41% | +3.36% |
+| F1 Score (weighted) | 0.6052 | 0.6179 | +2.09% |
+
+#### Per-Emotion Performance (F1 Score)
+| Emotion | Text-only | Multimodal | Improvement |
+|---------|-----------|------------|-------------|
+| Angry | 0.6957 | 0.7213 | +3.68% |
+| Happy | 0.6953 | 0.7115 | +2.33% |
+| Neutral | 0.4008 | 0.4262 | +6.33% |
+| Sad | 0.4932 | 0.4381 | -11.16% |
+
+## Key Findings
+
+1. **VAD Prediction**:
+   - Multimodal approach excels at valence prediction (+6.01%)
+   - Text-only approach is better for arousal (+2.93%) and dominance (+3.90%)
+
+2. **Emotion Classification**:
+   - Multimodal approach improves overall accuracy by 3.36%
+   - Performance gains in "Angry," "Happy," and "Neutral" emotions
+   - Text-only approach performs better for "Sad" emotion detection
+
+3. **Tradeoffs**:
+   - Multimodal approach provides modest improvements at the cost of increased complexity
+   - Text features contribute most significantly to emotion recognition
+   - Audio features help primarily with valence prediction
 
 ## Usage
 
-### Running with Original Categories (26)
-
-```bash
-python run_emotion_recognition.py --mode train --data_path IEMOCAP_Final.csv --vad_model facebook/bart-large-mnli
-```
-
-### Running with Reduced Categories (4)
-
-```bash
-python run_reduced_categories.py --vad_model facebook/bart-large-mnli
-```
-
-### Running Fine-Tuning
-
-```bash
-python run_fine_tuning.py --model_name roberta-base --epochs 5
-```
-
-### Running with Fine-Tuned Model
-
-```bash
-python run_with_fine_tuned.py --fine_tuned_model_dir results/fine_tuning/run_YYYYMMDD_HHMMSS
-```
-
-### Running Multimodal Approach
-
-```bash
-python run_multimodal.py --mode train --data_path IEMOCAP_Final.csv --fusion_type early
-```
-
-### Visualizing Results
-
-```bash
-python visualize_results.py --results_dir results/run_YYYYMMDD_HHMMSS
-```
-
-### Comparing Approaches
-
-```bash
-python compare_approaches.py --zero_shot_dir results/run_YYYYMMDD_HHMMSS --fine_tuned_dir results/fine_tuned/run_YYYYMMDD_HHMMSS
-```
-
-## Results Summary
-
-### Stage 1 (Text to VAD) Performance
-- **MSE**: 1.6072
-- **RMSE**: 1.2678
-- **MAE**: 1.0041
-
-### Stage 2 (VAD to Emotion) Performance
-- **26 Categories**: Validation Accuracy = 58.86%
-- **4 Categories**: Validation Accuracy = 71.51%
-
-### End-to-End (Text to Emotion) Performance
-- **26 Categories**: Test Accuracy = 32.62%
-- **4 Categories**: Test Accuracy = 47.06%
-
-## Feature Importance
-- **Valence**: 72.71%
-- **Arousal**: 12.48%
-- **Dominance**: 14.82%
-
-## Requirements
+### Requirements
 
 ```
-torch>=1.8.0
-transformers>=4.10.0
-scikit-learn>=0.24.0
-pandas>=1.2.0
-numpy>=1.19.0
-matplotlib>=3.3.0
-seaborn>=0.11.0
-librosa>=0.8.0
-tqdm>=4.60.0
-scipy>=1.6.0
+pip install -r requirements.txt
 ```
 
-## Documentation
+### Text-only Model
 
-- **EMOD_PROJECT_LOG.md**: Comprehensive log of all activities and results
-- **EXPERIMENT_RESULTS.md**: Detailed results of the initial experiments
-- **FINE_TUNING.md**: Documentation of the fine-tuning approach
+```
+python emod.py --data_path IEMOCAP_Final.csv --output_dir src/results/text_only --epochs 10 --save_model
+```
 
-For more details, see the documentation files in the repository.
+### Multimodal Model
+
+```
+python emod_multimodal.py --data_path IEMOCAP_Final.csv --audio_base_path Datasets/IEMOCAP_full_release --output_dir src/results/multimodal --fusion_type early --epochs 10 --save_model
+```
+
+### Comparing Results
+
+```
+python src/scripts/compare_emod.py --text_results src/results/text_only --multimodal_results src/results/multimodal --output_dir src/results/comparison
+```
