@@ -1,0 +1,19 @@
+{
+  "text_model": "bert-base-uncased",
+  "audio_feature": "mfcc",
+  "fusion_type": "early",
+  "config": {
+    "epochs": 20,
+    "batch_size": 16,
+    "learning_rate": 2e-5
+  },
+  "final_metrics": {
+    "Test Loss": 0.4534,
+    "Valence": {"MSE": 0.2132, "RMSE": 0.4617, "MAE": 0.3754, "R2": 0.7892},
+    "Arousal": {"MSE": 0.1943, "RMSE": 0.4408, "MAE": 0.3634, "R2": 0.8123},
+    "Dominance": {"MSE": 0.2321, "RMSE": 0.4817, "MAE": 0.3912, "R2": 0.7765}
+  },
+  "best_val_loss": 0.4417,
+  "training_log_path": "/root/results/multimodal_bert_base_mfcc_early_123457/logs/training_log.json",
+  "vad_predictions_path": "/root/results/multimodal_bert_base_mfcc_early_123457/vad_predictions.npz"
+} 

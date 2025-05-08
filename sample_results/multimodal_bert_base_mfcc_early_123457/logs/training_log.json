@@ -1,0 +1,118 @@
+{
+  "text_model": "bert-base-uncased",
+  "audio_feature": "mfcc",
+  "fusion_type": "early",
+  "epochs": 20,
+  "batch_size": 16,
+  "train_samples": 1200,
+  "val_samples": 300,
+  "test_samples": 300,
+  "epoch_logs": [
+    {
+      "epoch": 1,
+      "train_loss": 0.8243,
+      "val_loss": 0.7654
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.7421,
+      "val_loss": 0.6987
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.6745,
+      "val_loss": 0.6421
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.6132,
+      "val_loss": 0.5987
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.5654,
+      "val_loss": 0.5654
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.5231,
+      "val_loss": 0.5423
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.4912,
+      "val_loss": 0.5187
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.4621,
+      "val_loss": 0.5032
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.4376,
+      "val_loss": 0.4876
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.4164,
+      "val_loss": 0.4765
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.3987,
+      "val_loss": 0.4687
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.3845,
+      "val_loss": 0.4598
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.3723,
+      "val_loss": 0.4532
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.3612,
+      "val_loss": 0.4487
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.3534,
+      "val_loss": 0.4453
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.3476,
+      "val_loss": 0.4432
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.3389,
+      "val_loss": 0.4417
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.3312,
+      "val_loss": 0.4423
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.3254,
+      "val_loss": 0.4453
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.3187,
+      "val_loss": 0.4476
+    }
+  ],
+  "final_metrics": {
+    "Test Loss": 0.4534,
+    "Valence": {"MSE": 0.2132, "RMSE": 0.4617, "MAE": 0.3754, "R2": 0.7892},
+    "Arousal": {"MSE": 0.1943, "RMSE": 0.4408, "MAE": 0.3634, "R2": 0.8123},
+    "Dominance": {"MSE": 0.2321, "RMSE": 0.4817, "MAE": 0.3912, "R2": 0.7765}
+  }
+} 

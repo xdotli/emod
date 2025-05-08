@@ -1,0 +1,34 @@
+{
+  "text_model": "microsoft/deberta-v3-base",
+  "audio_feature": "mfcc",
+  "fusion_type": "hybrid",
+  "config": {
+    "epochs": 20,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "Test Loss": 0.4682924055739453,
+    "Valence": {
+      "MSE": 0.4581294059753418,
+      "RMSE": 0.676852573294467,
+      "MAE": 0.5103933811187744,
+      "R2": 0.42787909507751465
+    },
+    "Arousal": {
+      "MSE": 0.42876601219177246,
+      "RMSE": 0.654802269537738,
+      "MAE": 0.522661030292511,
+      "R2": 0.12076407670974731
+    },
+    "Dominance": {
+      "MSE": 0.5254220366477966,
+      "RMSE": 0.7248600117593718,
+      "MAE": 0.5782210230827332,
+      "R2": 0.13746225833892822
+    }
+  },
+  "best_val_loss": 0.42877886687454425,
+  "training_log_path": "/root/results/multimodal_microsoft/deberta_v3_base_mfcc_hybrid_20250508_025419/logs/training_log.json",
+  "vad_predictions_path": "/root/results/multimodal_microsoft/deberta_v3_base_mfcc_hybrid_20250508_025419/vad_predictions.npz"
+}

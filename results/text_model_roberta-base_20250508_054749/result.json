@@ -1,0 +1,9 @@
+{
+  "model": "roberta-base",
+  "timestamp": "20250508_054749",
+  "metrics": {
+    "valence_mse": 0.235,
+    "arousal_mse": 0.213,
+    "dominance_mse": 0.247
+  }
+}

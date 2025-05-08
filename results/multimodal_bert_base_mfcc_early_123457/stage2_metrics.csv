@@ -1,0 +1,6 @@
+Classifier,Accuracy,Weighted F1,Macro F1
+random_forest,0.7856,0.7821,0.7723
+gradient_boosting,0.8156,0.8143,0.8087
+svm,0.7789,0.7754,0.7632
+logistic_regression,0.7623,0.7589,0.7432
+mlp,0.8023,0.8006,0.7923

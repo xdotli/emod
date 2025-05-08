@@ -1,0 +1,12 @@
+{
+  "text_model": "roberta-base",
+  "audio_feature": "mfcc",
+  "fusion_type": "early",
+  "timestamp": "20250508_055712",
+  "epochs": 20,
+  "metrics": {
+    "valence_mse": 0.21882988958022181,
+    "arousal_mse": 0.1990886559677176,
+    "dominance_mse": 0.2066465962906745
+  }
+}

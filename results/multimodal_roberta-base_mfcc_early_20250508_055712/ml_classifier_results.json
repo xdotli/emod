@@ -1,0 +1,20 @@
+[
+  {
+    "classifier": "random_forest",
+    "accuracy": 0.79,
+    "weighted_f1": 0.77,
+    "macro_f1": 0.75
+  },
+  {
+    "classifier": "gradient_boosting",
+    "accuracy": 0.8500000000000001,
+    "weighted_f1": 0.8300000000000001,
+    "macro_f1": 0.81
+  },
+  {
+    "classifier": "svm",
+    "accuracy": 0.8200000000000001,
+    "weighted_f1": 0.8,
+    "macro_f1": 0.78
+  }
+]

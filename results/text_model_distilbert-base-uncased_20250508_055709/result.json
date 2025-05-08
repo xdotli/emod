@@ -1,0 +1,10 @@
+{
+  "model": "distilbert-base-uncased",
+  "timestamp": "20250508_055709",
+  "epochs": 20,
+  "metrics": {
+    "valence_mse": 0.19145782756012317,
+    "arousal_mse": 0.2500229977460138,
+    "dominance_mse": 0.24216888850824408
+  }
+}

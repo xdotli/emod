@@ -1,0 +1,10 @@
+{
+  "model": "microsoft/deberta-v3-base",
+  "timestamp": "20250508_055711",
+  "epochs": 20,
+  "metrics": {
+    "valence_mse": 0.24584075069664743,
+    "arousal_mse": 0.23409017061344298,
+    "dominance_mse": 0.20146826592427405
+  }
+}

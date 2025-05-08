@@ -1,0 +1,51 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>EMOD Experiment Results</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1, h2, h3 { color: #333; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f2f2f2; }
+                tr:nth-child(even) { background-color: #f9f9f9; }
+                .section { margin-bottom: 30px; }
+            </style>
+        </head>
+        <body>
+            <h1>EMOD Experiment Results Report</h1>
+            <p>Generated on 2025-05-07 23:50:59</p>
+            
+            <div class="section">
+                <h2>Summary</h2>
+                <p>Total experiments analyzed: 2</p>
+                <p>Text-only models: 1</p>
+                <p>Multimodal models: 1</p>
+            </div>
+            
+            <div class="section">
+                <h2>Top Performing Models</h2>
+                <h3>Stage 1: VAD Prediction (by Valence MSE)</h3>
+                <table>
+<tr><th>Model</th><th>Type</th><th>Audio</th><th>Fusion</th><th>Valence MSE</th><th>Best Classifier</th><th>Classifier F1</th></tr>
+<tr><td>bert_base</td><td>multimodal</td><td>mfcc</td><td>early</td><td>0.2132</td><td>gradient_boosting</td><td>0.8143</td></tr>
+<tr><td>model_roberta_base</td><td>text</td><td>-</td><td>-</td><td>0.2345</td><td>gradient_boosting</td><td>0.7812</td></tr>
+</table>
+                
+                <h3>Stage 2: Emotion Classification (by F1 Score)</h3>
+                <table>
+<tr><th>Model</th><th>Type</th><th>Audio</th><th>Fusion</th><th>F1 Score</th><th>Best Classifier</th><th>Classifier F1</th></tr>
+<tr><td>bert_base</td><td>multimodal</td><td>mfcc</td><td>early</td><td>0.8143</td><td>gradient_boosting</td><td>0.8143</td></tr>
+<tr><td>model_roberta_base</td><td>text</td><td>-</td><td>-</td><td>0.7812</td><td>gradient_boosting</td><td>0.7812</td></tr>
+</table>
+            </div>
+            
+            <div class="section">
+                <h2>All Experiments</h2>
+                <p>See the <a href="full_comparison.csv">full comparison table</a> for detailed metrics.</p>
+                <p>Training curves are available in the <a href="training_curves">training_curves</a> directory.</p>
+            </div>
+        </body>
+        </html>
+        

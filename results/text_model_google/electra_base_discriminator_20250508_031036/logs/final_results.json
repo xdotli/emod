@@ -1,0 +1,32 @@
+{
+  "model_name": "google/electra-base-discriminator",
+  "config": {
+    "epochs": 20,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "Test Loss": 0.49389409454245314,
+    "Valence": {
+      "MSE": 0.49710050225257874,
+      "RMSE": 0.7050535456634331,
+      "MAE": 0.5281146764755249,
+      "R2": 0.3792112469673157
+    },
+    "Arousal": {
+      "MSE": 0.43594324588775635,
+      "RMSE": 0.6602599835578076,
+      "MAE": 0.5261991024017334,
+      "R2": 0.10604631900787354
+    },
+    "Dominance": {
+      "MSE": 0.5525476932525635,
+      "RMSE": 0.7433355186270622,
+      "MAE": 0.5881423950195312,
+      "R2": 0.09293246269226074
+    }
+  },
+  "best_val_loss": 0.415412995846648,
+  "training_log_path": "/root/results/text_model_google/electra_base_discriminator_20250508_031036/logs/training_log.json",
+  "vad_predictions_path": "/root/results/text_model_google/electra_base_discriminator_20250508_031036/vad_predictions.npz"
+}

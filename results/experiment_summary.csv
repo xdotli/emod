@@ -1,0 +1,3 @@
+Type,Model,Audio,Fusion,Directory,Avg VAD MSE,Avg VAD R²,VAD Test Loss,Best Classifier,Best Accuracy,Best F1
+Multimodal,bert,base,mfcc,multimodal_bert_base_mfcc_early_123457,0.21319999999999997,0.7926666666666667,0.4534,gradient_boosting,0.8156,0.8143
+Text-only,roberta_base,,,text_model_roberta_base_123456,0.23473333333333332,0.7639999999999999,0.4876,gradient_boosting,0.7823,0.7812
