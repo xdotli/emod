@@ -1,0 +1,1 @@
+{"data_path": "IEMOCAP_Final.csv", "text_model": "roberta-base", "epochs": 1, "batch_size": 16, "save_model": true, "output_dir": "test_persistent"}

@@ -1,0 +1,1 @@
+{"multimodal":false,"text_model":"roberta-base","ml_classifier":"gradient_boosting","epochs":30,"batch_size":16,"dry_run":false,"data_path":"IEMOCAP_Final.csv","output_dir":"results","track_validation":true,"save_model":true}

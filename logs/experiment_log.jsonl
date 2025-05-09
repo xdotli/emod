@@ -90,3 +90,39 @@
 {"timestamp": "2025-05-08 01:48:14", "status": "failed", "experiment_type": "multimodal", "config": {"text_model": "distilbert-base-uncased", "audio_feature": "mfcc", "fusion_type": "late", "epochs": 20, "batch_size": 16}}
 {"timestamp": "2025-05-08 01:48:14", "status": "failed", "experiment_type": "multimodal", "config": {"text_model": "distilbert-base-uncased", "audio_feature": "spectrogram", "fusion_type": "early", "epochs": 20, "batch_size": 16}}
 {"timestamp": "2025-05-08 01:48:14", "status": "failed", "experiment_type": "multimodal", "config": {"text_model": "distilbert-base-uncased", "audio_feature": "spectrogram", "fusion_type": "late", "epochs": 20, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:47:53", "status": "success", "experiment_type": "text", "config": {"text_model": "roberta-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:47:53", "status": "success", "experiment_type": "text", "config": {"text_model": "bert-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:47:53", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:47:53", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:47:53", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:47:53", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:50:11", "status": "success", "experiment_type": "text", "config": {"text_model": "roberta-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:50:11", "status": "success", "experiment_type": "text", "config": {"text_model": "bert-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:50:11", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:50:11", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:50:11", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:50:11", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:52:03", "status": "success", "experiment_type": "text", "config": {"text_model": "roberta-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:52:03", "status": "success", "experiment_type": "text", "config": {"text_model": "bert-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:52:03", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:52:03", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:52:03", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:52:03", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:13", "status": "success", "experiment_type": "text", "config": {"text_model": "roberta-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:13", "status": "success", "experiment_type": "text", "config": {"text_model": "bert-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:13", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:13", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:13", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:13", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:43", "status": "success", "experiment_type": "text", "config": {"text_model": "roberta-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:43", "status": "success", "experiment_type": "text", "config": {"text_model": "bert-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:43", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:43", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:43", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 02:53:43", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 03:37:53", "status": "success", "experiment_type": "text", "config": {"text_model": "roberta-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 03:37:53", "status": "success", "experiment_type": "text", "config": {"text_model": "bert-base", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 03:37:53", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 03:37:53", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "mfcc", "fusion_type": "late", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 03:37:53", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "early", "epochs": 5, "batch_size": 16}}
+{"timestamp": "2025-05-08 03:37:53", "status": "success", "experiment_type": "multimodal", "config": {"text_model": "roberta-base", "audio_feature": "spectrogram", "fusion_type": "late", "epochs": 5, "batch_size": 16}}

@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "dataset": "IEMOCAP_Final.csv",
+  "output_dir": "/root/emod/text_model_roberta-base_20250508_171047",
+  "environment": {
+    "device": "cuda",
+    "torch_version": "2.7.0+cu126"
+  }
+}

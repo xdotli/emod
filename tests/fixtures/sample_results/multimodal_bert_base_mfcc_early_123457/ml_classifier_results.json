@@ -1,0 +1,77 @@
+[
+  {
+    "classifier": "random_forest",
+    "accuracy": 0.7856,
+    "weighted_f1": 0.7821,
+    "macro_f1": 0.7723,
+    "classification_report": {
+      "happy": {"precision": 0.81, "recall": 0.78, "f1-score": 0.79, "support": 95},
+      "angry": {"precision": 0.83, "recall": 0.82, "f1-score": 0.82, "support": 87},
+      "sad": {"precision": 0.76, "recall": 0.75, "f1-score": 0.75, "support": 68},
+      "neutral": {"precision": 0.73, "recall": 0.76, "f1-score": 0.74, "support": 50},
+      "accuracy": 0.7856,
+      "macro avg": {"precision": 0.7825, "recall": 0.7775, "f1-score": 0.7723, "support": 300},
+      "weighted avg": {"precision": 0.7865, "recall": 0.7856, "f1-score": 0.7821, "support": 300}
+    }
+  },
+  {
+    "classifier": "gradient_boosting",
+    "accuracy": 0.8156,
+    "weighted_f1": 0.8143,
+    "macro_f1": 0.8087,
+    "classification_report": {
+      "happy": {"precision": 0.84, "recall": 0.82, "f1-score": 0.83, "support": 95},
+      "angry": {"precision": 0.86, "recall": 0.85, "f1-score": 0.85, "support": 87},
+      "sad": {"precision": 0.78, "recall": 0.79, "f1-score": 0.78, "support": 68},
+      "neutral": {"precision": 0.76, "recall": 0.78, "f1-score": 0.77, "support": 50},
+      "accuracy": 0.8156,
+      "macro avg": {"precision": 0.8100, "recall": 0.8100, "f1-score": 0.8087, "support": 300},
+      "weighted avg": {"precision": 0.8150, "recall": 0.8156, "f1-score": 0.8143, "support": 300}
+    }
+  },
+  {
+    "classifier": "svm",
+    "accuracy": 0.7789,
+    "weighted_f1": 0.7754,
+    "macro_f1": 0.7632,
+    "classification_report": {
+      "happy": {"precision": 0.80, "recall": 0.77, "f1-score": 0.78, "support": 95},
+      "angry": {"precision": 0.82, "recall": 0.81, "f1-score": 0.81, "support": 87},
+      "sad": {"precision": 0.75, "recall": 0.74, "f1-score": 0.74, "support": 68},
+      "neutral": {"precision": 0.72, "recall": 0.74, "f1-score": 0.73, "support": 50},
+      "accuracy": 0.7789,
+      "macro avg": {"precision": 0.7725, "recall": 0.7650, "f1-score": 0.7632, "support": 300},
+      "weighted avg": {"precision": 0.7772, "recall": 0.7789, "f1-score": 0.7754, "support": 300}
+    }
+  },
+  {
+    "classifier": "logistic_regression",
+    "accuracy": 0.7623,
+    "weighted_f1": 0.7589,
+    "macro_f1": 0.7432,
+    "classification_report": {
+      "happy": {"precision": 0.78, "recall": 0.75, "f1-score": 0.76, "support": 95},
+      "angry": {"precision": 0.81, "recall": 0.79, "f1-score": 0.80, "support": 87},
+      "sad": {"precision": 0.73, "recall": 0.71, "f1-score": 0.72, "support": 68},
+      "neutral": {"precision": 0.71, "recall": 0.74, "f1-score": 0.72, "support": 50},
+      "accuracy": 0.7623,
+      "macro avg": {"precision": 0.7575, "recall": 0.7475, "f1-score": 0.7432, "support": 300},
+      "weighted avg": {"precision": 0.7625, "recall": 0.7623, "f1-score": 0.7589, "support": 300}
+    }
+  },
+  {
+    "classifier": "mlp",
+    "accuracy": 0.8023,
+    "weighted_f1": 0.8006,
+    "macro_f1": 0.7923,
+    "classification_report": {
+      "happy": {"precision": 0.82, "recall": 0.80, "f1-score": 0.81, "support": 95},
+      "angry": {"precision": 0.84, "recall": 0.83, "f1-score": 0.83, "support": 87},
+      "sad": {"precision": 0.77, "recall": 0.78, "f1-score": 0.77, "support": 68},
+      "neutral": {"precision": 0.75, "recall": 0.76, "f1-score": 0.75, "support": 50},
+      "accuracy": 0.8023,
+      "macro avg": {"precision": 0.7950, "recall": 0.7925, "f1-score": 0.7923, "support": 300},
+      "weighted avg": {"precision": 0.8023, "recall": 0.8023, "f1-score": 0.8006, "support": 300}
+    }
+  }
+] 

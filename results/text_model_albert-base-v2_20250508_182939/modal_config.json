@@ -1,0 +1,11 @@
+{
+  "multimodal": false,
+  "text_model": "albert-base-v2",
+  "ml_classifier": "gradient_boosting",
+  "epochs": 40,
+  "batch_size": 16,
+  "dry_run": false,
+  "data_path": "IEMOCAP_Filtered.csv",
+  "output_dir": "results",
+  "track_validation": true
+}

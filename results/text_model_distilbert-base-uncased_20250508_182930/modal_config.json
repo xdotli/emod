@@ -1,0 +1,11 @@
+{
+  "multimodal": false,
+  "text_model": "distilbert-base-uncased",
+  "ml_classifier": "gradient_boosting",
+  "epochs": 40,
+  "batch_size": 16,
+  "dry_run": false,
+  "data_path": "IEMOCAP_Final.csv",
+  "output_dir": "results",
+  "track_validation": true
+}

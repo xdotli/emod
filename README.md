@@ -1,131 +1,193 @@
-# EMOD - Emotion Recognition System
+# EMOD: Emotion Detection System
 
-A two-stage emotion recognition system for predicting emotions from text and audio data using the IEMOCAP dataset.
+EMOD is a two-stage emotion recognition system that predicts emotions from text and audio data.
 
-## Project Overview
+## Getting Started
 
-EMOD (Emotion MODeling) is a comprehensive emotion recognition system that implements a two-stage architecture:
-1. **Stage 1**: Prediction of Valence-Arousal-Dominance (VAD) dimensions from input features
-2. **Stage 2**: Classification of discrete emotions based on VAD predictions
+### Installation
 
-Two variants of the system were implemented:
-- **Text-only**: Uses only textual transcripts for emotion recognition
-- **Multimodal**: Combines textual and acoustic features with early fusion
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/emod.git
+cd emod
 
-## Repository Structure
-
-```
-emod/
-├── src/
-│   ├── data/                # Data processing utilities
-│   ├── models/              # Model implementations
-│   ├── utils/               # Evaluation and utility functions
-│   ├── scripts/             # Helper scripts
-│   └── results/             # Experimental results
-│       ├── text_only/       # Text-only model results
-│       ├── multimodal/      # Multimodal model results
-│       └── comparison/      # Comparison between approaches
-├── emod.py                  # Text-only model training script
-├── emod_multimodal.py       # Multimodal model training script
-├── compare_emod.py          # Results comparison script
-└── requirements.txt         # Project dependencies
-```
-
-## Experimental Setup
-
-### Datasets
-- **IEMOCAP**: Interactive Emotional Dyadic Motion Capture Database
-- Contains multimodal conversations with emotion annotations
-- Features both categorical emotion labels and dimensional VAD ratings
-
-### Model Architecture
-
-#### Stage 1: VAD Prediction
-- **Text-only**: Fine-tuned RoBERTa with valence, arousal, and dominance heads
-- **Multimodal**: Early fusion of RoBERTa embeddings with acoustic features
-
-#### Stage 2: Emotion Classification
-- Ensemble of Random Forest and Gaussian Naive Bayes classifiers
-- Maps VAD predictions to discrete emotion categories
-- Categories: angry, happy, neutral, sad
-
-## Experiments and Results
-
-Two main experiments were conducted:
-
-### Experiment 1: Text-only Approach
-- **Model**: RoBERTa-base fine-tuned for VAD prediction
-- **Results**:
-  - Valence Prediction: MSE = 0.4892, R² = 0.4760
-  - Arousal Prediction: MSE = 0.3957, R² = 0.2176
-  - Dominance Prediction: MSE = 0.4931, R² = 0.2359
-  - Emotion Classification: Accuracy = 59.41%, F1 (weighted) = 0.6052
-
-### Experiment 2: Multimodal Approach
-- **Model**: Early fusion of RoBERTa-base and acoustic features
-- **Audio Features**: MFCCs, spectral features, temporal features, pitch-related features
-- **Results**:
-  - Valence Prediction: MSE = 0.4598, R² = 0.5075
-  - Arousal Prediction: MSE = 0.4073, R² = 0.1946
-  - Dominance Prediction: MSE = 0.5123, R² = 0.2061
-  - Emotion Classification: Accuracy = 61.41%, F1 (weighted) = 0.6179
-
-### Comparison of Approaches
-
-| Metric | Text-only | Multimodal | Improvement |
-|--------|-----------|------------|-------------|
-| Valence MSE | 0.4892 | 0.4598 | +6.01% |
-| Arousal MSE | 0.3957 | 0.4073 | -2.93% |
-| Dominance MSE | 0.4931 | 0.5123 | -3.90% |
-| Classification Accuracy | 59.41% | 61.41% | +3.36% |
-| F1 Score (weighted) | 0.6052 | 0.6179 | +2.09% |
-
-#### Per-Emotion Performance (F1 Score)
-| Emotion | Text-only | Multimodal | Improvement |
-|---------|-----------|------------|-------------|
-| Angry | 0.6957 | 0.7213 | +3.68% |
-| Happy | 0.6953 | 0.7115 | +2.33% |
-| Neutral | 0.4008 | 0.4262 | +6.33% |
-| Sad | 0.4932 | 0.4381 | -11.16% |
-
-## Key Findings
-
-1. **VAD Prediction**:
-   - Multimodal approach excels at valence prediction (+6.01%)
-   - Text-only approach is better for arousal (+2.93%) and dominance (+3.90%)
-
-2. **Emotion Classification**:
-   - Multimodal approach improves overall accuracy by 3.36%
-   - Performance gains in "Angry," "Happy," and "Neutral" emotions
-   - Text-only approach performs better for "Sad" emotion detection
-
-3. **Tradeoffs**:
-   - Multimodal approach provides modest improvements at the cost of increased complexity
-   - Text features contribute most significantly to emotion recognition
-   - Audio features help primarily with valence prediction
-
-## Usage
-
-### Requirements
-
-```
+# Install dependencies
 pip install -r requirements.txt
+
+# For distributed training (optional)
+pip install modal
+modal setup
 ```
+
+### Quick Usage
+
+```bash
+# Run a text-only experiment
+python emod_cli.py experiment --text-models roberta-base --epochs 10
+
+# Run a multimodal experiment
+python emod_cli.py experiment --multimodal --text-models roberta-base --audio-features mfcc --fusion-types early
+
+# Process results
+python emod_cli.py results
+
+# Generate a report
+python emod_cli.py report --format html
+```
+
+## System Overview
+
+EMOD implements a two-stage approach to emotion recognition:
+
+1. **Stage 1**: VAD (Valence-Arousal-Dominance) prediction
+   - Transforms input features into continuous emotional dimensions
+   - Uses transfer learning with pretrained language models
+
+2. **Stage 2**: Emotion Classification
+   - Maps VAD predictions to discrete emotion categories
+   - Uses ensemble of traditional ML classifiers
+
+### Variants
+
+- **Text-only**: Uses only text transcripts for emotion recognition
+- **Multimodal**: Combines text and audio features with various fusion strategies
+
+## Command Line Interface
+
+All operations are accessible through the unified CLI:
+
+```bash
+python emod_cli.py [command] [options]
+```
+
+### Running Experiments
+
+```bash
+python emod_cli.py experiment [options]
+```
+
+Main options:
+- `--text-models`: Comma-separated list of models (e.g., "roberta-base,bert-base")
+- `--multimodal`: Flag to run multimodal experiments
+- `--audio-features`: Audio feature types (for multimodal)
+- `--fusion-types`: Fusion strategies (for multimodal)
+- `--epochs`: Number of training epochs
+- `--batch-size`: Batch size for training
+- `--dry-run`: Print commands without executing
+
+### Processing Results
+
+```bash
+python emod_cli.py results [options]
+```
+
+Main options:
+- `--target-dir`: Directory containing results
+- `--skip-download`: Skip downloading results from Modal
+- `--skip-report`: Skip report generation
+
+### Generating Reports
+
+```bash
+python emod_cli.py report [options]
+```
+
+Main options:
+- `--format`: Output format ("html" or "markdown")
+- `--target-dir`: Directory containing processed results
+
+## Experiments
 
 ### Text-only Model
 
-```
-python emod.py --data_path IEMOCAP_Final.csv --output_dir src/results/text_only --epochs 10 --save_model
+```bash
+python emod_cli.py experiment --text-models roberta-base --epochs 10
 ```
 
 ### Multimodal Model
 
-```
-python emod_multimodal.py --data_path IEMOCAP_Final.csv --audio_base_path Datasets/IEMOCAP_full_release --output_dir src/results/multimodal --fusion_type early --epochs 10 --save_model
+```bash
+python emod_cli.py experiment --multimodal --text-models roberta-base --audio-features mfcc --fusion-types early
 ```
 
-### Comparing Results
+### Multiple Experiments (Grid Search)
+
+```bash
+python emod_cli.py experiment --text-models "roberta-base,bert-base" --epochs "10,20"
+```
+
+## Extending the System
+
+### Adding a New Text Model
+
+Simply use any model available in Hugging Face Transformers:
+
+```bash
+python emod_cli.py experiment --text-models your-new-model
+```
+
+### Adding New Audio Features
+
+1. Add extraction function in `src/core/emod_multimodal.py`
+2. Run with the new feature:
+
+```bash
+python emod_cli.py experiment --multimodal --audio-features your-new-feature
+```
+
+### Creating a New Fusion Strategy
+
+1. Add fusion function in `src/core/emod_multimodal.py`
+2. Run with the new strategy:
+
+```bash
+python emod_cli.py experiment --multimodal --fusion-types your-new-strategy
+```
+
+## Results and Reports
+
+After running experiments:
+
+```bash
+# Process all results
+python emod_cli.py results
+
+# Generate a comprehensive report
+python emod_cli.py report --format html
+```
+
+## Directory Structure
 
 ```
-python src/scripts/compare_emod.py --text_results src/results/text_only --multimodal_results src/results/multimodal --output_dir src/results/comparison
+emod/
+├── src/
+│   ├── core/            # Core model implementations
+│   │   ├── common.py    # Shared utility functions
+│   │   ├── emod.py      # Text-only pipeline
+│   │   └── emod_multimodal.py  # Multimodal pipeline
+│   ├── modal/           # Modal integration
+│   ├── processing/      # Results processing
+│   └── utils/           # Utility functions
+├── experiments/         # Experiment configurations
+├── scripts/             # Utility scripts
+├── results/             # Experiment results
+├── reports/             # Generated reports
+├── emod_cli.py          # Command-line interface
+└── requirements.txt     # Project dependencies
 ```
+
+## Key Concepts
+
+- **VAD Dimensions**: Continuous representation of emotion (Valence, Arousal, Dominance)
+- **Fusion Strategies**: Methods for combining text and audio features
+  - Early fusion: Combines features before model processing
+  - Late fusion: Combines predictions after separate processing
+  - Hybrid fusion: Combines at multiple levels
+
+## Troubleshooting
+
+For common issues:
+
+1. **Out of Memory Errors**: Reduce batch size (`--batch-size 8`)
+2. **Modal Issues**: Run `modal token new` to re-authenticate
+3. **Performance Issues**: Increase epochs or try different models

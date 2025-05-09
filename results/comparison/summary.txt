@@ -1,0 +1,36 @@
+EMOD: Text-only vs Multimodal Performance Comparison
+============================================================
+
+VAD PREDICTION PERFORMANCE
+------------------------------------------------------------
+
+Valence dimension:
+  MSE: 0.4892 (text) vs 0.4598 (multimodal) = 6.01% improvement
+  RMSE: 0.6994 (text) vs 0.6781 (multimodal) = 3.05% improvement
+  MAE: 0.5273 (text) vs 0.5072 (multimodal) = 3.81% improvement
+  R²: 0.4760 (text) vs 0.5075 (multimodal) = 6.61% improvement
+
+Arousal dimension:
+  MSE: 0.3957 (text) vs 0.4073 (multimodal) = 2.93% deterioration
+  RMSE: 0.6290 (text) vs 0.6382 (multimodal) = 1.46% deterioration
+  MAE: 0.5005 (text) vs 0.5015 (multimodal) = 0.20% deterioration
+  R²: 0.2176 (text) vs 0.1946 (multimodal) = 10.55% deterioration
+
+Dominance dimension:
+  MSE: 0.4931 (text) vs 0.5123 (multimodal) = 3.90% deterioration
+  RMSE: 0.7022 (text) vs 0.7157 (multimodal) = 1.93% deterioration
+  MAE: 0.5675 (text) vs 0.5768 (multimodal) = 1.64% deterioration
+  R²: 0.2359 (text) vs 0.2061 (multimodal) = 12.64% deterioration
+
+EMOTION CLASSIFICATION PERFORMANCE
+------------------------------------------------------------
+  Accuracy: 0.5941 (text) vs 0.6141 (multimodal) = 3.36% improvement
+  F1 (weighted): 0.6052 (text) vs 0.6179 (multimodal) = 2.09% improvement
+  F1 (macro): 0.5712 (text) vs 0.5743 (multimodal) = 0.53% improvement
+
+PER-CLASS EMOTION PERFORMANCE (F1 Score)
+------------------------------------------------------------
+  Angry: 0.6957 (text) vs 0.7213 (multimodal) = 3.68% improvement
+  Happy: 0.6953 (text) vs 0.7115 (multimodal) = 2.33% improvement
+  Neutral: 0.4008 (text) vs 0.4262 (multimodal) = 6.33% improvement
+  Sad: 0.4932 (text) vs 0.4381 (multimodal) = 11.16% deterioration

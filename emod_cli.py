@@ -19,9 +19,9 @@ from datetime import datetime
 from pathlib import Path
 
 # Import modules
-from experiment_runner import run_experiment_grid
-from results_processor import download_results, process_results
-from report_generator import generate_report
+from src.modal.experiment_runner import run_experiment_grid
+from src.processing.results_processor import download_results, process_results
+from src.processing.report_generator import generate_report
 
 # Default directories
 RESULTS_DIR = "./results"
