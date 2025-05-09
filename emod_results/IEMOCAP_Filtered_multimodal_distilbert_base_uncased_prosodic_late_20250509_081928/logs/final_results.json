@@ -1,0 +1,16 @@
+{
+  "model_name": "distilbert-base-uncased",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "multimodal",
+  "config": {
+    "epochs": 40,
+    "batch_size": 32,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "best_val_loss": 0.43395198360085485,
+    "best_val_accuracy": 0.913209603279829
+  },
+  "audio_feature": "prosodic",
+  "fusion_type": "late"
+}

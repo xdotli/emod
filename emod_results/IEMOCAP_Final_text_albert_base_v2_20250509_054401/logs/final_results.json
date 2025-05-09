@@ -1,0 +1,35 @@
+{
+  "model_name": "albert-base-v2",
+  "dataset": "IEMOCAP_Final",
+  "experiment_type": "text",
+  "config": {
+    "epochs": 40,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "Test Loss": 0.47369916533168993,
+    "Valence": {
+      "MSE": 0.44723883271217346,
+      "RMSE": 0.668759173927486,
+      "MAE": 0.5132099986076355,
+      "R2": 0.4414794445037842
+    },
+    "Arousal": {
+      "MSE": 0.43810442090034485,
+      "RMSE": 0.6618945693238046,
+      "MAE": 0.5277723073959351,
+      "R2": 0.10161453485488892
+    },
+    "Dominance": {
+      "MSE": 0.5431464314460754,
+      "RMSE": 0.7369846887460251,
+      "MAE": 0.5847210884094238,
+      "R2": 0.10836571455001831
+    }
+  },
+  "best_val_loss": 0.42822047142606035,
+  "best_val_accuracy": 0.914355905714788,
+  "training_log_path": "/root/results/IEMOCAP_Final_text_albert_base_v2_20250509_054401/logs/training_log.json",
+  "vad_predictions_path": "/root/results/IEMOCAP_Final_text_albert_base_v2_20250509_054401/vad_predictions.npz"
+}

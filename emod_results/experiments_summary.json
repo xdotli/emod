@@ -1,0 +1,57 @@
+[
+  {
+    "experiment_id": "IEMOCAP_Final_text_xlnet_base_cased_20250509_074427",
+    "has_final_results": true,
+    "has_training_log": true,
+    "has_model": true,
+    "has_vad_preds": false,
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_xlnet_base_cased_20250509_063613",
+    "has_final_results": true,
+    "has_training_log": true,
+    "has_model": true,
+    "has_vad_preds": false,
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_xlnet_base_cased_20250509_053945",
+    "has_final_results": true,
+    "has_training_log": true,
+    "has_model": true,
+    "has_vad_preds": true,
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9155261651152059
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_xlnet_base_cased_20250509_032646",
+    "has_final_results": true,
+    "has_training_log": true,
+    "has_model": true,
+    "has_vad_preds": true,
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9143522117326134
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_070618",
+    "has_final_results": true,
+    "has_training_log": true,
+    "has_model": true,
+    "has_vad_preds": false,
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0
+  }
+]

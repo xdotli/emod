@@ -1,0 +1,35 @@
+{
+  "model_name": "xlnet-base-cased",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "text",
+  "config": {
+    "epochs": 40,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "Test Loss": 0.45083627764937245,
+    "Valence": {
+      "MSE": 0.4010208249092102,
+      "RMSE": 0.6332620507414053,
+      "MAE": 0.46708595752716064,
+      "R2": 0.47957056760787964
+    },
+    "Arousal": {
+      "MSE": 0.4027961790561676,
+      "RMSE": 0.6346622558937688,
+      "MAE": 0.5065239071846008,
+      "R2": 0.13392508029937744
+    },
+    "Dominance": {
+      "MSE": 0.5489069223403931,
+      "RMSE": 0.7408825293799234,
+      "MAE": 0.5839187502861023,
+      "R2": 0.018336892127990723
+    }
+  },
+  "best_val_loss": 0.41892958366418187,
+  "best_val_accuracy": 0.9162140832671636,
+  "training_log_path": "/root/results/IEMOCAP_Filtered_text_xlnet_base_cased_20250509_053947/logs/training_log.json",
+  "vad_predictions_path": "/root/results/IEMOCAP_Filtered_text_xlnet_base_cased_20250509_053947/vad_predictions.npz"
+}

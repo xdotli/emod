@@ -1,0 +1,35 @@
+{
+  "model_name": "distilbert-base-uncased",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "text",
+  "config": {
+    "epochs": 40,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "Test Loss": 0.46690162450452394,
+    "Valence": {
+      "MSE": 0.43219882249832153,
+      "RMSE": 0.6574183010065369,
+      "MAE": 0.49889951944351196,
+      "R2": 0.4391089677810669
+    },
+    "Arousal": {
+      "MSE": 0.4128640592098236,
+      "RMSE": 0.6425449861370203,
+      "MAE": 0.5109537243843079,
+      "R2": 0.1122775673866272
+    },
+    "Dominance": {
+      "MSE": 0.5571659207344055,
+      "RMSE": 0.7464354766049143,
+      "MAE": 0.6001902222633362,
+      "R2": 0.003566563129425049
+    }
+  },
+  "best_val_loss": 0.4356216377095331,
+  "best_val_accuracy": 0.9128756724580934,
+  "training_log_path": "/root/results/IEMOCAP_Filtered_text_distilbert_base_uncased_20250509_055238/logs/training_log.json",
+  "vad_predictions_path": "/root/results/IEMOCAP_Filtered_text_distilbert_base_uncased_20250509_055238/vad_predictions.npz"
+}

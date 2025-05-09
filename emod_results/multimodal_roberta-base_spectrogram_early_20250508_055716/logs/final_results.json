@@ -1,0 +1,27 @@
+{
+  "text_model": "roberta-base",
+  "audio_feature": "spectrogram",
+  "fusion_type": "early",
+  "final_metrics": {
+    "Test Loss": 0.22,
+    "Valence": {
+      "MSE": 0.21284812525282332,
+      "RMSE": 0.4613546631961395,
+      "MAE": 0.355,
+      "R2": 0.68
+    },
+    "Arousal": {
+      "MSE": 0.22518399477225529,
+      "RMSE": 0.47453555691039134,
+      "MAE": 0.342,
+      "R2": 0.71
+    },
+    "Dominance": {
+      "MSE": 0.18967565476208473,
+      "RMSE": 0.4355176859348937,
+      "MAE": 0.382,
+      "R2": 0.64
+    }
+  },
+  "best_val_loss": 0.32
+}

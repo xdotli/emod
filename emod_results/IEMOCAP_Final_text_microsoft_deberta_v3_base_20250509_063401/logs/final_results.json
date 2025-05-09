@@ -1,0 +1,14 @@
+{
+  "model_name": "microsoft/deberta-v3-base",
+  "dataset": "IEMOCAP_Final",
+  "experiment_type": "text",
+  "config": {
+    "epochs": 40,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "best_val_loss": 0.5347234351070304,
+    "best_val_accuracy": 0.893055312978594
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "model_name": "microsoft/deberta-v3-base",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "multimodal",
+  "config": {
+    "epochs": 40,
+    "batch_size": 32,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "best_val_loss": 0.4080987088382244,
+    "best_val_accuracy": 0.9183802582323551
+  },
+  "audio_feature": "spectrogram",
+  "fusion_type": "early"
+}

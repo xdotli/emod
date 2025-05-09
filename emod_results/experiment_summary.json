@@ -1,0 +1,3270 @@
+[
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_mfcc_attention_20250509_090533",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_mfcc_early_20250509_085106",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_mfcc_hybrid_20250509_090044",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_mfcc_late_20250509_085555",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_prosodic_attention_20250509_094502",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_prosodic_early_20250509_092958",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_prosodic_hybrid_20250509_093959",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_prosodic_late_20250509_093459",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_spectrogram_attention_20250509_092459",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_spectrogram_early_20250509_091021",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_spectrogram_hybrid_20250509_091955",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_spectrogram_late_20250509_091508",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_wav2vec_attention_20250509_063500",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_wav2vec_attention_20250509_072717",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_wav2vec_early_20250509_063315",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_wav2vec_early_20250509_064127",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_wav2vec_early_20250509_064924",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_wav2vec_early_20250509_070621",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_wav2vec_hybrid_20250509_063427",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_wav2vec_hybrid_20250509_072359",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_wav2vec_late_20250509_063355",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_albert_base_v2_wav2vec_late_20250509_071842",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_mfcc_attention_20250509_063747",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_mfcc_attention_20250509_075707",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_mfcc_early_20250509_063648",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_mfcc_early_20250509_074606",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_mfcc_hybrid_20250509_063729",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_mfcc_hybrid_20250509_075330",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_mfcc_late_20250509_063711",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_mfcc_late_20250509_074954",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_prosodic_attention_20250509_082659",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_prosodic_early_20250509_081542",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_prosodic_hybrid_20250509_082318",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_prosodic_late_20250509_081928",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_spectrogram_attention_20250509_063900",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_spectrogram_attention_20250509_081202",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_spectrogram_early_20250509_063806",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_spectrogram_early_20250509_080055",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_spectrogram_hybrid_20250509_063842",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_spectrogram_hybrid_20250509_080820",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_spectrogram_late_20250509_063824",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_spectrogram_late_20250509_080440",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_wav2vec_attention_20250509_084214",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_wav2vec_early_20250509_083047",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_wav2vec_hybrid_20250509_083827",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_distilbert_base_uncased_wav2vec_late_20250509_083434",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_mfcc_attention_20250509_092122",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_mfcc_early_20250509_090504",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_mfcc_hybrid_20250509_091558",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_mfcc_late_20250509_091034",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_prosodic_attention_20250509_063357",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_prosodic_attention_20250509_070415",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_prosodic_attention_20250509_071932",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_prosodic_early_20250509_094828",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_prosodic_hybrid_20250509_063313",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_prosodic_hybrid_20250509_064128",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_prosodic_hybrid_20250509_064912",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_prosodic_hybrid_20250509_070622",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_prosodic_late_20250509_095348",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_spectrogram_attention_20250509_094259",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_spectrogram_early_20250509_092649",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_spectrogram_hybrid_20250509_093734",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_spectrogram_late_20250509_093210",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_wav2vec_attention_20250509_063614",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_wav2vec_attention_20250509_074024",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_wav2vec_early_20250509_063431",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_wav2vec_early_20250509_072542",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_wav2vec_hybrid_20250509_063539",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_wav2vec_hybrid_20250509_073441",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_wav2vec_late_20250509_063505",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_google_electra_base_discriminator_wav2vec_late_20250509_073016",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_mfcc_attention_20250509_063514",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_mfcc_attention_20250509_073048",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_mfcc_early_20250509_091359",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_mfcc_hybrid_20250509_063426",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_mfcc_hybrid_20250509_072258",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_mfcc_late_20250509_063326",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_mfcc_late_20250509_064130",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_mfcc_late_20250509_064913",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_mfcc_late_20250509_070620",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_prosodic_attention_20250509_082725",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_prosodic_early_20250509_063908",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_prosodic_early_20250509_080453",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_prosodic_hybrid_20250509_081952",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_prosodic_late_20250509_081222",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_spectrogram_attention_20250509_063822",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_spectrogram_attention_20250509_075721",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_spectrogram_early_20250509_063601",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_spectrogram_early_20250509_073639",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_spectrogram_hybrid_20250509_063735",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_spectrogram_hybrid_20250509_074949",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_spectrogram_late_20250509_063648",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_spectrogram_late_20250509_074226",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_wav2vec_attention_20250509_085733",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_wav2vec_early_20250509_083501",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_wav2vec_hybrid_20250509_085004",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_microsoft_deberta_v3_base_wav2vec_late_20250509_084233",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_mfcc_attention_20250509_080913",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_mfcc_early_20250509_063835",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_mfcc_early_20250509_075351",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_mfcc_hybrid_20250509_080406",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_mfcc_late_20250509_075855",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_prosodic_attention_20250509_084917",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_prosodic_early_20250509_083417",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_prosodic_hybrid_20250509_084423",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_prosodic_late_20250509_083915",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_spectrogram_attention_20250509_082918",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_spectrogram_early_20250509_081410",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_spectrogram_hybrid_20250509_082411",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_spectrogram_late_20250509_081906",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_wav2vec_attention_20250509_090902",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_wav2vec_early_20250509_085412",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_wav2vec_hybrid_20250509_090406",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_roberta_base_wav2vec_late_20250509_085910",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_mfcc_attention_20250509_063313",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_mfcc_attention_20250509_064115",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_mfcc_attention_20250509_064924",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_mfcc_attention_20250509_070622",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_mfcc_early_20250509_084601",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_mfcc_hybrid_20250509_090257",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_mfcc_late_20250509_085441",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_prosodic_attention_20250509_081331",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_prosodic_early_20250509_063704",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_prosodic_early_20250509_075105",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_prosodic_hybrid_20250509_063832",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_prosodic_hybrid_20250509_080600",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_prosodic_late_20250509_063748",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_prosodic_late_20250509_075830",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_spectrogram_attention_20250509_063620",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_spectrogram_attention_20250509_074336",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_spectrogram_early_20250509_063407",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_spectrogram_early_20250509_072318",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_spectrogram_hybrid_20250509_063536",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_spectrogram_hybrid_20250509_073715",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_spectrogram_late_20250509_063452",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_spectrogram_late_20250509_073046",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_wav2vec_attention_20250509_084334",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_wav2vec_early_20250509_082059",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_wav2vec_hybrid_20250509_083605",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_multimodal_xlnet_base_cased_wav2vec_late_20250509_082832",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_albert_base_v2_20250509_055902",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_albert_base_v2_20250509_082955",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_distilbert_base_uncased_20250509_021821",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9125331940530221,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_distilbert_base_uncased_20250509_055238",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9128756724580934,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_distilbert_base_uncased_20250509_081834",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_google_electra_base_discriminator_20250509_054958",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9150064222420318,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_google_electra_base_discriminator_20250509_081300",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_microsoft_deberta_v3_base_20250509_055700",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_microsoft_deberta_v3_base_20250509_063826",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_microsoft_deberta_v3_base_20250509_080511",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_roberta_base_20250509_020618",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9173759677742102,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_roberta_base_20250509_053945",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9167253527082975,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_roberta_base_20250509_063752",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_roberta_base_20250509_075945",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_xlnet_base_cased_20250509_053947",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9162140832671636,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Filtered_text_xlnet_base_cased_20250509_082157",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Filtered",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_mfcc_attention_20250509_122740",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_mfcc_early_20250509_115804",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_mfcc_hybrid_20250509_121753",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_mfcc_late_20250509_120804",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_attention_20250509_063519",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_attention_20250509_072813",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_early_20250509_063315",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_early_20250509_064128",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_early_20250509_064908",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_early_20250509_070619",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_hybrid_20250509_063440",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_hybrid_20250509_072428",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_late_20250509_063401",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_late_20250509_070150",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_prosodic_late_20250509_071856",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_spectrogram_attention_20250509_130543",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_spectrogram_early_20250509_123711",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_spectrogram_hybrid_20250509_125544",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_spectrogram_late_20250509_124549",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_wav2vec_attention_20250509_063756",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_wav2vec_attention_20250509_074823",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_wav2vec_early_20250509_063558",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_wav2vec_early_20250509_073148",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_wav2vec_hybrid_20250509_063717",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_wav2vec_hybrid_20250509_074251",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_wav2vec_late_20250509_063638",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_albert_base_v2_wav2vec_late_20250509_073718",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_mfcc_attention_20250509_084152",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_mfcc_early_20250509_082640",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_mfcc_hybrid_20250509_083652",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_mfcc_late_20250509_083143",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_prosodic_attention_20250509_092138",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_prosodic_early_20250509_090642",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_prosodic_hybrid_20250509_091641",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_prosodic_late_20250509_091141",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_spectrogram_attention_20250509_090148",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_spectrogram_early_20250509_084647",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_spectrogram_hybrid_20250509_085654",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_spectrogram_late_20250509_085144",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_wav2vec_attention_20250509_063315",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_wav2vec_attention_20250509_064133",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_wav2vec_attention_20250509_064916",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_wav2vec_attention_20250509_070628",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_wav2vec_early_20250509_092642",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_wav2vec_hybrid_20250509_093645",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_distilbert_base_uncased_wav2vec_late_20250509_093147",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_mfcc_attention_20250509_120442",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_mfcc_early_20250509_113830",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_mfcc_hybrid_20250509_115537",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_mfcc_late_20250509_114717",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_prosodic_attention_20250509_063706",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_prosodic_attention_20250509_075010",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_prosodic_early_20250509_063505",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_prosodic_early_20250509_073056",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_prosodic_hybrid_20250509_063626",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_prosodic_hybrid_20250509_074259",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_prosodic_late_20250509_063545",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_prosodic_late_20250509_073703",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_spectrogram_attention_20250509_063424",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_spectrogram_attention_20250509_070320",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_spectrogram_attention_20250509_072235",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_spectrogram_early_20250509_121322",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_spectrogram_hybrid_20250509_063326",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_spectrogram_hybrid_20250509_064130",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_spectrogram_hybrid_20250509_064908",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_spectrogram_hybrid_20250509_070620",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_spectrogram_late_20250509_122229",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_wav2vec_attention_20250509_081927",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_wav2vec_early_20250509_063746",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_wav2vec_early_20250509_075739",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_wav2vec_hybrid_20250509_063905",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_wav2vec_hybrid_20250509_081215",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_wav2vec_late_20250509_063826",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_google_electra_base_discriminator_wav2vec_late_20250509_080458",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_mfcc_attention_20250509_063813",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_mfcc_attention_20250509_090412",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_mfcc_early_20250509_063520",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_mfcc_early_20250509_080947",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_mfcc_hybrid_20250509_063717",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_mfcc_hybrid_20250509_085120",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_mfcc_late_20250509_063621",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_mfcc_late_20250509_083841",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_prosodic_attention_20250509_104120",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_prosodic_early_20250509_100702",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_prosodic_hybrid_20250509_102954",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_prosodic_late_20250509_101834",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_spectrogram_attention_20250509_095457",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_spectrogram_early_20250509_063908",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_spectrogram_early_20250509_091711",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_spectrogram_hybrid_20250509_094240",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_spectrogram_late_20250509_092952",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_wav2vec_attention_20250509_112704",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_wav2vec_early_20250509_105249",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_wav2vec_hybrid_20250509_111538",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_microsoft_deberta_v3_base_wav2vec_late_20250509_110423",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_mfcc_attention_20250509_055235",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_mfcc_attention_20250509_085204",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_mfcc_early_20250509_053947",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0.9164108733126992,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_mfcc_early_20250509_083438",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_mfcc_hybrid_20250509_053946",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0.9174010412002864,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_mfcc_hybrid_20250509_084619",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_mfcc_late_20250509_054854",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0.9149549020591535,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_mfcc_late_20250509_084027",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_prosodic_attention_20250509_093837",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_prosodic_early_20250509_060109",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_prosodic_early_20250509_092109",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_prosodic_hybrid_20250509_093246",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_prosodic_late_20250509_060143",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_prosodic_late_20250509_092657",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_spectrogram_attention_20250509_055710",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_spectrogram_attention_20250509_091518",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_spectrogram_early_20250509_055841",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_spectrogram_early_20250509_085751",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_spectrogram_hybrid_20250509_055252",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_spectrogram_hybrid_20250509_090930",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_spectrogram_late_20250509_054632",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0.9171084699505254,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_spectrogram_late_20250509_090342",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_wav2vec_attention_20250509_063441",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_wav2vec_attention_20250509_080056",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_wav2vec_early_20250509_094431",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_wav2vec_hybrid_20250509_063401",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_wav2vec_hybrid_20250509_074132",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_wav2vec_late_20250509_063313",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_wav2vec_late_20250509_064106",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_wav2vec_late_20250509_064915",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_roberta_base_wav2vec_late_20250509_070626",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_mfcc_attention_20250509_063626",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_mfcc_attention_20250509_091045",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_mfcc_early_20250509_063344",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_mfcc_early_20250509_064818",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_mfcc_early_20250509_070053",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_mfcc_early_20250509_073409",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_mfcc_hybrid_20250509_063534",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_mfcc_hybrid_20250509_084838",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_mfcc_late_20250509_063442",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_mfcc_late_20250509_082242",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "mfcc",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_prosodic_attention_20250509_105413",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_prosodic_early_20250509_101546",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_prosodic_hybrid_20250509_104126",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_prosodic_late_20250509_102834",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "prosodic",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_spectrogram_attention_20250509_100300",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_spectrogram_early_20250509_063718",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_spectrogram_early_20250509_092353",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_spectrogram_hybrid_20250509_063902",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_spectrogram_hybrid_20250509_095004",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_spectrogram_late_20250509_063810",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_spectrogram_late_20250509_093710",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "spectrogram",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_wav2vec_attention_20250509_114454",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "attention"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_wav2vec_early_20250509_110704",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "early"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_wav2vec_hybrid_20250509_113213",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "hybrid"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_multimodal_xlnet_base_cased_wav2vec_late_20250509_111947",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "multimodal",
+    "best_val_accuracy": 0,
+    "status": "completed",
+    "audio_feature": "wav2vec",
+    "fusion_type": "late"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_albert_base_v2_20250509_034347",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_albert_base_v2_20250509_054401",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.914355905714788,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_albert_base_v2_20250509_063710",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_albert_base_v2_20250509_075358",
+    "model_name": "albert-base-v2",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_distilbert_base_uncased_20250509_015758",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.912887031781046,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_distilbert_base_uncased_20250509_031932",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9136222529411316,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_distilbert_base_uncased_20250509_053944",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9139253328662169,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_distilbert_base_uncased_20250509_063547",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_distilbert_base_uncased_20250509_073932",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_google_electra_base_discriminator_20250509_030619",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9139641702802558,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_google_electra_base_discriminator_20250509_050043",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9156022212066148,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_google_electra_base_discriminator_20250509_053948",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9148064749805551,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_google_electra_base_discriminator_20250509_063501",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_google_electra_base_discriminator_20250509_073102",
+    "model_name": "google/electra-base-discriminator",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_microsoft_deberta_v3_base_20250509_024829",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.916613894481408,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_microsoft_deberta_v3_base_20250509_044311",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9149803274242502,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_microsoft_deberta_v3_base_20250509_055042",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_microsoft_deberta_v3_base_20250509_063401",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_microsoft_deberta_v3_base_20250509_071811",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_014354",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.915937498368715,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_023523",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9181545060873032,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_041716",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.914260084346721,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_043027",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9173521988956552,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_053122",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9170615182738555,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_053602",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9166476248126281,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_055424",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_063312",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_064128",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_064910",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_roberta_base_20250509_070618",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_xlnet_base_cased_20250509_032646",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9143522117326134,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_xlnet_base_cased_20250509_053945",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9155261651152059,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_xlnet_base_cased_20250509_063613",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "IEMOCAP_Final_text_xlnet_base_cased_20250509_074427",
+    "model_name": "xlnet-base-cased",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "multimodal_roberta-base_mfcc_early_20250508_055712",
+    "model_name": "unknown",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "multimodal_roberta-base_mfcc_late_20250508_055714",
+    "model_name": "unknown",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "multimodal_roberta-base_spectrogram_early_20250508_055716",
+    "model_name": "unknown",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "multimodal_roberta_base_mfcc_early_20250508_001551",
+    "model_name": "unknown",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "multimodal_roberta_base_mfcc_hybrid_20250508_002952",
+    "model_name": "unknown",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "multimodal_roberta_base_mfcc_late_20250508_002252",
+    "model_name": "unknown",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "multimodal_roberta_base_spectrogram_early_20250508_004130",
+    "model_name": "unknown",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "multimodal_roberta_base_spectrogram_hybrid_20250508_005619",
+    "model_name": "unknown",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "multimodal_roberta_base_spectrogram_late_20250508_004854",
+    "model_name": "unknown",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "test_run_roberta_base_20250509_012017",
+    "model_name": "roberta-base",
+    "dataset": "IEMOCAP_Final",
+    "experiment_type": "text",
+    "best_val_accuracy": 0.9155268043279647,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "text_model_albert_base_v2_20250508_000306",
+    "model_name": "albert-base-v2",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "text_model_bert_base_uncased_20250507_233916",
+    "model_name": "bert-base-uncased",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "text_model_distilbert-base-uncased_20250508_055709",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "text_model_distilbert_base_uncased_20250507_234609",
+    "model_name": "distilbert-base-uncased",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "text_model_microsoft_deberta-v3-base_20250508_055711",
+    "model_name": "microsoft/deberta-v3-base",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "text_model_roberta-base_20250508_055708",
+    "model_name": "roberta-base",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "text_model_roberta_base_20250507_231756",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "text_model_roberta_base_20250507_231931",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "text_model_roberta_base_20250507_232109",
+    "status": "incomplete"
+  },
+  {
+    "experiment_id": "text_model_roberta_base_20250507_232432",
+    "model_name": "roberta-base",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "text_model_roberta_base_20250507_233213",
+    "model_name": "roberta-base",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  },
+  {
+    "experiment_id": "text_model_xlnet_base_cased_20250507_235017",
+    "model_name": "xlnet-base-cased",
+    "dataset": "unknown",
+    "experiment_type": "unknown",
+    "best_val_accuracy": 0,
+    "status": "completed"
+  }
+]

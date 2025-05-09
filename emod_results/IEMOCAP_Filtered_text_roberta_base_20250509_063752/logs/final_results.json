@@ -1,0 +1,14 @@
+{
+  "model_name": "roberta-base",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "text",
+  "config": {
+    "epochs": 40,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "best_val_loss": 0.5374169127096103,
+    "best_val_accuracy": 0.892516617458078
+  }
+}

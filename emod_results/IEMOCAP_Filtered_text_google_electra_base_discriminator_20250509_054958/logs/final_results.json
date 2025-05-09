@@ -1,0 +1,35 @@
+{
+  "model_name": "google/electra-base-discriminator",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "text",
+  "config": {
+    "epochs": 40,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "Test Loss": 0.4573994184596629,
+    "Valence": {
+      "MSE": 0.4261492192745209,
+      "RMSE": 0.6528010564287721,
+      "MAE": 0.4918365478515625,
+      "R2": 0.446959912776947
+    },
+    "Arousal": {
+      "MSE": 0.40184369683265686,
+      "RMSE": 0.6339114266462286,
+      "MAE": 0.5057402849197388,
+      "R2": 0.13597309589385986
+    },
+    "Dominance": {
+      "MSE": 0.5450648665428162,
+      "RMSE": 0.7382850848708893,
+      "MAE": 0.5826882123947144,
+      "R2": 0.025208115577697754
+    }
+  },
+  "best_val_loss": 0.4249678887898409,
+  "best_val_accuracy": 0.9150064222420318,
+  "training_log_path": "/root/results/IEMOCAP_Filtered_text_google_electra_base_discriminator_20250509_054958/logs/training_log.json",
+  "vad_predictions_path": "/root/results/IEMOCAP_Filtered_text_google_electra_base_discriminator_20250509_054958/vad_predictions.npz"
+}

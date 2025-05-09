@@ -1,0 +1,16 @@
+{
+  "model_name": "xlnet-base-cased",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "multimodal",
+  "config": {
+    "epochs": 40,
+    "batch_size": 32,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "best_val_loss": 0.43496171981096265,
+    "best_val_accuracy": 0.9130076560378074
+  },
+  "audio_feature": "mfcc",
+  "fusion_type": "late"
+}

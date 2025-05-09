@@ -1,0 +1,35 @@
+{
+  "model_name": "roberta-base",
+  "dataset": "IEMOCAP_Final",
+  "experiment_type": "text",
+  "config": {
+    "epochs": 40,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "Test Loss": 0.4721806962239115,
+    "Valence": {
+      "MSE": 0.42390176653862,
+      "RMSE": 0.6510773890549572,
+      "MAE": 0.48898109793663025,
+      "R2": 0.470623254776001
+    },
+    "Arousal": {
+      "MSE": 0.44070252776145935,
+      "RMSE": 0.6638542970874403,
+      "MAE": 0.5325688719749451,
+      "R2": 0.0962868332862854
+    },
+    "Dominance": {
+      "MSE": 0.5606048107147217,
+      "RMSE": 0.7487354744599201,
+      "MAE": 0.5911871790885925,
+      "R2": 0.07970583438873291
+    }
+  },
+  "best_val_loss": 0.4092274695634842,
+  "best_val_accuracy": 0.9181545060873032,
+  "training_log_path": "/root/results/IEMOCAP_Final_text_roberta_base_20250509_023523/logs/training_log.json",
+  "vad_predictions_path": "/root/results/IEMOCAP_Final_text_roberta_base_20250509_023523/vad_predictions.npz"
+}

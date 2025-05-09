@@ -1,0 +1,110 @@
+{
+  "model_name": "google/electra-base-discriminator",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "multimodal",
+  "epochs": 40,
+  "batch_size": 16,
+  "train_samples": 5870,
+  "val_samples": 1258,
+  "test_samples": 1259,
+  "epoch_logs": [
+    {
+      "epoch": 1,
+      "train_steps": [
+        {
+          "step": 36,
+          "loss": 7.729144096374512
+        },
+        {
+          "step": 72,
+          "loss": 3.937926769256592
+        },
+        {
+          "step": 108,
+          "loss": 3.873406171798706
+        },
+        {
+          "step": 144,
+          "loss": 2.6831796169281006
+        },
+        {
+          "step": 180,
+          "loss": 2.2009692192077637
+        },
+        {
+          "step": 216,
+          "loss": 0.8177741765975952
+        },
+        {
+          "step": 252,
+          "loss": 0.7832508087158203
+        },
+        {
+          "step": 288,
+          "loss": 1.066845178604126
+        },
+        {
+          "step": 324,
+          "loss": 1.1633256673812866
+        },
+        {
+          "step": 360,
+          "loss": 0.7847897410392761
+        }
+      ],
+      "val_loss": 0.6222873333888718,
+      "val_accuracy": 0.8755425333222256,
+      "train_loss": 3.006352608470241
+    },
+    {
+      "epoch": 2,
+      "train_steps": [
+        {
+          "step": 36,
+          "loss": 0.9399591684341431
+        },
+        {
+          "step": 72,
+          "loss": 0.875835120677948
+        },
+        {
+          "step": 108,
+          "loss": 0.9931687116622925
+        },
+        {
+          "step": 144,
+          "loss": 1.0617694854736328
+        },
+        {
+          "step": 180,
+          "loss": 0.9067585468292236
+        },
+        {
+          "step": 216,
+          "loss": 1.229965090751648
+        },
+        {
+          "step": 252,
+          "loss": 0.7649458646774292
+        },
+        {
+          "step": 288,
+          "loss": 1.001900553703308
+        },
+        {
+          "step": 324,
+          "loss": 0.8384658694267273
+        },
+        {
+          "step": 360,
+          "loss": 0.7862169146537781
+        }
+      ],
+      "val_loss": 0.5727671316907376,
+      "val_accuracy": 0.8854465736618525,
+      "train_loss": 0.9536864145250347
+    }
+  ],
+  "audio_feature": "wav2vec",
+  "fusion_type": "attention"
+}

@@ -1,0 +1,33 @@
+{
+  "model_name": "distilbert-base-uncased",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "text",
+  "config": {
+    "epochs": 40,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "Test Loss": 0.45282754452922674,
+    "Valence": {
+      "MSE": 0.4254032075405121,
+      "RMSE": 0.652229413274587,
+      "MAE": 0.4937892556190491,
+      "R2": 0.4479280710220337
+    },
+    "Arousal": {
+      "MSE": 0.3905584514141083,
+      "RMSE": 0.6249467588635917,
+      "MAE": 0.4967740476131439,
+      "R2": 0.1602380871772766
+    },
+    "Dominance": {
+      "MSE": 0.5429710149765015,
+      "RMSE": 0.7368656695602676,
+      "MAE": 0.5868741869926453,
+      "R2": 0.028952717781066895
+    }
+  },
+  "best_val_loss": 0.43733402973488916,
+  "best_val_accuracy": 0.9125331940530221
+}

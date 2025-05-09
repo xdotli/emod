@@ -1,0 +1,35 @@
+{
+  "model_name": "microsoft/deberta-v3-base",
+  "dataset": "IEMOCAP_Final",
+  "experiment_type": "text",
+  "config": {
+    "epochs": 40,
+    "batch_size": 16,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "Test Loss": 0.531710713474374,
+    "Valence": {
+      "MSE": 0.5072083473205566,
+      "RMSE": 0.7121856129693696,
+      "MAE": 0.5407578945159912,
+      "R2": 0.3665883541107178
+    },
+    "Arousal": {
+      "MSE": 0.4613422155380249,
+      "RMSE": 0.679221771984692,
+      "MAE": 0.5384782552719116,
+      "R2": 0.05396270751953125
+    },
+    "Dominance": {
+      "MSE": 0.6288013458251953,
+      "RMSE": 0.7929699526622653,
+      "MAE": 0.630668044090271,
+      "R2": -0.03224623203277588
+    }
+  },
+  "best_val_loss": 0.4169305275929602,
+  "best_val_accuracy": 0.916613894481408,
+  "training_log_path": "/root/results/IEMOCAP_Final_text_microsoft_deberta_v3_base_20250509_024829/logs/training_log.json",
+  "vad_predictions_path": "/root/results/IEMOCAP_Final_text_microsoft_deberta_v3_base_20250509_024829/vad_predictions.npz"
+}

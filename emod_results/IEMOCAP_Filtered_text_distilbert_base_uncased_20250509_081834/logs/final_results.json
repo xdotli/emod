@@ -1,0 +1,14 @@
+{
+  "model_name": "distilbert-base-uncased",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "text",
+  "config": {
+    "epochs": 40,
+    "batch_size": 32,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "best_val_loss": 0.43719117492437365,
+    "best_val_accuracy": 0.9125617650151253
+  }
+}
