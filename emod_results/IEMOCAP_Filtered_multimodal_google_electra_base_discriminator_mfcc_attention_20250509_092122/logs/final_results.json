@@ -1,0 +1,16 @@
+{
+  "model_name": "google/electra-base-discriminator",
+  "dataset": "IEMOCAP_Filtered",
+  "experiment_type": "multimodal",
+  "config": {
+    "epochs": 40,
+    "batch_size": 32,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "best_val_loss": 0.4232792153954506,
+    "best_val_accuracy": 0.9153441569209099
+  },
+  "audio_feature": "mfcc",
+  "fusion_type": "attention"
+}

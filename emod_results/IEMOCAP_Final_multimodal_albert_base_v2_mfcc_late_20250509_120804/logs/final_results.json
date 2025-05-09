@@ -1,0 +1,16 @@
+{
+  "model_name": "albert-base-v2",
+  "dataset": "IEMOCAP_Final",
+  "experiment_type": "multimodal",
+  "config": {
+    "epochs": 40,
+    "batch_size": 32,
+    "learning_rate": 2e-05
+  },
+  "final_metrics": {
+    "best_val_loss": 0.42595062653223675,
+    "best_val_accuracy": 0.9148098746935527
+  },
+  "audio_feature": "mfcc",
+  "fusion_type": "late"
+}
