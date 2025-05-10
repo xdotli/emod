@@ -1,10 +1,21 @@
 # EMOD: Emotion Detection System
 
-EMOD is a two-stage emotion recognition system that predicts emotions from text and audio data.
+EMOD is a two-stage emotion recognition system that predicts emotions from text and audio data using continuous VAD (Valence-Arousal-Dominance) dimensions.
 
-## Getting Started
+## System Overview
 
-### Installation
+EMOD implements a two-stage approach to emotion recognition:
+
+1. **Stage 1**: VAD (Valence-Arousal-Dominance) prediction
+   - Transforms input features into continuous emotional dimensions
+   - Uses transfer learning with pretrained language models for text
+   - Leverages audio features for multimodal analysis
+
+2. **Stage 2**: Emotion Classification
+   - Maps VAD predictions to discrete emotion categories
+   - Uses ensemble of traditional ML classifiers
+
+## Installation and Setup
 
 ```bash
 # Clone the repository
@@ -14,175 +25,112 @@ cd emod
 # Install dependencies
 pip install -r requirements.txt
 
-# For distributed training (optional)
+# For distributed training
 pip install modal
 modal setup
 ```
 
-### Quick Usage
+## Datasets
+
+The system uses the IEMOCAP dataset in various formats:
+
+- **IEMOCAP_Final.csv**: The complete processed dataset
+- **IEMOCAP_Filtered.csv**: A filtered version removing short utterances and outliers
+
+Dataset filtering removed 1,650 samples (16.44%) from the original dataset, mostly short utterances like "Yeah." and "No." to improve model performance.
+
+## Running Experiments
+
+Experiments can be run using several scripts:
 
 ```bash
-# Run a text-only experiment
-python emod_cli.py experiment --text-models roberta-base --epochs 10
+# Run a single experiment
+python run_single_experiment.py --dataset IEMOCAP_Final --model roberta-base --epochs 40
 
-# Run a multimodal experiment
-python emod_cli.py experiment --multimodal --text-models roberta-base --audio-features mfcc --fusion-types early
-
-# Process results
-python emod_cli.py results
-
-# Generate a report
-python emod_cli.py report --format html
+# Run full experiments on both datasets
+python run_full_experiments.py --models "roberta-base,distilbert-base-uncased" --epochs 40
 ```
 
-## System Overview
+### Modal Integration
 
-EMOD implements a two-stage approach to emotion recognition:
-
-1. **Stage 1**: VAD (Valence-Arousal-Dominance) prediction
-   - Transforms input features into continuous emotional dimensions
-   - Uses transfer learning with pretrained language models
-
-2. **Stage 2**: Emotion Classification
-   - Maps VAD predictions to discrete emotion categories
-   - Uses ensemble of traditional ML classifiers
-
-### Variants
-
-- **Text-only**: Uses only text transcripts for emotion recognition
-- **Multimodal**: Combines text and audio features with various fusion strategies
-
-## Command Line Interface
-
-All operations are accessible through the unified CLI:
+Experiments are optimized to run on Modal's cloud infrastructure using H100 GPUs:
 
 ```bash
-python emod_cli.py [command] [options]
+# Upload datasets to Modal volume
+python upload_datasets.py --datasets "IEMOCAP_Final,IEMOCAP_Filtered"
+
+# Run comprehensive experiments
+python run_all_experiments.py --run --download
 ```
 
-### Running Experiments
+### Experiment Parameters
 
-```bash
-python emod_cli.py experiment [options]
-```
-
-Main options:
-- `--text-models`: Comma-separated list of models (e.g., "roberta-base,bert-base")
-- `--multimodal`: Flag to run multimodal experiments
-- `--audio-features`: Audio feature types (for multimodal)
-- `--fusion-types`: Fusion strategies (for multimodal)
-- `--epochs`: Number of training epochs
-- `--batch-size`: Batch size for training
-- `--dry-run`: Print commands without executing
-
-### Processing Results
-
-```bash
-python emod_cli.py results [options]
-```
-
-Main options:
-- `--target-dir`: Directory containing results
-- `--skip-download`: Skip downloading results from Modal
-- `--skip-report`: Skip report generation
-
-### Generating Reports
-
-```bash
-python emod_cli.py report [options]
-```
-
-Main options:
-- `--format`: Output format ("html" or "markdown")
-- `--target-dir`: Directory containing processed results
-
-## Experiments
-
-### Text-only Model
-
-```bash
-python emod_cli.py experiment --text-models roberta-base --epochs 10
-```
-
-### Multimodal Model
-
-```bash
-python emod_cli.py experiment --multimodal --text-models roberta-base --audio-features mfcc --fusion-types early
-```
-
-### Multiple Experiments (Grid Search)
-
-```bash
-python emod_cli.py experiment --text-models "roberta-base,bert-base" --epochs "10,20"
-```
-
-## Extending the System
-
-### Adding a New Text Model
-
-Simply use any model available in Hugging Face Transformers:
-
-```bash
-python emod_cli.py experiment --text-models your-new-model
-```
-
-### Adding New Audio Features
-
-1. Add extraction function in `src/core/emod_multimodal.py`
-2. Run with the new feature:
-
-```bash
-python emod_cli.py experiment --multimodal --audio-features your-new-feature
-```
-
-### Creating a New Fusion Strategy
-
-1. Add fusion function in `src/core/emod_multimodal.py`
-2. Run with the new strategy:
-
-```bash
-python emod_cli.py experiment --multimodal --fusion-types your-new-strategy
-```
-
-## Results and Reports
-
-After running experiments:
-
-```bash
-# Process all results
-python emod_cli.py results
-
-# Generate a comprehensive report
-python emod_cli.py report --format html
-```
+- **Text Models**: Multiple pretrained transformer models from Hugging Face
+- **Audio Features**: Various feature extraction methods for multimodal experiments
+- **Fusion Types**: Different strategies for combining text and audio
+- **ML Classifiers**: Various classifiers for the second stage
 
 ## Directory Structure
 
 ```
 emod/
-├── src/
-│   ├── core/            # Core model implementations
-│   │   ├── common.py    # Shared utility functions
-│   │   ├── emod.py      # Text-only pipeline
-│   │   └── emod_multimodal.py  # Multimodal pipeline
-│   ├── modal/           # Modal integration
-│   ├── processing/      # Results processing
-│   └── utils/           # Utility functions
-├── experiments/         # Experiment configurations
-├── scripts/             # Utility scripts
-├── results/             # Experiment results
-├── reports/             # Generated reports
-├── emod_cli.py          # Command-line interface
-└── requirements.txt     # Project dependencies
+├── src/                  # Core implementation files
+│   ├── core/             # Core model implementation
+│   ├── processing/       # Data and results processing
+│   ├── utils/            # General utilities and logging
+│   └── modal/            # Modal integration
+├── experiments/          # Experiment configurations
+├── scripts/              # Utility scripts
+├── results/              # Experiment results
+├── reports/              # Generated reports
+├── Datasets/             # IEMOCAP and processed data
+└── *.py                  # Command-line scripts
 ```
 
-## Key Concepts
+## Downloading and Analyzing Results
 
-- **VAD Dimensions**: Continuous representation of emotion (Valence, Arousal, Dominance)
-- **Fusion Strategies**: Methods for combining text and audio features
-  - Early fusion: Combines features before model processing
-  - Late fusion: Combines predictions after separate processing
-  - Hybrid fusion: Combines at multiple levels
+After experiments complete, results can be downloaded and analyzed:
+
+```bash
+# Download experiment results
+python download_successful.py --output-dir ./emod_results
+
+# Analyze experiment results
+python analyze_results.py --dir ./emod_results --plots
+```
+
+Results include:
+- Training logs with metrics per epoch
+- Final performance metrics (MSE, RMSE, MAE, R²)
+- Model checkpoints for best-performing models
+- VAD predictions for further analysis
+
+## Performance Metrics
+
+The system evaluates performance using:
+- MSE, RMSE, MAE for VAD regression performance
+- Accuracy, F1-score for emotion classification
+- R² for correlation between predicted and ground truth values
+
+## Extending the System
+
+### Adding New Text Models
+
+Use any model available in Hugging Face Transformers:
+
+```bash
+python run_all_experiments.py --models "your-new-model" --datasets "IEMOCAP_Final"
+```
+
+### Adding New Audio Features
+
+1. Add extraction function in `src/core/emod_multimodal.py`
+2. Run with the new feature
+
+### Creating New Fusion Strategies
+
+1. Add fusion function in `src/core/emod_multimodal.py`
+2. Run with the new strategy
 
 ## Troubleshooting
 
@@ -191,3 +139,17 @@ For common issues:
 1. **Out of Memory Errors**: Reduce batch size (`--batch-size 8`)
 2. **Modal Issues**: Run `modal token new` to re-authenticate
 3. **Performance Issues**: Increase epochs or try different models
+
+## Citation
+
+If you use this system in your research, please cite:
+
+```
+@misc{emod2023,
+  author = {Your Name},
+  title = {EMOD: A Two-Stage Emotion Recognition System},
+  year = {2023},
+  publisher = {GitHub},
+  url = {https://github.com/yourusername/emod}
+}
+```
