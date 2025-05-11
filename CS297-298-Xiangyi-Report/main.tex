@@ -40,6 +40,9 @@
 \usepackage[table]{xcolor} % for cell colors
 \usepackage{threeparttable} % for wide tables
 
+\usepackage{pdflscape}  % For landscape environment
+\usepackage{adjustbox}  % For adjustbox environment
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     
@@ -169,64 +172,131 @@ Our research makes several key contributions:
 The structure of this report is as follows: Section \ref{sec:related} reviews relevant literature on emotion recognition approaches. Section \ref{sec:methodology} describes our methodology, including model architectures and fusion strategies. Section \ref{sec:experimental_setup} details the experimental setup, covering dataset preparation, preprocessing techniques, and evaluation metrics. Section \ref{sec:results} presents our findings, while Section \ref{sec:discussion} discusses their implications. Finally, Section \ref{sec:conclusion} concludes the report and suggests directions for future research.
 
 \section{Related Work}
-\label{sec:related}
-Emotion detection has evolved significantly over the past decades, progressing from simple rule-based systems to sophisticated deep learning approaches. This section reviews key developments in the field, focusing on unimodal approaches that analyze text or audio independently, as well as multimodal methods that combine different information sources.
+\label{sec:related_work}
 
-\subsection{Text-Based Emotion Detection}
-Early text-based approaches relied heavily on lexicon-based methods and handcrafted features~\cite{mohammad2013crowdsourcing}. These methods used dictionaries mapping words to emotional categories or dimensions, with algorithms determining text emotions based on the prevalence of emotion-associated words. While straightforward, these approaches struggled with context-dependent meanings, negations, and figurative language.
+\subsection{Early Emotion-Recognition Approaches (pre-2012)}
+The first wave of emotion-recognition (ER) research was dominated by
+lexicon and rule-based techniques such as WordNet-Affect
+\cite{strapparava2004wordnet} and the NRC Emotion Lexicon
+\cite{mohammad2013nrc}.  Classical machine-learning models—Naïve Bayes,
+logistic regression and \textsc{svm}—were trained on bag-of-words, TF–IDF
+or \textsc{liwc} counts for text ER, and on low-level descriptors for
+speech or facial data \cite{schuller2009acoustic}.  These systems rarely
+exceeded $\approx$60 \% accuracy on early benchmarks and were brittle to
+contextual nuance.
 
-With advances in machine learning, statistical methods like Support Vector Machines (SVMs) and Naïve Bayes classifiers gained popularity, incorporating linguistic features beyond simple word presence~\cite{wang2012harnessing}. Features such as part-of-speech tags, syntactic structures, and semantic relatedness improved performance but still failed to capture the sequential nature of language.
+\subsection{Deep-Learning Era (2013–2017)}
+Convolutional and recurrent networks rapidly eclipsed classical models.
+CNNs and \mbox{(Bi-)LSTMs} learned richer semantic and temporal features
+for text, audio and vision.  In speech ER, CNN-style spectrogram
+encoders combined with LSTM temporal heads pushed performance above
+90 \% on Emo-DB and IEMOCAP \cite{mao2014learning}.  Hybrid CNN-LSTM
+architectures similarly boosted textual ER
+\cite{abdul2017emonet}.  Multimodal early-fusion CNNs that concatenate
+openSMILE prosody, word embeddings and 3-D CNN facial features achieved
+$\approx$80 \% on CMU-MOSI \cite{poria2018multimodal}.  Although
+effective, these networks struggled with asynchronous modalities and
+long-range context.
 
-The emergence of deep learning transformed the field, with Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) networks better capturing sequential dependencies in text~\cite{abdul2017emonet}. These models outperformed traditional approaches by learning representations directly from data rather than relying on predefined features.
+\subsection{Transformer-Based Models (2018–2025)}
+Contextualised language models revolutionised unimodal ER.  Fine-tuning
+BERT, RoBERTa or DeBERTa yields state-of-the-art textual accuracies on
+many datasets \cite{liu2019roberta}.  Cross-modal transformers extend
+self-attention to heterogeneous streams.  \textsc{MulT}
+\cite{tsai2019mult} attends across mis-aligned audio, visual and
+linguistic tokens, attaining 84.8 \% unweighted accuracy (UA) on the
+six-class IEMOCAP task.  Progressive-modality reinforcement
+\cite{lv2021progressive} iteratively re-weights modalities, while
+TransModality \cite{wang2020context} unifies feature extraction and
+fusion within one transformer backbone.  Self-supervised encoders such
+as Wav2Vec 2.0 supply powerful speech features that, when fused with
+RoBERTa text embeddings, reach 84.7 \% UA on IEMOCAP and 64 \% F1 on the
+challenging MELD corpus \cite{siriwardhana2020joint}.
 
-The most recent breakthrough came with transformer-based models like BERT~\cite{devlin2018bert}, RoBERTa~\cite{liu2019roberta}, and their variants. Pre-trained on massive text corpora and fine-tuned for emotion detection, these models have achieved state-of-the-art results by capturing complex contextual relationships. XLNet~\cite{yang2019xlnet} improved upon BERT's masked language modeling with permutation-based training, while ELECTRA~\cite{clark2020electra} introduced a more efficient pre-training approach using token replacement detection.
+\subsection{Multimodal Fusion Taxonomy}
+Fusion strategies fall into three categories:
 
-\begin{table}[h]
+\textbf{Early fusion} concatenates raw features before a shared
+classifier \cite{poria2017review}.  It captures low-level correlations
+but ignores modality structure.
+
+\textbf{Late fusion} trains modality-specific classifiers whose logits
+are fused by averaging or a meta-learner
+\cite{wang2019words}.  Flexibility is high, yet fine-grained
+interactions are lost.
+
+\textbf{Hybrid / fine-grained fusion} combines both.  Tensor Fusion
+Networks \cite{zadeh2018multimodal_tfn}, Memory Fusion Networks
+\cite{zadeh2018mfn}, capsule-based interaction
+\cite{wang2019words} and cross-modal transformers
+\cite{tsai2019mult} explicitly model inter-modal dynamics and achieve
+the best overall results (e.g., 89 \% accuracy on CMU-MOSEI
+\cite{mittal2020m3er}).
+
+\subsection{Benchmark Datasets}
+\textbf{IEMOCAP} \cite{busso2008iemocap} remains the de-facto benchmark
+($\sim$10 k utterances, 9 emotions, audio+video+transcripts).  
+\textbf{CMU-MOSI} \cite{zadeh2016mosi} and
+\textbf{CMU-MOSEI} \cite{zadeh2018multimodal} provide large
+"in-the-wild'' video reviews with sentiment and six-emotion labels.
+\textbf{MELD} \cite{poria2018meld} introduces multi-party dialogue
+context; \textbf{RAVDESS} \cite{livingstone2018ravdess} supplies
+balanced acted speech.  Each poses distinct challenges in spontaneity,
+noise and class imbalance, motivating the use of unweighted metrics
+(UAR, UF1) alongside accuracy and weighted F1.
+
+\subsection{Current Challenges}
+Despite progress, open problems persist: domain shift (lab $\rightarrow$
+wild) causes 15–20 pp degradation; demographic bias is under-studied;
+conversation-level understanding and real-time, low-resource deployment
+remain difficult.  Addressing these issues requires larger,
+diversified corpora and efficient, bias-aware models.
+
+\clearpage
+\begin{table}[p]
+\sffamily\tiny
 \centering
-\caption{Comprehensive comparison of existing emotion detection approaches in literature}
-\label{tab:literature_comparison}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{|p{0.8cm}|p{2.8cm}|p{4.5cm}|p{2.8cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|}
-\hline
-\textbf{Ref.} & \textbf{Dataset} & \textbf{Features} & \textbf{Modality} & \textbf{Classification Method} & \textbf{Metrics} & \textbf{Score} \\
-\hline
-\cite{mohammad2013crowdsourcing} & Twitter corpus & Lexicon-based, emotional word counts, n-grams & Text & Supervised learning, SVM & Accuracy & 65.12\% \\
-\hline
-\cite{wang2012harnessing} & Movie reviews, product reviews & Syntax patterns, part-of-speech features, dependency relations & Text & SVM with tree kernels & F1 & 67.84\% \\
-\hline
-\cite{abdul2017emonet} & ISEAR, SemEval & Word embeddings, recurrent features & Text & BiLSTM with attention & Accuracy & 72.08\% \\
-\hline
-\cite{devlin2018bert} & MultiNLI, GLUE & Contextual embeddings, self-attention & Text & Fine-tuned BERT & Accuracy & 86.7\% \\
-\hline
-\cite{liu2019roberta} & NLP benchmarks & Dynamic token masking, larger batch training & Text & Fine-tuned RoBERTa & Accuracy & 88.1\% \\
-\hline
-\cite{schuller2009acoustic} & FAU Aibo Emotion Corpus & 384 LLDs, energy, pitch, formants, MFCCs & Audio & SVM, Hidden Markov Models & UAR & 70.29\% \\
-\hline
-\cite{li2013speech} & Chinese emotional speech corpus & MFCCs, pitch, formants, energy & Audio & SVM, Decision Trees & Accuracy & 76.4\% \\
-\hline
-\cite{mao2014learning} & Mandarin emotional database & Raw spectrograms, MFCCs & Audio & CNN, LSTM & Accuracy & 81.9\% \\
-\hline
-\cite{schneider2019wav2vec} & LibriSpeech & Self-supervised wave embeddings & Audio & Wav2vec + fine-tuning & WER & 6.92\% \\
-\hline
-\cite{poria2017review} & IEMOCAP, SEMAINE & Text embeddings, audio-visual features & Multimodal & Early fusion, CNN-LSTM & Accuracy & 76.1\% \\
-\hline
-\cite{wagner2011introducting} & GEMEP corpus & Acoustic features, visual action units & Multimodal & Late fusion, SVM ensemble & UAR & 73.4\% \\
-\hline
-\cite{zadeh2018memory} & CMU-MOSEI & Text, audio, visual embeddings & Multimodal & Memory fusion network & Accuracy & 76.0\% \\
-\hline
-\cite{kiela2019supervised} & MMBT benchmark & Text tokens, visual features & Multimodal & Co-attentional transformer & Accuracy & 80.3\% \\
-\hline
-\cite{sehrawat2023deception} & Deception detection corpus & Acoustic-prosodic features, linguistic markers & Multimodal & BiLSTM + CNN & Accuracy & 80.0\% \\
-\hline
-\cite{hsiao2022attention} & IEMOCAP & Multimodal features, attention weights & Multimodal & Attention-BiLSTM & Accuracy & 84.0\% \\
-\hline
-\cite{zhang2022fine} & IEMOCAP & Multimodal embeddings, fine-grained fusion & Multimodal & GCFM + Early Fusion & Accuracy & 88.14\% \\
-\hline
-\textbf{Our work} & IEMOCAP & Text embeddings, MFCC, spectrograms & Multimodal & RoBERTa + MFCC + Hybrid fusion & Accuracy & \textbf{91.74\%} \\
-\hline
-\end{tabular}%
-}
+\caption{Comparison of Emotion Detection Models (Multimodal, Text, Audio)}
+\renewcommand{\arraystretch}{0.85}
+\setlength{\tabcolsep}{1.8pt}
+\begin{adjustbox}{width=\textwidth,center}
+\begin{tabular}{@{}p{2.3cm}p{1.6cm}p{1.2cm}p{2.4cm}p{2.3cm}p{1.1cm}p{2.1cm}@{}}
+\toprule
+\textbf{Reference} & \textbf{Dataset} & \textbf{Modality} & \textbf{Features} & \textbf{Classification} & \textbf{Metric} & \textbf{Performance} \\
+\midrule
+Poria et al. (2017) & CMU-MOSI (binary) & S+T+V & openSMILE, word2vec, 3D-CNN & Early fusion (feature concat) & Acc & 81.3\% \\
+Liu et al. (2018) & IEMOCAP (4) & S+T+V & COVAREP, GloVe, FACET & Utterance interaction (memory) & UF1 & 83.1\% \\
+Zadeh et al. (2018) & YT(3), MOUD(2), IEMOCAP(9) & S+T+V & COVAREP, GloVe, FACET & Fine-grained interaction (tensor) & Acc/F1 & YT: 61.0\%/60.7\%; MOUD: 81.1\%/80.4\%; IEMO: 36.5\%/34.9\% \\
+Pham et al. (2019) & CMU-MOSI (binary) & S+T+V & MFCC, GloVe, FACET+OpenFace & Fine-grained interaction & Acc/F1 & 76.5\%/73.4\% \\
+Poria et al. (2018) & IEMOCAP(4), MOUD(2), MOSI(2) & S+T+V & openSMILE, CNN, 3D-CNN & Early fusion (multimodal CNN) & Acc & IEMO: 71.6\%; MOUD: 67.9\%; MOSI: 76.7\% \\
+Zadeh et al. (2018) & CMU-MOSEI (6) & S+T+V & COVAREP, GloVe, MTCNN & Fine-grained (dynamic fusion) & UAcc/UF1 & 62.4\%/76.3\% \\
+Majumder et al. (2018) & MOSI(2), IEMOCAP(4) & S+T+V & openSMILE, word2vec, 3D-CNN & Hierarchical fusion w/ context & Acc & MOSI: 80.0\%; IEMO: 76.5\% \\
+Tsai et al. (2019) & ICT-MMMO(2), YT(3), MOUD(2), IEMOCAP(6) & S+T+V & COVAREP, GloVe, FACET & Cross-modal Transformer (MULT) & Acc/F1 & ICT: 81.3\%/79.2\%; YT: 53.3\%/52.4\%; MOUD: 82.1\%/81.7\%; IEMO: 84.8\%(UAcc)/81.4\%(UF1) \\
+Wang et al. (2019) & IEMOCAP (4) & S+T+V & COVAREP, GloVe, FACET & Fine-grained (Capsule network) & UAcc/UF1 & 81.9\%/81.2\% \\
+Tsai et al. (2018) & IEMOCAP (4) & S+T+V & COVAREP, GloVe, FACET & Factorized multimodal rep. & UAcc/UF1 & 74.7\%/71.5\% \\
+Pham et al. (2020) & ICT-MMMO(2), YT(2) & S+T+V & COVAREP, GloVe, FACET & Fine-grained interaction & Acc/F1 & ICT: 81.3\%/80.8\%; YT: 51.7\%/52.4\% \\
+Liang et al. (2021) & IEMOCAP(4), MELD(7) & S+T+V & openSMILE, BERT, DenseNet & Simple feature concat & Acc/F1 & IEMO: 75.6\%(UAcc 74.5\%); MELD: 57.1\%(F1) \\
+Mittal et al. (2021) & IEMOCAP(4), MOSEI(6) & S+T+V & MFCC/pitch, GloVe, facial AUs & Fine-grained (CNN+LSTM) & Acc/F1 & IEMO: 82.7\%/82.4\%; MOSEI: 89.0\%/80.2\% \\
+Wang et al. (2020) & IEMOCAP(6), MOSI(2), MELD(7) & S+T+V & openSMILE, CNN, 3D-CNN & End-to-end Transformer & Acc & IEMO: 60.8\%; MELD: 62.0\%; MOSI: 82.7\% \\
+Sun et al. (2020) & IEMOCAP (4) & S+T+V & COVAREP, BERT, FACET & Deep CCA (correlation) & UAcc/UF1 & 83.0\%/81.8\% \\
+Siriwardhana (2020) & IEMOCAP(4), MELD(7) & S+T+V & Wav2Vec, RoBERTa, FabNet & Transformer-based late fusion & UAcc/F1 & IEMO: 84.7\%/84.2\%; MELD: 64.3\%/63.9\% \\
+Lv et al. (2021) & IEMOCAP(4), MOSI(2) & S+T+V & COVAREP, BERT, FACET & Progressive modality reinforce & UAcc/UF1 & IEMO: 85.1\%/83.8\%; MOSI: 83.6\%/83.4\% \\
+Majumder et al. (2019) & MELD (7) & T(conv) & GloVe, context state & GRU-based RNN (party-state) & WF1 & 57.0\% \\
+Ghosal et al. (2019) & MELD (7) & T(conv) & GloVe, speaker depend. & Graph convolution network & WF1 & 58.1\% \\
+Ghosal et al. (2020) & MELD (7) & T(conv) & RoBERTa, commonsense & Transformer + commonsense & WF1 & 65.2\% \\
+Trinh et al. (2022) & IEMOCAP (4) & A & Mel spectrogram, spectral feat. & CNN + GRU (ensemble) & Acc & 97.47\% \\
+Issa et al. (2020) & RAVDESS (8) & A & MFCC, spectral contrast, mel-spec & Deep NN (fully-connected) & Acc & 71.6\% \\
+Bautista et al. (2021) & RAVDESS (8) & A & Augmented spectrograms & Parallel CNN–Transformer & Acc & 89.33\% \\
+Pan et al. (2022) & IEMOCAP (4) & A & MFCC features & CNN + LSTM hybrid & Acc & 96.21\% \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\vspace{1mm}
+\begin{flushleft}
+{\tiny Note: S=Speech, T=Text, V=Visual, A=Audio, Acc=Accuracy, UF1=Unweighted F1, WF1=Weighted F1, YT=YouTube, IEMO=IEMOCAP}
+\end{flushleft}
 \end{table}
+\clearpage
 
 \subsection{Audio-Based Emotion Detection}
 Audio-based emotion recognition has traditionally focused on extracting acoustic features that correlate with emotional states. Low-level descriptors (LLDs) such as pitch, energy, formants, and voice quality parameters were among the earliest features explored~\cite{schuller2009acoustic}.
@@ -264,7 +334,7 @@ Figure~\ref{fig:system_architecture} illustrates the high-level architecture of 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\linewidth]{Figures/system_architecture.png}
+    \includegraphics[width=0.9\linewidth]{Figures/system_architecture_fixed.png}
     \caption{High-Level System Architecture: The diagram illustrates the two-stage approach with modality-specific processing of audio and text followed by multimodal fusion strategies. Showing the complete data flow from input processing through emotion prediction, this architectural overview highlights the parallel processing streams and fusion options implemented in our system.}
     \label{fig:system_architecture}
 \end{figure}
@@ -655,6 +725,13 @@ Late fusion, also known as decision-level fusion, processes each modality indepe
     \item Limitations: May miss cross-modal interactions; relies on individual modalities performing well
 \end{itemize}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/late_fusion_detailed_proper.png}
+    \caption{Detailed architecture of the late fusion approach. The text and audio pathways process their respective inputs independently, with each modality producing its own predictions that are then combined through weighted averaging or other aggregation methods. This approach maintains separation between modalities until the final decision stage.}
+    \label{fig:late_fusion}
+\end{figure}
+
 \subsubsection{Hybrid Fusion}
 Hybrid fusion combines aspects of both early and late fusion, extracting intermediate representations from both modalities before joint processing.
 
@@ -682,8 +759,8 @@ Hybrid fusion combines aspects of both early and late fusion, extracting interme
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\linewidth]{Figures/DetailLateFusion.png}
-    \caption{Detailed architecture of the hybrid fusion approach. The text and audio pathways process their respective inputs partially, before concatenating intermediate representations for joint processing through shared layers.}
+    \includegraphics[width=0.9\linewidth]{Figures/hybrid_fusion_detailed.png}
+    \caption{Detailed architecture of the hybrid fusion approach. This diagram illustrates how text and audio pathways process their respective inputs partially, before concatenating intermediate representations for joint processing through shared layers. The hybrid approach combines benefits of both early and late fusion by allowing modality-specific processing followed by joint learning.}
     \label{fig:hybrid_fusion}
 \end{figure}
 
@@ -1459,6 +1536,8 @@ Different fusion strategies may be more effective for specific combinations of t
 
 \begin{table}[h]
 \centering
+\caption{Top combinations of audio features and fusion methods ranked by validation accuracy.}
+\label{tab:feature_fusion_combinations}
 \begin{tabular}{|l|c|c|c|}
 \hline
 \textbf{Combination} & \textbf{Mean Accuracy} & \textbf{Best Accuracy} & \textbf{Experiments} \\
@@ -1472,8 +1551,6 @@ MFCC + Early & 0.057 & 0.9164 & 16 \\
 MFCC + Late & 0.054 & 0.9150 & 17 \\
 \hline
 \end{tabular}
-\caption{Top combinations of audio features and fusion methods ranked by validation accuracy.}
-\label{tab:feature_fusion_combinations}
 \end{table}
 
 Our analysis of feature-fusion interactions reveals several patterns:
@@ -1561,23 +1638,33 @@ The top five experimental configurations, ranked by validation accuracy, are pre
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|p{5.5cm}|c|c|c|c|c|}
+\caption{Top five experimental configurations ranked by validation accuracy.}
+\label{tab:top_experiments}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-\textbf{Experiment ID} & \textbf{Model} & \textbf{Dataset} & \textbf{Type} & \textbf{Audio} & \textbf{Fusion} \\
+\textbf{ID} & \textbf{Val. Acc.} & \textbf{Model} & \textbf{Dataset} & \textbf{Type} & \textbf{Audio} & \textbf{Fusion} \\
 \hline
-IEMOCAP\_Final\_text\_roberta\_base\_20250509\_023523 & RoBERTa & IEMOCAP\_Final & Text & - & - \\
+E1\textsuperscript{a} & 91.82\% & RoBERTa & IEMOCAP\_Final & Text & - & - \\
 \hline
-IEMOCAP\_Final\_multimodal\_roberta\_base\_mfcc\_hybrid\_20250509\_053946 & RoBERTa & IEMOCAP\_Final & Multimodal & MFCC & Hybrid \\
+E2\textsuperscript{b} & 91.74\% & RoBERTa & IEMOCAP\_Final & Multimodal & MFCC & Hybrid \\
 \hline
-IEMOCAP\_Filtered\_text\_roberta\_base\_20250509\_020618 & RoBERTa & IEMOCAP\_Filtered & Text & - & - \\
+E3\textsuperscript{c} & 91.68\% & RoBERTa & IEMOCAP\_Filtered & Text & - & - \\
 \hline
-IEMOCAP\_Final\_text\_roberta\_base\_20250509\_043027 & RoBERTa & IEMOCAP\_Final & Text & - & - \\
+E4\textsuperscript{d} & 91.60\% & RoBERTa & IEMOCAP\_Final & Text & - & - \\
 \hline
-IEMOCAP\_Final\_multimodal\_roberta\_base\_spectrogram\_late\_20250509\_054632 & RoBERTa & IEMOCAP\_Final & Multimodal & Spectrogram & Late \\
+E5\textsuperscript{e} & 91.71\% & RoBERTa & IEMOCAP\_Final & Multimodal & Spectrogram & Late \\
 \hline
 \end{tabular}
-\caption{Top five experimental configurations ranked by validation accuracy. All top configurations use the RoBERTa model, with a mix of text-only and multimodal approaches.}
-\label{tab:top_experiments}
+\vspace{1mm}
+\small
+\begin{flushleft}
+\textsuperscript{a}IEMOCAP\_Final\_text\_roberta\_base\_20250509\_023523\\
+\textsuperscript{b}IEMOCAP\_Final\_multimodal\_roberta\_base\_mfcc\_hybrid\_20250509\_053946\\
+\textsuperscript{c}IEMOCAP\_Filtered\_text\_roberta\_base\_20250509\_020618\\
+\textsuperscript{d}IEMOCAP\_Final\_text\_roberta\_base\_20250509\_043027\\
+\textsuperscript{e}IEMOCAP\_Final\_multimodal\_roberta\_base\_spectrogram\_late\_20250509\_054632
+\end{flushleft}
 \end{table}
 
 \paragraph{Key Observations:}
@@ -1742,23 +1829,23 @@ To ensure the reliability of our findings, we conducted rigorous statistical sig
 
 \begin{table}[h]
 \centering
+\caption{Statistical significance analysis of key performance differences. While several architectural choices show statistically significant differences, the gap between text-only and multimodal approaches is not statistically significant, challenging the assumption that multimodal integration necessarily improves emotion recognition.}
+\label{tab:significance_analysis}
 \begin{tabular}{|l|c|c|c|}
 \hline
 \textbf{Comparison} & \textbf{Mean Diff.} & \textbf{p-value} & \textbf{Significant?} \\
 \hline
-RoBERTa vs. DeBERTa & 0.16\% & 0.031 & Yes (p < 0.05) \\
+RoBERTa vs. DeBERTa & 0.16\% & 0.031 & Yes ($p < 0.05$) \\
 \hline
-Text-only vs. Multimodal (best) & 0.08\% & 0.063 & No (p > 0.05) \\
+Text-only vs. Multimodal (best) & 0.08\% & 0.063 & No ($p > 0.05$) \\
 \hline
-MFCC+Hybrid vs. Spectrogram+Late & 0.03\% & 0.128 & No (p > 0.05) \\
+MFCC+Hybrid vs. Spectrogram+Late & 0.03\% & 0.128 & No ($p > 0.05$) \\
 \hline
-IEMOCAP\_Final vs. IEMOCAP\_Filtered & 0.08\% & 0.042 & Yes (p < 0.05) \\
+IEMOCAP\_Final vs. IEMOCAP\_Filtered & 0.08\% & 0.042 & Yes ($p < 0.05$) \\
 \hline
-ALBERT vs. RoBERTa & 0.38\% & 0.014 & Yes (p < 0.05) \\
+ALBERT vs. RoBERTa & 0.38\% & 0.014 & Yes ($p < 0.05$) \\
 \hline
 \end{tabular}
-\caption{Statistical significance analysis of key performance differences. While several architectural choices show statistically significant differences, the gap between text-only and multimodal approaches is not statistically significant, challenging the assumption that multimodal integration necessarily improves emotion recognition.}
-\label{tab:significance_analysis}
 \end{table}
 
 This analysis yields several important insights:

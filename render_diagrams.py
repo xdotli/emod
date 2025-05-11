@@ -5,6 +5,7 @@ import numpy as np
 import os
 from matplotlib.path import Path
 import re
+import networkx as nx
 
 # Create output directory
 os.makedirs("CS297-298-Xiangyi-Report/Figures", exist_ok=True)
@@ -112,6 +113,122 @@ def create_system_architecture():
     plt.tight_layout()
     plt.savefig("CS297-298-Xiangyi-Report/Figures/system_architecture.png", dpi=300, bbox_inches='tight')
     plt.close()
+
+def generate_improved_system_architecture(output_path='CS297-298-Xiangyi-Report/Figures/system_architecture_fixed.png'):
+    """
+    Generate an improved version of the system architecture diagram with better alignment of labels.
+    Specifically fixes the "Input Data" label positioning.
+    """
+    plt.figure(figsize=(10, 8), dpi=300)
+    
+    # Create a directed graph
+    G = nx.DiGraph()
+    
+    # Add nodes with proper positioning to fix label alignment issues
+    # Input layer
+    G.add_node("Input Data", pos=(0.5, 1.0))
+    G.add_node("Audio Signal", pos=(0.25, 0.9))
+    G.add_node("Text Transcript", pos=(0.75, 0.9))
+    
+    # Processing layer
+    G.add_node("Audio Feature\nExtraction", pos=(0.25, 0.7))
+    G.add_node("Text\nTokenization", pos=(0.75, 0.7))
+    
+    # Model layer
+    G.add_node("Audio Model", pos=(0.25, 0.5))
+    G.add_node("Transformer\nModel", pos=(0.75, 0.5))
+    
+    # Fusion layer header
+    G.add_node("Stage 2: Multimodal Fusion", pos=(0.5, 0.4))
+    
+    # Fusion methods
+    G.add_node("Early Fusion", pos=(0.25, 0.3))
+    G.add_node("Late Fusion", pos=(0.5, 0.3))
+    G.add_node("Hybrid Fusion", pos=(0.75, 0.3))
+    
+    # Output
+    G.add_node("Emotion Prediction", pos=(0.5, 0.1))
+    
+    # Stage label
+    G.add_node("Stage 1: Modality-Specific Processing", pos=(0.5, 0.6))
+    
+    # Add edges
+    # Input connections
+    G.add_edge("Input Data", "Audio Signal")
+    G.add_edge("Input Data", "Text Transcript")
+    
+    # Audio path
+    G.add_edge("Audio Signal", "Audio Feature\nExtraction")
+    G.add_edge("Audio Feature\nExtraction", "Audio Model")
+    G.add_edge("Audio Model", "Early Fusion")
+    G.add_edge("Audio Model", "Late Fusion")
+    G.add_edge("Audio Model", "Hybrid Fusion")
+    
+    # Text path
+    G.add_edge("Text Transcript", "Text\nTokenization")
+    G.add_edge("Text\nTokenization", "Transformer\nModel")
+    G.add_edge("Transformer\nModel", "Early Fusion")
+    G.add_edge("Transformer\nModel", "Late Fusion")
+    G.add_edge("Transformer\nModel", "Hybrid Fusion")
+    
+    # Output connections
+    G.add_edge("Early Fusion", "Emotion Prediction")
+    G.add_edge("Late Fusion", "Emotion Prediction")
+    G.add_edge("Hybrid Fusion", "Emotion Prediction")
+    
+    # Get node positions
+    pos = nx.get_node_attributes(G, 'pos')
+    
+    # Draw the graph with a light blue theme
+    node_sizes = {
+        "Input Data": 2000,
+        "Stage 1: Modality-Specific Processing": 3000,
+        "Stage 2: Multimodal Fusion": 3000
+    }
+    
+    default_size = 2000
+    node_sizes = {node: node_sizes.get(node, default_size) for node in G.nodes()}
+    
+    # Draw non-label nodes
+    regular_nodes = [n for n in G.nodes() if n not in ["Stage 1: Modality-Specific Processing", "Stage 2: Multimodal Fusion"]]
+    nx.draw_networkx_nodes(
+        G, pos, 
+        nodelist=regular_nodes,
+        node_size=[node_sizes[n] for n in regular_nodes],
+        node_color='lightblue', 
+        edgecolors='black',
+        linewidths=1
+    )
+    
+    # Draw stage label nodes with different style - transparent with no borders
+    stage_nodes = ["Stage 1: Modality-Specific Processing", "Stage 2: Multimodal Fusion"]
+    nx.draw_networkx_nodes(
+        G, pos, 
+        nodelist=stage_nodes,
+        node_size=[node_sizes[n] for n in stage_nodes],
+        node_color='none',  # Transparent
+        edgecolors='none'  # No border
+    )
+    
+    # Draw edges
+    nx.draw_networkx_edges(G, pos, edge_color='black', width=1.5, arrowsize=15)
+    
+    # Draw labels
+    nx.draw_networkx_labels(G, pos, font_size=10, font_family='sans-serif')
+    
+    # Remove axis
+    plt.axis('off')
+    
+    # Add title
+    plt.title("High-Level System Architecture", fontsize=14)
+    
+    # Save with high quality
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=300, bbox_inches='tight', pad_inches=0.1)
+    plt.close()
+    
+    print(f"System architecture diagram saved to {output_path}")
+    return output_path
 
 # 2. Text Model Architecture
 def create_text_model_architecture():
@@ -501,6 +618,227 @@ def create_experiment_framework():
     plt.savefig("CS297-298-Xiangyi-Report/Figures/experiment_framework.png", dpi=300, bbox_inches='tight')
     plt.close()
 
+def create_hybrid_fusion_architecture():
+    fig, ax = plt.subplots(figsize=(10, 8))
+    
+    # Define boxes dimensions and positions
+    box_width, box_height = 0.2, 0.08
+    text_x, audio_x = 0.3, 0.7
+    
+    # Input level
+    text_input = patches.Rectangle((text_x - box_width/2, 0.9), box_width, box_height, 
+                               linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    audio_input = patches.Rectangle((audio_x - box_width/2, 0.9), box_width, box_height, 
+                                linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    ax.add_patch(text_input)
+    ax.add_patch(audio_input)
+    ax.text(text_x, 0.94, "Text Input", ha='center', va='center')
+    ax.text(audio_x, 0.94, "Audio Input", ha='center', va='center')
+    
+    # Early processing layers - Modality specific
+    text_process1 = patches.Rectangle((text_x - box_width/2, 0.75), box_width, box_height, 
+                                  linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    audio_process1 = patches.Rectangle((audio_x - box_width/2, 0.75), box_width, box_height, 
+                                   linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    ax.add_patch(text_process1)
+    ax.add_patch(audio_process1)
+    ax.text(text_x, 0.79, "Transformer\nLayers 1-8", ha='center', va='center', fontsize=9)
+    ax.text(audio_x, 0.79, "CNN/LSTM\nLayers", ha='center', va='center', fontsize=9)
+    
+    # Intermediate representations
+    text_repr = patches.Rectangle((text_x - box_width/2, 0.6), box_width, box_height, 
+                             linewidth=1, edgecolor='black', facecolor='lightgreen', alpha=0.7)
+    audio_repr = patches.Rectangle((audio_x - box_width/2, 0.6), box_width, box_height, 
+                              linewidth=1, edgecolor='black', facecolor='lightgreen', alpha=0.7)
+    ax.add_patch(text_repr)
+    ax.add_patch(audio_repr)
+    ax.text(text_x, 0.64, "Intermediate\nText Representation", ha='center', va='center', fontsize=9)
+    ax.text(audio_x, 0.64, "Intermediate\nAudio Representation", ha='center', va='center', fontsize=9)
+    
+    # Feature projection
+    text_proj = patches.Rectangle((text_x - box_width/2, 0.45), box_width, box_height, 
+                             linewidth=1, edgecolor='black', facecolor='lightgreen', alpha=0.7)
+    audio_proj = patches.Rectangle((audio_x - box_width/2, 0.45), box_width, box_height, 
+                              linewidth=1, edgecolor='black', facecolor='lightgreen', alpha=0.7)
+    ax.add_patch(text_proj)
+    ax.add_patch(audio_proj)
+    ax.text(text_x, 0.49, "Dense(256)", ha='center', va='center', fontsize=9)
+    ax.text(audio_x, 0.49, "Dense(128)", ha='center', va='center', fontsize=9)
+    
+    # Concatenation
+    concat_box = patches.Rectangle((0.4, 0.3), 0.2, 0.08, 
+                              linewidth=1, edgecolor='black', facecolor='gold', alpha=0.7)
+    ax.add_patch(concat_box)
+    ax.text(0.5, 0.34, "Concatenation", ha='center', va='center')
+    
+    # Joint processing
+    joint1 = patches.Rectangle((0.4, 0.2), 0.2, 0.05, 
+                          linewidth=1, edgecolor='black', facecolor='lightyellow', alpha=0.7)
+    joint2 = patches.Rectangle((0.4, 0.13), 0.2, 0.05, 
+                          linewidth=1, edgecolor='black', facecolor='lightyellow', alpha=0.7)
+    ax.add_patch(joint1)
+    ax.add_patch(joint2)
+    ax.text(0.5, 0.225, "Dense(384) + ReLU", ha='center', va='center', fontsize=9)
+    ax.text(0.5, 0.155, "Dense(192) + ReLU", ha='center', va='center', fontsize=9)
+    
+    # Output
+    output = patches.Rectangle((0.4, 0.05), 0.2, 0.05, 
+                          linewidth=1, edgecolor='black', facecolor='lightcoral', alpha=0.7)
+    ax.add_patch(output)
+    ax.text(0.5, 0.075, "Emotion Prediction", ha='center', va='center')
+    
+    # Connecting arrows
+    # Text path
+    ax.arrow(text_x, 0.9, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(text_x, 0.75, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(text_x, 0.6, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(text_x, 0.45, 0.14, -0.11, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    
+    # Audio path
+    ax.arrow(audio_x, 0.9, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(audio_x, 0.75, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(audio_x, 0.6, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(audio_x, 0.45, -0.14, -0.11, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    
+    # Joint path
+    ax.arrow(0.5, 0.3, 0, -0.05, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(0.5, 0.2, 0, -0.02, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(0.5, 0.13, 0, -0.03, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    
+    # Title and labels
+    ax.text(0.5, 0.97, "Hybrid Fusion Architecture", fontsize=14, ha='center', fontweight='bold')
+    ax.text(0.2, 0.82, "Modality-Specific\nProcessing", fontsize=10, ha='center', fontweight='bold')
+    ax.text(0.2, 0.52, "Partial Feature\nExtraction", fontsize=10, ha='center', fontweight='bold')
+    ax.text(0.8, 0.25, "Joint Processing\nWith Shared Layers", fontsize=10, ha='center', fontweight='bold')
+    
+    # Add background shades to separate processing stages
+    modality_bg = patches.Rectangle((0.05, 0.44), 0.9, 0.55, linewidth=1, edgecolor='black', 
+                                   facecolor='lightblue', alpha=0.1)
+    fusion_bg = patches.Rectangle((0.05, 0.04), 0.9, 0.35, linewidth=1, edgecolor='black', 
+                                 facecolor='lightyellow', alpha=0.1)
+    ax.add_patch(modality_bg)
+    ax.add_patch(fusion_bg)
+    
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.axis('off')
+    
+    plt.title("Detailed Architecture of Hybrid Fusion Approach", fontsize=16, pad=20)
+    plt.tight_layout()
+    plt.savefig("CS297-298-Xiangyi-Report/Figures/hybrid_fusion_detailed.png", dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print("✓ Created hybrid fusion architecture diagram")
+
+def create_late_fusion_architecture():
+    fig, ax = plt.subplots(figsize=(10, 8))
+    
+    # Define boxes dimensions and positions
+    box_width, box_height = 0.2, 0.08
+    text_x, audio_x = 0.3, 0.7
+    
+    # Input level
+    text_input = patches.Rectangle((text_x - box_width/2, 0.9), box_width, box_height, 
+                               linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    audio_input = patches.Rectangle((audio_x - box_width/2, 0.9), box_width, box_height, 
+                                linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    ax.add_patch(text_input)
+    ax.add_patch(audio_input)
+    ax.text(text_x, 0.94, "Text Input", ha='center', va='center')
+    ax.text(audio_x, 0.94, "Audio Input", ha='center', va='center')
+    
+    # Text processing pipeline - Left side
+    text_process1 = patches.Rectangle((text_x - box_width/2, 0.75), box_width, box_height, 
+                                  linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    text_process2 = patches.Rectangle((text_x - box_width/2, 0.6), box_width, box_height, 
+                                  linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    text_process3 = patches.Rectangle((text_x - box_width/2, 0.45), box_width, box_height, 
+                                  linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    ax.add_patch(text_process1)
+    ax.add_patch(text_process2)
+    ax.add_patch(text_process3)
+    ax.text(text_x, 0.79, "Text\nTokenization", ha='center', va='center', fontsize=9)
+    ax.text(text_x, 0.64, "Transformer\nModel", ha='center', va='center', fontsize=9)
+    ax.text(text_x, 0.49, "Text Emotion\nPrediction", ha='center', va='center', fontsize=9)
+    
+    # Audio processing pipeline - Right side
+    audio_process1 = patches.Rectangle((audio_x - box_width/2, 0.75), box_width, box_height, 
+                                   linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    audio_process2 = patches.Rectangle((audio_x - box_width/2, 0.6), box_width, box_height, 
+                                   linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    audio_process3 = patches.Rectangle((audio_x - box_width/2, 0.45), box_width, box_height, 
+                                   linewidth=1, edgecolor='black', facecolor='lightblue', alpha=0.7)
+    ax.add_patch(audio_process1)
+    ax.add_patch(audio_process2)
+    ax.add_patch(audio_process3)
+    ax.text(audio_x, 0.79, "Audio Feature\nExtraction", ha='center', va='center', fontsize=9)
+    ax.text(audio_x, 0.64, "CNN/LSTM\nModel", ha='center', va='center', fontsize=9)
+    ax.text(audio_x, 0.49, "Audio Emotion\nPrediction", ha='center', va='center', fontsize=9)
+    
+    # Fusion component - Bottom
+    fusion_box = patches.Rectangle((0.4, 0.3), 0.2, 0.08, 
+                              linewidth=1, edgecolor='black', facecolor='gold', alpha=0.7)
+    ax.add_patch(fusion_box)
+    ax.text(0.5, 0.34, "Decision Fusion\n(Weighted Averaging)", ha='center', va='center', fontsize=9)
+    
+    # Output
+    output = patches.Rectangle((0.4, 0.15), 0.2, 0.08, 
+                          linewidth=1, edgecolor='black', facecolor='lightcoral', alpha=0.7)
+    ax.add_patch(output)
+    ax.text(0.5, 0.19, "Final Emotion\nPrediction", ha='center', va='center', fontsize=9)
+    
+    # Connecting arrows
+    # Text path
+    ax.arrow(text_x, 0.9, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(text_x, 0.75, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(text_x, 0.6, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(text_x, 0.45, 0.12, -0.08, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    
+    # Audio path
+    ax.arrow(audio_x, 0.9, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(audio_x, 0.75, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(audio_x, 0.6, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    ax.arrow(audio_x, 0.45, -0.12, -0.08, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    
+    # Output path
+    ax.arrow(0.5, 0.3, 0, -0.07, head_width=0.02, head_length=0.02, fc='black', ec='black', linewidth=1)
+    
+    # Add explanatory text labels
+    ax.text(0.5, 0.97, "Late Fusion Architecture", fontsize=14, ha='center', fontweight='bold')
+    ax.text(0.2, 0.38, "Independent Modality\nProcessing", fontsize=10, ha='center', fontweight='bold')
+    ax.text(0.8, 0.25, "Decision-level\nFusion", fontsize=10, ha='center', fontweight='bold')
+    
+    # Add emphasis on independent processing
+    indep_text_box = patches.Rectangle((0.1, 0.4), 0.4, 0.6, linewidth=2, 
+                                   edgecolor='blue', facecolor='none', linestyle='--')
+    indep_audio_box = patches.Rectangle((0.5, 0.4), 0.4, 0.6, linewidth=2, 
+                                    edgecolor='green', facecolor='none', linestyle='--')
+    ax.add_patch(indep_text_box)
+    ax.add_patch(indep_audio_box)
+    ax.text(0.3, 0.35, "Text Pipeline", fontsize=10, ha='center', color='blue')
+    ax.text(0.7, 0.35, "Audio Pipeline", fontsize=10, ha='center', color='green')
+    
+    # Add weights visualization for fusion
+    weight_text = patches.Rectangle((0.35, 0.25), 0.1, 0.03, linewidth=1, 
+                               edgecolor='black', facecolor='blue', alpha=0.4)
+    weight_audio = patches.Rectangle((0.55, 0.25), 0.1, 0.03, linewidth=1, 
+                                edgecolor='black', facecolor='green', alpha=0.4)
+    ax.add_patch(weight_text)
+    ax.add_patch(weight_audio)
+    ax.text(0.4, 0.265, "w₁", fontsize=8, ha='center')
+    ax.text(0.6, 0.265, "w₂", fontsize=8, ha='center')
+    
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.axis('off')
+    
+    plt.title("Detailed Architecture of Late Fusion Approach", fontsize=16, pad=20)
+    plt.tight_layout()
+    plt.savefig("CS297-298-Xiangyi-Report/Figures/late_fusion_detailed_proper.png", dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print("✓ Created detailed late fusion architecture diagram")
+
 # Generate all diagrams
 def main():
     print("Generating architecture diagrams using matplotlib...")
@@ -520,6 +858,15 @@ def main():
     create_experiment_framework()
     print("✓ Created experiment framework diagram")
     
+    create_hybrid_fusion_architecture()
+    print("✓ Created hybrid fusion architecture diagram")
+    
+    create_late_fusion_architecture()
+    print("✓ Created detailed late fusion architecture diagram")
+    
+    # Generate improved system architecture
+    generate_improved_system_architecture()
+    
     # Generate LaTeX code for inclusion
     latex_code = '% Add these diagram figures to your LaTeX document\n\n'
     diagrams = [
@@ -527,7 +874,9 @@ def main():
         'text_model_architecture',
         'fusion_strategies_comparison',
         'mfcc_pipeline',
-        'experiment_framework'
+        'experiment_framework',
+        'hybrid_fusion_detailed',
+        'late_fusion_detailed_proper'
     ]
     
     for i, diagram in enumerate(diagrams):

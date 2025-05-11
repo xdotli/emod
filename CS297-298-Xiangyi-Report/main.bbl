@@ -21,42 +21,13 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{mohammad2013crowdsourcing}
-S.~M. Mohammad and P.~D. Turney, ``Crowdsourcing a word-emotion association
-  lexicon,'' \emph{Computational Intelligence}, vol.~29, no.~3, pp. 436--465,
-  2013.
+\bibitem{strapparava2004wordnet}
+C.~Strapparava and A.~Valitutti, ``Wordnet-affect: an affective extension of
+  wordnet,'' \emph{LREC}, 2004.
 
-\bibitem{wang2012harnessing}
-W.~Wang, L.~Chen, K.~Thirunarayan, and A.~P. Sheth, ``Harnessing wikipedia for
-  automatic emotion detection,'' in \emph{2012 IEEE 12th International
-  Conference on Data Mining Workshops}.\hskip 1em plus 0.5em minus 0.4em\relax
-  IEEE, 2012, pp. 799--806.
-
-\bibitem{abdul2017emonet}
-M.~Abdul-Mageed and L.~Ungar, ``Emonet: Fine-grained emotion detection with
-  gated recurrent neural networks,'' \emph{Proceedings of the 55th annual
-  meeting of the association for computational linguistics}, vol.~1, pp.
-  718--728, 2017.
-
-\bibitem{devlin2018bert}
-J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova, ``Bert: Pre-training of deep
-  bidirectional transformers for language understanding,'' \emph{arXiv preprint
-  arXiv:1810.04805}, 2018.
-
-\bibitem{liu2019roberta}
-Y.~Liu, M.~Ott, N.~Goyal, J.~Du, M.~Joshi, D.~Chen, O.~Levy, M.~Lewis,
-  L.~Zettlemoyer, and V.~Stoyanov, ``Roberta: A robustly optimized bert
-  pretraining approach,'' 2019.
-
-\bibitem{yang2019xlnet}
-Z.~Yang, Z.~Dai, Y.~Yang, J.~Carbonell, R.~Salakhutdinov, and Q.~V. Le,
-  ``Xlnet: Generalized autoregressive pretraining for language understanding,''
-  \emph{Advances in neural information processing systems}, vol.~32, 2019.
-
-\bibitem{clark2020electra}
-K.~Clark, M.-T. Luong, Q.~V. Le, and C.~D. Manning, ``Electra: Pre-training
-  text encoders as discriminators rather than generators,'' \emph{arXiv
-  preprint arXiv:2003.10555}, 2020.
+\bibitem{mohammad2013nrc}
+S.~M. Mohammad and P.~Turney, ``{NRC} emotion lexicon,'' \emph{Technical
+  Report, NRC}, 2013.
 
 \bibitem{schuller2009acoustic}
 B.~Schuller, S.~Steidl, and A.~Batliner, ``Acoustic emotion recognition: A
@@ -64,26 +35,96 @@ B.~Schuller, S.~Steidl, and A.~Batliner, ``Acoustic emotion recognition: A
   Automatic Speech Recognition \& Understanding}.\hskip 1em plus 0.5em minus
   0.4em\relax IEEE, 2009, pp. 552--557.
 
-\bibitem{li2013speech}
-L.~Li, Y.~Zhao, D.~Jiang, and Y.~Zhang, ``Speech emotion recognition using
-  hidden markov models,'' \emph{Mobile Multimedia Processing: Fundamentals,
-  Methods, and Applications}, pp. 244--254, 2013.
-
 \bibitem{mao2014learning}
 Q.~Mao, M.~Dong, Z.~Huang, and Y.~Zhan, ``Learning salient features for speech
   emotion recognition using convolutional neural networks,'' in \emph{IEEE
   transactions on multimedia}, vol.~16, no.~8.\hskip 1em plus 0.5em minus
   0.4em\relax IEEE, 2014, pp. 2203--2213.
 
-\bibitem{schneider2019wav2vec}
-S.~Schneider, A.~Baevski, R.~Collobert, and M.~Auli, ``wav2vec: Unsupervised
-  pre-training for speech recognition,'' \emph{arXiv preprint
-  arXiv:1904.05862}, 2019.
+\bibitem{abdul2017emonet}
+M.~Abdul-Mageed and L.~Ungar, ``Emonet: Fine-grained emotion detection with
+  gated recurrent neural networks,'' \emph{Proceedings of the 55th annual
+  meeting of the association for computational linguistics}, vol.~1, pp.
+  718--728, 2017.
+
+\bibitem{poria2018multimodal}
+S.~Poria, E.~Cambria, and et~al., ``Multimodal sentiment analysis: Addressing
+  key issues and setting up the baselines,'' \emph{IEEE Intelligent Systems},
+  2018.
+
+\bibitem{liu2019roberta}
+Y.~Liu, M.~Ott, N.~Goyal, J.~Du, M.~Joshi, D.~Chen, O.~Levy, M.~Lewis,
+  L.~Zettlemoyer, and V.~Stoyanov, ``Roberta: A robustly optimized bert
+  pretraining approach,'' 2019.
+
+\bibitem{tsai2019mult}
+Y.-H.~H. Tsai and et~al., ``Mult: Multimodal transformer for emotion
+  recognition,'' in \emph{ACL}, 2019.
+
+\bibitem{lv2021progressive}
+J.~Lv and et~al., ``Progressive modality reinforcement for multimodal emotion
+  recognition,'' in \emph{ICASSP}, 2021.
+
+\bibitem{wang2020context}
+T.~Wang and et~al., ``Context-aware multimodal emotion recognition via a new
+  unified transformer framework,'' in \emph{Proceedings of ACM MM}, 2020.
+
+\bibitem{siriwardhana2020joint}
+C.~Siriwardhana and et~al., ``Jointly fine-tuning bert-based representations
+  for multimodal emotion recognition,'' in \emph{Proceedings of ICASSP}, 2020.
 
 \bibitem{poria2017review}
 S.~Poria, E.~Cambria, R.~Bajpai, and A.~Hussain, ``A review of affective
   computing: From unimodal analysis to multimodal fusion,'' \emph{Information
   Fusion}, vol.~37, pp. 98--125, 2017.
+
+\bibitem{wang2019words}
+Y.~Wang, A.~Zadeh, and L.~Morency, ``Words can shift: Dynamically adjusting
+  word representations using nonverbal behaviors,'' in \emph{Proceedings of
+  ACL}, 2019.
+
+\bibitem{zadeh2018multimodal_tfn}
+A.~e.~a. Zadeh, ``Tensor fusion network for multimodal sentiment analysis,'' in
+  \emph{EMNLP}, 2017.
+
+\bibitem{zadeh2018mfn}
+------, ``Memory fusion network for multi-view sequential learning,'' in
+  \emph{AAAI}, 2018.
+
+\bibitem{mittal2020m3er}
+T.~Mittal, U.~Bhattacharya, and et~al., ``M3er: Multiplicative multimodal
+  emotion recognition using facial, textual, and speech cues,'' in \emph{AAAI},
+  2020.
+
+\bibitem{busso2008iemocap}
+C.~Busso, M.~Bulut, C.-C. Lee, A.~Kazemzadeh, E.~Mower, S.~Kim, J.~N. Chang,
+  S.~Lee, and S.~S. Narayanan, ``Iemocap: Interactive emotional dyadic motion
+  capture database,'' \emph{Language resources and evaluation}, vol.~42, no.~4,
+  pp. 335--359, 2008.
+
+\bibitem{zadeh2016mosi}
+A.~e.~a. Zadeh, ``Multimodal sentiment intensity analysis in videos,'' in
+  \emph{ACL}, 2016.
+
+\bibitem{zadeh2018multimodal}
+A.~Zadeh, P.~P. Liang, S.~Poria, E.~Cambria, and L.-P. Morency, ``Multimodal
+  language analysis in the wild: Cmu-mosei dataset and interpretable dynamic
+  fusion graph,'' in \emph{Proceedings of the 56th Annual Meeting of the
+  Association for Computational Linguistics}, vol.~1, 2018, pp. 2236--2246.
+
+\bibitem{poria2018meld}
+S.~e.~a. Poria, ``Meld: A multimodal multi-party dataset for emotion
+  recognition in conversations,'' in \emph{ACL}, 2018.
+
+\bibitem{li2013speech}
+L.~Li, Y.~Zhao, D.~Jiang, and Y.~Zhang, ``Speech emotion recognition using
+  hidden markov models,'' \emph{Mobile Multimedia Processing: Fundamentals,
+  Methods, and Applications}, pp. 244--254, 2013.
+
+\bibitem{schneider2019wav2vec}
+S.~Schneider, A.~Baevski, R.~Collobert, and M.~Auli, ``wav2vec: Unsupervised
+  pre-training for speech recognition,'' \emph{arXiv preprint
+  arXiv:1904.05862}, 2019.
 
 \bibitem{wagner2011introducting}
 J.~Wagner, F.~Lingenfelser, T.~Baur, I.~Damian, F.~Kistler, and E.~André,
@@ -102,12 +143,6 @@ D.~Kiela, S.~Bhooshan, H.~Firooz, and D.~Davison, ``Supervised multimodal
   bitransformers for classifying images and text,'' in \emph{arXiv preprint
   arXiv:1909.02950}, 2019.
 
-\bibitem{busso2008iemocap}
-C.~Busso, M.~Bulut, C.-C. Lee, A.~Kazemzadeh, E.~Mower, S.~Kim, J.~N. Chang,
-  S.~Lee, and S.~S. Narayanan, ``Iemocap: Interactive emotional dyadic motion
-  capture database,'' \emph{Language resources and evaluation}, vol.~42, no.~4,
-  pp. 335--359, 2008.
-
 \bibitem{mckeown2012semaine}
 G.~McKeown, M.~Valstar, R.~Cowie, M.~Pantic, and M.~Schroder, ``The semaine
   database: Annotated multimodal records of emotionally colored conversations
@@ -120,16 +155,25 @@ S.~R. Livingstone and F.~A. Russo, ``The ryerson audio-visual database of
   vocal expressions in north american english,'' \emph{PloS one}, vol.~13,
   no.~5, p. e0196391, 2018.
 
-\bibitem{zadeh2018multimodal}
-A.~Zadeh, P.~P. Liang, S.~Poria, E.~Cambria, and L.-P. Morency, ``Multimodal
-  language analysis in the wild: Cmu-mosei dataset and interpretable dynamic
-  fusion graph,'' in \emph{Proceedings of the 56th Annual Meeting of the
-  Association for Computational Linguistics}, vol.~1, 2018, pp. 2236--2246.
+\bibitem{devlin2018bert}
+J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova, ``Bert: Pre-training of deep
+  bidirectional transformers for language understanding,'' \emph{arXiv preprint
+  arXiv:1810.04805}, 2018.
+
+\bibitem{yang2019xlnet}
+Z.~Yang, Z.~Dai, Y.~Yang, J.~Carbonell, R.~Salakhutdinov, and Q.~V. Le,
+  ``Xlnet: Generalized autoregressive pretraining for language understanding,''
+  \emph{Advances in neural information processing systems}, vol.~32, 2019.
 
 \bibitem{lan2019albert}
 Z.~Lan, M.~Chen, S.~Goodman, K.~Gimpel, P.~Sharma, and R.~Soricut, ``Albert: A
   lite bert for self-supervised learning of language representations,''
   \emph{arXiv preprint arXiv:1909.11942}, 2019.
+
+\bibitem{clark2020electra}
+K.~Clark, M.-T. Luong, Q.~V. Le, and C.~D. Manning, ``Electra: Pre-training
+  text encoders as discriminators rather than generators,'' \emph{arXiv
+  preprint arXiv:2003.10555}, 2020.
 
 \bibitem{he2020deberta}
 P.~He, X.~Liu, J.~Gao, and W.~Chen, ``Deberta: Decoding-enhanced bert with

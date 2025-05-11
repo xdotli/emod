@@ -1,0 +1,55 @@
+# System Architecture Diagram Improvement
+
+## Issues with current diagram:
+- "Input Data" label is awkwardly positioned between the Audio Signal and Text Transcript boxes
+- The overall layout could be improved for better clarity
+
+## Suggested improvements:
+1. Place "Input Data" as a clear header above both the Audio Signal and Text Transcript boxes
+2. Ensure proper alignment of all boxes and arrows
+3. Keep the same overall flow and structure
+
+## Diagram Structure:
+```
+                    +--------------------+
+                    |     Input Data     |
+                    +--------------------+
+                           /      \
+                          /        \
+            +------------+          +---------------+
+            | Audio Signal|          |Text Transcript|
+            +------------+          +---------------+
+                   |                        |
+                   v                        v
+            +------------+          +---------------+
+            |Audio Feature|          |     Text      |
+            | Extraction  |          | Tokenization  |
+            +------------+          +---------------+
+                   |                        |
+                   v                        v
+            +------------+          +---------------+
+            | Audio Model |          | Transformer  |
+            |             |          |    Model     |
+            +------------+          +---------------+
+                   |                        |
+                   v                        v
++-----------------------------------------------------+
+|               Stage 2: Multimodal Fusion            |
++-----------------------------------------------------+
+         /            |                  \
+        /             |                   \
++------------+ +------------+      +------------+
+|Early Fusion| |Late Fusion |      |Hybrid Fusion|
++------------+ +------------+      +------------+
+       |              |                  |
+       v              v                  v
+                +------------+
+                |  Emotion   |
+                | Prediction |
+                +------------+
+```
+
+## Caption:
+"High-Level System Architecture: The diagram illustrates the two-stage approach with modality-specific processing of audio and text followed by multimodal fusion strategies. Showing the complete data flow from input processing through emotion prediction, this architectural overview highlights the parallel processing streams and fusion options implemented in our system."
+
+Note: This improved diagram maintains the same logical flow as the original but fixes the alignment issues and improves the overall clarity of the architecture presentation. 

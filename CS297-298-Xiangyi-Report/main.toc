@@ -1,229 +1,234 @@
 \contentsline {section}{\numberline {1}Introduction}{1}{}%
-\contentsline {section}{\numberline {2}Related Work}{2}{}%
-\contentsline {subsection}{\numberline {2.1}Text-Based Emotion Detection}{3}{}%
-\contentsline {subsection}{\numberline {2.2}Audio-Based Emotion Detection}{4}{}%
-\contentsline {subsection}{\numberline {2.3}Multimodal Approaches}{4}{}%
-\contentsline {subsection}{\numberline {2.4}Emotion Recognition Datasets}{5}{}%
-\contentsline {section}{\numberline {3}Methodology}{5}{}%
-\contentsline {subsection}{\numberline {3.1}System Architecture Overview}{6}{}%
-\contentsline {subsection}{\numberline {3.2}Text Processing Models}{6}{}%
-\contentsline {subsubsection}{\numberline {3.2.1}BERT (Bidirectional Encoder Representations from Transformers)}{6}{}%
-\contentsline {paragraph}{Architecture Details:}{7}{}%
-\contentsline {paragraph}{Pre-training Objectives:}{8}{}%
-\contentsline {paragraph}{Fine-tuning Approach:}{8}{}%
-\contentsline {subsubsection}{\numberline {3.2.2}RoBERTa (Robustly Optimized BERT Approach)}{8}{}%
-\contentsline {paragraph}{Architectural Improvements:}{8}{}%
-\contentsline {paragraph}{Training Enhancements:}{9}{}%
-\contentsline {paragraph}{Implementation Details:}{9}{}%
-\contentsline {subsubsection}{\numberline {3.2.3}XLNet}{9}{}%
-\contentsline {paragraph}{Key Innovations:}{9}{}%
-\contentsline {paragraph}{Implementation Details:}{10}{}%
-\contentsline {subsubsection}{\numberline {3.2.4}ALBERT (A Lite BERT)}{10}{}%
-\contentsline {paragraph}{Parameter Reduction Techniques:}{10}{}%
-\contentsline {paragraph}{Additional Improvements:}{11}{}%
-\contentsline {subsubsection}{\numberline {3.2.5}ELECTRA (Efficiently Learning an Encoder that Classifies Token Replacements Accurately)}{11}{}%
-\contentsline {paragraph}{Novel Pre-training Approach:}{11}{}%
-\contentsline {paragraph}{Advantages:}{11}{}%
-\contentsline {subsubsection}{\numberline {3.2.6}DeBERTa (Decoding-enhanced BERT with disentangled attention)}{12}{}%
-\contentsline {paragraph}{Key Innovations:}{12}{}%
+\contentsline {section}{\numberline {2}Related Work}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Early Emotion-Recognition Approaches (pre-2012)}{3}{}%
+\contentsline {subsection}{\numberline {2.2}Deep-Learning Era (2013–2017)}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Transformer-Based Models (2018–2025)}{3}{}%
+\contentsline {subsection}{\numberline {2.4}Multimodal Fusion Taxonomy}{4}{}%
+\contentsline {subsection}{\numberline {2.5}Benchmark Datasets}{4}{}%
+\contentsline {subsection}{\numberline {2.6}Current Challenges}{4}{}%
+\contentsline {subsection}{\numberline {2.7}Audio-Based Emotion Detection}{7}{}%
+\contentsline {subsection}{\numberline {2.8}Multimodal Approaches}{7}{}%
+\contentsline {subsection}{\numberline {2.9}Emotion Recognition Datasets}{8}{}%
+\contentsline {section}{\numberline {3}Methodology}{8}{}%
+\contentsline {subsection}{\numberline {3.1}System Architecture Overview}{9}{}%
+\contentsline {subsection}{\numberline {3.2}Text Processing Models}{9}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}BERT (Bidirectional Encoder Representations from Transformers)}{9}{}%
+\contentsline {paragraph}{Architecture Details:}{10}{}%
+\contentsline {paragraph}{Pre-training Objectives:}{11}{}%
+\contentsline {paragraph}{Fine-tuning Approach:}{11}{}%
+\contentsline {subsubsection}{\numberline {3.2.2}RoBERTa (Robustly Optimized BERT Approach)}{11}{}%
+\contentsline {paragraph}{Architectural Improvements:}{11}{}%
+\contentsline {paragraph}{Training Enhancements:}{12}{}%
 \contentsline {paragraph}{Implementation Details:}{12}{}%
-\contentsline {subsubsection}{\numberline {3.2.7}Transformer Architecture Details}{12}{}%
-\contentsline {subsection}{\numberline {3.3}Text Model Training Procedure}{12}{}%
-\contentsline {paragraph}{Preprocessing:}{13}{}%
-\contentsline {paragraph}{Hyperparameters:}{13}{}%
-\contentsline {paragraph}{Regularization Techniques:}{14}{}%
-\contentsline {paragraph}{Loss Function:}{14}{}%
-\contentsline {subsection}{\numberline {3.4}Audio Feature Extraction}{14}{}%
-\contentsline {subsubsection}{\numberline {3.4.1}Mel-Frequency Cepstral Coefficients (MFCCs)}{14}{}%
-\contentsline {paragraph}{Extraction Process:}{15}{}%
-\contentsline {paragraph}{Implementation Details:}{16}{}%
-\contentsline {subsubsection}{\numberline {3.4.2}Spectrograms}{16}{}%
-\contentsline {paragraph}{Generation Process:}{16}{}%
-\contentsline {paragraph}{Implementation Details:}{17}{}%
-\contentsline {subsubsection}{\numberline {3.4.3}Prosodic Features}{17}{}%
-\contentsline {paragraph}{Feature Set:}{17}{}%
-\contentsline {paragraph}{Implementation Details:}{17}{}%
-\contentsline {subsubsection}{\numberline {3.4.4}Wav2vec Embeddings}{18}{}%
-\contentsline {paragraph}{Model Architecture:}{18}{}%
+\contentsline {subsubsection}{\numberline {3.2.3}XLNet}{12}{}%
+\contentsline {paragraph}{Key Innovations:}{12}{}%
+\contentsline {paragraph}{Implementation Details:}{13}{}%
+\contentsline {subsubsection}{\numberline {3.2.4}ALBERT (A Lite BERT)}{13}{}%
+\contentsline {paragraph}{Parameter Reduction Techniques:}{13}{}%
+\contentsline {paragraph}{Additional Improvements:}{13}{}%
+\contentsline {subsubsection}{\numberline {3.2.5}ELECTRA (Efficiently Learning an Encoder that Classifies Token Replacements Accurately)}{14}{}%
+\contentsline {paragraph}{Novel Pre-training Approach:}{14}{}%
+\contentsline {paragraph}{Advantages:}{14}{}%
+\contentsline {subsubsection}{\numberline {3.2.6}DeBERTa (Decoding-enhanced BERT with disentangled attention)}{14}{}%
+\contentsline {paragraph}{Key Innovations:}{15}{}%
+\contentsline {paragraph}{Implementation Details:}{15}{}%
+\contentsline {subsubsection}{\numberline {3.2.7}Transformer Architecture Details}{15}{}%
+\contentsline {subsection}{\numberline {3.3}Text Model Training Procedure}{15}{}%
+\contentsline {paragraph}{Preprocessing:}{15}{}%
+\contentsline {paragraph}{Hyperparameters:}{16}{}%
+\contentsline {paragraph}{Regularization Techniques:}{17}{}%
+\contentsline {paragraph}{Loss Function:}{17}{}%
+\contentsline {subsection}{\numberline {3.4}Audio Feature Extraction}{17}{}%
+\contentsline {subsubsection}{\numberline {3.4.1}Mel-Frequency Cepstral Coefficients (MFCCs)}{17}{}%
+\contentsline {paragraph}{Extraction Process:}{17}{}%
 \contentsline {paragraph}{Implementation Details:}{18}{}%
-\contentsline {subsection}{\numberline {3.5}Audio Processing Models}{18}{}%
-\contentsline {subsubsection}{\numberline {3.5.1}CNN for Spectrograms and MFCCs}{19}{}%
-\contentsline {paragraph}{Architecture Details:}{19}{}%
+\contentsline {subsubsection}{\numberline {3.4.2}Spectrograms}{19}{}%
+\contentsline {paragraph}{Generation Process:}{19}{}%
 \contentsline {paragraph}{Implementation Details:}{19}{}%
-\contentsline {subsubsection}{\numberline {3.5.2}BiLSTM for Prosodic Features and Wav2vec Embeddings}{20}{}%
-\contentsline {paragraph}{Architecture Details:}{20}{}%
+\contentsline {subsubsection}{\numberline {3.4.3}Prosodic Features}{19}{}%
+\contentsline {paragraph}{Feature Set:}{20}{}%
 \contentsline {paragraph}{Implementation Details:}{20}{}%
-\contentsline {subsection}{\numberline {3.6}Fusion Strategies}{20}{}%
-\contentsline {subsubsection}{\numberline {3.6.1}Early Fusion}{21}{}%
+\contentsline {subsubsection}{\numberline {3.4.4}Wav2vec Embeddings}{20}{}%
+\contentsline {paragraph}{Model Architecture:}{20}{}%
 \contentsline {paragraph}{Implementation Details:}{21}{}%
-\contentsline {paragraph}{Training Approach:}{22}{}%
-\contentsline {paragraph}{Advantages and Limitations:}{22}{}%
-\contentsline {subsubsection}{\numberline {3.6.2}Late Fusion}{22}{}%
+\contentsline {subsection}{\numberline {3.5}Audio Processing Models}{21}{}%
+\contentsline {subsubsection}{\numberline {3.5.1}CNN for Spectrograms and MFCCs}{21}{}%
+\contentsline {paragraph}{Architecture Details:}{21}{}%
+\contentsline {paragraph}{Implementation Details:}{22}{}%
+\contentsline {subsubsection}{\numberline {3.5.2}BiLSTM for Prosodic Features and Wav2vec Embeddings}{22}{}%
+\contentsline {paragraph}{Architecture Details:}{22}{}%
 \contentsline {paragraph}{Implementation Details:}{23}{}%
-\contentsline {paragraph}{Weight Learning:}{23}{}%
-\contentsline {paragraph}{Advantages and Limitations:}{23}{}%
-\contentsline {subsubsection}{\numberline {3.6.3}Hybrid Fusion}{23}{}%
-\contentsline {paragraph}{Implementation Details:}{24}{}%
-\contentsline {paragraph}{Architecture:}{24}{}%
-\contentsline {paragraph}{Advantages and Limitations:}{24}{}%
-\contentsline {subsubsection}{\numberline {3.6.4}Attention-Based Fusion}{24}{}%
+\contentsline {subsection}{\numberline {3.6}Fusion Strategies}{23}{}%
+\contentsline {subsubsection}{\numberline {3.6.1}Early Fusion}{23}{}%
+\contentsline {paragraph}{Implementation Details:}{23}{}%
+\contentsline {paragraph}{Training Approach:}{24}{}%
+\contentsline {paragraph}{Advantages and Limitations:}{25}{}%
+\contentsline {subsubsection}{\numberline {3.6.2}Late Fusion}{25}{}%
 \contentsline {paragraph}{Implementation Details:}{25}{}%
-\contentsline {paragraph}{Attention Mechanism:}{25}{}%
+\contentsline {paragraph}{Weight Learning:}{26}{}%
 \contentsline {paragraph}{Advantages and Limitations:}{26}{}%
-\contentsline {subsection}{\numberline {3.7}Implementation Framework}{26}{}%
-\contentsline {paragraph}{Software Stack:}{26}{}%
-\contentsline {paragraph}{Cloud Infrastructure:}{26}{}%
-\contentsline {paragraph}{Experiment Management:}{27}{}%
-\contentsline {section}{\numberline {4}Experimental Setup}{27}{}%
-\contentsline {subsection}{\numberline {4.1}Dataset Description}{28}{}%
-\contentsline {paragraph}{Dataset Characteristics:}{28}{}%
-\contentsline {paragraph}{Dataset Statistics:}{28}{}%
-\contentsline {subsubsection}{\numberline {4.1.1}IEMOCAP\_Final}{28}{}%
-\contentsline {paragraph}{Characteristics:}{29}{}%
-\contentsline {subsubsection}{\numberline {4.1.2}IEMOCAP\_Filtered}{29}{}%
-\contentsline {paragraph}{Characteristics:}{29}{}%
-\contentsline {subsection}{\numberline {4.2}Data Preprocessing}{30}{}%
-\contentsline {subsubsection}{\numberline {4.2.1}Text Preprocessing}{30}{}%
-\contentsline {paragraph}{General Processing:}{30}{}%
-\contentsline {paragraph}{Model-Specific Tokenization:}{30}{}%
-\contentsline {paragraph}{Input Feature Creation:}{31}{}%
-\contentsline {paragraph}{Data Augmentation:}{31}{}%
-\contentsline {subsubsection}{\numberline {4.2.2}Audio Preprocessing}{32}{}%
-\contentsline {paragraph}{Common Preprocessing Steps:}{32}{}%
-\contentsline {paragraph}{Feature-Specific Processing:}{32}{}%
-\contentsline {paragraph}{Data Augmentation:}{33}{}%
-\contentsline {subsection}{\numberline {4.3}Infrastructure and Implementation}{34}{}%
-\contentsline {subsubsection}{\numberline {4.3.1}Hardware Configuration}{34}{}%
-\contentsline {subsubsection}{\numberline {4.3.2}Software Environment}{34}{}%
-\contentsline {subsubsection}{\numberline {4.3.3}Modal Cloud Infrastructure}{36}{}%
-\contentsline {paragraph}{Implementation Workflow:}{36}{}%
-\contentsline {subsection}{\numberline {4.4}Training Protocol}{37}{}%
-\contentsline {paragraph}{General Training Parameters:}{38}{}%
-\contentsline {paragraph}{Text Model Training:}{38}{}%
-\contentsline {paragraph}{Audio Model Training:}{38}{}%
-\contentsline {paragraph}{Multimodal Training:}{39}{}%
-\contentsline {subsection}{\numberline {4.5}Evaluation Metrics}{39}{}%
-\contentsline {paragraph}{Classification Metrics:}{39}{}%
-\contentsline {paragraph}{Regression Metrics for Dimensional Evaluation:}{40}{}%
-\contentsline {paragraph}{Computational Efficiency Metrics:}{40}{}%
-\contentsline {subsection}{\numberline {4.6}Cross-Validation Strategy}{41}{}%
-\contentsline {paragraph}{Implementation Details:}{41}{}%
-\contentsline {paragraph}{Early Stopping:}{41}{}%
-\contentsline {paragraph}{Test Set Evaluation:}{41}{}%
-\contentsline {subsection}{\numberline {4.7}Experimental Configurations}{42}{}%
-\contentsline {paragraph}{Text-Only Experiments:}{42}{}%
-\contentsline {paragraph}{Audio-Only Experiments:}{42}{}%
-\contentsline {paragraph}{Multimodal Experiments:}{42}{}%
-\contentsline {section}{\numberline {5}Results}{43}{}%
-\contentsline {subsection}{\numberline {5.1}Experiment Overview}{43}{}%
-\contentsline {paragraph}{Overall Statistics:}{43}{}%
-\contentsline {subsection}{\numberline {5.2}Overall Performance Comparison}{44}{}%
-\contentsline {subsection}{\numberline {5.3}Text Model Performance}{45}{}%
-\contentsline {subsubsection}{\numberline {5.3.1}Comparative Analysis of Transformer Models}{45}{}%
-\contentsline {paragraph}{Key Observations:}{45}{}%
-\contentsline {subsubsection}{\numberline {5.3.2}Learning Dynamics}{46}{}%
-\contentsline {paragraph}{Key Patterns:}{46}{}%
-\contentsline {subsection}{\numberline {5.4}Audio Feature Performance}{47}{}%
-\contentsline {subsubsection}{\numberline {5.4.1}Comparative Analysis of Audio Features}{47}{}%
-\contentsline {paragraph}{Key Observations:}{47}{}%
-\contentsline {subsubsection}{\numberline {5.4.2}Audio Model Architecture Analysis}{49}{}%
-\contentsline {paragraph}{CNN Architecture Variations:}{49}{}%
-\contentsline {subsection}{\numberline {5.5}Fusion Strategy Performance}{49}{}%
-\contentsline {subsubsection}{\numberline {5.5.1}Comparative Analysis of Fusion Methods}{49}{}%
-\contentsline {paragraph}{Key Observations:}{50}{}%
-\contentsline {subsubsection}{\numberline {5.5.2}Fusion Strategy and Feature Interactions}{51}{}%
-\contentsline {paragraph}{Key Patterns:}{51}{}%
-\contentsline {subsection}{\numberline {5.6}Dataset Comparison}{51}{}%
-\contentsline {subsubsection}{\numberline {5.6.1}IEMOCAP\_Final vs. IEMOCAP\_Filtered}{51}{}%
-\contentsline {paragraph}{Performance Analysis:}{52}{}%
-\contentsline {paragraph}{Key Observations:}{52}{}%
-\contentsline {subsubsection}{\numberline {5.6.2}Error Analysis by Emotion Category}{53}{}%
-\contentsline {paragraph}{IEMOCAP\_Final Confusion Matrix:}{53}{}%
-\contentsline {paragraph}{IEMOCAP\_Filtered Confusion Matrix:}{54}{}%
-\contentsline {subsection}{\numberline {5.7}Best Configurations}{55}{}%
-\contentsline {subsubsection}{\numberline {5.7.1}Top-Performing Experiments}{55}{}%
+\contentsline {subsubsection}{\numberline {3.6.3}Hybrid Fusion}{26}{}%
+\contentsline {paragraph}{Implementation Details:}{26}{}%
+\contentsline {paragraph}{Architecture:}{27}{}%
+\contentsline {paragraph}{Advantages and Limitations:}{27}{}%
+\contentsline {subsubsection}{\numberline {3.6.4}Attention-Based Fusion}{28}{}%
+\contentsline {paragraph}{Implementation Details:}{28}{}%
+\contentsline {paragraph}{Attention Mechanism:}{29}{}%
+\contentsline {paragraph}{Advantages and Limitations:}{29}{}%
+\contentsline {subsection}{\numberline {3.7}Implementation Framework}{29}{}%
+\contentsline {paragraph}{Software Stack:}{29}{}%
+\contentsline {paragraph}{Cloud Infrastructure:}{30}{}%
+\contentsline {paragraph}{Experiment Management:}{30}{}%
+\contentsline {section}{\numberline {4}Experimental Setup}{31}{}%
+\contentsline {subsection}{\numberline {4.1}Dataset Description}{31}{}%
+\contentsline {paragraph}{Dataset Characteristics:}{31}{}%
+\contentsline {paragraph}{Dataset Statistics:}{32}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}IEMOCAP\_Final}{32}{}%
+\contentsline {paragraph}{Characteristics:}{32}{}%
+\contentsline {subsubsection}{\numberline {4.1.2}IEMOCAP\_Filtered}{33}{}%
+\contentsline {paragraph}{Characteristics:}{33}{}%
+\contentsline {subsection}{\numberline {4.2}Data Preprocessing}{33}{}%
+\contentsline {subsubsection}{\numberline {4.2.1}Text Preprocessing}{34}{}%
+\contentsline {paragraph}{General Processing:}{34}{}%
+\contentsline {paragraph}{Model-Specific Tokenization:}{34}{}%
+\contentsline {paragraph}{Input Feature Creation:}{35}{}%
+\contentsline {paragraph}{Data Augmentation:}{35}{}%
+\contentsline {subsubsection}{\numberline {4.2.2}Audio Preprocessing}{35}{}%
+\contentsline {paragraph}{Common Preprocessing Steps:}{36}{}%
+\contentsline {paragraph}{Feature-Specific Processing:}{36}{}%
+\contentsline {paragraph}{Data Augmentation:}{37}{}%
+\contentsline {subsection}{\numberline {4.3}Infrastructure and Implementation}{38}{}%
+\contentsline {subsubsection}{\numberline {4.3.1}Hardware Configuration}{38}{}%
+\contentsline {subsubsection}{\numberline {4.3.2}Software Environment}{39}{}%
+\contentsline {subsubsection}{\numberline {4.3.3}Modal Cloud Infrastructure}{40}{}%
+\contentsline {paragraph}{Implementation Workflow:}{40}{}%
+\contentsline {subsection}{\numberline {4.4}Training Protocol}{41}{}%
+\contentsline {paragraph}{General Training Parameters:}{41}{}%
+\contentsline {paragraph}{Text Model Training:}{42}{}%
+\contentsline {paragraph}{Audio Model Training:}{42}{}%
+\contentsline {paragraph}{Multimodal Training:}{42}{}%
+\contentsline {subsection}{\numberline {4.5}Evaluation Metrics}{43}{}%
+\contentsline {paragraph}{Classification Metrics:}{43}{}%
+\contentsline {paragraph}{Regression Metrics for Dimensional Evaluation:}{44}{}%
+\contentsline {paragraph}{Computational Efficiency Metrics:}{44}{}%
+\contentsline {subsection}{\numberline {4.6}Cross-Validation Strategy}{45}{}%
+\contentsline {paragraph}{Implementation Details:}{45}{}%
+\contentsline {paragraph}{Early Stopping:}{45}{}%
+\contentsline {paragraph}{Test Set Evaluation:}{45}{}%
+\contentsline {subsection}{\numberline {4.7}Experimental Configurations}{45}{}%
+\contentsline {paragraph}{Text-Only Experiments:}{45}{}%
+\contentsline {paragraph}{Audio-Only Experiments:}{46}{}%
+\contentsline {paragraph}{Multimodal Experiments:}{46}{}%
+\contentsline {section}{\numberline {5}Results}{47}{}%
+\contentsline {subsection}{\numberline {5.1}Experiment Overview}{47}{}%
+\contentsline {paragraph}{Overall Statistics:}{47}{}%
+\contentsline {subsection}{\numberline {5.2}Overall Performance Comparison}{47}{}%
+\contentsline {subsection}{\numberline {5.3}Text Model Performance}{48}{}%
+\contentsline {subsubsection}{\numberline {5.3.1}Comparative Analysis of Transformer Models}{48}{}%
+\contentsline {paragraph}{Key Observations:}{48}{}%
+\contentsline {subsubsection}{\numberline {5.3.2}Learning Dynamics}{50}{}%
+\contentsline {paragraph}{Key Patterns:}{50}{}%
+\contentsline {subsection}{\numberline {5.4}Audio Feature Performance}{51}{}%
+\contentsline {subsubsection}{\numberline {5.4.1}Comparative Analysis of Audio Features}{51}{}%
+\contentsline {paragraph}{Key Observations:}{51}{}%
+\contentsline {subsubsection}{\numberline {5.4.2}Audio Model Architecture Analysis}{53}{}%
+\contentsline {paragraph}{CNN Architecture Variations:}{53}{}%
+\contentsline {subsection}{\numberline {5.5}Fusion Strategy Performance}{54}{}%
+\contentsline {subsubsection}{\numberline {5.5.1}Comparative Analysis of Fusion Methods}{54}{}%
 \contentsline {paragraph}{Key Observations:}{55}{}%
-\contentsline {subsubsection}{\numberline {5.7.2}Detailed Analysis of Top Experiment}{55}{}%
-\contentsline {paragraph}{Performance Metrics:}{56}{}%
-\contentsline {paragraph}{Dimensional Evaluation (VAD):}{56}{}%
-\contentsline {subsubsection}{\numberline {5.7.3}Best Multimodal Configuration}{56}{}%
-\contentsline {paragraph}{Performance Metrics:}{56}{}%
-\contentsline {paragraph}{Dimensional Evaluation (VAD):}{57}{}%
-\contentsline {subsection}{\numberline {5.8}Computational Efficiency Analysis}{57}{}%
-\contentsline {paragraph}{Model Size Comparison:}{57}{}%
-\contentsline {paragraph}{Training Time:}{58}{}%
-\contentsline {paragraph}{Inference Speed:}{58}{}%
-\contentsline {subsection}{\numberline {5.9}Statistical Significance Analysis}{58}{}%
-\contentsline {paragraph}{Text Model Comparisons:}{58}{}%
-\contentsline {paragraph}{Modality Comparisons:}{59}{}%
-\contentsline {subsection}{\numberline {5.10}Analysis of Emotion Misclassifications}{59}{}%
-\contentsline {paragraph}{Common Misclassification Patterns:}{59}{}%
-\contentsline {paragraph}{Case Studies:}{60}{}%
-\contentsline {subsection}{\numberline {5.11}Statistical Significance and Reproducibility Analysis}{61}{}%
-\contentsline {section}{\numberline {6}Discussion}{62}{}%
-\contentsline {subsection}{\numberline {6.1}Model Selection for Emotion Detection}{62}{}%
-\contentsline {subsubsection}{\numberline {6.1.1}Transformer Model Performance Analysis}{62}{}%
-\contentsline {paragraph}{Understanding RoBERTa's Advantage:}{62}{}%
-\contentsline {paragraph}{Model Selection Considerations:}{63}{}%
-\contentsline {paragraph}{Comparison with Prior Work:}{63}{}%
-\contentsline {subsection}{\numberline {6.2}Modality Importance}{64}{}%
-\contentsline {subsubsection}{\numberline {6.2.1}Text vs. Audio Modalities}{64}{}%
-\contentsline {paragraph}{Interpreting Unimodal Performance:}{64}{}%
-\contentsline {paragraph}{Modality Contributions:}{65}{}%
-\contentsline {subsection}{\numberline {6.3}Audio Feature Effectiveness}{65}{}%
-\contentsline {subsubsection}{\numberline {6.3.1}Comparative Analysis of Audio Representations}{65}{}%
-\contentsline {paragraph}{Feature-Specific Insights:}{66}{}%
-\contentsline {paragraph}{Implementation Challenges with Other Features:}{66}{}%
-\contentsline {subsection}{\numberline {6.4}Fusion Strategy Considerations}{67}{}%
-\contentsline {subsubsection}{\numberline {6.4.1}Comparative Effectiveness of Fusion Approaches}{67}{}%
-\contentsline {paragraph}{Feature-Specific Fusion Patterns:}{67}{}%
-\contentsline {paragraph}{Attention Mechanism Challenges:}{68}{}%
-\contentsline {subsection}{\numberline {6.5}Dataset Considerations}{68}{}%
-\contentsline {subsubsection}{\numberline {6.5.1}Impact of Dataset Selection}{68}{}%
-\contentsline {paragraph}{Dataset Limitations:}{69}{}%
-\contentsline {subsection}{\numberline {6.6}Practical Implications}{69}{}%
-\contentsline {subsubsection}{\numberline {6.6.1}Model Selection Guidelines}{69}{}%
-\contentsline {paragraph}{Application-Specific Recommendations:}{71}{}%
-\contentsline {subsection}{\numberline {6.7}Comparison with State-of-the-Art}{71}{}%
-\contentsline {subsubsection}{\numberline {6.7.1}Benchmarking Against Existing Approaches}{71}{}%
-\contentsline {paragraph}{Key Advances:}{71}{}%
-\contentsline {paragraph}{Methodological Contributions:}{72}{}%
-\contentsline {subsection}{\numberline {6.8}Limitations}{72}{}%
-\contentsline {subsubsection}{\numberline {6.8.1}Technical Limitations}{72}{}%
-\contentsline {paragraph}{Methodological Limitations:}{73}{}%
-\contentsline {subsection}{\numberline {6.9}Future Directions}{73}{}%
-\contentsline {subsubsection}{\numberline {6.9.1}Technical Improvements}{73}{}%
-\contentsline {paragraph}{Dataset and Evaluation Extensions:}{74}{}%
-\contentsline {paragraph}{Application Domains:}{74}{}%
-\contentsline {subsection}{\numberline {6.10}Ethical Considerations}{75}{}%
-\contentsline {subsubsection}{\numberline {6.10.1}Privacy and Consent}{75}{}%
-\contentsline {paragraph}{Bias and Fairness:}{75}{}%
-\contentsline {paragraph}{Transparency and Accountability:}{75}{}%
-\contentsline {subsection}{\numberline {6.11}Theoretical Implications and Novel Insights}{76}{}%
-\contentsline {section}{\numberline {7}Conclusion and Future Work}{77}{}%
-\contentsline {subsection}{\numberline {7.1}Summary of Findings}{77}{}%
-\contentsline {paragraph}{Text Model Performance:}{77}{}%
-\contentsline {paragraph}{Audio Feature Analysis:}{78}{}%
-\contentsline {paragraph}{Fusion Strategy Effectiveness:}{78}{}%
-\contentsline {paragraph}{Dataset Insights:}{79}{}%
-\contentsline {paragraph}{Optimal Configurations:}{79}{}%
-\contentsline {subsection}{\numberline {7.2}Theoretical and Practical Contributions}{80}{}%
-\contentsline {paragraph}{Theoretical Contributions:}{80}{}%
-\contentsline {paragraph}{Practical Contributions:}{80}{}%
-\contentsline {paragraph}{Methodological Contributions:}{81}{}%
-\contentsline {subsection}{\numberline {7.3}Limitations}{81}{}%
-\contentsline {paragraph}{Dataset Limitations:}{81}{}%
-\contentsline {paragraph}{Technical Limitations:}{82}{}%
-\contentsline {paragraph}{Evaluation Limitations:}{82}{}%
-\contentsline {subsection}{\numberline {7.4}Future Directions}{83}{}%
-\contentsline {paragraph}{Technical Improvements:}{83}{}%
-\contentsline {paragraph}{Architectural Innovations:}{83}{}%
-\contentsline {paragraph}{Dataset and Evaluation Extensions:}{84}{}%
-\contentsline {paragraph}{Real-World Deployment Challenges:}{84}{}%
-\contentsline {paragraph}{Application Domains:}{85}{}%
-\contentsline {paragraph}{Responsible Development:}{85}{}%
-\contentsline {subsection}{\numberline {7.5}Final Thoughts}{86}{}%
-\contentsline {subsection}{\numberline {7.6}Critical Limitations and Research Opportunities}{87}{}%
-\contentsline {subsection}{\numberline {7.7}Critical Analysis of Feature-Fusion Interactions}{88}{}%
-\contentsline {subsection}{\numberline {7.8}Ablation Studies and Component Analysis}{88}{}%
-\contentsline {subsection}{\numberline {7.9}Analysis of Emotion Misclassifications}{88}{}%
+\contentsline {subsubsection}{\numberline {5.5.2}Fusion Strategy and Feature Interactions}{55}{}%
+\contentsline {paragraph}{Key Patterns:}{56}{}%
+\contentsline {subsection}{\numberline {5.6}Dataset Comparison}{56}{}%
+\contentsline {subsubsection}{\numberline {5.6.1}IEMOCAP\_Final vs. IEMOCAP\_Filtered}{56}{}%
+\contentsline {paragraph}{Performance Analysis:}{57}{}%
+\contentsline {paragraph}{Key Observations:}{57}{}%
+\contentsline {subsubsection}{\numberline {5.6.2}Error Analysis by Emotion Category}{58}{}%
+\contentsline {paragraph}{IEMOCAP\_Final Confusion Matrix:}{58}{}%
+\contentsline {paragraph}{IEMOCAP\_Filtered Confusion Matrix:}{59}{}%
+\contentsline {subsection}{\numberline {5.7}Best Configurations}{60}{}%
+\contentsline {subsubsection}{\numberline {5.7.1}Top-Performing Experiments}{60}{}%
+\contentsline {paragraph}{Key Observations:}{60}{}%
+\contentsline {subsubsection}{\numberline {5.7.2}Detailed Analysis of Top Experiment}{61}{}%
+\contentsline {paragraph}{Performance Metrics:}{61}{}%
+\contentsline {paragraph}{Dimensional Evaluation (VAD):}{61}{}%
+\contentsline {subsubsection}{\numberline {5.7.3}Best Multimodal Configuration}{62}{}%
+\contentsline {paragraph}{Performance Metrics:}{62}{}%
+\contentsline {paragraph}{Dimensional Evaluation (VAD):}{62}{}%
+\contentsline {subsection}{\numberline {5.8}Computational Efficiency Analysis}{62}{}%
+\contentsline {paragraph}{Model Size Comparison:}{63}{}%
+\contentsline {paragraph}{Training Time:}{63}{}%
+\contentsline {paragraph}{Inference Speed:}{63}{}%
+\contentsline {subsection}{\numberline {5.9}Statistical Significance Analysis}{64}{}%
+\contentsline {paragraph}{Text Model Comparisons:}{64}{}%
+\contentsline {paragraph}{Modality Comparisons:}{64}{}%
+\contentsline {subsection}{\numberline {5.10}Analysis of Emotion Misclassifications}{65}{}%
+\contentsline {paragraph}{Common Misclassification Patterns:}{65}{}%
+\contentsline {paragraph}{Case Studies:}{66}{}%
+\contentsline {subsection}{\numberline {5.11}Statistical Significance and Reproducibility Analysis}{67}{}%
+\contentsline {section}{\numberline {6}Discussion}{68}{}%
+\contentsline {subsection}{\numberline {6.1}Model Selection for Emotion Detection}{68}{}%
+\contentsline {subsubsection}{\numberline {6.1.1}Transformer Model Performance Analysis}{68}{}%
+\contentsline {paragraph}{Understanding RoBERTa's Advantage:}{69}{}%
+\contentsline {paragraph}{Model Selection Considerations:}{69}{}%
+\contentsline {paragraph}{Comparison with Prior Work:}{70}{}%
+\contentsline {subsection}{\numberline {6.2}Modality Importance}{71}{}%
+\contentsline {subsubsection}{\numberline {6.2.1}Text vs. Audio Modalities}{71}{}%
+\contentsline {paragraph}{Interpreting Unimodal Performance:}{71}{}%
+\contentsline {paragraph}{Modality Contributions:}{72}{}%
+\contentsline {subsection}{\numberline {6.3}Audio Feature Effectiveness}{72}{}%
+\contentsline {subsubsection}{\numberline {6.3.1}Comparative Analysis of Audio Representations}{72}{}%
+\contentsline {paragraph}{Feature-Specific Insights:}{73}{}%
+\contentsline {paragraph}{Implementation Challenges with Other Features:}{73}{}%
+\contentsline {subsection}{\numberline {6.4}Fusion Strategy Considerations}{74}{}%
+\contentsline {subsubsection}{\numberline {6.4.1}Comparative Effectiveness of Fusion Approaches}{74}{}%
+\contentsline {paragraph}{Feature-Specific Fusion Patterns:}{74}{}%
+\contentsline {paragraph}{Attention Mechanism Challenges:}{75}{}%
+\contentsline {subsection}{\numberline {6.5}Dataset Considerations}{76}{}%
+\contentsline {subsubsection}{\numberline {6.5.1}Impact of Dataset Selection}{76}{}%
+\contentsline {paragraph}{Dataset Limitations:}{76}{}%
+\contentsline {subsection}{\numberline {6.6}Practical Implications}{77}{}%
+\contentsline {subsubsection}{\numberline {6.6.1}Model Selection Guidelines}{77}{}%
+\contentsline {paragraph}{Application-Specific Recommendations:}{78}{}%
+\contentsline {subsection}{\numberline {6.7}Comparison with State-of-the-Art}{78}{}%
+\contentsline {subsubsection}{\numberline {6.7.1}Benchmarking Against Existing Approaches}{78}{}%
+\contentsline {paragraph}{Key Advances:}{79}{}%
+\contentsline {paragraph}{Methodological Contributions:}{79}{}%
+\contentsline {subsection}{\numberline {6.8}Limitations}{79}{}%
+\contentsline {subsubsection}{\numberline {6.8.1}Technical Limitations}{79}{}%
+\contentsline {paragraph}{Methodological Limitations:}{80}{}%
+\contentsline {subsection}{\numberline {6.9}Future Directions}{81}{}%
+\contentsline {subsubsection}{\numberline {6.9.1}Technical Improvements}{81}{}%
+\contentsline {paragraph}{Dataset and Evaluation Extensions:}{81}{}%
+\contentsline {paragraph}{Application Domains:}{82}{}%
+\contentsline {subsection}{\numberline {6.10}Ethical Considerations}{82}{}%
+\contentsline {subsubsection}{\numberline {6.10.1}Privacy and Consent}{82}{}%
+\contentsline {paragraph}{Bias and Fairness:}{83}{}%
+\contentsline {paragraph}{Transparency and Accountability:}{83}{}%
+\contentsline {subsection}{\numberline {6.11}Theoretical Implications and Novel Insights}{83}{}%
+\contentsline {section}{\numberline {7}Conclusion and Future Work}{84}{}%
+\contentsline {subsection}{\numberline {7.1}Summary of Findings}{85}{}%
+\contentsline {paragraph}{Text Model Performance:}{85}{}%
+\contentsline {paragraph}{Audio Feature Analysis:}{85}{}%
+\contentsline {paragraph}{Fusion Strategy Effectiveness:}{86}{}%
+\contentsline {paragraph}{Dataset Insights:}{86}{}%
+\contentsline {paragraph}{Optimal Configurations:}{87}{}%
+\contentsline {subsection}{\numberline {7.2}Theoretical and Practical Contributions}{87}{}%
+\contentsline {paragraph}{Theoretical Contributions:}{87}{}%
+\contentsline {paragraph}{Practical Contributions:}{88}{}%
+\contentsline {paragraph}{Methodological Contributions:}{88}{}%
+\contentsline {subsection}{\numberline {7.3}Limitations}{89}{}%
+\contentsline {paragraph}{Dataset Limitations:}{89}{}%
+\contentsline {paragraph}{Technical Limitations:}{89}{}%
+\contentsline {paragraph}{Evaluation Limitations:}{90}{}%
+\contentsline {subsection}{\numberline {7.4}Future Directions}{90}{}%
+\contentsline {paragraph}{Technical Improvements:}{90}{}%
+\contentsline {paragraph}{Architectural Innovations:}{91}{}%
+\contentsline {paragraph}{Dataset and Evaluation Extensions:}{91}{}%
+\contentsline {paragraph}{Real-World Deployment Challenges:}{92}{}%
+\contentsline {paragraph}{Application Domains:}{92}{}%
+\contentsline {paragraph}{Responsible Development:}{93}{}%
+\contentsline {subsection}{\numberline {7.5}Final Thoughts}{93}{}%
+\contentsline {subsection}{\numberline {7.6}Critical Limitations and Research Opportunities}{94}{}%
+\contentsline {subsection}{\numberline {7.7}Critical Analysis of Feature-Fusion Interactions}{95}{}%
+\contentsline {subsection}{\numberline {7.8}Ablation Studies and Component Analysis}{96}{}%
+\contentsline {subsection}{\numberline {7.9}Analysis of Emotion Misclassifications}{96}{}%
