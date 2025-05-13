@@ -14,45 +14,45 @@ Warning--I didn't find a database entry for "livingstone2018ravdess"
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 35 entries,
+You've used 33 entries,
             4087 wiz_defined-function locations,
-            995 strings with 13964 characters,
-and the built_in function-call counts, 23148 in all, are:
-= -- 1751
-> -- 645
+            986 strings with 13749 characters,
+and the built_in function-call counts, 22360 in all, are:
+= -- 1687
+> -- 627
 < -- 131
-+ -- 334
-- -- 128
-* -- 1080
-:= -- 3459
-add.period$ -- 74
-call.type$ -- 35
-change.case$ -- 35
++ -- 326
+- -- 124
+* -- 1048
+:= -- 3315
+add.period$ -- 70
+call.type$ -- 33
+change.case$ -- 33
 chr.to.int$ -- 306
-cite$ -- 35
-duplicate$ -- 1759
-empty$ -- 2060
-format.name$ -- 159
-if$ -- 5413
+cite$ -- 33
+duplicate$ -- 1687
+empty$ -- 1986
+format.name$ -- 153
+if$ -- 5237
 int.to.chr$ -- 0
-int.to.str$ -- 35
-missing$ -- 333
-newline$ -- 128
-num.names$ -- 35
-pop$ -- 860
+int.to.str$ -- 33
+missing$ -- 321
+newline$ -- 122
+num.names$ -- 33
+pop$ -- 826
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1805
+skip$ -- 1743
 stack$ -- 0
-substring$ -- 763
-swap$ -- 1262
+substring$ -- 761
+swap$ -- 1224
 text.length$ -- 29
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 35
+type$ -- 33
 warning$ -- 0
-while$ -- 84
-width$ -- 37
-write$ -- 330
+while$ -- 82
+width$ -- 35
+write$ -- 314
 (There was 1 warning)

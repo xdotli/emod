@@ -1,10 +1,4 @@
 \contentsline {table}{\numberline {1}{\ignorespaces Comparison of Emotion Detection Models (Multimodal, Text, Audio)}}{6}{}%
-\contentsline {table}{\numberline {2}{\ignorespaces Distribution of emotion categories in the IEMOCAP dataset.}}{32}{}%
-\contentsline {table}{\numberline {3}{\ignorespaces Performance metrics for text-based models across all experiments. While maximum accuracies are similar, mean accuracies and standard deviations reveal significant differences in consistency across experimental conditions.}}{50}{}%
-\contentsline {table}{\numberline {4}{\ignorespaces Comprehensive comparison of transformer models beyond accuracy metrics. This analysis reveals that while accuracy differences are minimal, models exhibit distinct characteristics that may be valuable in different deployment scenarios. The efficiency-accuracy tradeoff is particularly notable with ALBERT achieving competitive performance with only 10\% of the parameters of other models.}}{51}{}%
-\contentsline {table}{\numberline {5}{\ignorespaces Performance metrics for different audio feature extraction techniques. MFCC and spectrogram features yielded successful results, while prosodic and wav2vec features encountered implementation challenges.}}{52}{}%
-\contentsline {table}{\numberline {6}{\ignorespaces Performance metrics for different fusion strategies. Hybrid fusion achieves the highest maximum accuracy, while late fusion shows the highest mean accuracy.}}{55}{}%
-\contentsline {table}{\numberline {7}{\ignorespaces Top combinations of audio features and fusion methods ranked by validation accuracy.}}{56}{}%
-\contentsline {table}{\numberline {8}{\ignorespaces Top five experimental configurations ranked by validation accuracy.}}{60}{}%
-\contentsline {table}{\numberline {9}{\ignorespaces Statistical significance analysis of key performance differences. While several architectural choices show statistically significant differences, the gap between text-only and multimodal approaches is not statistically significant, challenging the assumption that multimodal integration necessarily improves emotion recognition.}}{67}{}%
-\contentsline {table}{\numberline {10}{\ignorespaces Comparison of our approaches with previous state-of-the-art results on the IEMOCAP dataset.}}{78}{}%
+\contentsline {table}{\numberline {2}{\ignorespaces Performance of best models for dimensional emotion (AVD) prediction}}{27}{}%
+\contentsline {table}{\numberline {3}{\ignorespaces Comparison of two-stage approach vs. direct classification for emotion categories}}{27}{}%
+\contentsline {table}{\numberline {4}{\ignorespaces Comparison of our approaches with previous state-of-the-art results on the IEMOCAP dataset.}}{38}{}%

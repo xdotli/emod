@@ -2,9 +2,10 @@
 \providecommand \oddpage@label [2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
 \newlabel{sec:intro}{{1}{1}{}{section.1}{}}
-\citation{strapparava2004wordnet}
-\citation{mohammad2013nrc}
-\citation{schuller2009acoustic}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Dimensional vs. Categorical Emotion Models}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Early Emotion-Recognition Approaches (pre-2012)}{3}{}\protected@file@percent }
 \citation{mao2014learning}
 \citation{abdul2017emonet}
 \citation{poria2018multimodal}
@@ -13,13 +14,11 @@
 \citation{lv2021progressive}
 \citation{wang2020context}
 \citation{siriwardhana2020joint}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{}\protected@file@percent }
-\newlabel{sec:related_work}{{2}{3}{}{section.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Early Emotion-Recognition Approaches (pre-2012)}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Deep-Learning Era (2013–2017)}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Transformer-Based Models (2018–2025)}{3}{}\protected@file@percent }
 \citation{poria2017review}
 \citation{wang2019words}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Deep-Learning Era (2013–2017)}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Transformer-Based Models (2018–2025)}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Multimodal Fusion Taxonomy}{4}{}\protected@file@percent }
 \citation{zadeh2018multimodal_tfn}
 \citation{zadeh2018mfn}
 \citation{wang2019words}
@@ -30,9 +29,8 @@
 \citation{zadeh2018multimodal}
 \citation{poria2018meld}
 \citation{livingstone2018ravdess}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Multimodal Fusion Taxonomy}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Benchmark Datasets}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Current Challenges}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Benchmark Datasets}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Current Challenges}{5}{}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparison of Emotion Detection Models (Multimodal, Text, Audio)}}{6}{}\protected@file@percent }
 \citation{schuller2009acoustic}
 \citation{li2013speech}
@@ -41,351 +39,176 @@
 \citation{poria2017review}
 \citation{wagner2011introducting}
 \citation{zadeh2018memory}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Audio-Based Emotion Detection}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.8}Multimodal Approaches}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8}Audio-Based Emotion Detection}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9}Multimodal Approaches}{7}{}\protected@file@percent }
 \citation{kiela2019supervised}
 \citation{busso2008iemocap}
 \citation{mckeown2012semaine}
 \citation{livingstone2018ryerson}
 \citation{zadeh2018multimodal}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.9}Emotion Recognition Datasets}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.10}Emotion Recognition Datasets}{8}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{8}{}\protected@file@percent }
 \newlabel{sec:methodology}{{3}{8}{}{section.3}{}}
-\citation{devlin2018bert}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}System Architecture Overview}{9}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Text Processing Models}{9}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}BERT (Bidirectional Encoder Representations from Transformers)}{9}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces High-Level System Architecture: The diagram illustrates the two-stage approach with modality-specific processing of audio and text followed by multimodal fusion strategies. Showing the complete data flow from input processing through emotion prediction, this architectural overview highlights the parallel processing streams and fusion options implemented in our system.}}{10}{}\protected@file@percent }
+\citation{devlin2018bert}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces High-Level System Architecture: The diagram illustrates the two-stage approach with modality-specific processing of audio and text to predict AVD values, followed by a mapping to discrete emotions. This architectural overview highlights the parallel processing streams and the dimensional-to-categorical conversion process implemented in our system.}}{10}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:system_architecture}{{1}{10}{}{figure.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{Architecture Details:}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Text Processing Models}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}BERT (Bidirectional Encoder Representations from Transformers)}{10}{}\protected@file@percent }
 \citation{liu2019roberta}
-\@writefile{toc}{\contentsline {paragraph}{Pre-training Objectives:}{11}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Fine-tuning Approach:}{11}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}RoBERTa (Robustly Optimized BERT Approach)}{11}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Architectural Improvements:}{11}{}\protected@file@percent }
 \citation{yang2019xlnet}
-\@writefile{toc}{\contentsline {paragraph}{Training Enhancements:}{12}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{12}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}XLNet}{12}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Key Innovations:}{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}RoBERTa (Robustly Optimized BERT Approach)}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}XLNet}{11}{}\protected@file@percent }
 \citation{lan2019albert}
 \citation{clark2020electra}
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{13}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}ALBERT (A Lite BERT)}{13}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Parameter Reduction Techniques:}{13}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Additional Improvements:}{13}{}\protected@file@percent }
 \citation{he2020deberta}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5}ELECTRA (Efficiently Learning an Encoder that Classifies Token Replacements Accurately)}{14}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Novel Pre-training Approach:}{14}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Advantages:}{14}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.6}DeBERTa (Decoding-enhanced BERT with disentangled attention)}{14}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Key Innovations:}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.7}Transformer Architecture Details}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Text Model Training Procedure}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Preprocessing:}{15}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Text Model Architecture Detail: This diagram shows the internal structure of transformer-based models used in our experiments. Starting with tokenization and embedding layers, the architecture features multi-head self-attention mechanisms and feed-forward networks with layer normalization. The CLS token representation from the final layer serves as input to the classification head for emotion prediction.}}{16}{}\protected@file@percent }
-\newlabel{fig:text_model_architecture}{{2}{16}{}{figure.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{Hyperparameters:}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Regularization Techniques:}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Loss Function:}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Audio Feature Extraction}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Mel-Frequency Cepstral Coefficients (MFCCs)}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Extraction Process:}{17}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces MFCC Feature Extraction Pipeline: This diagram details the complete processing pipeline for extracting Mel-frequency cepstral coefficients from raw audio signals. Starting with pre-emphasis and framing, the pipeline applies a series of transformations including FFT, Mel-scale filtering, and DCT to capture perceptually relevant acoustic features. The final feature vector includes delta and delta-delta coefficients to incorporate temporal dynamics.}}{18}{}\protected@file@percent }
-\newlabel{fig:mfcc_pipeline}{{3}{18}{}{figure.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{18}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Spectrograms}{19}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Generation Process:}{19}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{19}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}Prosodic Features}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}ALBERT (A Lite BERT)}{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5}ELECTRA (Efficiently Learning an Encoder that Classifies Token Replacements Accurately)}{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.6}DeBERTa (Decoding-enhanced BERT with disentangled attention)}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Text Model Training Procedure}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Preprocessing:}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hyperparameters:}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Regularization Techniques:}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Loss Function:}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Audio Feature Extraction}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Mel-Frequency Cepstral Coefficients (MFCCs)}{14}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces MFCC Feature Extraction Pipeline: This diagram details the complete processing pipeline for extracting Mel-frequency cepstral coefficients from raw audio signals. Starting with pre-emphasis and framing, the pipeline applies a series of transformations including FFT, Mel-scale filtering, and DCT to capture perceptually relevant acoustic features. The final feature vector includes delta and delta-delta coefficients to incorporate temporal dynamics.}}{15}{}\protected@file@percent }
+\newlabel{fig:mfcc_pipeline}{{2}{15}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Spectrograms}{15}{}\protected@file@percent }
 \citation{schneider2019wav2vec}
-\@writefile{toc}{\contentsline {paragraph}{Feature Set:}{20}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{20}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}Wav2vec Embeddings}{20}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Model Architecture:}{20}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{21}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Audio Processing Models}{21}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}CNN for Spectrograms and MFCCs}{21}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Architecture Details:}{21}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{22}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}BiLSTM for Prosodic Features and Wav2vec Embeddings}{22}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Architecture Details:}{22}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{23}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Fusion Strategies}{23}{}\protected@file@percent }
-\newlabel{subsec:fusion}{{3.6}{23}{}{subsection.3.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Early Fusion}{23}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{23}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Fusion Strategies Comparison: This diagram compares the three primary fusion approaches implemented in our system. Early fusion concatenates raw features before joint processing, late fusion combines independent predictions, and hybrid fusion merges intermediate representations from both modalities. Our experiments showed hybrid fusion achieving the highest performance (91.74\%) by balancing joint learning with modality-specific processing.}}{24}{}\protected@file@percent }
-\newlabel{fig:fusion_strategies}{{4}{24}{}{figure.4}{}}
-\@writefile{toc}{\contentsline {paragraph}{Training Approach:}{24}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Advantages and Limitations:}{25}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Late Fusion}{25}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{25}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Weight Learning:}{26}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Advantages and Limitations:}{26}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3}Hybrid Fusion}{26}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{26}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Detailed architecture of the late fusion approach. The text and audio pathways process their respective inputs independently, with each modality producing its own predictions that are then combined through weighted averaging or other aggregation methods. This approach maintains separation between modalities until the final decision stage.}}{27}{}\protected@file@percent }
-\newlabel{fig:late_fusion}{{5}{27}{}{figure.5}{}}
-\@writefile{toc}{\contentsline {paragraph}{Architecture:}{27}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Advantages and Limitations:}{27}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Detailed architecture of the hybrid fusion approach. This diagram illustrates how text and audio pathways process their respective inputs partially, before concatenating intermediate representations for joint processing through shared layers. The hybrid approach combines benefits of both early and late fusion by allowing modality-specific processing followed by joint learning.}}{28}{}\protected@file@percent }
-\newlabel{fig:hybrid_fusion}{{6}{28}{}{figure.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.4}Attention-Based Fusion}{28}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{28}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Attention Mechanism:}{29}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Advantages and Limitations:}{29}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Implementation Framework}{29}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Software Stack:}{29}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Cloud Infrastructure:}{30}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Experiment Management:}{30}{}\protected@file@percent }
-\citation{busso2008iemocap}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{31}{}\protected@file@percent }
-\newlabel{sec:experimental_setup}{{4}{31}{}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dataset Description}{31}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dataset Characteristics:}{31}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Distribution of emotion categories in the IEMOCAP dataset.}}{32}{}\protected@file@percent }
-\newlabel{tab:emotion_distribution}{{2}{32}{}{table.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{Dataset Statistics:}{32}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}IEMOCAP\_Final}{32}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Characteristics:}{32}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}IEMOCAP\_Filtered}{33}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Characteristics:}{33}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Data Preprocessing}{33}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Text Preprocessing}{34}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{General Processing:}{34}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Model-Specific Tokenization:}{34}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Input Feature Creation:}{35}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Data Augmentation:}{35}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Audio Preprocessing}{35}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Common Preprocessing Steps:}{36}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Feature-Specific Processing:}{36}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Data Augmentation:}{37}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Infrastructure and Implementation}{38}{}\protected@file@percent }
-\newlabel{subsec:infrastructure}{{4.3}{38}{}{subsection.4.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Experiment Execution Framework: This diagram shows the cloud-based infrastructure used to conduct our 323 experiments. The system leverages Modal cloud services for parallel GPU computation, integrating experiment configuration management with scalable execution. This approach enabled efficient exploration of the design space by reducing the total runtime by approximately 20x compared to sequential execution.}}{38}{}\protected@file@percent }
-\newlabel{fig:experiment_framework}{{7}{38}{}{figure.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Hardware Configuration}{38}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Software Environment}{39}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Modal Cloud Infrastructure}{40}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Workflow:}{40}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Training Protocol}{41}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{General Training Parameters:}{41}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Text Model Training:}{42}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Audio Model Training:}{42}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Multimodal Training:}{42}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Evaluation Metrics}{43}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Classification Metrics:}{43}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Regression Metrics for Dimensional Evaluation:}{44}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Computational Efficiency Metrics:}{44}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Validation Strategy}{45}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Details:}{45}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Early Stopping:}{45}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Test Set Evaluation:}{45}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Experimental Configurations}{45}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Text-Only Experiments:}{45}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Audio-Only Experiments:}{46}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Multimodal Experiments:}{46}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{47}{}\protected@file@percent }
-\newlabel{sec:results}{{5}{47}{}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Experiment Overview}{47}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Overall Statistics:}{47}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Overall Performance Comparison}{47}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Distribution of validation accuracies across experiment types and datasets. The x-axis shows the dataset, and the y-axis shows the validation accuracy. Text-only and multimodal approaches both achieve high performance, with IEMOCAP\_Final showing slightly higher maximum accuracies.}}{48}{}\protected@file@percent }
-\newlabel{fig:overall_performance}{{8}{48}{}{figure.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Text Model Performance}{48}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Comparative Analysis of Transformer Models}{48}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Key Observations:}{48}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Comprehensive performance matrix comparing transformer models across multiple metrics. Color intensity represents normalized scores where higher values (darker colors) indicate better performance. This visualization reveals that while RoBERTa leads in accuracy and F1-score, ALBERT and DistilBERT offer significantly better efficiency metrics, highlighting the important trade-offs in model selection.}}{49}{}\protected@file@percent }
-\newlabel{fig:model_comparison_matrix}{{9}{49}{}{figure.9}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Performance metrics for text-based models across all experiments. While maximum accuracies are similar, mean accuracies and standard deviations reveal significant differences in consistency across experimental conditions.}}{50}{}\protected@file@percent }
-\newlabel{tab:text_model_performance}{{3}{50}{}{table.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Learning Dynamics}{50}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Key Patterns:}{50}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Comprehensive comparison of transformer models beyond accuracy metrics. This analysis reveals that while accuracy differences are minimal, models exhibit distinct characteristics that may be valuable in different deployment scenarios. The efficiency-accuracy tradeoff is particularly notable with ALBERT achieving competitive performance with only 10\% of the parameters of other models.}}{51}{}\protected@file@percent }
-\newlabel{tab:enhanced_model_comparison}{{4}{51}{}{table.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Audio Feature Performance}{51}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}Comparative Analysis of Audio Features}{51}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Key Observations:}{51}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Detailed learning curves showing validation accuracy (left) and loss (right) throughout training epochs for different models. Annotations highlight key observations such as RoBERTa's faster initial learning rate and earlier convergence. These curves provide insights into the training dynamics and reveal that most models reach near-optimal performance by epoch 20, with only marginal improvements thereafter.}}{52}{}\protected@file@percent }
-\newlabel{fig:learning_curves}{{10}{52}{}{figure.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Performance metrics for different audio feature extraction techniques. MFCC and spectrogram features yielded successful results, while prosodic and wav2vec features encountered implementation challenges.}}{52}{}\protected@file@percent }
-\newlabel{tab:audio_feature_performance}{{5}{52}{}{table.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Comparison of validation accuracy using different audio feature extraction techniques. MFCC and spectrogram features yield the highest accuracy, while prosodic and wav2vec features show lower performance in the experiments analyzed.}}{53}{}\protected@file@percent }
-\newlabel{fig:audio_comparison}{{11}{53}{}{figure.11}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}Audio Model Architecture Analysis}{53}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{CNN Architecture Variations:}{53}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Fusion Strategy Performance}{54}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Comparative Analysis of Fusion Methods}{54}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Comprehensive feature-fusion performance matrix. The main heatmap (top left) shows accuracy for each audio feature and fusion method combination, with highlighted cells indicating the optimal combinations. Additional visualizations show F1-scores (bottom left) and convergence speed (bottom right), while key findings are summarized (top right). This multi-faceted visualization reveals that MFCC+Hybrid and Spectrogram+Late pairings yield superior performance, suggesting specific synergies between feature types and fusion strategies.}}{54}{}\protected@file@percent }
-\newlabel{fig:comprehensive_fusion}{{12}{54}{}{figure.12}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Performance metrics for different fusion strategies. Hybrid fusion achieves the highest maximum accuracy, while late fusion shows the highest mean accuracy.}}{55}{}\protected@file@percent }
-\newlabel{tab:fusion_method_performance}{{6}{55}{}{table.6}{}}
-\@writefile{toc}{\contentsline {paragraph}{Key Observations:}{55}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}Fusion Strategy and Feature Interactions}{55}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Top combinations of audio features and fusion methods ranked by validation accuracy.}}{56}{}\protected@file@percent }
-\newlabel{tab:feature_fusion_combinations}{{7}{56}{}{table.7}{}}
-\@writefile{toc}{\contentsline {paragraph}{Key Patterns:}{56}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Dataset Comparison}{56}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}IEMOCAP\_Final vs. IEMOCAP\_Filtered}{56}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Performance comparison between text-only, audio-only, and multimodal approaches across datasets. Bar heights represent validation accuracy, with numerical values annotated above each bar. This visualization demonstrates that while text-only approaches marginally outperform multimodal ones on IEMOCAP\_Final, the gap narrows on IEMOCAP\_Filtered, suggesting dataset characteristics influence relative modality effectiveness.}}{57}{}\protected@file@percent }
-\newlabel{fig:modality_comparison}{{13}{57}{}{figure.13}{}}
-\@writefile{toc}{\contentsline {paragraph}{Performance Analysis:}{57}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Key Observations:}{57}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Comparison of validation accuracy between the complete (IEMOCAP\_Final) and filtered (IEMOCAP\_Filtered) versions of the dataset. The complete version shows slightly higher maximum accuracy.}}{58}{}\protected@file@percent }
-\newlabel{fig:dataset_comparison}{{14}{58}{}{figure.14}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}Error Analysis by Emotion Category}{58}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{IEMOCAP\_Final Confusion Matrix:}{58}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Radar chart showing model performance across different emotion categories. The radial axes represent accuracy for each emotion, while different colored polygons represent different models. This visualization reveals that all models perform significantly better on angry and sad emotions compared to excited and neutral, with RoBERTa maintaining superior performance across all categories.}}{59}{}\protected@file@percent }
-\newlabel{fig:emotion_radar}{{15}{59}{}{figure.15}{}}
-\@writefile{toc}{\contentsline {paragraph}{IEMOCAP\_Filtered Confusion Matrix:}{59}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Best Configurations}{60}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.1}Top-Performing Experiments}{60}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Top five experimental configurations ranked by validation accuracy.}}{60}{}\protected@file@percent }
-\newlabel{tab:top_experiments}{{8}{60}{}{table.8}{}}
-\@writefile{toc}{\contentsline {paragraph}{Key Observations:}{60}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.2}Detailed Analysis of Top Experiment}{61}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Performance Metrics:}{61}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dimensional Evaluation (VAD):}{61}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.3}Best Multimodal Configuration}{62}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Performance Metrics:}{62}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dimensional Evaluation (VAD):}{62}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Computational Efficiency Analysis}{62}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Model Size Comparison:}{63}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Training Time:}{63}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Inference Speed:}{63}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Statistical Significance Analysis}{64}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Text Model Comparisons:}{64}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Modality Comparisons:}{64}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Analysis of Emotion Misclassifications}{65}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Enhanced confusion matrix for emotion classification. Cell values represent percentages of true (rows) vs. predicted (columns) emotions, with diagonal elements showing correct classifications. Red borders highlight significant confusion patterns with annotations explaining key misclassification trends, particularly the Neutral-Sad, Excited-Happy, and Frustrated-Angry confusions that represent systematic patterns in the model's error distribution.}}{65}{}\protected@file@percent }
-\newlabel{fig:enhanced_confusion}{{16}{65}{}{figure.16}{}}
-\@writefile{toc}{\contentsline {paragraph}{Common Misclassification Patterns:}{65}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Case Studies:}{66}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Statistical Significance and Reproducibility Analysis}{67}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Statistical significance analysis of key performance differences. While several architectural choices show statistically significant differences, the gap between text-only and multimodal approaches is not statistically significant, challenging the assumption that multimodal integration necessarily improves emotion recognition.}}{67}{}\protected@file@percent }
-\newlabel{tab:significance_analysis}{{9}{67}{}{table.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{68}{}\protected@file@percent }
-\newlabel{sec:discussion}{{6}{68}{}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Model Selection for Emotion Detection}{68}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Transformer Model Performance Analysis}{68}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Understanding RoBERTa's Advantage:}{69}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Model Selection Considerations:}{69}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}Prosodic Features}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}Wav2vec Embeddings}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Audio Processing Models}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}CNN for Spectrograms and MFCCs}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}BiLSTM for Prosodic Features and Wav2vec Embeddings}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Fusion Strategies}{18}{}\protected@file@percent }
+\newlabel{subsec:fusion}{{3.6}{18}{}{subsection.3.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Fusion Strategies Comparison: This diagram compares the primary fusion approaches evaluated. Early fusion concatenates raw features before joint processing, late fusion combines independent predictions, and hybrid fusion merges intermediate representations from both modalities. Our experiments showed hybrid fusion achieving strong performance by balancing joint learning with modality-specific processing, although direct classification ultimately proved superior.}}{18}{}\protected@file@percent }
+\newlabel{fig:fusion_strategies}{{3}{18}{}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Early Fusion}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Late Fusion}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3}Hybrid Fusion}{19}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Detailed architecture of the late fusion approach. The text and audio pathways process their respective inputs independently, with each modality producing its own predictions that are then combined through weighted averaging or other aggregation methods. This approach maintains separation between modalities until the final decision stage.}}{20}{}\protected@file@percent }
+\newlabel{fig:late_fusion}{{4}{20}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.4}Attention-Based Fusion}{20}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Detailed architecture of the hybrid fusion approach. This diagram illustrates how text and audio pathways process their respective inputs partially, before concatenating intermediate representations for joint processing through shared layers. The hybrid approach combines benefits of both early and late fusion by allowing modality-specific processing followed by joint learning.}}{21}{}\protected@file@percent }
+\newlabel{fig:hybrid_fusion}{{5}{21}{}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Implementation Framework}{22}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Training Protocol}{22}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Evaluation Metrics}{23}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.10}Cross-Validation Strategy}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.11}Experimental Configurations}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{26}{}\protected@file@percent }
+\newlabel{sec:results}{{4}{26}{}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dimensional Emotion Prediction (Stage 1)}{26}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Performance of best models for dimensional emotion (AVD) prediction}}{27}{}\protected@file@percent }
+\newlabel{tab:avd_prediction}{{2}{27}{}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Mapping to Categorical Emotions (Stage 2)}{27}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparison of two-stage approach vs. direct classification for emotion categories}}{27}{}\protected@file@percent }
+\newlabel{tab:categorical_mapping}{{3}{27}{}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{28}{}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{28}{}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Two-Stage Approach vs. Direct Classification}{28}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Model Selection for Emotion Detection}{29}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Transformer Model Performance Analysis}{29}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Understanding RoBERTa's Advantage:}{30}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Selection Considerations:}{30}{}\protected@file@percent }
 \citation{sehrawat2023deception}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Performance vs. efficiency trade-off visualization. Model accuracy is plotted against parameter count, with bubble size representing inference time. The red line indicates the efficiency frontier connecting models that offer optimal performance for their size. This visualization highlights ALBERT's exceptional efficiency (12M parameters) while maintaining competitive accuracy (91.44\%), offering a compelling alternative to RoBERTa for resource-constrained environments.}}{70}{}\protected@file@percent }
-\newlabel{fig:efficiency_tradeoff}{{17}{70}{}{figure.17}{}}
-\@writefile{toc}{\contentsline {paragraph}{Comparison with Prior Work:}{70}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Performance vs. efficiency trade-off visualization. Model accuracy is plotted against parameter count, with bubble size representing inference time. The red line indicates the efficiency frontier connecting models that offer optimal performance for their size. This visualization highlights ALBERT's exceptional efficiency (12M parameters) while maintaining competitive accuracy (91.44\%), offering a compelling alternative to RoBERTa for resource-constrained environments.}}{31}{}\protected@file@percent }
+\newlabel{fig:efficiency_tradeoff}{{6}{31}{}{figure.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Comparison with Prior Work:}{31}{}\protected@file@percent }
 \citation{hsiao2022attention}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Modality Importance}{71}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Text vs. Audio Modalities}{71}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Interpreting Unimodal Performance:}{71}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Modality Contributions:}{72}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Audio Feature Effectiveness}{72}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}Comparative Analysis of Audio Representations}{72}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Feature-Specific Insights:}{73}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Implementation Challenges with Other Features:}{73}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Fusion Strategy Considerations}{74}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.1}Comparative Effectiveness of Fusion Approaches}{74}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Feature-Specific Fusion Patterns:}{74}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Attention Mechanism Challenges:}{75}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Dataset Considerations}{76}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.1}Impact of Dataset Selection}{76}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dataset Limitations:}{76}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Practical Implications}{77}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1}Model Selection Guidelines}{77}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Modality Importance}{32}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Text vs. Audio Modalities}{32}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpreting Unimodal Performance:}{33}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Modality Contributions:}{33}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Audio Feature Effectiveness}{34}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}Comparative Analysis of Audio Representations}{34}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Fusion Strategy Considerations}{35}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Comparative Effectiveness of Fusion Approaches}{35}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature-Specific Fusion Patterns:}{35}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Attention Mechanism Challenges:}{36}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Dataset Considerations}{36}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}Impact of Dataset Selection}{36}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Practical Implications}{37}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.1}Model Selection Guidelines}{37}{}\protected@file@percent }
 \citation{zhang2022fine}
 \citation{hsiao2022attention}
 \citation{sehrawat2023deception}
-\@writefile{toc}{\contentsline {paragraph}{Application-Specific Recommendations:}{78}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Comparison with State-of-the-Art}{78}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1}Benchmarking Against Existing Approaches}{78}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Comparison of our approaches with previous state-of-the-art results on the IEMOCAP dataset.}}{78}{}\protected@file@percent }
-\newlabel{tab:sota_comparison}{{10}{78}{}{table.10}{}}
-\@writefile{toc}{\contentsline {paragraph}{Key Advances:}{79}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Methodological Contributions:}{79}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Limitations}{79}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.1}Technical Limitations}{79}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Methodological Limitations:}{80}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.9}Future Directions}{81}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.1}Technical Improvements}{81}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dataset and Evaluation Extensions:}{81}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Application Domains:}{82}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.10}Ethical Considerations}{82}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.1}Privacy and Consent}{82}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Bias and Fairness:}{83}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Transparency and Accountability:}{83}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.11}Theoretical Implications and Novel Insights}{83}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion and Future Work}{84}{}\protected@file@percent }
-\newlabel{sec:conclusion}{{7}{84}{}{section.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Summary of Findings}{85}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Text Model Performance:}{85}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Audio Feature Analysis:}{85}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Fusion Strategy Effectiveness:}{86}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dataset Insights:}{86}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Optimal Configurations:}{87}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Theoretical and Practical Contributions}{87}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Theoretical Contributions:}{87}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Practical Contributions:}{88}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Methodological Contributions:}{88}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Limitations}{89}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dataset Limitations:}{89}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Technical Limitations:}{89}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Evaluation Limitations:}{90}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Future Directions}{90}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Technical Improvements:}{90}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Architectural Innovations:}{91}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dataset and Evaluation Extensions:}{91}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Real-World Deployment Challenges:}{92}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Application Domains:}{92}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Responsible Development:}{93}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Final Thoughts}{93}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Critical Limitations and Research Opportunities}{94}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7}Critical Analysis of Feature-Fusion Interactions}{95}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Feature-Fusion Performance Matrix: This visualization maps the performance landscape of different audio feature and fusion strategy combinations. The intensity of each cell represents validation accuracy, revealing that certain combinations (MFCC+Hybrid, Spectrogram+Late) create natural synergies that significantly outperform others. This pattern suggests that the information structure of each audio representation is inherently more compatible with particular integration approaches.}}{96}{}\protected@file@percent }
-\newlabel{fig:feature_fusion_matrix}{{18}{96}{}{figure.18}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.8}Ablation Studies and Component Analysis}{96}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.9}Analysis of Emotion Misclassifications}{96}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Comparison with State-of-the-Art}{38}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.1}Benchmarking Against Existing Approaches}{38}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Comparison of our approaches with previous state-of-the-art results on the IEMOCAP dataset.}}{38}{}\protected@file@percent }
+\newlabel{tab:sota_comparison}{{4}{38}{}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Limitations}{39}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.9.1}Technical Limitations}{39}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Methodological Limitations:}{39}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Future Directions}{40}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Ethical Considerations}{41}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.12}Theoretical Implications and Novel Insights}{42}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.13}Critical Limitations and Research Opportunities}{42}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion and Future Work}{43}{}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{43}{}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Summary of Findings}{43}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Theoretical and Practical Contributions}{44}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Theoretical Contributions:}{44}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Contributions:}{45}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Methodological Contributions:}{45}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Limitations}{46}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset Limitations:}{46}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Technical Limitations:}{46}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Limitations:}{47}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Future Directions}{47}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Technical Improvements:}{47}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architectural Innovations:}{48}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset and Evaluation Extensions:}{48}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Real-World Deployment Challenges:}{49}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Application Domains:}{49}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Responsible Development:}{50}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Final Thoughts}{50}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Critical Limitations and Research Opportunities}{51}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Critical Analysis of Feature-Fusion Interactions}{52}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Feature-Fusion Performance Matrix: This visualization maps the performance landscape of different audio feature and fusion strategy combinations. The intensity of each cell represents validation accuracy, revealing that certain combinations (MFCC+Hybrid, Spectrogram+Late) create natural synergies that significantly outperform others. This pattern suggests that the information structure of each audio representation is inherently more compatible with particular integration approaches.}}{53}{}\protected@file@percent }
+\newlabel{fig:feature_fusion_matrix}{{7}{53}{}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Ablation Studies and Component Analysis}{53}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.9}Analysis of Emotion Misclassifications}{53}{}\protected@file@percent }
 \bibstyle{IEEEtran}
 \bibdata{sample-base}
-\bibcite{strapparava2004wordnet}{1}
-\bibcite{mohammad2013nrc}{2}
-\bibcite{schuller2009acoustic}{3}
-\bibcite{mao2014learning}{4}
-\bibcite{abdul2017emonet}{5}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Ablation Analysis: This chart quantifies the performance impact of removing or modifying different system components. Each bar represents the absolute percentage decrease in validation accuracy when a specific component is altered, revealing that attention mechanisms in transformer models contribute most significantly to emotion recognition performance, followed by pre-trained embeddings and fusion mechanisms.}}{97}{}\protected@file@percent }
-\newlabel{fig:ablation_analysis}{{19}{97}{}{figure.19}{}}
-\bibcite{poria2018multimodal}{6}
-\bibcite{liu2019roberta}{7}
-\bibcite{tsai2019mult}{8}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Error Analysis: Confusion matrix heatmap showing which emotion pairs are most frequently misclassified. The visualization highlights systematic confusion between similar emotional states (e.g., happy/excited at 17.3\% and angry/frustrated at 10.2\%), providing insights for future model refinements.}}{98}{}\protected@file@percent }
-\newlabel{fig:error_analysis}{{20}{98}{}{figure.20}{}}
-\bibcite{lv2021progressive}{9}
-\bibcite{wang2020context}{10}
-\bibcite{siriwardhana2020joint}{11}
-\bibcite{poria2017review}{12}
-\bibcite{wang2019words}{13}
-\bibcite{zadeh2018multimodal_tfn}{14}
-\bibcite{zadeh2018mfn}{15}
-\bibcite{mittal2020m3er}{16}
-\bibcite{busso2008iemocap}{17}
-\bibcite{zadeh2016mosi}{18}
-\bibcite{zadeh2018multimodal}{19}
-\bibcite{poria2018meld}{20}
-\bibcite{li2013speech}{21}
-\bibcite{schneider2019wav2vec}{22}
-\bibcite{wagner2011introducting}{23}
-\bibcite{zadeh2018memory}{24}
-\bibcite{kiela2019supervised}{25}
-\bibcite{mckeown2012semaine}{26}
-\bibcite{livingstone2018ryerson}{27}
-\bibcite{devlin2018bert}{28}
-\bibcite{yang2019xlnet}{29}
-\bibcite{lan2019albert}{30}
-\bibcite{clark2020electra}{31}
-\bibcite{he2020deberta}{32}
-\bibcite{sehrawat2023deception}{33}
-\bibcite{hsiao2022attention}{34}
-\bibcite{zhang2022fine}{35}
-\gdef \@abspage@last{116}
+\bibcite{mao2014learning}{1}
+\bibcite{abdul2017emonet}{2}
+\bibcite{poria2018multimodal}{3}
+\bibcite{liu2019roberta}{4}
+\bibcite{tsai2019mult}{5}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Ablation Analysis: This chart quantifies the performance impact of removing or modifying different system components. Each bar represents the absolute percentage decrease in validation accuracy when a specific component is altered, revealing that attention mechanisms in transformer models contribute most significantly to emotion recognition performance, followed by pre-trained embeddings and fusion mechanisms.}}{54}{}\protected@file@percent }
+\newlabel{fig:ablation_analysis}{{8}{54}{}{figure.8}{}}
+\bibcite{lv2021progressive}{6}
+\bibcite{wang2020context}{7}
+\bibcite{siriwardhana2020joint}{8}
+\bibcite{poria2017review}{9}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Error Analysis: Confusion matrix heatmap showing which emotion pairs are most frequently misclassified. The visualization highlights systematic confusion between similar emotional states (e.g., happy/excited at 17.3\% and angry/frustrated at 10.2\%), providing insights for future model refinements.}}{55}{}\protected@file@percent }
+\newlabel{fig:error_analysis}{{9}{55}{}{figure.9}{}}
+\bibcite{wang2019words}{10}
+\bibcite{zadeh2018multimodal_tfn}{11}
+\bibcite{zadeh2018mfn}{12}
+\bibcite{mittal2020m3er}{13}
+\bibcite{busso2008iemocap}{14}
+\bibcite{zadeh2016mosi}{15}
+\bibcite{zadeh2018multimodal}{16}
+\bibcite{poria2018meld}{17}
+\bibcite{schuller2009acoustic}{18}
+\bibcite{li2013speech}{19}
+\bibcite{schneider2019wav2vec}{20}
+\bibcite{wagner2011introducting}{21}
+\bibcite{zadeh2018memory}{22}
+\bibcite{kiela2019supervised}{23}
+\bibcite{mckeown2012semaine}{24}
+\bibcite{livingstone2018ryerson}{25}
+\bibcite{devlin2018bert}{26}
+\bibcite{yang2019xlnet}{27}
+\bibcite{lan2019albert}{28}
+\bibcite{clark2020electra}{29}
+\bibcite{he2020deberta}{30}
+\bibcite{sehrawat2023deception}{31}
+\bibcite{hsiao2022attention}{32}
+\bibcite{zhang2022fine}{33}
+\gdef \@abspage@last{68}

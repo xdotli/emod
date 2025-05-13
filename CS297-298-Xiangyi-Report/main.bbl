@@ -21,20 +21,6 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{strapparava2004wordnet}
-C.~Strapparava and A.~Valitutti, ``Wordnet-affect: an affective extension of
-  wordnet,'' \emph{LREC}, 2004.
-
-\bibitem{mohammad2013nrc}
-S.~M. Mohammad and P.~Turney, ``{NRC} emotion lexicon,'' \emph{Technical
-  Report, NRC}, 2013.
-
-\bibitem{schuller2009acoustic}
-B.~Schuller, S.~Steidl, and A.~Batliner, ``Acoustic emotion recognition: A
-  benchmark comparison of performances,'' in \emph{2009 IEEE Workshop on
-  Automatic Speech Recognition \& Understanding}.\hskip 1em plus 0.5em minus
-  0.4em\relax IEEE, 2009, pp. 552--557.
-
 \bibitem{mao2014learning}
 Q.~Mao, M.~Dong, Z.~Huang, and Y.~Zhan, ``Learning salient features for speech
   emotion recognition using convolutional neural networks,'' in \emph{IEEE
@@ -115,6 +101,12 @@ A.~Zadeh, P.~P. Liang, S.~Poria, E.~Cambria, and L.-P. Morency, ``Multimodal
 \bibitem{poria2018meld}
 S.~e.~a. Poria, ``Meld: A multimodal multi-party dataset for emotion
   recognition in conversations,'' in \emph{ACL}, 2018.
+
+\bibitem{schuller2009acoustic}
+B.~Schuller, S.~Steidl, and A.~Batliner, ``Acoustic emotion recognition: A
+  benchmark comparison of performances,'' in \emph{2009 IEEE Workshop on
+  Automatic Speech Recognition \& Understanding}.\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, 2009, pp. 552--557.
 
 \bibitem{li2013speech}
 L.~Li, Y.~Zhao, D.~Jiang, and Y.~Zhang, ``Speech emotion recognition using

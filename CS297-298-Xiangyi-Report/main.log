@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  11 MAY 2025 08:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  13 MAY 2025 00:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -625,19 +625,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
+Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
 
 
 [1]
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--131
+Underfull \hbox (badness 10000) in paragraph at lines 133--135
 
  []
 
@@ -647,351 +647,340 @@ Underfull \hbox (badness 10000) in paragraph at lines 129--131
 
 [3]
 
-[4]
-
-[5])
+[4])
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
 
 
-[6]
+[5] (./main.lof
 
-[7] (./main.lof
-
-[8]
-Overfull \hbox (1.41515pt too wide) in paragraph at lines 9--9
- [][] []\OT1/cmr/m/n/12 Comprehensive per-for-mance ma-trix com-par-ing trans-f
-ormer mod-els across mul- 
- []
-
-
-
-[9]
-
-[10]
-
-[11])
+[6])
 \tf@lof=\write5
 \openout5 = `main.lof'.
 
- (./main.lot
-Overfull \hbox (3.8304pt too wide) in paragraph at lines 5--5
- \OT1/cmr/m/n/12 and spec-tro-gram fea-tures yielded suc-cess-ful re-sults, whi
-le prosodic and wav2vec 
- []
 
 
-
-[12])
+[7] (./main.lot)
 \tf@lot=\write6
 \openout6 = `main.lot'.
 
 
 
-[13]
+[8]
 
 [1]
-Overfull \hbox (14.68857pt too wide) in paragraph at lines 165--166
-[]\OT1/cmr/m/n/12 Fusion Strat-egy As-sess-ment: We sys-tem-at-i-cally com-pare
- early, late, hy-brid, and attention-
- []
+
+LaTeX Warning: Reference `sec:related' on page 2 undefined on input line 166.
 
 
-LaTeX Warning: Reference `sec:related' on page 2 undefined on input line 172.
+LaTeX Warning: Reference `sec:experimental_setup' on page 2 undefined on input 
+line 166.
 
 
 
 [2]
-Overfull \hbox (9.384pt too wide) in paragraph at lines 189--200
+Overfull \hbox (3.9652pt too wide) in paragraph at lines 174--175
+[]\OT1/cmr/m/n/12 Russell's Cir-cum-plex Model and the PAD (Pleasure-Arousal-Do
+minance) model by Mehra-
+ []
+
+
+Overfull \hbox (27.93565pt too wide) in paragraph at lines 181--182
+[]\OT1/cmr/m/n/12 Classical machine-learning mod-els|including Na^^?^^Pve Bayes
+, lo-gis-tic re-gres-sion and SVMs|were
+ []
+
+
+
+[3]
+Overfull \hbox (9.384pt too wide) in paragraph at lines 184--195
 \OT1/cmr/m/n/12 Convolutional and re-cur-rent net-works rapidly eclipsed clas-s
 i-cal mod-els. CNNs and []
  []
 
 
 
-[3]
+[4]
 
-LaTeX Warning: Citation `livingstone2018ravdess' on page 4 undefined on input l
-ine 243.
+LaTeX Warning: Citation `livingstone2018ravdess' on page 5 undefined on input l
+ine 238.
 
 
-Overfull \hbox (76.42078pt too wide) in paragraph at lines 237--247
-\OT1/cmr/bx/n/12 IEMOCAP \OT1/cmr/m/n/12 [17] re-mains the de-facto bench-mark 
+Overfull \hbox (76.42078pt too wide) in paragraph at lines 232--242
+\OT1/cmr/bx/n/12 IEMOCAP \OT1/cmr/m/n/12 [14] re-mains the de-facto bench-mark 
 ($\OMS/cmsy/m/n/12 ^^X$\OT1/cmr/m/n/12 10 k ut-ter-ances, 9 emo-tions, au-dio+v
 ideo+transcripts).
  []
 
 
 
-[4]
-
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 267--267
+Underfull \hbox (badness 10000) in paragraph at lines 262--262
 []|\OT1/cmss/m/n/6 openSMILE, word2vec,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 267--267
+Underfull \hbox (badness 10000) in paragraph at lines 262--262
 []|\OT1/cmss/m/n/6 Early fu-sion (fea-ture
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--268
+Underfull \hbox (badness 10000) in paragraph at lines 263--263
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--268
+Underfull \hbox (badness 10000) in paragraph at lines 263--263
 []|\OT1/cmss/m/n/6 Utterance in-ter-ac-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 10000) in paragraph at lines 264--264
 []|\OT1/cmss/m/n/6 YT(3),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 10000) in paragraph at lines 264--264
 \OT1/cmss/m/n/6 MOUD(2),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 10000) in paragraph at lines 264--264
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
 []|\OT1/cmss/m/n/6 YT: 61.0%/60.7%;
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+\OT1/cmss/m/n/6 MOUD:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 265--265
+[]|\OT1/cmss/m/n/6 MFCC, GloVe,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--266
+[]|\OT1/cmss/m/n/6 IEMOCAP(4),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--266
+\OT1/cmss/m/n/6 MOUD(2),
+ []
+
+
+Underfull \hbox (badness 2932) in paragraph at lines 266--266
+[]|\OT1/cmss/m/n/6 openSMILE, CNN, 3D-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+[]|\OT1/cmss/m/n/6 IEMO: 71.6%;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+\OT1/cmss/m/n/6 MOUD: 67.9%;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--267
+[]|\OT1/cmss/m/n/6 COVAREP, GloVe,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--267
+[]|\OT1/cmss/m/n/6 Fine-grained (dy-namic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--268
+[]|\OT1/cmss/m/n/6 openSMILE, word2vec,
+ []
+
+
+Underfull \hbox (badness 3281) in paragraph at lines 268--268
+[]|\OT1/cmss/m/n/6 Hierarchical fu-sion w/
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
+[]|\OT1/cmss/m/n/6 ICT-MMMO(2),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
+\OT1/cmss/m/n/6 YT(3),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
+\OT1/cmss/m/n/6 MOUD(2),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
+[]|\OT1/cmss/m/n/6 COVAREP, GloVe,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
+[]|\OT1/cmss/m/n/6 Cross-modal Trans-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
+[]|\OT1/cmss/m/n/6 ICT: 81.3%/79.2%;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
+\OT1/cmss/m/n/6 YT: 53.3%/52.4%;
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 269--270
 \OT1/cmss/m/n/6 MOUD:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--270
-[]|\OT1/cmss/m/n/6 MFCC, GloVe,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 271--271
-[]|\OT1/cmss/m/n/6 IEMOCAP(4),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 271--271
-\OT1/cmss/m/n/6 MOUD(2),
- []
-
-
-Underfull \hbox (badness 2932) in paragraph at lines 271--271
-[]|\OT1/cmss/m/n/6 openSMILE, CNN, 3D-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 271--272
-[]|\OT1/cmss/m/n/6 IEMO: 71.6%;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 271--272
-\OT1/cmss/m/n/6 MOUD: 67.9%;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
-[]|\OT1/cmss/m/n/6 COVAREP, GloVe,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
-[]|\OT1/cmss/m/n/6 Fine-grained (dy-namic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 273--273
-[]|\OT1/cmss/m/n/6 openSMILE, word2vec,
- []
-
-
-Underfull \hbox (badness 3281) in paragraph at lines 273--273
-[]|\OT1/cmss/m/n/6 Hierarchical fu-sion w/
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
-[]|\OT1/cmss/m/n/6 ICT-MMMO(2),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
-\OT1/cmss/m/n/6 YT(3),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
-\OT1/cmss/m/n/6 MOUD(2),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
-[]|\OT1/cmss/m/n/6 COVAREP, GloVe,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
-[]|\OT1/cmss/m/n/6 Cross-modal Trans-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 274--275
-[]|\OT1/cmss/m/n/6 ICT: 81.3%/79.2%;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 274--275
-\OT1/cmss/m/n/6 YT: 53.3%/52.4%;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 274--275
-\OT1/cmss/m/n/6 MOUD:
- []
-
-
-Overfull \hbox (12.14592pt too wide) in paragraph at lines 274--275
+Overfull \hbox (12.14592pt too wide) in paragraph at lines 269--270
 \OT1/cmss/m/n/6 84.8%(UAcc)/81.4%(UF1)| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
 []|\OT1/cmss/m/n/6 Fine-grained (Cap-sule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
+Underfull \hbox (badness 10000) in paragraph at lines 271--271
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
+Underfull \hbox (badness 10000) in paragraph at lines 271--271
 []|\OT1/cmss/m/n/6 Factorized mul-ti-modal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 277--277
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []|\OT1/cmss/m/n/6 ICT-MMMO(2),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 277--277
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 277--278
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
 []|\OT1/cmss/m/n/6 ICT: 81.3%/80.8%;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 []|\OT1/cmss/m/n/6 IEMOCAP(4),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 []|\OT1/cmss/m/n/6 openSMILE, BERT,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--279
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
 []|\OT1/cmss/m/n/6 IEMO: 75.6%(UAcc
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--279
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
 \OT1/cmss/m/n/6 74.5%); MELD:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 279--279
+Underfull \hbox (badness 10000) in paragraph at lines 274--274
 []|\OT1/cmss/m/n/6 IEMOCAP(4),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 279--279
+Underfull \hbox (badness 10000) in paragraph at lines 274--274
 []|\OT1/cmss/m/n/6 Fine-grained
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 280--280
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
 []|\OT1/cmss/m/n/6 IEMOCAP(6),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 280--280
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
 \OT1/cmss/m/n/6 MOSI(2),
  []
 
 
-Underfull \hbox (badness 2932) in paragraph at lines 280--280
+Underfull \hbox (badness 2932) in paragraph at lines 275--275
 []|\OT1/cmss/m/n/6 openSMILE, CNN, 3D-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 281--281
+Underfull \hbox (badness 10000) in paragraph at lines 276--276
 []|\OT1/cmss/m/n/6 COVAREP, BERT,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 282--282
+Underfull \hbox (badness 10000) in paragraph at lines 277--277
 []|\OT1/cmss/m/n/6 IEMOCAP(4),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 282--282
+Underfull \hbox (badness 10000) in paragraph at lines 277--277
 []|\OT1/cmss/m/n/6 Wav2Vec, RoBERTa,
  []
 
 
-Underfull \hbox (badness 7796) in paragraph at lines 282--282
+Underfull \hbox (badness 7796) in paragraph at lines 277--277
 []|\OT1/cmss/m/n/6 Transformer-based late
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--283
+Underfull \hbox (badness 10000) in paragraph at lines 278--278
 []|\OT1/cmss/m/n/6 IEMOCAP(4),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--283
+Underfull \hbox (badness 10000) in paragraph at lines 278--278
 []|\OT1/cmss/m/n/6 COVAREP, BERT,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 288--288
+Underfull \hbox (badness 10000) in paragraph at lines 283--283
 []|\OT1/cmss/m/n/6 Deep NN (fully-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 289--289
+Underfull \hbox (badness 10000) in paragraph at lines 284--284
 []|\OT1/cmss/m/n/6 Parallel
  []
 
 
 
 [6]
-Overfull \hbox (5.6581pt too wide) in paragraph at lines 315--316
+Overfull \hbox (5.6581pt too wide) in paragraph at lines 310--311
 \OT1/cmr/m/n/12 pre-dic-tions, typ-i-cally through vot-ing schemes, weighted av
--er-ag-ing, or ad-di-tional clas-si-fiers [23].
+-er-ag-ing, or ad-di-tional clas-si-fiers [21].
  []
 
 
@@ -1002,11 +991,11 @@ Overfull \hbox (5.6581pt too wide) in paragraph at lines 315--316
 ]
 
 [8]
-<Figures/system_architecture_fixed.png, id=82, 715.473pt x 570.933pt>
+<Figures/system_architecture_fixed.png, id=66, 715.473pt x 570.933pt>
 File: Figures/system_architecture_fixed.png Graphic file (type png)
 <use Figures/system_architecture_fixed.png>
 Package pdftex.def Info: Figures/system_architecture_fixed.png  used on input l
-ine 337.
+ine 332.
 (pdftex.def)             Requested size: 422.77664pt x 337.36154pt.
 
 
@@ -1014,120 +1003,113 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[9{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}]
+[9]
 
 [10 <./Figures/system_architecture_fixed.png>]
 
 [11]
+Overfull \hbox (11.80809pt too wide) in paragraph at lines 356--357
+\OT1/cmr/m/n/12 ALBERT [28] ad-dresses BERT's pa-ram-e-ter in-ef-fi-ciency thro
+ugh sig-nif-i-cant parameter-reduction
+ []
+
+
 
 [12]
 
-[13]
-Overfull \hbox (32.387pt too wide) in paragraph at lines 460--461
-[]\OT1/cmr/m/n/12 Disentangled at-ten-tion: Com-putes at-ten-tion weights us-in
-g two vec-tors for each word|content
- []
-
-
-
-[14]
-<Figures/text_model_architecture.png, id=105, 715.473pt x 570.933pt>
-File: Figures/text_model_architecture.png Graphic file (type png)
-<use Figures/text_model_architecture.png>
-Package pdftex.def Info: Figures/text_model_architecture.png  used on input lin
-e 476.
-(pdftex.def)             Requested size: 399.29463pt x 318.62262pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[15]
-
-[16 <./Figures/text_model_architecture.png>]
-<Figures/mfcc_pipeline.png, id=114, 1004.553pt x 426.1521pt>
+[13{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.en
+c}]
+<Figures/mfcc_pipeline.png, id=87, 1004.553pt x 426.1521pt>
 File: Figures/mfcc_pipeline.png Graphic file (type png)
 <use Figures/mfcc_pipeline.png>
-Package pdftex.def Info: Figures/mfcc_pipeline.png  used on input line 519.
+Package pdftex.def Info: Figures/mfcc_pipeline.png  used on input line 402.
 (pdftex.def)             Requested size: 469.75502pt x 199.2771pt.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+[14]
 
+[15 <./Figures/mfcc_pipeline.png>]
 
+[16]
 
 [17]
-
-[18 <./Figures/mfcc_pipeline.png>]
-
-[19]
-Overfull \hbox (19.45796pt too wide) in paragraph at lines 576--577
-[]\OT1/cmr/m/n/12 Voice qual-ity mea-sures: Jit-ter (pitch vari-a-tion), shim-m
-er (am-pli-tude vari-a-tion), harmonics-
- []
-
-
-
-[20]
-Overfull \hbox (3.07341pt too wide) in paragraph at lines 609--610
-\OT1/cmr/m/n/12 im-ple-mented two main types of mod-els: con-vo-lu-tional net-w
-orks for spec-tro-grams and MFCCs,
- []
-
-
-
-[21]
-
-[22]
-<Figures/fusion_strategies_comparison.png, id=135, 860.013pt x 715.473pt>
+<Figures/fusion_strategies_comparison.png, id=102, 860.013pt x 715.473pt>
 File: Figures/fusion_strategies_comparison.png Graphic file (type png)
 <use Figures/fusion_strategies_comparison.png>
 Package pdftex.def Info: Figures/fusion_strategies_comparison.png  used on inpu
-t line 666.
+t line 431.
 (pdftex.def)             Requested size: 422.77664pt x 351.72023pt.
+
+
+[18 <./Figures/fusion_strategies_comparison.png>]
+<Figures/late_fusion_detailed_proper.png, id=107, 715.473pt x 570.933pt>
+File: Figures/late_fusion_detailed_proper.png Graphic file (type png)
+<use Figures/late_fusion_detailed_proper.png>
+Package pdftex.def Info: Figures/late_fusion_detailed_proper.png  used on input
+ line 444.
+(pdftex.def)             Requested size: 422.77664pt x 337.36154pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[23]
-
-[24 <./Figures/fusion_strategies_comparison.png>]
-
-[25]
-<Figures/late_fusion_detailed_proper.png, id=146, 715.473pt x 570.933pt>
-File: Figures/late_fusion_detailed_proper.png Graphic file (type png)
-<use Figures/late_fusion_detailed_proper.png>
-Package pdftex.def Info: Figures/late_fusion_detailed_proper.png  used on input
- line 730.
+[19]
+<Figures/hybrid_fusion_detailed.png, id=111, 715.473pt x 570.933pt>
+File: Figures/hybrid_fusion_detailed.png Graphic file (type png)
+<use Figures/hybrid_fusion_detailed.png>
+Package pdftex.def Info: Figures/hybrid_fusion_detailed.png  used on input line
+ 454.
 (pdftex.def)             Requested size: 422.77664pt x 337.36154pt.
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[20 <./Figures/late_fusion_detailed_proper.png>]
+
+[21 <./Figures/hybrid_fusion_detailed.png>]
+
+[22]
+
+[23]
+
+[24]
+
+[25]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 [26]
-
-[27 <./Figures/late_fusion_detailed_proper.png>]
-<Figures/hybrid_fusion_detailed.png, id=154, 715.473pt x 570.933pt>
-File: Figures/hybrid_fusion_detailed.png Graphic file (type png)
-<use Figures/hybrid_fusion_detailed.png>
-Package pdftex.def Info: Figures/hybrid_fusion_detailed.png  used on input line
- 762.
-(pdftex.def)             Requested size: 422.77664pt x 337.36154pt.
+Overfull \hbox (113.23473pt too wide) in paragraph at lines 576--593
+ [][] 
+ []
 
 
-[28 <./Figures/hybrid_fusion_detailed.png>]
+
+[27]
+
+[28]
 
 [29]
+<Figures/performance_efficiency_tradeoff.png, id=151, 855.4359pt x 639.1077pt>
+File: Figures/performance_efficiency_tradeoff.png Graphic file (type png)
+<use Figures/performance_efficiency_tradeoff.png>
+Package pdftex.def Info: Figures/performance_efficiency_tradeoff.png  used on i
+nput line 637.
+(pdftex.def)             Requested size: 422.77664pt x 315.8668pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 
 [30]
 
-[31]
+[31 <./Figures/performance_efficiency_tradeoff.png>]
 
 [32]
 
@@ -1136,25 +1118,35 @@ Package pdftex.def Info: Figures/hybrid_fusion_detailed.png  used on input line
 [34]
 
 [35]
-Overfull \hbox (1.41087pt too wide) in paragraph at lines 993--994
-[]\OT1/cmr/m/n/12 Sequence han-dling: Variable-length se-quences padded to the 
-95th per-centile length 
+Overfull \hbox (13.86592pt too wide) in paragraph at lines 743--744
+\OT1/cmr/m/n/12 Our ex-per-i-ments com-pared per-for-mance on the com-plete IEM
+O-CAP dataset (IEMO-CAP[]Final,
+ []
+
+
+Overfull \hbox (11.40334pt too wide) in paragraph at lines 743--744
+\OT1/cmr/m/n/12 9 emo-tion cat-e-gories) and a fil-tered ver-sion fo-cus-ing on
+ four core emo-tions (IEMO-CAP[]Filtered:
  []
 
 
 
 [36]
-<Figures/experiment_framework.png, id=186, 860.013pt x 715.473pt>
-File: Figures/experiment_framework.png Graphic file (type png)
-<use Figures/experiment_framework.png>
-Package pdftex.def Info: Figures/experiment_framework.png  used on input line 1
-042.
-(pdftex.def)             Requested size: 422.77664pt x 351.72023pt.
-
 
 [37]
+Overfull \hbox (21.23027pt too wide) in paragraph at lines 766--781
+ [][] 
+ []
 
-[38 <./Figures/experiment_framework.png>]
+
+
+[38]
+Overfull \hbox (1.18593pt too wide) in paragraph at lines 798--799
+[]\OT1/cmr/bx/n/12 Dimensional mod-el-ing: \OT1/cmr/m/n/12 While we eval-u-ated
+ di-men-sional emo-tion pre-dic-tions (VAD),
+ []
+
+
 
 [39]
 
@@ -1165,372 +1157,39 @@ Package pdftex.def Info: Figures/experiment_framework.png  used on input line 1
 [42]
 
 [43]
-Overfull \hbox (2.96509pt too wide) in paragraph at lines 1202--1203
-[]\OT1/cmr/m/n/12 Mean Squared Er-ror (MSE): Av-er-age squared dif-fer-ence be-
-tween pre-dic-tions and ground
- []
-
-
 
 [44]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-259.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1259.
-
-
-
-[45]
-
-[46]
-<Figures/dataset_comparison.png, id=224, 722.7pt x 433.62pt>
-File: Figures/dataset_comparison.png Graphic file (type png)
-<use Figures/dataset_comparison.png>
-Package pdftex.def Info: Figures/dataset_comparison.png  used on input line 130
-6.
-(pdftex.def)             Requested size: 375.80544pt x 225.48369pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[47]
-<Figures/model_comparison_matrix.png, id=228, 771.6027pt x 566.3559pt>
-File: Figures/model_comparison_matrix.png Graphic file (type png)
-<use Figures/model_comparison_matrix.png>
-Package pdftex.def Info: Figures/model_comparison_matrix.png  used on input lin
-e 1323.
-(pdftex.def)             Requested size: 446.26582pt x 327.55331pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[48 <./Figures/dataset_comparison.png>]
-
-[49 <./Figures/model_comparison_matrix.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1384--1384
-[]|\OT1/cmr/m/n/12 Superior con-text
- []
-
-
-Underfull \hbox (badness 2503) in paragraph at lines 1384--1384
-\OT1/cmr/m/n/12 mod-el-ing, ro-bust to
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1384--1384
-\OT1/cmr/m/n/12 lin-guis-tic vari-a-tions,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1384--1385
-[]|\OT1/cmr/m/n/12 Large size, high
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1384--1385
-\OT1/cmr/m/n/12 com-pu-ta-tional re-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1386--1386
-[]|\OT1/cmr/m/n/12 Excellent han-dling
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1386--1386
-\OT1/cmr/m/n/12 of com-plex syn-tax,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1390--1390
-[]|\OT1/cmr/m/n/12 Extremely ef-fi-cient,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1390--1390
-\OT1/cmr/m/n/12 10x smaller than
- []
-
-
-Underfull \hbox (badness 1635) in paragraph at lines 1390--1390
-\OT1/cmr/m/n/12 oth-ers with min-i-mal
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1390--1391
-[]|\OT1/cmr/m/n/12 Occasionally misses
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<Figures/learning_curves_detailed.png, id=237, 1289.0559pt x 566.8377pt>
-File: Figures/learning_curves_detailed.png Graphic file (type png)
-<use Figures/learning_curves_detailed.png>
-Package pdftex.def Info: Figures/learning_curves_detailed.png  used on input li
-ne 1400.
-(pdftex.def)             Requested size: 446.26582pt x 196.23386pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[50]
-<Figures/audio_feature_comparison.png, id=241, 722.7pt x 433.62pt>
-File: Figures/audio_feature_comparison.png Graphic file (type png)
-<use Figures/audio_feature_comparison.png>
-Package pdftex.def Info: Figures/audio_feature_comparison.png  used on input li
-ne 1420.
-(pdftex.def)             Requested size: 422.77664pt x 253.66338pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (6.77974pt too wide) in paragraph at lines 1431--1444
- [][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[51]
-
-[52 <./Figures/learning_curves_detailed.png>]
-
-[53 <./Figures/audio_feature_comparison.png>]
-<Figures/comprehensive_fusion_matrix.png, id=254, 1287.6105pt x 711.3777pt>
-File: Figures/comprehensive_fusion_matrix.png Graphic file (type png)
-<use Figures/comprehensive_fusion_matrix.png>
-Package pdftex.def Info: Figures/comprehensive_fusion_matrix.png  used on input
- line 1489.
-(pdftex.def)             Requested size: 446.26582pt x 246.55446pt.
-
-
-[54 <./Figures/comprehensive_fusion_matrix.png>]
-Overfull \hbox (11.10477pt too wide) in paragraph at lines 1500--1513
- [][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[55]
-<Figures/modality_comparison_chart.png, id=262, 999.9759pt x 566.115pt>
-File: Figures/modality_comparison_chart.png Graphic file (type png)
-<use Figures/modality_comparison_chart.png>
-Package pdftex.def Info: Figures/modality_comparison_chart.png  used on input l
-ine 1572.
-(pdftex.def)             Requested size: 446.26582pt x 252.64166pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-File: Figures/dataset_comparison.png Graphic file (type png)
-<use Figures/dataset_comparison.png>
-Package pdftex.def Info: Figures/dataset_comparison.png  used on input line 158
-2.
-(pdftex.def)             Requested size: 422.77664pt x 253.66338pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[56]
-
-[57 <./Figures/modality_comparison_chart.png>]
-<Figures/emotion_performance_radar.png, id=270, 708.0051pt x 687.5286pt>
-File: Figures/emotion_performance_radar.png Graphic file (type png)
-<use Figures/emotion_performance_radar.png>
-Package pdftex.def Info: Figures/emotion_performance_radar.png  used on input l
-ine 1607.
-(pdftex.def)             Requested size: 375.80544pt x 364.93394pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[58]
-
-[59 <./Figures/emotion_performance_radar.png>]
-Overfull \hbox (8.6512pt too wide) in paragraph at lines 1644--1661
- [][] 
- []
-
-
-
-[60]
-Overfull \hbox (94.49559pt too wide) in paragraph at lines 1680--1681
-\OT1/cmr/m/n/12 A closer ex-am-i-na-tion of the best-performing ex-per-i-ment (
-IEMO-CAP[]Final[]text[]roberta[]base[]20250509[]023523)
- []
-
-
-Overfull \hbox (16.88576pt too wide) in paragraph at lines 1699--1700
-[]\OT1/cmr/m/n/12 These re-sults in-di-cate that the model per-forms bet-ter at
- pre-dict-ing va-lence (pos-i-tive/negative
- []
-
-
-Overfull \hbox (93.10411pt too wide) in paragraph at lines 1702--1703
-\OT1/cmr/m/n/12 The best mul-ti-modal con-fig-u-ra-tion (IEMO-CAP[]Final[]multi
-modal[]roberta[]base[]mfcc[]hybrid[]20250509[]053946)
- []
-
-
-
-[61]
-
-[62]
-
-[63]
-<Figures/enhanced_confusion_matrix.png, id=292, 804.8469pt x 718.8456pt>
-File: Figures/enhanced_confusion_matrix.png Graphic file (type png)
-<use Figures/enhanced_confusion_matrix.png>
-Package pdftex.def Info: Figures/enhanced_confusion_matrix.png  used on input l
-ine 1778.
-(pdftex.def)             Requested size: 422.77664pt x 377.59703pt.
-
-
-[64]
-
-[65 <./Figures/enhanced_confusion_matrix.png>]
-
-[66]
-Overfull \hbox (17.56076pt too wide) in paragraph at lines 1856--1857
-[]\OT1/cmr/m/n/12 The per-for-mance dif-fer-ences be-tween op-ti-mal feature-fu
-sion com-bi-na-tions (MFCC+Hybrid
- []
-
-
-
-[67]
-
-[68]
-<Figures/performance_efficiency_tradeoff.png, id=310, 855.4359pt x 639.1077pt>
-File: Figures/performance_efficiency_tradeoff.png Graphic file (type png)
-<use Figures/performance_efficiency_tradeoff.png>
-Package pdftex.def Info: Figures/performance_efficiency_tradeoff.png  used on i
-nput line 1889.
-(pdftex.def)             Requested size: 422.77664pt x 315.8668pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[69]
-
-[70 <./Figures/performance_efficiency_tradeoff.png>]
-
-[71]
-
-[72]
-
-[73]
-
-[74]
-
-[75]
-
-[76]
-
-[77]
-Overfull \hbox (21.23027pt too wide) in paragraph at lines 2119--2134
- [][] 
- []
-
-
-Overfull \hbox (6.93015pt too wide) in paragraph at lines 2142--2143
-[]\OT1/cmr/bx/n/12 Model ar-chi-tec-ture: \OT1/cmr/m/n/12 Lever-ag-ing pre-trai
-ned trans-former mod-els in-stead of RNN/CNN
- []
-
-
-
-[78]
-
-[79]
-Overfull \hbox (1.18593pt too wide) in paragraph at lines 2175--2176
-[]\OT1/cmr/bx/n/12 Dimensional mod-el-ing: \OT1/cmr/m/n/12 While we eval-u-ated
- di-men-sional emo-tion pre-dic-tions (VAD),
- []
-
-
-
-[80]
-
-[81]
-
-[82]
-Overfull \hbox (15.37608pt too wide) in paragraph at lines 2291--2292
-\OT1/cmr/m/n/12 nec-es-sar-ily out-per-form uni-modal ones, our text-only RoBER
-Ta model (91.82%) marginally
- []
-
-
-
-[83]
-Overfull \hbox (2.93233pt too wide) in paragraph at lines 2295--2296
-[]\OT1/cmr/bx/n/12 Efficiency-performance trade-off: \OT1/cmr/m/n/12 AL-BERT's 
-im-pres-sive per-for-mance (91.44%) with
- []
-
-
-
-[84]
-
-[85]
-
-[86]
-
-[87]
-Overfull \hbox (3.57922pt too wide) in paragraph at lines 2401--2402
+Overfull \hbox (3.57922pt too wide) in paragraph at lines 896--897
 []\OT1/cmr/bx/n/12 Cross-validation ap-proach: \OT1/cmr/m/n/12 Im-ple-ment-ing 
 rig-or-ous 5-fold cross-validation with strat-
  []
 
 
 
-[88]
+[45]
 
-[89]
+[46]
 
-[90]
+[47]
 
-[91]
+[48]
 
-[92]
-Overfull \hbox (0.16365pt too wide) in paragraph at lines 2518--2519
+[49]
+Overfull \hbox (0.16365pt too wide) in paragraph at lines 1011--1012
 []\OT1/cmr/bx/n/12 Privacy preser-va-tion: \OT1/cmr/m/n/12 De-vel-op-ing privac
 y-preserving emo-tion recog-ni-tion tech-niques
  []
 
 
 
-[93]
+[50]
 
-[94]
-<Figures/feature_fusion_matrix.png, id=396, 722.7pt x 578.16pt>
+[51]
+<Figures/feature_fusion_matrix.png, id=224, 722.7pt x 578.16pt>
 File: Figures/feature_fusion_matrix.png Graphic file (type png)
 <use Figures/feature_fusion_matrix.png>
 Package pdftex.def Info: Figures/feature_fusion_matrix.png  used on input line 
-2560.
+1053.
 (pdftex.def)             Requested size: 422.77664pt x 338.21782pt.
 
 
@@ -1538,38 +1197,38 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[95]
-<Figures/ablation_analysis.png, id=400, 722.7pt x 433.62pt>
+[52]
+<Figures/ablation_analysis.png, id=228, 722.7pt x 433.62pt>
 File: Figures/ablation_analysis.png Graphic file (type png)
 <use Figures/ablation_analysis.png>
-Package pdftex.def Info: Figures/ablation_analysis.png  used on input line 2570
+Package pdftex.def Info: Figures/ablation_analysis.png  used on input line 1063
 .
 (pdftex.def)             Requested size: 422.77664pt x 253.66338pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Figures/error_analysis.png, id=401, 722.7pt x 578.16pt>
+<Figures/error_analysis.png, id=229, 722.7pt x 578.16pt>
 File: Figures/error_analysis.png Graphic file (type png)
 <use Figures/error_analysis.png>
-Package pdftex.def Info: Figures/error_analysis.png  used on input line 2580.
+Package pdftex.def Info: Figures/error_analysis.png  used on input line 1073.
 (pdftex.def)             Requested size: 422.77664pt x 338.21782pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[96 <./Figures/feature_fusion_matrix.png>] (./main.bbl
+[53 <./Figures/feature_fusion_matrix.png>] (./main.bbl
 
-[97 <./Figures/ablation_analysis.png>]
+[54 <./Figures/ablation_analysis.png>]
 
-[98 <./Figures/error_analysis.png>]
+[55 <./Figures/error_analysis.png>]
 
-[99]
+[56]
 
-[100])
+[57])
 
-[101] (./main.aux)
+[58] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1580,31 +1239,32 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 10365 strings out of 473190
- 192954 string characters out of 5715801
- 639803 words of memory out of 5000000
- 33426 multiletter control sequences out of 15000+600000
- 571047 words of font info for 82 fonts, out of 8000000 for 9000
+ 10251 strings out of 473190
+ 189037 string characters out of 5715801
+ 639329 words of memory out of 5000000
+ 33313 multiletter control sequences out of 15000+600000
+ 570009 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 67i,13n,79p,1392b,471s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 67i,12n,79p,1075b,471s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
 /usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
-sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
-ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
-al/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
-texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/te
-xlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/t
-exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
-xlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/tex
-live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (116 pages, 5086277 bytes).
+sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
+/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
+ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
+l/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/
+texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local
+/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
+texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/t
+exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/te
+xlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texl
+ive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on main.pdf (68 pages, 2125013 bytes).
 PDF statistics:
- 490 PDF objects out of 1000 (max. 8388607)
- 302 compressed objects within 4 object streams
+ 319 PDF objects out of 1000 (max. 8388607)
+ 199 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
