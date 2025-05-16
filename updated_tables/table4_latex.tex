@@ -1,0 +1,20 @@
+\begin{table}[h]
+\centering
+\caption{Comparison of our approaches with previous state-of-the-art results on the IEMOCAP dataset}
+\label{tab:sota_comparison}
+\begin{tabular}{|l|c|c|c|c|c|c|l|}
+\hline
+\textbf{Study} & \textbf{Modality} & \textbf{Train Acc.} & \textbf{Test Acc.} & \textbf{Macro F1} & \textbf{Micro F1} & \textbf{Precision} & \textbf{Model} \\
+\hline
+Zhang et al. & Multimodal & - & 88.14% & - & - & - & GCFM + Early Fusion \\
+\hline
+Hsiao and Sun & Multimodal & - & 84.00% & - & - & - & Attention-BiLSTM \\
+\hline
+Sehrawat et al. & Multimodal & - & 80.00% & - & - & - & BiLSTM + CNN \\
+\hline
+Our Approach (Text) & Text & - & - & - & - & - & RoBERTa \\
+\hline
+Our Approach (Multimodal) & Multimodal & - & - & - & - & - & RoBERTa + MFCC + Hybrid \\
+\hline
+\end{tabular}
+\end{table}

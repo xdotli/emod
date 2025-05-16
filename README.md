@@ -153,3 +153,52 @@ If you use this system in your research, please cite:
   url = {https://github.com/yourusername/emod}
 }
 ```
+
+## Report Improvements
+
+Based on reviewer feedback, the following improvements have been made to the CS297-298-Xiangyi-Report:
+
+1. **Shortened Report**: The report has been reduced from ~60 pages to ~30 pages (48.5% reduction), focusing more on the experiment and results sections. The shortened version is available at `CS297-298-Xiangyi-Report/main_shortened.tex`.
+
+2. **Improved Figure Readability**: 
+   - Figures with arrows have been enhanced for better visibility
+   - Key diagrams (system architecture, fusion strategies) have been regenerated with clearer arrows
+   - The improved figures are stored in `CS297-298-Xiangyi-Report/Figures_Improved/`
+
+3. **Standardized Captions**:
+   - Image and table captions have been updated to standard format
+   - Paragraphs have been removed from captions, keeping only concise descriptions
+
+4. **Updated Metrics**:
+   - Tables 3 and 4 now include Macro F1, Micro F1, Precision, and Recall metrics
+   - Both train and test performance metrics are reported to assess overfitting/underfitting
+   - R2 metric has been removed from AVD prediction (first stage) as it's not meaningful for non-linear models
+   - The updated tables are available in `updated_tables/`
+
+5. **Restored Missing References**:
+   - Fixed issue where 12 out of 34 references were missing after shortening the report
+   - All 34 original citations are now included in the bibliography
+   - A complete version with all references is available at `CS297-298-Xiangyi-Report/main_complete.tex`
+
+The scripts used for these improvements are:
+- `shorten_report.py`: Reduces report length while preserving key sections
+- `update_metrics.py`: Updates metrics in Tables 3 and 4
+- `improve_figures.py`: Enhances figure readability, focusing on arrows
+- `restore_references.py`: Restores missing citations
+
+To recompile the final report, use the following command:
+```
+cd CS297-298-Xiangyi-Report
+pdflatex main_complete.tex
+bibtex main_complete
+pdflatex main_complete.tex
+pdflatex main_complete.tex
+```
+
+### Next Steps
+
+To finalize the report:
+1. Review the shortened report `main_shortened.tex` and make any necessary adjustments
+2. Replace Tables 3 and 4 in the report with the updated versions from `updated_tables/`
+3. Update figure references to use the improved figures from `Figures_Improved/`
+4. Run LaTeX compilation to generate the final PDF

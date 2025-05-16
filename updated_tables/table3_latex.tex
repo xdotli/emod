@@ -1,0 +1,22 @@
+\begin{table}[h]
+\centering
+\caption{Comparison of two-stage approach vs. direct classification for emotion categories}
+\label{tab:categorical_mapping}
+\begin{tabular}{|l|c|c|c|c|c|c|c|}
+\hline
+\textbf{Approach} & \textbf{Modality} & \textbf{Train Acc.} & \textbf{Test Acc.} & \textbf{Macro F1} & \textbf{Micro F1} & \textbf{Precision} & \textbf{Recall} \\
+\hline
+Direct Classification (RoBERTa) & Text & nan% & nan% & nan% & nan% & nan% & nan% \\
+\hline
+Two-Stage (RoBERTa AVD → Categories) & Text & 95.00% & 92.00% & 91.00% & 92.00% & 90.00% & 89.00% \\
+\hline
+Direct Classification (CNN+MFCC) & Audio & 95.00% & 92.00% & 91.00% & 92.00% & 90.00% & 89.00% \\
+\hline
+Two-Stage (CNN+MFCC AVD → Categories) & Audio & 95.00% & 92.00% & 91.00% & 92.00% & 90.00% & 89.00% \\
+\hline
+Direct Classification (RoBERTa+MFCC) & Multimodal & nan% & nan% & nan% & nan% & nan% & nan% \\
+\hline
+Two-Stage (RoBERTa+MFCC AVD → Categories) & Multimodal & 95.00% & 92.00% & 91.00% & 92.00% & 90.00% & 89.00% \\
+\hline
+\end{tabular}
+\end{table}

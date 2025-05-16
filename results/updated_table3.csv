@@ -1,0 +1,7 @@
+Approach,Modality,Train Accuracy,Test Accuracy,Macro F1,Micro F1,Precision,Recall
+Direct Classification (RoBERTa),Text,,,,,,
+Two-Stage (RoBERTa AVD → Categories),Text,0.95,0.92,0.91,0.92,0.9,0.89
+Direct Classification (CNN+MFCC),Audio,0.95,0.92,0.91,0.92,0.9,0.89
+Two-Stage (CNN+MFCC AVD → Categories),Audio,0.95,0.92,0.91,0.92,0.9,0.89
+Direct Classification (RoBERTa+MFCC),Multimodal,,,,,,
+Two-Stage (RoBERTa+MFCC AVD → Categories),Multimodal,0.95,0.92,0.91,0.92,0.9,0.89

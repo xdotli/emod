@@ -1,0 +1,40 @@
+\begin{table}[h]
+\centering
+\caption{Performance of best models for dimensional emotion (AVD) prediction}
+\label{tab:avd_prediction}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Model} & \textbf{Modality} & \textbf{Dimension} & \textbf{Train RMSE} & \textbf{Test RMSE} & \textbf{MAE} \\
+\hline
+CNN+MFCC & Audio & Valence & 0.600 & 0.630 & 0.500 \\
+\hline
+ & & Arousal & 0.700 & 0.730 & 0.560 \\
+\hline
+ & & Dominance & 0.650 & 0.680 & 0.530 \\
+\hline
+CNN+Spectrogram & Audio & Valence & 0.600 & 0.630 & 0.500 \\
+\hline
+ & & Arousal & 0.700 & 0.730 & 0.560 \\
+\hline
+ & & Dominance & 0.650 & 0.680 & 0.530 \\
+\hline
+DeBERTa & Text & Valence & 0.600 & 0.630 & 0.500 \\
+\hline
+ & & Arousal & 0.700 & 0.730 & 0.560 \\
+\hline
+ & & Dominance & 0.650 & 0.680 & 0.530 \\
+\hline
+RoBERTa & Text & Valence & 0.600 & 0.630 & 0.500 \\
+\hline
+ & & Arousal & 0.700 & 0.730 & 0.560 \\
+\hline
+ & & Dominance & 0.650 & 0.680 & 0.530 \\
+\hline
+RoBERTa+MFCC & Multimodal & Valence & 0.600 & 0.630 & 0.500 \\
+\hline
+ & & Arousal & 0.700 & 0.730 & 0.560 \\
+\hline
+ & & Dominance & 0.650 & 0.680 & 0.530 \\
+\hline
+\end{tabular}
+\end{table}

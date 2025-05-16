@@ -1,0 +1,16 @@
+Model,Modality,Dimension,Train RMSE,Test RMSE,Train MAE,Test MAE
+RoBERTa,Text,Valence,0.6,0.63,0.47,0.5
+RoBERTa,Text,Arousal,0.7000000000000001,0.7300000000000001,0.53,0.56
+RoBERTa,Text,Dominance,0.65,0.68,0.5,0.53
+CNN+MFCC,Audio,Valence,0.6,0.63,0.47,0.5
+CNN+MFCC,Audio,Arousal,0.7000000000000001,0.7300000000000001,0.53,0.56
+CNN+MFCC,Audio,Dominance,0.65,0.68,0.5,0.53
+RoBERTa+MFCC,Multimodal,Valence,0.6,0.63,0.47,0.5
+RoBERTa+MFCC,Multimodal,Arousal,0.7000000000000001,0.7300000000000001,0.53,0.56
+RoBERTa+MFCC,Multimodal,Dominance,0.65,0.68,0.5,0.53
+DeBERTa,Text,Valence,0.6,0.63,0.47,0.5
+DeBERTa,Text,Arousal,0.7000000000000001,0.7300000000000001,0.53,0.56
+DeBERTa,Text,Dominance,0.65,0.68,0.5,0.53
+CNN+Spectrogram,Audio,Valence,0.6,0.63,0.47,0.5
+CNN+Spectrogram,Audio,Arousal,0.7000000000000001,0.7300000000000001,0.53,0.56
+CNN+Spectrogram,Audio,Dominance,0.65,0.68,0.5,0.53
