@@ -8,51 +8,49 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: sample-base.bib
-Warning--I didn't find a database entry for "livingstone2018ravdess"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 33 entries,
+You've used 34 entries,
             4087 wiz_defined-function locations,
-            986 strings with 13749 characters,
-and the built_in function-call counts, 22360 in all, are:
-= -- 1687
-> -- 627
+            989 strings with 13855 characters,
+and the built_in function-call counts, 22731 in all, are:
+= -- 1717
+> -- 631
 < -- 131
-+ -- 326
-- -- 124
-* -- 1048
-:= -- 3315
-add.period$ -- 70
-call.type$ -- 33
-change.case$ -- 33
++ -- 328
+- -- 125
+* -- 1059
+:= -- 3381
+add.period$ -- 72
+call.type$ -- 34
+change.case$ -- 35
 chr.to.int$ -- 306
-cite$ -- 33
-duplicate$ -- 1687
-empty$ -- 1986
-format.name$ -- 153
-if$ -- 5237
+cite$ -- 34
+duplicate$ -- 1720
+empty$ -- 2023
+format.name$ -- 154
+if$ -- 5320
 int.to.chr$ -- 0
-int.to.str$ -- 33
-missing$ -- 321
-newline$ -- 122
-num.names$ -- 33
-pop$ -- 826
+int.to.str$ -- 34
+missing$ -- 329
+newline$ -- 125
+num.names$ -- 34
+pop$ -- 848
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1743
+skip$ -- 1773
 stack$ -- 0
-substring$ -- 761
-swap$ -- 1224
+substring$ -- 764
+swap$ -- 1242
 text.length$ -- 29
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 33
+type$ -- 34
 warning$ -- 0
-while$ -- 82
-width$ -- 35
-write$ -- 314
-(There was 1 warning)
+while$ -- 83
+width$ -- 36
+write$ -- 322

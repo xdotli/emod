@@ -160,20 +160,18 @@ The challenge in emotion detection stems from several factors. First, emotions a
 To address these challenges, this project explores a two-stage approach to emotion detection using multimodal data. The first stage involves extracting continuous dimensional values of Arousal, Valence, and Dominance (AVD) from individual modalities—specifically text and audio features—through specialized models tailored to each data type. The second stage maps these dimensional representations to discrete emotional categories using learned boundaries and relationships between the AVD space and categorical emotions. Our hypothesis is that this two-stage approach will yield improved performance compared to direct categorical classification by leveraging the structured nature of the dimensional emotion space.
 
 Our research makes several key contributions:
+Our research makes several key contributions:
 
-First, we conduct a comparative analysis of various transformer-based models, including BERT, RoBERTa, XLNet, ALBERT, ELECTRA, and DeBERTa, for predicting dimensional emotion values from text. Second, we investigate the effectiveness of different audio representations, including Mel-Frequency Cepstral Coefficients (MFCC), spectrograms, prosodic features, and wav2vec embeddings for AVD prediction. Third, we systematically evaluate the performance of mapping from predicted AVD values to categorical emotions, comparing it with direct classification approaches. Fourth, we provide comprehensive evaluations on both the complete and filtered versions of the IEMOCAP dataset, offering insights into the impact of data preprocessing on model performance. Finally, we implement a scalable and reproducible experimental framework using Modal's cloud infrastructure, enabling efficient comparison of our key approaches.
-    
-The structure of this report is as follows: Section \ref{sec:related} reviews relevant literature on emotion recognition approaches. Section \ref{sec:methodology} describes our methodology, including model architectures and the two-stage mapping process. Section \ref{sec:experimental_setup} details the experimental setup, covering dataset preparation, preprocessing techniques, and evaluation metrics. Section \ref{sec:results} presents our findings, focusing on the performance of AVD prediction and subsequent categorical mapping. Section \ref{sec:discussion} discusses the implications of our results and compares the two-stage approach with direct classification. Finally, Section \ref{sec:conclusion} concludes the report and suggests directions for future research.
     
 \section{Related Work}
 \label{sec:related_work}
     
 \subsection{Dimensional vs. Categorical Emotion Models}
-Emotion recognition research has been guided by two primary theoretical frameworks: discrete categorical models and dimensional models. Categorical approaches, following Ekman's Basic Emotion Theory, classify emotions into distinct categories such as anger, happiness, and sadness. In contrast, dimensional models represent emotions as points in a continuous multi-dimensional space, with the most common dimensions being Valence (positive/negative), Arousal (active/passive), and Dominance (strong/weak).
-    
-Russell's Circumplex Model and the PAD (Pleasure-Arousal-Dominance) model by Mehrabian have provided theoretical foundations for dimensional approaches. These models offer advantages in representing subtle emotional variations and blended states that may not fit neatly into discrete categories. However, mapping from dimensional values to categorical labels presents challenges, as the boundaries between emotions in the dimensional space are often fuzzy and context-dependent.
+% % Emotion recognition research has been guided by two primary theoretical frameworks: discrete categorical models and dimensional models. Categorical approaches, following Ekman's Basic Emotion Theory, classify emotions into distinct categories such as anger, happiness, and sadness. In contrast, dimensional models represent emotions as points in a continuous multi-dimensional space, with the most common dimensions being Valence (positive/negative), Arousal (active/passive), and Dominance (strong/weak).
+% %     
+% % Russell's Circumplex Model and the PAD (Pleasure-Arousal-Dominance) model by Mehrabian have provided theoretical foundations for dimensional approaches. These models offer advantages in representing subtle emotional variations and blended states that may not fit neatly into discrete categories. However, mapping from dimensional values to categorical labels presents challenges, as the boundaries between emotions in the dimensional space are often fuzzy and context-dependent.
 
-Early computational approaches largely focused on categorical emotion recognition, but interest in dimensional modeling has grown as researchers seek to capture more nuanced emotional states. Grimm et al. pioneered continuous emotion prediction from speech, using support vector regression to estimate values along multiple emotional dimensions. More recently, Toisoul et al. demonstrated that predicting dimensional values before mapping to categories can yield improvements for facial emotion recognition. Our work extends this two-stage approach to the multimodal domain, investigating whether similar benefits can be observed when combining textual and audio inputs.
+% % Early computational approaches largely focused on categorical emotion recognition, but interest in dimensional modeling has grown as researchers seek to capture more nuanced emotional states. Grimm et al. pioneered continuous emotion prediction from speech, using support vector regression to estimate values along multiple emotional dimensions. More recently, Toisoul et al. demonstrated that predicting dimensional values before mapping to categories can yield improvements for facial emotion recognition. Our work extends this two-stage approach to the multimodal domain, investigating whether similar benefits can be observed when combining textual and audio inputs.
 
 \subsection{Early Emotion-Recognition Approaches (pre-2012)}
 The first wave of emotion-recognition research was dominated by lexicon and rule-based techniques such as WordNet-Affect and the NRC Emotion Lexicon. These approaches relied on predefined emotional associations of words and phrases, often lacking contextual understanding. For audio analysis, researchers extracted acoustic features like pitch, energy, and spectral characteristics, which were then processed using statistical models.
@@ -294,13 +292,13 @@ Pan et al. (2022) & IEMOCAP (4) & A & MFCC features & CNN + LSTM hybrid & Acc & 
 \clearpage
 
 \subsection{Audio-Based Emotion Detection}
-Audio-based emotion recognition has traditionally focused on extracting acoustic features that correlate with emotional states. Low-level descriptors (LLDs) such as pitch, energy, formants, and voice quality parameters were among the earliest features explored~\cite{schuller2009acoustic}.
+% % Audio-based emotion recognition has traditionally focused on extracting acoustic features that correlate with emotional states. Low-level descriptors (LLDs) such as pitch, energy, formants, and voice quality parameters were among the earliest features explored~\cite{schuller2009acoustic}.
 
-Mel-Frequency Cepstral Coefficients (MFCCs), originally developed for speech recognition, have proven effective for emotion detection by capturing the spectral envelope of speech~\cite{li2013speech}. Similarly, spectrograms provide time-frequency representations that preserve temporal dynamics important for emotion recognition.
+% % Mel-Frequency Cepstral Coefficients (MFCCs), originally developed for speech recognition, have proven effective for emotion detection by capturing the spectral envelope of speech~\cite{li2013speech}. Similarly, spectrograms provide time-frequency representations that preserve temporal dynamics important for emotion recognition.
 
-With deep learning, Convolutional Neural Networks (CNNs) have been applied directly to spectrograms, treating them as images and learning relevant patterns automatically~\cite{mao2014learning}. This approach eliminates the need for handcrafted feature engineering while often improving performance.
+% % With deep learning, Convolutional Neural Networks (CNNs) have been applied directly to spectrograms, treating them as images and learning relevant patterns automatically~\cite{mao2014learning}. This approach eliminates the need for handcrafted feature engineering while often improving performance.
 
-More recently, self-supervised approaches like wav2vec~\cite{schneider2019wav2vec} have gained attention by learning representations from unlabeled audio data. These models capture nuanced acoustic properties that may be missed by traditional feature extraction methods.
+% % More recently, self-supervised approaches like wav2vec~\cite{schneider2019wav2vec} have gained attention by learning representations from unlabeled audio data. These models capture nuanced acoustic properties that may be missed by traditional feature extraction methods.
 
 \subsection{Multimodal Approaches}
 Recognizing that emotions are expressed through multiple channels, researchers have increasingly focused on multimodal approaches. These methods face the challenge of effectively combining information from different modalities that may operate at different time scales and granularities.
@@ -329,8 +327,8 @@ Figure~\ref{fig:system_architecture} illustrates the high-level architecture of 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\linewidth]{Figures/system_architecture_fixed.png}
-    \caption{High-Level System Architecture: The diagram illustrates the two-stage approach with modality-specific processing of audio and text to predict AVD values, followed by a mapping to discrete emotions. This architectural overview highlights the parallel processing streams and the dimensional-to-categorical conversion process implemented in our system.}
+    \includegraphics[width=0.9\linewidth]{Figures_Improved/system_architecture_fixed.png}
+    \caption{System architecture of the two-stage emotion detection model.}
     \label{fig:system_architecture}
 \end{figure}
 
@@ -372,21 +370,17 @@ All transformer models followed a consistent training procedure to ensure fair c
 \end{enumerate}
 
 \paragraph{Hyperparameters:}
-\begin{itemize}
-    \item Learning rate: 2e-5 with linear decay
-    \item Batch size: 16 samples
-    \item Training epochs: 40 (with early stopping based on validation loss)
-    \item Optimizer: AdamW with weight decay of 0.01
-    \item Gradient clipping: Maximum gradient norm of 1.0
-    \item Warmup: 10\% of total training steps
-\end{itemize}
+    Learning rate: 2e-5 with linear decay
+    Batch size: 16 samples
+    Training epochs: 40 (with early stopping based on validation loss)
+    Optimizer: AdamW with weight decay of 0.01
+    Gradient clipping: Maximum gradient norm of 1.0
+    Warmup: 10\% of total training steps
 
 \paragraph{Regularization Techniques:}
-\begin{itemize}
-    \item Early stopping: Training halted when validation loss failed to improve for 5 consecutive epochs
-    \item Dropout: Default dropout rate of 0.1 in transformer layers
-    \item Weight decay: Applied to all parameters except biases and layer normalization
-\end{itemize}
+    Early stopping: Training halted when validation loss failed to improve for 5 consecutive epochs
+    Dropout: Default dropout rate of 0.1 in transformer layers
+    Weight decay: Applied to all parameters except biases and layer normalization
 
 \paragraph{Loss Function:}
 For discrete emotion categories, we used cross-entropy loss. For dimensional emotion recognition (valence, arousal, dominance), we employed mean squared error (MSE) loss.
@@ -399,8 +393,8 @@ MFCCs are perceptually motivated spectral features that represent the short-term
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1.0\linewidth]{Figures/mfcc_pipeline.png}
-    \caption{MFCC Feature Extraction Pipeline: This diagram details the complete processing pipeline for extracting Mel-frequency cepstral coefficients from raw audio signals. Starting with pre-emphasis and framing, the pipeline applies a series of transformations including FFT, Mel-scale filtering, and DCT to capture perceptually relevant acoustic features. The final feature vector includes delta and delta-delta coefficients to incorporate temporal dynamics.}
+    \includegraphics[width=1.0\linewidth]{Figures_Improved/mfcc_pipeline.png}
+    \caption{System architecture of the two-stage emotion detection model.}
     \label{fig:mfcc_pipeline}
 \end{figure}
 
@@ -428,8 +422,8 @@ For multimodal approaches combining text and audio information for AVD predictio
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\linewidth]{Figures/fusion_strategies_comparison.png}
-    \caption{Fusion Strategies Comparison: This diagram compares the primary fusion approaches evaluated. Early fusion concatenates raw features before joint processing, late fusion combines independent predictions, and hybrid fusion merges intermediate representations from both modalities. Our experiments showed hybrid fusion achieving strong performance by balancing joint learning with modality-specific processing, although direct classification ultimately proved superior.}
+    \includegraphics[width=0.9\linewidth]{Figures_Improved/fusion_strategies_comparison.png}
+    \caption{System architecture of the two-stage emotion detection model.}
     \label{fig:fusion_strategies}
 \end{figure}
 
@@ -441,8 +435,8 @@ Late fusion, or decision-level fusion, processes each modality independently unt
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\linewidth]{Figures/late_fusion_detailed_proper.png}
-    \caption{Detailed architecture of the late fusion approach. The text and audio pathways process their respective inputs independently, with each modality producing its own predictions that are then combined through weighted averaging or other aggregation methods. This approach maintains separation between modalities until the final decision stage.}
+    \includegraphics[width=0.9\linewidth]{Figures_Improved/late_fusion_detailed_proper.png}
+    \caption{System architecture of the two-stage emotion detection model.}
     \label{fig:late_fusion}
 \end{figure}
 
@@ -451,8 +445,8 @@ Hybrid fusion combines aspects of both early and late fusion. It involves extrac
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\linewidth]{Figures/hybrid_fusion_detailed.png}
-    \caption{Detailed architecture of the hybrid fusion approach. This diagram illustrates how text and audio pathways process their respective inputs partially, before concatenating intermediate representations for joint processing through shared layers. The hybrid approach combines benefits of both early and late fusion by allowing modality-specific processing followed by joint learning.}
+    \includegraphics[width=0.9\linewidth]{Figures_Improved/hybrid_fusion_detailed.png}
+    \caption{System architecture of the two-stage emotion detection model.}
     \label{fig:hybrid_fusion}
 \end{figure}
 
@@ -542,25 +536,8 @@ The first stage of our approach involves predicting continuous values for Arousa
 
 \begin{table}[h]
 \centering
-\caption{Performance of best models for dimensional emotion (AVD) prediction}
-\label{tab:avd_prediction}
-\begin{tabular}{|l|c|c|c|c|c|c|}
-\hline
-\textbf{Model} & \textbf{Modality} & \multicolumn{2}{c|}{\textbf{Valence}} & \multicolumn{2}{c|}{\textbf{Arousal}} & \textbf{Dominance} \\
-\cline{3-7}
- & & \textbf{RMSE} & \textbf{R²} & \textbf{RMSE} & \textbf{R²} & \textbf{RMSE} \\
-\hline
-RoBERTa & Text & 0.651 & 0.471 & 0.664 & 0.096 & 0.749 \\
-\hline
-CNN+MFCC & Audio & 0.723 & 0.384 & 0.612 & 0.215 & 0.781 \\
-\hline
-RoBERTa+MFCC & Multimodal & 0.666 & 0.447 & 0.650 & 0.133 & 0.749 \\
-\hline
-DeBERTa & Text & 0.658 & 0.462 & 0.671 & 0.083 & 0.753 \\
-\hline
-CNN+Spectrogram & Audio & 0.731 & 0.372 & 0.618 & 0.205 & 0.786 \\
-\hline
-\end{tabular}
+\caption{Performance of best models for dimensional emotion (AVD) prediction using MAE and RMSE metrics}
+\input{updated_tables/avd_table_latex.tex}
 \end{table}
 
 As shown in Table~\ref{tab:avd_prediction}, the text-based RoBERTa model achieves the best performance for Valence prediction with an R² of 0.471, while audio models perform better for Arousal prediction with the CNN+MFCC model achieving an R² of 0.215. This pattern aligns with psychological theories suggesting that verbal content strongly conveys valence information (positive/negative sentiment), while audio features better capture arousal (intensity/energy). The multimodal approach combining RoBERTa and MFCC features shows balanced performance across dimensions, indicating that combining modalities provides complementary information.
@@ -571,25 +548,8 @@ The second stage of our approach maps the predicted AVD values to discrete emoti
 
 \begin{table}[h]
 \centering
-\caption{Comparison of two-stage approach vs. direct classification for emotion categories}
-\label{tab:categorical_mapping}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-\textbf{Approach} & \textbf{Modality} & \textbf{Accuracy} & \textbf{F1-score} & \textbf{Cohen's Kappa} \\
-\hline
-Direct Classification (RoBERTa) & Text & 91.82\% & 90.17\% & 0.887 \\
-\hline
-Two-Stage (RoBERTa AVD → Categories) & Text & 89.37\% & 88.24\% & 0.861 \\
-\hline
-Direct Classification (CNN+MFCC) & Audio & 84.56\% & 83.21\% & 0.795 \\
-\hline
-Two-Stage (CNN+MFCC AVD → Categories) & Audio & 82.91\% & 81.83\% & 0.778 \\
-\hline
-Direct Classification (RoBERTa+MFCC) & Multimodal & 91.74\% & 90.03\% & 0.886 \\
-\hline
-Two-Stage (RoBERTa+MFCC AVD → Categories) & Multimodal & 90.13\% & 88.95\% & 0.872 \\
-\hline
-\end{tabular}
+\caption{System architecture of the two-stage emotion detection model.}
+\input{updated_tables/table3_latex.tex}
 \end{table}
 
 Interestingly, our results indicate that direct classification slightly outperforms the two-stage approach for categorical emotion recognition, contrary to our initial hypothesis. The direct classification approach using RoBERTa achieves 91.82\% accuracy compared to 89.37\% for the two-stage approach with the same model. This pattern is consistent across all modalities, with direct classification consistently outperforming the two-stage approach by 1.5-2.5 percentage points.
@@ -602,17 +562,16 @@ Despite this performance gap, the two-stage approach offers valuable advantages 
 This section examines the implications of our experimental results, with particular focus on the comparison between the two-stage approach and direct classification. We also discuss the relative contributions of different modalities and the practical applications of our findings.
 
 \subsection{Two-Stage Approach vs. Direct Classification}
+\subsection{Two-Stage Approach vs. Direct Classification}
 
-Our initial hypothesis posited that a two-stage approach—first predicting dimensional values (AVD) and then mapping to discrete categories—would improve emotion classification performance. However, our results demonstrate that direct classification consistently outperformed the two-stage approach across all modalities, with performance differences ranging from 1.5 to 2.5 percentage points. Several factors may explain this finding.
 
-First, the mapping from dimensional values to discrete categories introduces an additional layer where errors can accumulate. Any inaccuracies in the AVD prediction stage propagate to the categorical mapping stage, potentially amplifying the overall error. Direct classification, in contrast, optimizes directly for the target categories, avoiding this error propagation.
 
-Second, while the dimensional model of emotions has strong theoretical foundations in psychology, discrete emotion categories may align better with the features extracted by our models, particularly from text. Transformer models like RoBERTa excel at capturing semantic patterns that may directly correspond to emotional categories without requiring the intermediate dimensional representation.
 
-Third, the IEMOCAP dataset used in our study contains acted emotions with potentially exaggerated expressions that map more clearly to discrete categories. In more naturalistic settings with subtle, mixed emotions, the dimensional approach might prove more advantageous, as it can represent emotional blends that don't fit neatly into discrete categories.
 
 Despite its lower classification accuracy, the two-stage approach offers significant advantages for applications requiring nuanced emotional understanding. The continuous AVD values provide richer information about emotional states, potentially enabling more sophisticated responses in human-computer interaction systems. For example, knowing not just that a user is "happy" but also the intensity of that happiness (arousal) and the degree of control they feel (dominance) allows for more tailored responses.
+Despite its lower classification accuracy, the two-stage approach offers significant advantages for applications requiring nuanced emotional understanding. The continuous AVD values provide richer information about emotional states, potentially enabling more sophisticated responses in human-computer interaction systems. For example, knowing not just that a user is "happy" but also the intensity of that happiness (arousal) and the degree of control they feel (dominance) allows for more tailored responses.
 
+Furthermore, the dimensional representation facilitates cross-cultural applications, as the AVD dimensions have shown consistency across different cultural contexts, while the interpretation of discrete emotion categories may vary. This characteristic makes the two-stage approach potentially more generalizable to diverse user populations.
 Furthermore, the dimensional representation facilitates cross-cultural applications, as the AVD dimensions have shown consistency across different cultural contexts, while the interpretation of discrete emotion categories may vary. This characteristic makes the two-stage approach potentially more generalizable to diverse user populations.
 
 \subsection{Model Selection for Emotion Detection}
@@ -621,43 +580,37 @@ Our experiments consistently demonstrated the superiority of RoBERTa for emotion
 
 \paragraph{Understanding RoBERTa's Advantage:}
 Several factors contribute to RoBERTa's superior performance:
-\begin{itemize}
-    \item \textbf{Enhanced pre-training methodology:} RoBERTa's training optimizations—larger batch sizes, longer training, and dynamic masking—create more robust representations of language patterns
+    \textbf{Enhanced pre-training methodology:} RoBERTa's training optimizations—larger batch sizes, longer training, and dynamic masking—create more robust representations of language patterns
     
-    \item \textbf{Removal of next sentence prediction:} By focusing exclusively on masked language modeling, RoBERTa avoids potentially distracting signals from the next sentence prediction task
+    \textbf{Removal of next sentence prediction:} By focusing exclusively on masked language modeling, RoBERTa avoids potentially distracting signals from the next sentence prediction task
     
-    \item \textbf{Byte-level BPE tokenization:} RoBERTa's tokenization strategy handles a wider range of vocabulary, including emotionally charged expressions
+    \textbf{Byte-level BPE tokenization:} RoBERTa's tokenization strategy handles a wider range of vocabulary, including emotionally charged expressions
     
-    \item \textbf{Larger pre-training corpus:} Exposure to more text examples during pre-training enhances the model's ability to recognize subtle linguistic patterns associated with emotions
-\end{itemize}
+    \textbf{Larger pre-training corpus:} Exposure to more text examples during pre-training enhances the model's ability to recognize subtle linguistic patterns associated with emotions
 
 \paragraph{Model Selection Considerations:}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\linewidth]{Figures/performance_efficiency_tradeoff.png}
-    \caption{Performance vs. efficiency trade-off visualization. Model accuracy is plotted against parameter count, with bubble size representing inference time. The red line indicates the efficiency frontier connecting models that offer optimal performance for their size. This visualization highlights ALBERT's exceptional efficiency (12M parameters) while maintaining competitive accuracy (91.44\%), offering a compelling alternative to RoBERTa for resource-constrained environments.}
+    \includegraphics[width=0.9\linewidth]{Figures_Improved/performance_efficiency_tradeoff.png}
+    \caption{System architecture of the two-stage emotion detection model.}
     \label{fig:efficiency_tradeoff}
 \end{figure}
 
 The small performance gap among the top transformer models (within 0.5\%) indicates that the field has reached a certain level of maturity, where architectural differences provide diminishing returns compared to training methodology and optimization. This finding has practical implications for deployment scenarios:
 
-\begin{itemize}
-    \item \textbf{Computational efficiency:} Smaller models like DistilBERT (91.39\%) and ALBERT (91.44\%) provide competitive performance with significantly reduced parameter counts (66M and 12M respectively, compared to RoBERTa's 125M)
+    \textbf{Computational efficiency:} Smaller models like DistilBERT (91.39\%) and ALBERT (91.44\%) provide competitive performance with significantly reduced parameter counts (66M and 12M respectively, compared to RoBERTa's 125M)
     
-    \item \textbf{Inference speed:} Lighter models offer substantial speed advantages in production environments—DistilBERT achieves ~1.7x faster inference than RoBERTa with only a 0.43\% accuracy reduction
+    \textbf{Inference speed:} Lighter models offer substantial speed advantages in production environments—DistilBERT achieves ~1.7x faster inference than RoBERTa with only a 0.43\% accuracy reduction
     
-    \item \textbf{Memory limitations:} For edge devices or memory-constrained environments, ALBERT's dramatic parameter reduction (10x smaller than RoBERTa) with only a 0.38\% accuracy drop represents an excellent trade-off
+    \textbf{Memory limitations:} For edge devices or memory-constrained environments, ALBERT's dramatic parameter reduction (10x smaller than RoBERTa) with only a 0.38\% accuracy drop represents an excellent trade-off
     
-    \item \textbf{Training data requirements:} When limited labeled data is available, our results suggest that more efficient models like ELECTRA may converge better with fewer examples
-\end{itemize}
+    \textbf{Training data requirements:} When limited labeled data is available, our results suggest that more efficient models like ELECTRA may converge better with fewer examples
 
 \paragraph{Comparison with Prior Work:}
 Our best text model outperforms previous approaches in the literature:
-\begin{itemize}
-    \item Sehrawat et al.~\cite{sehrawat2023deception} reported 80\% accuracy using BiLSTM for text classification
-    \item Hsiao and Sun~\cite{hsiao2022attention} achieved 84\% accuracy with attention-based BiLSTM
-    \item Our RoBERTa implementation reaches 91.82\%, representing a substantial improvement of 7.82 percentage points over the state-of-the-art
-\end{itemize}
+    Sehrawat et al.~\cite{sehrawat2023deception} reported 80\% accuracy using BiLSTM for text classification
+    Hsiao and Sun~\cite{hsiao2022attention} achieved 84\% accuracy with attention-based BiLSTM
+    Our RoBERTa implementation reaches 91.82\%, representing a substantial improvement of 7.82 percentage points over the state-of-the-art
 
 This improvement underscores the value of transformer-based models for emotion detection and suggests that pre-trained language models capture emotional nuances more effectively than RNN-based approaches.
 
@@ -672,28 +625,24 @@ Furthermore, challenges in audio feature extraction and multimodal fusion could 
 \paragraph{Interpreting Unimodal Performance:}
 This result may seem counterintuitive, as emotions are expressed through multiple channels, and one might expect multimodal approaches to outperform unimodal ones. Several factors could explain this finding:
 
-\begin{itemize}
-    \item \textbf{Dataset characteristics:} The IEMOCAP dataset contains acted emotions, which may be more explicitly verbalized compared to spontaneous emotions in real-world settings
+    \textbf{Dataset characteristics:} The IEMOCAP dataset contains acted emotions, which may be more explicitly verbalized compared to spontaneous emotions in real-world settings
     
-    \item \textbf{Transcript quality:} The transcripts in IEMOCAP are clean and accurate, whereas real-world applications would contend with automatic speech recognition errors
+    \textbf{Transcript quality:} The transcripts in IEMOCAP are clean and accurate, whereas real-world applications would contend with automatic speech recognition errors
     
-    \item \textbf{Information redundancy:} In scripted scenarios, text and audio may convey largely redundant information, limiting the benefit of multimodal fusion
+    \textbf{Information redundancy:} In scripted scenarios, text and audio may convey largely redundant information, limiting the benefit of multimodal fusion
     
-    \item \textbf{Feature extraction limitations:} Our audio feature extraction methods may not capture all the subtle acoustic cues relevant to emotion detection
+    \textbf{Feature extraction limitations:} Our audio feature extraction methods may not capture all the subtle acoustic cues relevant to emotion detection
     
-    \item \textbf{Fusion challenges:} Our multimodal fusion strategies may not yet optimally leverage complementary information across modalities
-\end{itemize}
+    \textbf{Fusion challenges:} Our multimodal fusion strategies may not yet optimally leverage complementary information across modalities
 
 \paragraph{Modality Contributions:}
 To better understand the relative contributions of each modality, we conducted an ablation study on our best multimodal model, systematically degrading each input channel:
 
-\begin{itemize}
-    \item \textbf{Degrading text input:} Randomly masking 30\% of text tokens resulted in a 9.2\% accuracy drop
+    \textbf{Degrading text input:} Randomly masking 30\% of text tokens resulted in a 9.2\% accuracy drop
     
-    \item \textbf{Degrading audio input:} Adding white noise to audio features at 10dB SNR caused a 4.7\% accuracy reduction
+    \textbf{Degrading audio input:} Adding white noise to audio features at 10dB SNR caused a 4.7\% accuracy reduction
     
-    \item \textbf{Modality mismatch:} When text and audio conveyed conflicting emotions, text classifications were preferred 73\% of the time
-\end{itemize}
+    \textbf{Modality mismatch:} When text and audio conveyed conflicting emotions, text classifications were preferred 73\% of the time
 
 These findings suggest that while text provides stronger signals for emotion detection in this dataset, audio features do contribute meaningful complementary information, particularly in cases where textual content is ambiguous or limited.
 
@@ -713,13 +662,11 @@ The near-parity performance suggests that the choice of fusion method might be l
 \paragraph{Feature-Specific Fusion Patterns:}
 The interaction between audio features and fusion methods revealed intriguing patterns:
 
-\begin{itemize}
-    \item \textbf{MFCC + Hybrid fusion:} The optimal combination (91.74\%) leverages MFCC's compact representation through partial independent processing before joint analysis
+    \textbf{MFCC + Hybrid fusion:} The optimal combination (91.74\%) leverages MFCC's compact representation through partial independent processing before joint analysis
     
-    \item \textbf{Spectrogram + Late fusion:} This effective pairing (91.71\%) allows complete independent processing of spectrograms, preserving their rich temporal patterns
+    \textbf{Spectrogram + Late fusion:} This effective pairing (91.71\%) allows complete independent processing of spectrograms, preserving their rich temporal patterns
     
-    \item \textbf{MFCC + Early fusion:} Despite theoretical limitations, this combination performs well (91.64\%), suggesting that MFCC's engineered nature works with joint processing
-\end{itemize}
+    \textbf{MFCC + Early fusion:} Despite theoretical limitations, this combination performs well (91.64\%), suggesting that MFCC's engineered nature works with joint processing
 
 The small performance differences among fusion strategies (within 0.1\%) indicate that all three successful approaches can effectively combine textual and audio information. The optimal choice depends on the specific audio features and implementation constraints.
 
@@ -728,12 +675,10 @@ The absence of successful results for attention-based fusion is notable and may 
 
 Our detailed error analysis revealed:
 
-\begin{itemize}
-    \item Computational complexity leading to training instability
-    \item Challenges in tuning the number and dimension of attention heads
-    \item Potential overfitting due to increased parameter count
-    \item Implementation issues with gradient flow through complex attention structures
-\end{itemize}
+    Computational complexity leading to training instability
+    Challenges in tuning the number and dimension of attention heads
+    Potential overfitting due to increased parameter count
+    Implementation issues with gradient flow through complex attention structures
 
 These findings highlight the practical challenges of implementing sophisticated fusion techniques and suggest areas for future improvement.
 
@@ -779,305 +724,3 @@ Sehrawat et al.~\cite{sehrawat2023deception} & Multimodal & 80.00\% & BiLSTM + C
 \hline
 \end{tabular}
 \caption{Comparison of our approaches with previous state-of-the-art results on the IEMOCAP dataset.}
-\label{tab:sota_comparison}
-\end{table}
-
-This significant improvement can be attributed to several factors in our methodology. Primarily, the use of powerful pre-trained transformer models like RoBERTa for text processing appears to be a key differentiator compared to the RNN/CNN-based architectures common in previous works. Additionally, our systematic comparison of audio features (favoring MFCCs and spectrograms) and fusion strategies (identifying Hybrid and Late fusion as most effective with specific features) contributed to optimizing the multimodal pipeline. Careful fine-tuning schedules and regularization techniques also played a role in achieving these high performance levels. Methodologically, our work provides a comprehensive evaluation across multiple metrics and employs a reproducible cloud-based infrastructure, contributing to the robustness of our findings.
-
-\subsection{Limitations}
-\subsubsection{Technical Limitations}
-Despite the comprehensive nature of our experiments, several limitations should be acknowledged:
-
-\begin{itemize}
-    \item \textbf{Dataset specificity:} IEMOCAP contains acted emotions, which may differ from spontaneous emotions in real-world settings
-    
-    \item \textbf{Modal challenges:} Implementation issues prevented evaluation of prosodic features, wav2vec embeddings, and attention-based fusion
-    
-    \item \textbf{Exhaustiveness:} Not all combinations of models, audio features, and fusion strategies were exhaustively tested
-    
-    \item \textbf{Dimensional modeling:} While we evaluated dimensional emotion predictions (VAD), our focus was primarily on categorical emotion classification
-    
-    \item \textbf{Cross-corpus evaluation:} All experiments were conducted on variations of the IEMOCAP dataset, limiting generalization claims
-\end{itemize}
-
-\paragraph{Methodological Limitations:}
-Our approach also has methodological limitations:
-
-\begin{itemize}
-    \item \textbf{Perfect transcription assumption:} Unlike real-world applications, we used ground truth transcripts rather than ASR output
-    
-    \item \textbf{Context isolation:} We classified each utterance independently, without considering conversational context
-    
-    \item \textbf{Visual modality omission:} IEMOCAP contains visual data that we did not incorporate
-    
-    \item \textbf{Model size constraints:} Limited exploration of larger models (e.g., RoBERTa-large) due to computational constraints
-    
-    \item \textbf{Single language:} All experiments were conducted on English data only
-\end{itemize}
-
-\subsection{Future Directions}
-Based on our findings and the identified limitations, several promising directions for future research emerge. Technically, further investigation into advanced fusion strategies, particularly refining attention-based mechanisms, could unlock better ways to leverage complementary information from text and audio. Successfully integrating theoretically powerful audio representations like prosodic features and self-supervised wav2vec embeddings by overcoming the current implementation challenges is also a key priority. Exploring model distillation techniques to transfer the knowledge from our best-performing large models (like RoBERTa) to more compact and efficient architectures could yield practical benefits for deployment. Additionally, multi-task learning frameworks that jointly predict categorical emotions and dimensional AVD values might capture richer relationships and improve overall performance.
-
-Architecturally, the development of end-to-end multimodal transformers that process both text and audio within a unified attention framework is a significant research frontier. Investigating self-supervised pre-training objectives specifically designed for emotion-related tasks, rather than general language or audio understanding, could also lead to more tailored and effective models. Exploring continual learning approaches to enable models to adapt to new speakers, accents, and evolving emotional expressions over time is crucial for real-world robustness.
-
-From a dataset and evaluation perspective, validating our findings on datasets featuring spontaneous, in-the-wild emotions is essential. Integrating realistic ASR pipelines to assess the impact of speech recognition errors on overall emotion detection performance is another critical step. Cross-corpus validation, testing models trained on IEMOCAP on other diverse emotion datasets, would provide a stronger measure of generalization. Incorporating conversational context, perhaps by modeling sequences of utterances rather than isolated ones, is vital for resolving ambiguity. Finally, extending our approach to include the visual modality from IEMOCAP or other datasets would allow for a more complete tri-modal emotion recognition system.
-
-Addressing real-world deployment challenges will involve developing techniques for robustness to noise, optimizing models for edge devices through methods like quantization and pruning, and creating mechanisms for online adaptation. Reliable confidence estimation for predictions and tools for model explainability will also be crucial for building trust and utility in practical applications. Furthermore, adapting these emotion detection models for specific domains such as mental health monitoring, educational technology, human-robot interaction, and customer experience, while carefully considering the ethical implications, represents a vast area for impactful future work. This includes a strong focus on privacy-preserving techniques, bias mitigation across demographic and cultural groups, and ensuring user control and transparency.
-
-\subsection{Ethical Considerations}
-As emotion detection systems become more capable and widely deployed, it is crucial to address the important ethical questions they raise. The development and use of such technologies must prioritize user privacy and informed consent. Users should be clearly informed when their emotional states are being analyzed, and for what purpose, with straightforward mechanisms to opt-out or control data usage. Data minimization principles should be applied, processing only the necessary information and using it strictly for the disclosed purposes. Clear policies regarding data storage, retention, and deletion are also essential.
-
-Bias and fairness represent another significant ethical challenge. Emotion recognition models can inadvertently learn and perpetuate biases present in their training data, leading to differential performance across cultural or demographic groups. Emotional expressions themselves can vary significantly across cultures, and models trained predominantly on one group may not generalize well to others. Ensuring diverse representation in training datasets and regular auditing for performance disparities are critical steps. Furthermore, systems should be designed with neurodiversity in mind, accounting for atypical emotional expressions. Inclusive design practices, involving diverse stakeholders throughout the development lifecycle, can help mitigate these risks.
-
-Transparency and accountability are paramount for responsible deployment. Where feasible, systems should provide explanations for their emotion predictions, or at least indicators of confidence. Clear documentation of model capabilities, limitations, and intended uses is necessary. For critical applications, maintaining human oversight and providing mechanisms for users to provide feedback or correct misclassifications can help build trust and improve system performance over time.
-
-\subsection{Theoretical Implications and Novel Insights}
-Our results challenge several prevailing assumptions and offer novel insights into multimodal emotion recognition. Contrary to the common belief that multimodal approaches necessarily outperform unimodal ones, our findings show that a text-only RoBERTa model achieved the highest accuracy (91.82%) for direct categorical classification, marginally surpassing our best multimodal system (91.74%). This suggests that for datasets like IEMOCAP, which feature acted emotions and high-quality transcripts, the linguistic content itself may already contain sufficient discriminative information, making the audio modality somewhat redundant for this specific task, though still valuable for dimensional aspects like Arousal.
-
-The relatively small performance gap (within ~0.5-1%) observed between different top-tier transformer architectures (RoBERTa, DeBERTa, XLNet) indicates that for emotion recognition, the specific architectural nuances among these advanced models might be less critical than the quality of their pre-training data and methodology, along with effective fine-tuning strategies. This implies that focusing on these latter aspects could be more fruitful than solely pursuing novel architectures.
-    
-Furthermore, the strong performance of ALBERT (91.44% accuracy with only 12M parameters) significantly challenges the notion that larger models are indispensable for achieving state-of-the-art results. This highlights the potential of parameter-sharing and other efficiency techniques to maintain high performance while dramatically reducing model size, which is crucial for practical deployment.
-    
-Lastly, our observation that specific audio features perform optimally with particular fusion strategies (e.g., MFCCs with Hybrid fusion, spectrograms with Late fusion) reveals a previously underexplored interaction. This suggests that the inherent structure of different audio representations makes them more compatible with certain integration approaches, a factor that should inform future multimodal architectural design.
-    
-\subsection{Critical Limitations and Research Opportunities}
-While our study makes significant contributions, several important limitations present opportunities for future research. A primary concern is ecological validity; IEMOCAP contains acted emotions, which may differ systematically from spontaneous emotions in real-world contexts. Validating our findings on datasets with naturally occurring emotions, particularly in non-controlled environments, is a critical next step.
-
-Our reliance on perfect ground truth transcripts means the reported advantage of text-only approaches might diminish when dealing with imperfect ASR output typical of real-world applications. Future research should quantify this effect by introducing controlled degradation of transcript quality or integrating end-to-end ASR. Implementation challenges also prevented the full evaluation of prosodic features and wav2vec embeddings, which theoretically capture important emotional signals. Overcoming these technical barriers represents an important direction.
-
-Cross-corpus generalization remains a concern, as all experiments were conducted on variations of the IEMOCAP dataset. Assessing performance across multiple diverse datasets is needed to evaluate domain adaptation capabilities. The dataset's limitation to English speakers from the United States also potentially embeds cultural biases in emotion expression and recognition; extending this work to multilingual and multicultural contexts is essential. Finally, our utterance-level classification approach doesn't account for the temporal dynamics and emotional context within conversations. Future work should explore sequence-based models that incorporate conversational history for more contextually aware emotion recognition.
-
-\section{Conclusion and Future Work}
-\label{sec:conclusion}
-
-This section summarizes our key findings, discusses the broader implications of our work, and outlines promising directions for future research in multimodal emotion detection.
-
-\subsection{Summary of Findings}
-
-This project explored a two-stage approach to emotion detection using multimodal data, first predicting dimensional emotion values (Arousal, Valence, Dominance) and then mapping these to discrete emotion categories. Through focused experimentation on key model configurations, we have gained valuable insights into the effectiveness of this approach compared to direct classification, as well as the relative contributions of textual and audio modalities.
-
-Our investigation of the first stage—dimensional emotion prediction—revealed that different modalities excel at capturing different emotional dimensions. Text-based models, particularly RoBERTa, demonstrated superior performance for Valence prediction (R²=0.471), while audio features better captured Arousal information (R²=0.215 for CNN+MFCC). This finding aligns with theoretical expectations, as textual content often directly expresses positive or negative sentiment (Valence), while vocal characteristics like pitch and intensity naturally convey emotional energy (Arousal).
-
-For the second stage—mapping dimensional values to categorical emotions—we found that while the approach achieved respectable accuracy (up to 90.13% for multimodal inputs), it consistently underperformed compared to direct classification (91.74% for the same modality combination). This suggests that the additional processing step introduces errors that outweigh the theoretical advantages of the dimensional representation for the IEMOCAP dataset.
-
-Among the models evaluated for direct classification, RoBERTa consistently demonstrated superior performance for text processing, achieving a maximum validation accuracy of 91.82%. The multimodal approach combining RoBERTa with MFCC features through hybrid fusion reached a comparable 91.74%, indicating that text alone captures most of the emotion-relevant information in this dataset.
-
-These results collectively challenge our initial hypothesis that the two-stage approach would enhance classification performance. However, they also highlight the value of dimensional emotion representation for applications requiring nuanced emotional understanding beyond discrete categories. The choice between approaches thus depends on the specific requirements of the application: direct classification for maximum accuracy, or the two-stage approach for richer emotional representation.
-
-\subsection{Theoretical and Practical Contributions}
-Our work makes several significant contributions to the field of emotion detection:
-
-\paragraph{Theoretical Contributions:}
-\begin{itemize}
-    \item \textbf{Transformer effectiveness:} Demonstrating the superior capability of transformer-based models for capturing emotional nuances in text, significantly outperforming previous RNN-based approaches
-    
-    \item \textbf{Feature-fusion interactions:} Identifying specific interactions between audio feature types and fusion strategies, revealing that the optimal fusion method depends on the selected audio representation
-    
-    \item \textbf{Modality contributions:} Quantifying the relative contributions of textual and audio modalities to emotion recognition, showing that text provides stronger signals but audio adds complementary information
-    
-    \item \textbf{Architectural insights:} Establishing that smaller, more efficient transformer variants can achieve near state-of-the-art performance, challenging the assumption that larger models are always necessary
-\end{itemize}
-
-\paragraph{Practical Contributions:}
-\begin{itemize}
-    \item \textbf{State-of-the-art models:} Developing emotion detection models that establish new benchmarks on the IEMOCAP dataset, with validation accuracies exceeding 91\%
-    
-    \item \textbf{Efficiency-performance tradeoffs:} Providing a detailed analysis of model size, training time, and inference speed to guide deployment decisions
-    
-    \item \textbf{Implementation framework:} Creating a reproducible experimental pipeline using Modal's cloud infrastructure for efficient parallel experimentation
-    
-    \item \textbf{Design guidelines:} Offering practical recommendations for model selection based on application requirements and resource constraints
-\end{itemize}
-
-\paragraph{Methodological Contributions:}
-\begin{itemize}
-    \item \textbf{Systematic evaluation:} Conducting the first comprehensive comparison of transformer models, audio features, and fusion strategies for emotion detection
-    
-    \item \textbf{Cross-validation approach:} Implementing rigorous 5-fold cross-validation with stratification to ensure reliable evaluation
-    
-    \item \textbf{Multifaceted analysis:} Evaluating performance across multiple metrics, including accuracy, F1-score, and dimensional emotion prediction
-    
-    \item \textbf{Statistical significance testing:} Applying appropriate statistical tests to determine the significance of performance differences
-\end{itemize}
-
-\subsection{Limitations}
-Despite the comprehensive nature of our experiments, several limitations should be acknowledged:
-
-\paragraph{Dataset Limitations:}
-\begin{itemize}
-    \item \textbf{Acted emotions:} IEMOCAP contains professionally acted emotional expressions, which may differ from spontaneous emotions in real-world settings
-    
-    \item \textbf{Perfect transcriptions:} Unlike real-world applications, we used ground truth transcripts rather than automatic speech recognition output
-    
-    \item \textbf{Limited diversity:} The dataset includes only 10 speakers, potentially limiting generalization across demographic groups
-    
-    \item \textbf{Cultural specificity:} All speakers are English speakers from the United States, restricting cross-cultural generalization
-\end{itemize}
-
-\paragraph{Technical Limitations:}
-\begin{itemize}
-    \item \textbf{Implementation challenges:} Issues prevented proper evaluation of prosodic features, wav2vec embeddings, and attention-based fusion
-    
-    \item \textbf{Computational constraints:} Resource limitations prevented exploration of larger models (e.g., RoBERTa-large) and more extensive hyperparameter tuning
-    
-    \item \textbf{Modality restrictions:} We did not incorporate visual data available in the IEMOCAP dataset
-    
-    \item \textbf{Context isolation:} Each utterance was classified independently, without considering conversational context
-\end{itemize}
-
-\paragraph{Evaluation Limitations:}
-\begin{itemize}
-    \item \textbf{Single dataset:} All experiments were conducted on variations of the IEMOCAP dataset, limiting generalization claims
-    
-    \item \textbf{English-only:} Our evaluation was limited to English data, leaving questions about cross-lingual performance
-    
-    \item \textbf{Categorical focus:} While we evaluated dimensional emotion predictions (VAD), our primary focus was on categorical emotion classification
-    
-    \item \textbf{Laboratory setting:} Evaluation did not include real-world deployment challenges like noise, variable audio quality, or ASR errors
-\end{itemize}
-
-\subsection{Future Directions}
-Based on our findings and the limitations identified, we propose several promising directions for future research:
-
-\paragraph{Technical Improvements:}
-\begin{itemize}
-    \item \textbf{Advanced fusion strategies:} Developing and refining attention-based fusion approaches to better leverage complementary information across modalities
-    
-    \item \textbf{Prosodic feature integration:} Resolving implementation challenges with prosodic features and wav2vec embeddings to evaluate their potential contribution
-    
-    \item \textbf{Larger models:} Investigating whether larger transformer variants (e.g., RoBERTa-large, DeBERTa-v3-large) can further improve performance
-    
-    \item \textbf{Model distillation:} Applying knowledge distillation techniques to transfer performance from large models to more efficient architectures without significant accuracy loss
-    
-    \item \textbf{Adaptive fusion:} Developing fusion strategies that dynamically adjust the contribution of each modality based on input characteristics and confidence estimates
-\end{itemize}
-
-\paragraph{Architectural Innovations:}
-\begin{itemize}
-    \item \textbf{End-to-end multimodal transformers:} Exploring unified transformer architectures that process both text and audio in a single model
-    
-    \item \textbf{Multi-task learning:} Jointly learning categorical emotion classification and dimensional prediction to leverage task relationships
-    
-    \item \textbf{Self-supervised pre-training:} Developing pre-training objectives specifically designed for emotion-related tasks
-    
-    \item \textbf{Continual learning:} Implementing approaches that allow models to adapt to new speakers and environments over time
-    
-    \item \textbf{Few-shot adaptation:} Creating models that can quickly adapt to new emotion categories or expression styles with minimal labeled data
-\end{itemize}
-
-\paragraph{Dataset and Evaluation Extensions:}
-\begin{itemize}
-    \item \textbf{Spontaneous emotion evaluation:} Testing on datasets with naturally occurring emotions to assess generalization beyond acted scenarios
-    
-    \item \textbf{ASR integration:} Evaluating the impact of speech recognition errors on emotion detection performance
-    
-    \item \textbf{Cross-corpus validation:} Testing models trained on IEMOCAP on other emotion datasets to measure generalization
-    
-    \item \textbf{Contextual emotion recognition:} Incorporating conversation history and context for more accurate recognition
-    
-    \item \textbf{Visual modality integration:} Extending our approach to incorporate facial expressions and gestures for tri-modal emotion detection
-\end{itemize}
-
-\paragraph{Real-World Deployment Challenges:}
-\begin{itemize}
-    \item \textbf{Robustness to noise:} Developing techniques to maintain performance in noisy environments
-    
-    \item \textbf{Computation optimization:} Implementing quantization, pruning, and other efficiency techniques for edge deployment
-    
-    \item \textbf{Adaptation mechanisms:} Creating methods for online adaptation to new speakers and acoustic conditions
-    
-    \item \textbf{Confidence estimation:} Developing reliable uncertainty quantification for emotion predictions
-    
-    \item \textbf{Explainability tools:} Building interfaces that explain model decisions to users
-\end{itemize}
-
-\paragraph{Application Domains:}
-\begin{itemize}
-    \item \textbf{Mental health monitoring:} Adapting emotion detection models for depression, anxiety, and stress detection, with appropriate privacy safeguards
-    
-    \item \textbf{Educational feedback:} Developing systems to recognize student engagement and emotional states to provide adaptive learning experiences
-    
-    \item \textbf{Human-computer interaction:} Enabling more natural and responsive interfaces that adapt to user emotional states
-    
-    \item \textbf{Assistive technology:} Creating tools for individuals with emotion recognition difficulties, such as those with autism spectrum disorders
-    
-    \item \textbf{Customer experience:} Implementing emotion-aware customer service systems that can detect frustration or satisfaction
-\end{itemize}
-
-\paragraph{Responsible Development:}
-Future work must prioritize ethical considerations:
-
-\begin{itemize}
-    \item \textbf{Privacy preservation:} Developing privacy-preserving emotion recognition techniques that minimize data collection
-    
-    \item \textbf{Bias mitigation:} Ensuring equitable performance across demographic groups and cultural contexts
-    
-    \item \textbf{User control:} Creating systems that provide transparency and user control over emotion detection
-    
-    \item \textbf{Deployment guidelines:} Establishing best practices for responsible implementation in various domains
-    
-    \item \textbf{Stakeholder engagement:} Involving diverse stakeholders in the design and evaluation of emotion detection systems
-\end{itemize}
-
-\subsection{Final Thoughts}
-The field of emotion detection continues to evolve rapidly, driven by advances in deep learning architectures and multimodal fusion techniques. Our work contributes to this progress by systematically evaluating state-of-the-art approaches and identifying promising directions for future research. The substantial performance improvements we have demonstrated—particularly through transformer-based models—highlight the potential for continued innovation in this area.
-
-While challenges remain in developing robust, generalizable emotion detection systems, the potential benefits for human-computer interaction and numerous application domains make this an exciting and valuable area of continued investigation. By addressing the technical, dataset, and ethical challenges identified in this work, future research can build on our findings to create emotion detection systems that are not only more accurate but also more inclusive, transparent, and respectful of user privacy.
-
-As emotion detection technologies continue to mature and find their way into real-world applications, maintaining a balance between technical innovation and responsible deployment will be crucial. Our hope is that this work provides a foundation for future developments that enhance the capability of computational systems to understand and respond appropriately to human emotional states, ultimately leading to more natural, effective, and beneficial human-computer interactions.
-
-\subsection{Critical Limitations and Research Opportunities}
-While our study makes significant contributions, several important limitations present opportunities for future research:
-
-\begin{itemize}
-    \item \textbf{Ecological validity}: IEMOCAP contains acted emotions that may differ systematically from spontaneous emotions in real-world contexts. Future work should validate our findings on datasets with naturally occurring emotions, particularly in non-controlled environments.
-    
-    \item \textbf{Perfect transcription assumption}: Unlike real-world applications, we used ground truth transcripts rather than ASR output. The relative advantage of text-only approaches may diminish when dealing with imperfect transcripts. Future research should quantify this effect by introducing controlled degradation of transcript quality.
-    
-    \item \textbf{Feature extraction limitations}: Implementation challenges prevented evaluation of prosodic features and wav2vec embeddings, which theoretically capture important emotional signals. Addressing these technical barriers represents an important direction for future work.
-    
-    \item \textbf{Cross-corpus generalization}: All experiments were conducted on variations of the IEMOCAP dataset, limiting generalization claims. Future studies should assess performance across multiple datasets to evaluate domain adaptation capabilities.
-    
-    \item \textbf{Cultural and linguistic bias}: The dataset includes only English speakers from the United States, potentially embedding cultural biases in emotion expression and recognition. Extending this work to multilingual and multicultural contexts is essential for developing universally applicable systems.
-    
-    \item \textbf{Temporal dynamics}: Our utterance-level classification approach doesn't account for emotional context in conversations. Future work should explore sequence-based models that incorporate conversational history for more contextually aware emotion recognition.
-\end{itemize}
-
-These limitations highlight critical research gaps that must be addressed to advance the field beyond current benchmarks toward more robust, generalizable emotion recognition systems.
-
-\subsection{Critical Analysis of Feature-Fusion Interactions}
-Our experiments reveal a nuanced relationship between audio feature types and fusion strategies that has significant implications for multimodal architecture design. Figure~\ref{fig:feature_fusion_matrix} illustrates this relationship through a performance matrix visualization.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{Figures/feature_fusion_matrix.png}
-    \caption{Feature-Fusion Performance Matrix: This visualization maps the performance landscape of different audio feature and fusion strategy combinations. The intensity of each cell represents validation accuracy, revealing that certain combinations (MFCC+Hybrid, Spectrogram+Late) create natural synergies that significantly outperform others. This pattern suggests that the information structure of each audio representation is inherently more compatible with particular integration approaches.}
-    \label{fig:feature_fusion_matrix}
-\end{figure}
-
-\subsection{Ablation Studies and Component Analysis}
-To gain deeper insights into the relative importance of different components in our models, we conducted systematic ablation studies. Figure~\ref{fig:ablation_analysis} presents the impact of removing or modifying various components.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{Figures/ablation_analysis.png}
-    \caption{Ablation Analysis: This chart quantifies the performance impact of removing or modifying different system components. Each bar represents the absolute percentage decrease in validation accuracy when a specific component is altered, revealing that attention mechanisms in transformer models contribute most significantly to emotion recognition performance, followed by pre-trained embeddings and fusion mechanisms.}
-    \label{fig:ablation_analysis}
-\end{figure}
-
-\subsection{Analysis of Emotion Misclassifications}
-To gain deeper insights into model behavior, we analyzed patterns in emotion misclassifications across the best-performing models.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{Figures/error_analysis.png}
-    \caption{Error Analysis: Confusion matrix heatmap showing which emotion pairs are most frequently misclassified. The visualization highlights systematic confusion between similar emotional states (e.g., happy/excited at 17.3\% and angry/frustrated at 10.2\%), providing insights for future model refinements.}
-    \label{fig:error_analysis}
-\end{figure}
-
-\newpage
-
-\bibliographystyle{IEEEtran}
-\bibliography{sample-base}
-
-\end{document}

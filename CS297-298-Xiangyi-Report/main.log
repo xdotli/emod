@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  13 MAY 2025 00:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  16 MAY 2025 14:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -517,6 +517,14 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@roff=\dimen311
 ))
 (./main.aux)
+Runaway argument?
+{\contentsline {paragraph}{Understan 
+! File ended while scanning use of \@writefile.
+<inserted text> 
+                \par 
+l.54 \begin{document}
+                     
+? 
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
@@ -533,7 +541,6 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
 LaTeX Font Info:    ... okay on input line 54.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
 LaTeX Font Info:    ... okay on input line 54.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -643,296 +650,366 @@ Underfull \hbox (badness 10000) in paragraph at lines 133--135
 
 
 
-[2] (./main.toc
-
-[3]
-
-[4])
+[2] (./main.toc)
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
 
 
-[5] (./main.lof
-
-[6])
+[3] (./main.lof)
 \tf@lof=\write5
 \openout5 = `main.lof'.
 
-
-
-[7] (./main.lot)
+ (./main.lot)
 \tf@lot=\write6
 \openout6 = `main.lot'.
 
 
 
-[8]
+[4]
 
 [1]
-
-LaTeX Warning: Reference `sec:related' on page 2 undefined on input line 166.
-
-
-LaTeX Warning: Reference `sec:experimental_setup' on page 2 undefined on input 
-line 166.
-
-
-
-[2]
-Overfull \hbox (3.9652pt too wide) in paragraph at lines 174--175
-[]\OT1/cmr/m/n/12 Russell's Cir-cum-plex Model and the PAD (Pleasure-Arousal-Do
-minance) model by Mehra-
- []
-
-
-Overfull \hbox (27.93565pt too wide) in paragraph at lines 181--182
+Overfull \hbox (27.93565pt too wide) in paragraph at lines 179--180
 []\OT1/cmr/m/n/12 Classical machine-learning mod-els|including Na^^?^^Pve Bayes
 , lo-gis-tic re-gres-sion and SVMs|were
  []
 
 
+LaTeX Warning: Citation `mao2014learning' on page 2 undefined on input line 186
+.
 
-[3]
-Overfull \hbox (9.384pt too wide) in paragraph at lines 184--195
+
+LaTeX Warning: Citation `abdul2017emonet' on page 2 undefined on input line 188
+.
+
+
+LaTeX Warning: Citation `poria2018multimodal' on page 2 undefined on input line
+ 190.
+
+
+Overfull \hbox (9.384pt too wide) in paragraph at lines 182--193
 \OT1/cmr/m/n/12 Convolutional and re-cur-rent net-works rapidly eclipsed clas-s
 i-cal mod-els. CNNs and []
  []
 
 
-
-[4]
-
-LaTeX Warning: Citation `livingstone2018ravdess' on page 5 undefined on input l
-ine 238.
+LaTeX Warning: Citation `liu2019roberta' on page 2 undefined on input line 197.
 
 
-Overfull \hbox (76.42078pt too wide) in paragraph at lines 232--242
-\OT1/cmr/bx/n/12 IEMOCAP \OT1/cmr/m/n/12 [14] re-mains the de-facto bench-mark 
-($\OMS/cmsy/m/n/12 ^^X$\OT1/cmr/m/n/12 10 k ut-ter-ances, 9 emo-tions, au-dio+v
-ideo+transcripts).
+
+LaTeX Warning: Citation `tsai2019mult' on page 2 undefined on input line 199.
+
+
+LaTeX Warning: Citation `lv2021progressive' on page 2 undefined on input line 2
+02.
+
+
+LaTeX Warning: Citation `wang2020context' on page 2 undefined on input line 203
+.
+
+
+LaTeX Warning: Citation `siriwardhana2020joint' on page 2 undefined on input li
+ne 207.
+
+
+
+[2]
+
+LaTeX Warning: Citation `poria2017review' on page 3 undefined on input line 213
+.
+
+
+LaTeX Warning: Citation `wang2019words' on page 3 undefined on input line 218.
+
+
+LaTeX Warning: Citation `zadeh2018multimodal_tfn' on page 3 undefined on input 
+line 222.
+
+
+LaTeX Warning: Citation `zadeh2018mfn' on page 3 undefined on input line 223.
+
+
+LaTeX Warning: Citation `wang2019words' on page 3 undefined on input line 224.
+
+
+LaTeX Warning: Citation `tsai2019mult' on page 3 undefined on input line 225.
+
+
+LaTeX Warning: Citation `mittal2020m3er' on page 3 undefined on input line 227.
+
+
+
+LaTeX Warning: Citation `busso2008iemocap' on page 3 undefined on input line 23
+0.
+
+
+LaTeX Warning: Citation `zadeh2016mosi' on page 3 undefined on input line 232.
+
+
+LaTeX Warning: Citation `zadeh2018multimodal' on page 3 undefined on input line
+ 233.
+
+
+LaTeX Warning: Citation `poria2018meld' on page 3 undefined on input line 235.
+
+
+LaTeX Warning: Citation `livingstone2018ravdess' on page 3 undefined on input l
+ine 236.
+
+
+Overfull \hbox (71.0459pt too wide) in paragraph at lines 230--240
+\OT1/cmr/bx/n/12 IEMOCAP \OT1/cmr/m/n/12 [\OT1/cmr/bx/n/12 ?\OT1/cmr/m/n/12 ] r
+e-mains the de-facto bench-mark ($\OMS/cmsy/m/n/12 ^^X$\OT1/cmr/m/n/12 10 k ut-
+ter-ances, 9 emo-tions, au-dio+video+transcripts).
  []
 
 
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 262--262
+[3]
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 260--260
 []|\OT1/cmss/m/n/6 openSMILE, word2vec,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 262--262
+Underfull \hbox (badness 10000) in paragraph at lines 260--260
 []|\OT1/cmss/m/n/6 Early fu-sion (fea-ture
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--263
+Underfull \hbox (badness 10000) in paragraph at lines 261--261
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--263
+Underfull \hbox (badness 10000) in paragraph at lines 261--261
 []|\OT1/cmss/m/n/6 Utterance in-ter-ac-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 262--262
 []|\OT1/cmss/m/n/6 YT(3),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 262--262
 \OT1/cmss/m/n/6 MOUD(2),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 262--262
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--265
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
 []|\OT1/cmss/m/n/6 YT: 61.0%/60.7%;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--265
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
 \OT1/cmss/m/n/6 MOUD:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--265
+Underfull \hbox (badness 10000) in paragraph at lines 263--263
 []|\OT1/cmss/m/n/6 MFCC, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--266
+Underfull \hbox (badness 10000) in paragraph at lines 264--264
 []|\OT1/cmss/m/n/6 IEMOCAP(4),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--266
+Underfull \hbox (badness 10000) in paragraph at lines 264--264
 \OT1/cmss/m/n/6 MOUD(2),
  []
 
 
-Underfull \hbox (badness 2932) in paragraph at lines 266--266
+Underfull \hbox (badness 2932) in paragraph at lines 264--264
 []|\OT1/cmss/m/n/6 openSMILE, CNN, 3D-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
 []|\OT1/cmss/m/n/6 IEMO: 71.6%;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
 \OT1/cmss/m/n/6 MOUD: 67.9%;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 267--267
+Underfull \hbox (badness 10000) in paragraph at lines 265--265
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 267--267
+Underfull \hbox (badness 10000) in paragraph at lines 265--265
 []|\OT1/cmss/m/n/6 Fine-grained (dy-namic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--268
+Underfull \hbox (badness 10000) in paragraph at lines 266--266
 []|\OT1/cmss/m/n/6 openSMILE, word2vec,
  []
 
 
-Underfull \hbox (badness 3281) in paragraph at lines 268--268
+Underfull \hbox (badness 3281) in paragraph at lines 266--266
 []|\OT1/cmss/m/n/6 Hierarchical fu-sion w/
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 10000) in paragraph at lines 267--267
 []|\OT1/cmss/m/n/6 ICT-MMMO(2),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 10000) in paragraph at lines 267--267
 \OT1/cmss/m/n/6 YT(3),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 10000) in paragraph at lines 267--267
 \OT1/cmss/m/n/6 MOUD(2),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 10000) in paragraph at lines 267--267
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 10000) in paragraph at lines 267--267
 []|\OT1/cmss/m/n/6 Cross-modal Trans-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 []|\OT1/cmss/m/n/6 ICT: 81.3%/79.2%;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 \OT1/cmss/m/n/6 YT: 53.3%/52.4%;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 \OT1/cmss/m/n/6 MOUD:
  []
 
 
-Overfull \hbox (12.14592pt too wide) in paragraph at lines 269--270
+Overfull \hbox (12.14592pt too wide) in paragraph at lines 267--268
 \OT1/cmss/m/n/6 84.8%(UAcc)/81.4%(UF1)| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--270
+Underfull \hbox (badness 10000) in paragraph at lines 268--268
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--270
+Underfull \hbox (badness 10000) in paragraph at lines 268--268
 []|\OT1/cmss/m/n/6 Fine-grained (Cap-sule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 271--271
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 271--271
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
 []|\OT1/cmss/m/n/6 Factorized mul-ti-modal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
 []|\OT1/cmss/m/n/6 ICT-MMMO(2),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
 []|\OT1/cmss/m/n/6 COVAREP, GloVe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--273
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
 []|\OT1/cmss/m/n/6 ICT: 81.3%/80.8%;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 273--273
+Underfull \hbox (badness 10000) in paragraph at lines 271--271
 []|\OT1/cmss/m/n/6 IEMOCAP(4),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 273--273
+Underfull \hbox (badness 10000) in paragraph at lines 271--271
 []|\OT1/cmss/m/n/6 openSMILE, BERT,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 273--274
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
 []|\OT1/cmss/m/n/6 IEMO: 75.6%(UAcc
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 273--274
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
 \OT1/cmss/m/n/6 74.5%); MELD:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []|\OT1/cmss/m/n/6 IEMOCAP(4),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []|\OT1/cmss/m/n/6 Fine-grained
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 []|\OT1/cmss/m/n/6 IEMOCAP(6),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 \OT1/cmss/m/n/6 MOSI(2),
  []
 
 
-Underfull \hbox (badness 2932) in paragraph at lines 275--275
+Underfull \hbox (badness 2932) in paragraph at lines 273--273
 []|\OT1/cmss/m/n/6 openSMILE, CNN, 3D-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 274--274
+[]|\OT1/cmss/m/n/6 COVAREP, BERT,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
+[]|\OT1/cmss/m/n/6 IEMOCAP(4),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--275
+[]|\OT1/cmss/m/n/6 Wav2Vec, RoBERTa,
+ []
+
+
+Underfull \hbox (badness 7796) in paragraph at lines 275--275
+[]|\OT1/cmss/m/n/6 Transformer-based late
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--276
+[]|\OT1/cmss/m/n/6 IEMOCAP(4),
  []
 
 
@@ -941,135 +1018,227 @@ Underfull \hbox (badness 10000) in paragraph at lines 276--276
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 277--277
-[]|\OT1/cmss/m/n/6 IEMOCAP(4),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 277--277
-[]|\OT1/cmss/m/n/6 Wav2Vec, RoBERTa,
- []
-
-
-Underfull \hbox (badness 7796) in paragraph at lines 277--277
-[]|\OT1/cmss/m/n/6 Transformer-based late
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
-[]|\OT1/cmss/m/n/6 IEMOCAP(4),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
-[]|\OT1/cmss/m/n/6 COVAREP, BERT,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 283--283
+Underfull \hbox (badness 10000) in paragraph at lines 281--281
 []|\OT1/cmss/m/n/6 Deep NN (fully-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 284--284
+Underfull \hbox (badness 10000) in paragraph at lines 282--282
 []|\OT1/cmss/m/n/6 Parallel
  []
 
 
 
-[6]
-Overfull \hbox (5.6581pt too wide) in paragraph at lines 310--311
+[5]
+
+LaTeX Warning: Citation `poria2017review' on page 6 undefined on input line 306
+.
+
+
+LaTeX Warning: Citation `wagner2011introducting' on page 6 undefined on input l
+ine 308.
+
+
+Overfull \hbox (0.28322pt too wide) in paragraph at lines 308--309
 \OT1/cmr/m/n/12 pre-dic-tions, typ-i-cally through vot-ing schemes, weighted av
--er-ag-ing, or ad-di-tional clas-si-fiers [21].
+-er-ag-ing, or ad-di-tional clas-si-fiers [\OT1/cmr/bx/n/12 ?\OT1/cmr/m/n/12 ].
+
  []
 
 
+LaTeX Warning: Citation `zadeh2018memory' on page 6 undefined on input line 310
+.
 
-[7
+
+LaTeX Warning: Citation `kiela2019supervised' on page 6 undefined on input line
+ 312.
+
+
+LaTeX Warning: Citation `busso2008iemocap' on page 6 undefined on input line 31
+5.
+
+
+
+[6
 
 
 ]
 
-[8]
-<Figures/system_architecture_fixed.png, id=66, 715.473pt x 570.933pt>
-File: Figures/system_architecture_fixed.png Graphic file (type png)
-<use Figures/system_architecture_fixed.png>
-Package pdftex.def Info: Figures/system_architecture_fixed.png  used on input l
-ine 332.
-(pdftex.def)             Requested size: 422.77664pt x 337.36154pt.
+LaTeX Warning: Citation `mckeown2012semaine' on page 7 undefined on input line 
+317.
 
+
+LaTeX Warning: Citation `livingstone2018ryerson' on page 7 undefined on input l
+ine 317.
+
+
+LaTeX Warning: Citation `zadeh2018multimodal' on page 7 undefined on input line
+ 317.
+
+
+LaTeX Warning: File `Figures_Improved/system_architecture_fixed.png' not found 
+on input line 330.
+
+
+! Package pdftex.def Error: File `Figures_Improved/system_architecture_fixed.pn
+g' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.330 ...s_Improved/system_architecture_fixed.png}
+                                                  
+? 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
+[7]
+
+[8]
+
+LaTeX Warning: Citation `devlin2018bert' on page 9 undefined on input line 343.
+
+
+
+LaTeX Warning: Citation `liu2019roberta' on page 9 undefined on input line 348.
+
+
+
+
 [9]
 
-[10 <./Figures/system_architecture_fixed.png>]
+LaTeX Warning: Citation `yang2019xlnet' on page 10 undefined on input line 351.
 
-[11]
-Overfull \hbox (11.80809pt too wide) in paragraph at lines 356--357
-\OT1/cmr/m/n/12 ALBERT [28] ad-dresses BERT's pa-ram-e-ter in-ef-fi-ciency thro
-ugh sig-nif-i-cant parameter-reduction
+
+
+Overfull \hbox (7.60869pt too wide) in paragraph at lines 351--352
+\OT1/cmr/m/n/12 con-tent stream) to pre-vent tar-get in-for-ma-tion leak-age du
+r-ing train-ing. The \OT1/cmtt/m/n/12 xlnet-base-cased
  []
 
 
+LaTeX Warning: Citation `lan2019albert' on page 10 undefined on input line 354.
+
+
+
+Overfull \hbox (6.43321pt too wide) in paragraph at lines 354--355
+\OT1/cmr/m/n/12 ALBERT [\OT1/cmr/bx/n/12 ?\OT1/cmr/m/n/12 ] ad-dresses BERT's p
+a-ram-e-ter in-ef-fi-ciency through sig-nif-i-cant parameter-reduction
+ []
+
+
+LaTeX Warning: Citation `clark2020electra' on page 10 undefined on input line 3
+57.
+
+
+
+[10]
+
+LaTeX Warning: Citation `he2020deberta' on page 11 undefined on input line 360.
+
+
+
+
+[11]
 
 [12]
 
-[13{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.en
+LaTeX Warning: File `Figures_Improved/mfcc_pipeline.png' not found on input lin
+e 396.
+
+
+! Package pdftex.def Error: File `Figures_Improved/mfcc_pipeline.png' not found
+: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.396 ...idth]{Figures_Improved/mfcc_pipeline.png}
+                                                  
+? 
+
+
+[13]
+
+LaTeX Warning: Citation `schneider2019wav2vec' on page 14 undefined on input li
+ne 408.
+
+
+
+[14{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.en
 c}]
-<Figures/mfcc_pipeline.png, id=87, 1004.553pt x 426.1521pt>
-File: Figures/mfcc_pipeline.png Graphic file (type png)
-<use Figures/mfcc_pipeline.png>
-Package pdftex.def Info: Figures/mfcc_pipeline.png  used on input line 402.
-(pdftex.def)             Requested size: 469.75502pt x 199.2771pt.
+
+[15]
+
+LaTeX Warning: File `Figures_Improved/fusion_strategies_comparison.png' not fou
+nd on input line 425.
 
 
-[14]
+! Package pdftex.def Error: File `Figures_Improved/fusion_strategies_comparison
+.png' not found: using draft setting.
 
-[15 <./Figures/mfcc_pipeline.png>]
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.425 ...mproved/fusion_strategies_comparison.png}
+                                                  
+? 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 
 [16]
 
 [17]
-<Figures/fusion_strategies_comparison.png, id=102, 860.013pt x 715.473pt>
-File: Figures/fusion_strategies_comparison.png Graphic file (type png)
-<use Figures/fusion_strategies_comparison.png>
-Package pdftex.def Info: Figures/fusion_strategies_comparison.png  used on inpu
-t line 431.
-(pdftex.def)             Requested size: 422.77664pt x 351.72023pt.
+
+LaTeX Warning: File `Figures_Improved/late_fusion_detailed_proper.png' not foun
+d on input line 438.
 
 
-[18 <./Figures/fusion_strategies_comparison.png>]
-<Figures/late_fusion_detailed_proper.png, id=107, 715.473pt x 570.933pt>
-File: Figures/late_fusion_detailed_proper.png Graphic file (type png)
-<use Figures/late_fusion_detailed_proper.png>
-Package pdftex.def Info: Figures/late_fusion_detailed_proper.png  used on input
- line 444.
-(pdftex.def)             Requested size: 422.77664pt x 337.36154pt.
+! Package pdftex.def Error: File `Figures_Improved/late_fusion_detailed_proper.
+png' not found: using draft setting.
 
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.438 ...Improved/late_fusion_detailed_proper.png}
+                                                  
+? 
+
+
+[18]
+
+LaTeX Warning: File `Figures_Improved/hybrid_fusion_detailed.png' not found on 
+input line 448.
+
+
+! Package pdftex.def Error: File `Figures_Improved/hybrid_fusion_detailed.png' 
+not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.448 ...ures_Improved/hybrid_fusion_detailed.png}
+                                                  
+? 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 [19]
-<Figures/hybrid_fusion_detailed.png, id=111, 715.473pt x 570.933pt>
-File: Figures/hybrid_fusion_detailed.png Graphic file (type png)
-<use Figures/hybrid_fusion_detailed.png>
-Package pdftex.def Info: Figures/hybrid_fusion_detailed.png  used on input line
- 454.
-(pdftex.def)             Requested size: 422.77664pt x 337.36154pt.
 
+[20]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[20 <./Figures/late_fusion_detailed_proper.png>]
-
-[21 <./Figures/hybrid_fusion_detailed.png>]
+[21]
 
 [22]
 
@@ -1077,194 +1246,102 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [24]
 
-[25]
+LaTeX Warning: Reference `tab:avd_prediction' on page 25 undefined on input lin
+e 535.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+(./updated_tables/avd_table_latex.tex
 
+! LaTeX Error: Not in outer par mode.
 
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \begin{table}[h]
+                    
+? 
 
-[26]
-Overfull \hbox (113.23473pt too wide) in paragraph at lines 576--593
+Overfull \hbox (3.54196pt too wide) in paragraph at lines 5--40
  [][] 
  []
 
+)
 
+LaTeX Warning: Reference `tab:avd_prediction' on page 25 undefined on input lin
+e 543.
+
+
+LaTeX Warning: Reference `tab:categorical_mapping' on page 25 undefined on inpu
+t line 547.
+
+
+
+[25] (./updated_tables/table3_latex.tex
+
+! LaTeX Error: Not in outer par mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \begin{table}[h]
+                    
+? 
+
+Overfull \hbox (275.60141pt too wide) in paragraph at lines 5--22
+ [][] 
+ []
+
+)
+
+[26]
 
 [27]
 
-[28]
+LaTeX Warning: File `Figures_Improved/performance_efficiency_tradeoff.png' not 
+found on input line 594.
 
-[29]
-<Figures/performance_efficiency_tradeoff.png, id=151, 855.4359pt x 639.1077pt>
-File: Figures/performance_efficiency_tradeoff.png Graphic file (type png)
-<use Figures/performance_efficiency_tradeoff.png>
-Package pdftex.def Info: Figures/performance_efficiency_tradeoff.png  used on i
-nput line 637.
-(pdftex.def)             Requested size: 422.77664pt x 315.8668pt.
 
+! Package pdftex.def Error: File `Figures_Improved/performance_efficiency_trade
+off.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.594 ...oved/performance_efficiency_tradeoff.png}
+                                                  
+? 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
+[28]
+
+LaTeX Warning: Citation `sehrawat2023deception' on page 29 undefined on input l
+ine 611.
+
+
+LaTeX Warning: Citation `hsiao2022attention' on page 29 undefined on input line
+ 612.
+
+
+
+[29]
+
 [30]
 
-[31 <./Figures/performance_efficiency_tradeoff.png>]
+[31]
 
 [32]
 
 [33]
-
-[34]
-
-[35]
-Overfull \hbox (13.86592pt too wide) in paragraph at lines 743--744
+Overfull \hbox (13.86592pt too wide) in paragraph at lines 688--689
 \OT1/cmr/m/n/12 Our ex-per-i-ments com-pared per-for-mance on the com-plete IEM
 O-CAP dataset (IEMO-CAP[]Final,
  []
 
 
-Overfull \hbox (11.40334pt too wide) in paragraph at lines 743--744
-\OT1/cmr/m/n/12 9 emo-tion cat-e-gories) and a fil-tered ver-sion fo-cus-ing on
- four core emo-tions (IEMO-CAP[]Filtered:
- []
-
-
-
-[36]
-
-[37]
-Overfull \hbox (21.23027pt too wide) in paragraph at lines 766--781
- [][] 
- []
-
-
-
-[38]
-Overfull \hbox (1.18593pt too wide) in paragraph at lines 798--799
-[]\OT1/cmr/bx/n/12 Dimensional mod-el-ing: \OT1/cmr/m/n/12 While we eval-u-ated
- di-men-sional emo-tion pre-dic-tions (VAD),
- []
-
-
-
-[39]
-
-[40]
-
-[41]
-
-[42]
-
-[43]
-
-[44]
-Overfull \hbox (3.57922pt too wide) in paragraph at lines 896--897
-[]\OT1/cmr/bx/n/12 Cross-validation ap-proach: \OT1/cmr/m/n/12 Im-ple-ment-ing 
-rig-or-ous 5-fold cross-validation with strat-
- []
-
-
-
-[45]
-
-[46]
-
-[47]
-
-[48]
-
-[49]
-Overfull \hbox (0.16365pt too wide) in paragraph at lines 1011--1012
-[]\OT1/cmr/bx/n/12 Privacy preser-va-tion: \OT1/cmr/m/n/12 De-vel-op-ing privac
-y-preserving emo-tion recog-ni-tion tech-niques
- []
-
-
-
-[50]
-
-[51]
-<Figures/feature_fusion_matrix.png, id=224, 722.7pt x 578.16pt>
-File: Figures/feature_fusion_matrix.png Graphic file (type png)
-<use Figures/feature_fusion_matrix.png>
-Package pdftex.def Info: Figures/feature_fusion_matrix.png  used on input line 
-1053.
-(pdftex.def)             Requested size: 422.77664pt x 338.21782pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[52]
-<Figures/ablation_analysis.png, id=228, 722.7pt x 433.62pt>
-File: Figures/ablation_analysis.png Graphic file (type png)
-<use Figures/ablation_analysis.png>
-Package pdftex.def Info: Figures/ablation_analysis.png  used on input line 1063
-.
-(pdftex.def)             Requested size: 422.77664pt x 253.66338pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<Figures/error_analysis.png, id=229, 722.7pt x 578.16pt>
-File: Figures/error_analysis.png Graphic file (type png)
-<use Figures/error_analysis.png>
-Package pdftex.def Info: Figures/error_analysis.png  used on input line 1073.
-(pdftex.def)             Requested size: 422.77664pt x 338.21782pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[53 <./Figures/feature_fusion_matrix.png>] (./main.bbl
-
-[54 <./Figures/ablation_analysis.png>]
-
-[55 <./Figures/error_analysis.png>]
-
-[56]
-
-[57])
-
-[58] (./main.aux)
- ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
- ***********
-
-
-LaTeX Warning: There were undefined references.
-
- ) 
-Here is how much of TeX's memory you used:
- 10251 strings out of 473190
- 189037 string characters out of 5715801
- 639329 words of memory out of 5000000
- 33313 multiletter control sequences out of 15000+600000
- 570009 words of font info for 78 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 67i,12n,79p,1075b,471s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
-></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
-/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
-sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
-/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
-ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
-l/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/
-texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local
-/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
-texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/t
-exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/te
-xlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texl
-ive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (68 pages, 2125013 bytes).
-PDF statistics:
- 319 PDF objects out of 1000 (max. 8388607)
- 199 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+Overfull \hbox (11.40334pt too wide) in paragraph at lines 688--689
+\OT1/cmr/m/n/12 9 emo-tion cat-e-gories) and a fil-
