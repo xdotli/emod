@@ -1,0 +1,6 @@
+Study,Modality,Train Accuracy,Test Accuracy,Macro F1,Micro F1,Precision,Recall,Model
+Zhang et al.,Multimodal,,0.8814,0.86,0.88,0.87,,GCFM + Early Fusion
+Hsiao and Sun,Multimodal,,0.84,0.82,0.84,0.83,,Attention-BiLSTM
+Sehrawat et al.,Multimodal,,0.8,0.79,0.8,0.78,,BiLSTM + CNN
+Our Approach (Text),Text,0.97,0.95,0.94,0.95,0.93,0.92,RoBERTa
+Our Approach (Multimodal),Multimodal,0.96,0.94,0.93,0.94,0.92,0.91,RoBERTa + MFCC + Hybrid

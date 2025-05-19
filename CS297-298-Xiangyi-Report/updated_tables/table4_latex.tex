@@ -1,0 +1,20 @@
+\begin{table}[h]
+\centering
+\caption{Comparison of our approaches with previous state-of-the-art results on the IEMOCAP dataset}
+\label{tab:sota_comparison}
+\begin{tabular}{|l|c|c|c|c|c|c|l|}
+\hline
+\textbf{Study} & \textbf{Modality} & \textbf{Train Acc.} & \textbf{Test Acc.} & \textbf{Macro F1} & \textbf{Micro F1} & \textbf{Precision} & \textbf{Model} \\
+\hline
+Zhang et al. & Multimodal &  & 0.8814 & 0.86 & 0.88 & 0.87 & GCFM + Early Fusion \\
+\hline
+Hsiao and Sun & Multimodal &  & 0.84 & 0.82 & 0.84 & 0.83 & Attention-BiLSTM \\
+\hline
+Sehrawat et al. & Multimodal &  & 0.8 & 0.79 & 0.8 & 0.78 & BiLSTM + CNN \\
+\hline
+Our Approach (Text) & Text & 0.97 & 0.95 & 0.94 & 0.95 & 0.93 & RoBERTa \\
+\hline
+Our Approach (Multimodal) & Multimodal & 0.96 & 0.94 & 0.93 & 0.94 & 0.92 & RoBERTa + MFCC + Hybrid \\
+\hline
+\end{tabular}
+\end{table}

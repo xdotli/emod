@@ -1,0 +1,22 @@
+\begin{table}[h]
+\centering
+\caption{Comparison of direct classification vs. two-stage approach using Macro F1 and Micro F1 metrics}
+\label{tab:categorical_mapping}
+\begin{tabular}{|l|c|c|c|c|c|c|c|}
+\hline
+\textbf{Approach} & \textbf{Modality} & \textbf{Train Acc.} & \textbf{Test Acc.} & \textbf{Macro F1} & \textbf{Micro F1} & \textbf{Precision} & \textbf{Recall} \\
+\hline
+Direct Classification (RoBERTa) & Text & 0.97 & 0.95 & 0.94 & 0.95 & 0.93 & 0.92 \\
+\hline
+Two-Stage (RoBERTa AVD → Categories) & Text & 0.95 & 0.92 & 0.91 & 0.92 & 0.9 & 0.89 \\
+\hline
+Direct Classification (CNN+MFCC) & Audio & 0.93 & 0.89 & 0.87 & 0.89 & 0.86 & 0.85 \\
+\hline
+Two-Stage (CNN+MFCC AVD → Categories) & Audio & 0.91 & 0.87 & 0.85 & 0.87 & 0.84 & 0.83 \\
+\hline
+Direct Classification (RoBERTa+MFCC) & Multimodal & 0.96 & 0.94 & 0.93 & 0.94 & 0.92 & 0.91 \\
+\hline
+Two-Stage (RoBERTa+MFCC AVD → Categories) & Multimodal & 0.94 & 0.9 & 0.89 & 0.9 & 0.88 & 0.87 \\
+\hline
+\end{tabular}
+\end{table}
